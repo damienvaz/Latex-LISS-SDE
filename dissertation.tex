@@ -514,7 +514,50 @@ Semantically, operations must be validated according to table ~\ref{tbl:type_ope
 \bigbreak
 
 \textbf{Arrays.}
-Liss supports
+LISS supports a way in indexing a collections of integer values such that each value is uniquely addressed (also it supports one great and most important property of being multidimensional).
+
+Called as 'array', it is considered to be a static structured type due to the fact that his dimension and maximum size of elements is fixed at the declaration time.
+
+%One of its, most important, property is that he may have multiple dimension.
+
+And the operations defined over an array are basic in LISS:
+
+\begin{enumerate}
+\item \textit{indexing} %- denoted by '[' and ']', it selects the value of the chosen indexed array.
+\item \textit{assignment} %- 
+\end{enumerate}
+
+%explaining probably indexing and assignment
+
+Arrays can be initialized, in the declaration section, partially or completely the elements of each dimension.
+For example, consider an array of dimension 3x2 with the following way:
+
+\begin{lstlisting}
+  array = [[1,2],[5]] -> array size 3,2;
+\end{lstlisting} 
+
+Thi is equivalent to the initialization below:
+
+\begin{lstlisting}
+  array = [[1,2],[5,0],[0,0]] -> array size 3,2;
+\end{lstlisting}
+
+Notice that the elements who weren't declared, are initialized with the value 0 (see Table ~\ref{tbl:data_types}).
+
+The grammar who rules behind the syntax for array declaration and initialization is shown below.
+
+\begin{lstlisting}
+  array_definition : '[' array_initialization ']'
+                 ;
+
+  array_initialization : elem (',' elem)*
+                     ;
+
+  elem : number
+     | array_definition
+     ;
+\end{lstlisting}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
