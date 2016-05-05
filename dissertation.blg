@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: dissertation.aux
+The style file: plainnat.bst
+Database file #1: dissertation.bib
+Warning--I didn't find a database entry for "DAPJLH"
+Warning--I didn't find a database entry for "SMS01"
+You've used 33 entries,
+            2773 wiz_defined-function locations,
+            856 strings with 10846 characters,
+and the built_in function-call counts, 14488 in all, are:
+= -- 1315
+> -- 740
+< -- 34
++ -- 255
+- -- 218
+* -- 1062
+:= -- 2208
+add.period$ -- 123
+call.type$ -- 33
+change.case$ -- 163
+chr.to.int$ -- 29
+cite$ -- 66
+duplicate$ -- 740
+empty$ -- 1248
+format.name$ -- 273
+if$ -- 3119
+int.to.chr$ -- 5
+int.to.str$ -- 1
+missing$ -- 32
+newline$ -- 185
+num.names$ -- 141
+pop$ -- 376
+preamble$ -- 1
+purify$ -- 136
+quote$ -- 0
+skip$ -- 534
+stack$ -- 0
+substring$ -- 385
+swap$ -- 139
+text.length$ -- 12
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 321
+warning$ -- 0
+while$ -- 132
+width$ -- 0
+write$ -- 462
+(There were 2 warnings)

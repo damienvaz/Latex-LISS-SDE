@@ -1,0 +1,230 @@
+\begin{thebibliography}{33}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aho et~al.(1986)Aho, Sethi, and Ullman]{ASU86a}
+A.~V. Aho, R.~Sethi, and J.~D. Ullman.
+\newblock \emph{Compilers Principles, Techniques and Tools}.
+\newblock Addison-Wesley, 1986.
+
+\bibitem[Alblas(1991)]{Alb91a}
+Henk Alblas.
+\newblock Introduction to attribute grammars.
+\newblock In H.~Alblas and B.~Melichar, editors, \emph{Int. Summer School on
+  Attribute Grammars, Applications and Systems}, pages 1--15. Springer-Verlag,
+  Jun. 1991.
+\newblock LNCS 545.
+
+\bibitem[Arefi et~al.(1989)Arefi, Hughes, and Workman]{AHW89}
+F.~Arefi, C.E. Hughes, and D.A. Workman.
+\newblock The object-oriented design of a visual syntax-directed editor
+  generator.
+\newblock In \emph{Computer Software and Applications Conference, 1989. COMPSAC
+  89., Proceedings of the 13th Annual International}, pages 389 --396, sep
+  1989.
+\newblock \doi{10.1109/CMPSAC.1989.65112}.
+
+\bibitem[Chomsky(1962)]{Chomsky62a}
+Noami Chomsky.
+\newblock Context-free grammars and pushdown storage.
+\newblock RLE Quarterly Progress Report~65, MIT, Apr. 1962.
+
+\bibitem[da~Cruz and Henriques(2005)]{CH05a}
+Daniela da~Cruz and Pedro~Rangel Henriques.
+\newblock Liss - language of integers, sequences and sets.
+\newblock Talk to the gEPL, Dep. Inform\'atica / Univ. Minho, Oct. 2005.
+
+\bibitem[da~Cruz and Henriques(2006{\natexlab{a}})]{CH06a}
+Daniela da~Cruz and Pedro~Rangel Henriques.
+\newblock Liss -- language, compiler \& companion.
+\newblock In \emph{Proceedings of the Conference on Compiler Technologies for
+  .Net (CTNET'06 - Universidade da Beira Interior, Portugal)}, Mar.
+  2006{\natexlab{a}}.
+\newblock (to be published).
+
+\bibitem[da~Cruz and Henriques(2006{\natexlab{b}})]{CH06b}
+Daniela da~Cruz and Pedro~Rangel Henriques.
+\newblock Liss compiler homepage.
+\newblock http://www.di.uminho.pt/~gepl/LISS, 2006{\natexlab{b}}.
+
+\bibitem[da~Cruz and Henriques(2007{\natexlab{a}})]{CH07a}
+Daniela da~Cruz and Pedro~Rangel Henriques.
+\newblock {LISS} --- a linguagem e o compilador.
+\newblock Relat\'orio interno do {CCTC}, Dep.Inform\'atica / Univ. do Minho,
+  Jan. 2007{\natexlab{a}}.
+\newblock (to be published).
+
+\bibitem[da~Cruz and Henriques(2007{\natexlab{b}})]{CH07d}
+Daniela da~Cruz and Pedro~Rangel Henriques.
+\newblock Liss --- the language and the compiler.
+\newblock In \emph{Proceedings of the 1.st Conference on Compiler Related
+  Technologies and Applications, CoRTA'07 --- Universidade da Beira Interior,
+  Portugal}, Jul 2007{\natexlab{b}}.
+
+\bibitem[Deransart and Jourdan(1990)]{WAGA90}
+P.~Deransart and M.~Jourdan, editors.
+\newblock \emph{Attribute Grammars and their Applications}, Sep. 1990. {INRIA},
+  Springer-Verlag.
+\newblock Lecture Notes in Computer Science, nu. 461.
+
+\bibitem[Deransart et~al.(1988)Deransart, Jourdan, and Lorho]{DJB88a}
+P.~Deransart, M.~Jourdan, and B.~Lorho.
+\newblock Attribute grammars: Main results, existing systems and bibliography.
+\newblock In \emph{LNCS 341}. Springer-Verlag, 1988.
+
+\bibitem[Fil\`e(1983)]{Fil83a}
+G.~Fil\`e.
+\newblock Theory of attribute grammars.
+\newblock (Dissertation) Onderafdeling der Informatica, Technische Hogeschool
+  Twente, 1983.
+
+\bibitem[Gaudel(1983)]{Gau83a}
+M.~C. Gaudel.
+\newblock Compilers generation from formal definitions of programming
+  languages: A survey.
+\newblock In \emph{Methods and Tools for Compiler Construction}, pages
+  225--242. INRIA, Rocquencourt, Dec. 1983.
+
+\bibitem[Grune et~al.(2012)Grune, van Reeuwijk, Bal, Jacobs, and
+  Langendoen]{Grune2012a}
+Dick Grune, Kees van Reeuwijk, Henri~E. Bal, Ceriel~J.H. Jacobs, and Koen
+  Langendoen.
+\newblock \emph{Modern Compiler Design}.
+\newblock Springer, New York, Heilderberg, Dordrecht, London, 2nd edition,
+  2012.
+\newblock ISBN 978-1-4614-4698-9.
+\newblock \doi{10.1007/978-1-4614-4699-6}.
+
+\bibitem[Holsti(1986)]{Hol87a}
+Niklas Holsti.
+\newblock Incremental interaction by syntax transformation.
+\newblock In \emph{Compiler Compilers and Incremental Compilation -- Proc. of
+  the Workshop, Bautzen}, pages 192--210. Akademie der Wissenschaften der DDR,
+  Institut {f\"ur} Informatik und Rechentechnik, Oct. 1986.
+
+\bibitem[Hopcroft et~al.(2006)Hopcroft, Motwani, and Ullman]{Hopcroft2006b}
+John~E. Hopcroft, Rajeev Motwani, and Jeffrey Ullman.
+\newblock \emph{Introduction to Automata Theory, Languages, and Computation},
+  chapter 5 -- Context-Free Grammars and Languages.
+\newblock Addison-Wesley, 3rd ed. edition, 2006.
+\newblock ISBN 0-321-46225-4.
+
+\bibitem[Kastens(1991{\natexlab{a}})]{Kas91a}
+Uwe Kastens.
+\newblock Attribute grammar as a specification method.
+\newblock In H.~Alblas and B.~Melichar, editors, \emph{Int. Summer School on
+  Attribute Grammars, Applications and Systems}, pages 16--47. Springer-Verlag,
+  Jun. 1991{\natexlab{a}}.
+\newblock LNCS 545.
+
+\bibitem[Kastens(1991{\natexlab{b}})]{Kas91c}
+Uwe Kastens.
+\newblock Attribute grammars in a compiler construction environment.
+\newblock In H.~Alblas and B.~Melichar, editors, \emph{Int. Summer School on
+  Attribute Grammars, Applications and Systems}, pages 380--400.
+  Springer-Verlag, Jun. 1991{\natexlab{b}}.
+\newblock LNCS 545.
+
+\bibitem[Ko et~al.(2005)Ko, Aung, and Myers]{Ko05}
+Andrew~J. Ko, Htet~Htet Aung, and Brad~A. Myers.
+\newblock Design requirements for more flexible structured editors from a study
+  of programmers text editing.
+\newblock In \emph{CHI '05: HUMAN FACTORS IN COMPUTING}, pages 1557--1560.
+  Press, 2005.
+
+\bibitem[MI-students et~al.(2010)MI-students, da~Cruz, and Henriques]{alsCH10a}
+MI-students, Daniela da~Cruz, and Pedro~Rangel Henriques.
+\newblock Agile - a structured-editor, analyzer, metric-evaluator and
+  transformer for attribute grammars.
+\newblock In Luis~S. Barbosa and Miguel~P. Correia, editors, \emph{INForum'10
+  --- Simposio de Informatica (CoRTA'10 track)}, pages 197--200, Braga,
+  Portugal, September 2010. Universidade do Minho.
+
+\bibitem[Muchnick(1997)]{Muchnick97}
+Steven~S. Muchnick.
+\newblock \emph{Advanced Compiler Design and Implementation}.
+\newblock Morgan Kaufmann, 1997.
+\newblock ISBN 1-55860-320-4.
+
+\bibitem[Oliveira et~al.(2010)Oliveira, Pereira, Henriques, da~Cruz, and
+  Cramer]{OPHCC2010}
+Nuno Oliveira, Maria Joao~Varanda Pereira, Pedro~Rangel Henriques, Daniela
+  da~Cruz, and Bastian Cramer.
+\newblock Visuallisa: A visual environment to develop attribute grammars.
+\newblock \emph{ComSIS -- Computer Science an Information Systems Journal,
+  Special issue on Advances in Languages, Related Technologies and
+  Applications}, 7\penalty0 (2):\penalty0 266 -- 289, May 2010.
+\newblock ISSN ISSN: 1820-0214.
+
+\bibitem[Parr(2005)]{Par05}
+Terence Parr.
+\newblock An introduction to antlr.
+\newblock http://www.cs.usfca.edu/~parrt/course/652/lectures/antlr.html, Jun.
+  2005.
+
+\bibitem[Parr(2007)]{parr2007}
+Terence Parr.
+\newblock \emph{{The Definitive ANTLR Reference: Building Domain-Specific
+  Languages}}.
+\newblock The Pragmatic Bookshelf, Raleigh, 2007.
+\newblock URL
+  \url{http://www.amazon.de/Complete-ANTLR-Reference-Guide-Domain-specific/dp/0978739256}.
+
+\bibitem[R{\"a}ih{\"a}(1980)]{Rai80a}
+K.~J. R{\"a}ih{\"a}.
+\newblock Bibliography on attribute grammars.
+\newblock \emph{{SIGPLAN} Notices}, 15\penalty0 (3):\penalty0 35--44, 1980.
+
+\bibitem[Reps and Teitelbaum(1989{\natexlab{a}})]{RT89a}
+Thomas Reps and Tim Teitelbaum.
+\newblock \emph{The Synthesizer Generator: A System for Constructing
+  Language-Based Editors}.
+\newblock Texts and Monographs in Computer Science. Springer-Verlag,
+  1989{\natexlab{a}}.
+
+\bibitem[Reps and Teitelbaum(1989{\natexlab{b}})]{RT89b}
+Thomas Reps and Tim Teitelbaum.
+\newblock \emph{The Synthesizer Generator Reference Manual}.
+\newblock Texts and Monographs in Computer Science. Springer-Verlag,
+  1989{\natexlab{b}}.
+
+\bibitem[Reps et~al.(1983)Reps, Teitelbaum, and Demers]{RTD83a}
+Thomas Reps, Tim Teitelbaum, and A.~Demers.
+\newblock Incremental context-dependent analysis for language-based editors.
+\newblock \emph{ACM Trans. Programming Languages and Systems (TOPLAS)},
+  5\penalty0 (3):\penalty0 449--477, 1983.
+
+\bibitem[Reps et~al.(1986)Reps, Marceau, and Teitelbaum]{RMT86a}
+Thomas Reps, Carla Marceau, and Tim Teitelbaum.
+\newblock Remote attribute updating for language-based editors.
+\newblock \emph{Communications of the ACM}, Sep. 1986.
+
+\bibitem[Swierstra and Vogt(1991)]{SV91a}
+S.D. Swierstra and H.H. Vogt.
+\newblock Higher order attribute grammars, lecture notes of the {I}nt. {S}ummer
+  {S}chool on {A}ttribute {G}rammars, {A}pplications and {S}ystems.
+\newblock Technical Report RUU-CS-91-14, Dep. of Computer Science / Utrecht
+  Univ., Jun. 1991.
+
+\bibitem[Teitelbaum and Reps(1981)]{TR81a}
+Tim Teitelbaum and Thomas Reps.
+\newblock The cornell program synthesizer: A syntax-directed programming
+  environment.
+\newblock \emph{Communications of the ACM}, 24\penalty0 (9), Sep. 1981.
+
+\bibitem[Vogt et~al.(1990)Vogt, Swierstra, and Kuiper]{VSK90a}
+H.H. Vogt, S.D. Swierstra, and M.F. Kuiper.
+\newblock On the efficient incremental evaluation of {H}igher {O}rder
+  {A}ttribute {G}rammars.
+\newblock Research Report RUU-CS-90-36, Dep. of Computer Science / Utrecht
+  Univ., Dec. 1990.
+
+\bibitem[Waite and Goos(1984)]{WG84a}
+William Waite and Gerhard Goos.
+\newblock \emph{Compiler Construction}.
+\newblock Texts and Monographs in Computer Science. Springer-Verlag, 1984.
+
+\end{thebibliography}
