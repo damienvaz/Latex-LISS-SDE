@@ -533,13 +533,13 @@ Arrays can be initialized, in the declaration section, partially or completely t
 For example, consider an array of dimension 3x2 with the following way:
 
 \begin{lstlisting}
-  array = [[1,2],[5]] -> array size 3,2;
+  array1 = [[1,2],[5]] -> array size 3,2;
 \end{lstlisting} 
 
 Thi is equivalent to the initialization below:
 
 \begin{lstlisting}
-  array = [[1,2],[5,0],[0,0]] -> array size 3,2;
+  array1 = [[1,2],[5,0],[0,0]] -> array size 3,2;
 \end{lstlisting}
 
 Notice that the elements who weren't declared, are initialized with the value 0 (see Table ~\ref{tbl:data_types}).
@@ -557,6 +557,87 @@ The grammar who rules behind the syntax for array declaration and initialization
      | array_definition
      ;
 \end{lstlisting}
+
+\bigbreak
+
+\textbf{Sets.}
+The type \textit{set} in LISS, is a collection of integers with no repeated numbers.
+It operates with a comprehension list instead of an enumeration.
+Set type can operates with two different ways.
+The first one is the empty value and this means that the set is empty. Syntactically, this is done by writing '\verb+{}+'.
+
+The other one is an 'identifier' separated by an explicit symbol '\verb+|+' and an 'expression'. Expression is a set of operations that, at the end, result must be a boolean. Otherwise the set won't work
+
+The operations defined for sets are :
+\begin{enumerate}
+\item \textit{union}
+\item \textit{intersection}
+\item \textit{in}
+\end{enumerate}
+
+
+Let's see an example of its syntax below:
+
+\begin{lstlisting}
+  set1 = {x | x < 6 && x > -7} -> set;
+\end{lstlisting}
+
+This set explain us that only integers from -7 to 6 are valid and every others numbers are not included on the set.
+
+The syntax for set declaration and initialization is :
+
+\begin{lstlisting}
+  set_definition : '{' set_initialization '}'
+               ;
+
+  set_initialization :
+                   | identifier '|' expression
+                   ;
+\end{lstlisting}
+
+\bigbreak
+
+\textbf{Sequences.}
+Considered as an array of one dimension, the type sequence is a collection of a list ordered integers. But, instead of the concept of an array, its size is not fixed; this means that it grows dinamicallly at run time like a linked list.
+There is two ways in defining sequences.
+The first way is declaring it with the empty value (syntactically done by writing '\verb+<<>>+') and the second way is by defining with integers to the sequence.
+Let's see deeper with one example:
+
+\begin{lstlisting}[caption={Example of valid operations using sequence on LISS},label={lst:sequence_example_use}]
+  c=<<1,2,3>> -> sequence;
+\end{lstlisting}
+
+So, the sequence example is defined by three numbers (3,2,1). 
+Also some operations are defined for the sequence type and they are known as:
+\begin{enumerate}
+\item \textit{tail}
+\item \textit{head}
+\item \textit{cons}
+\item \textit{delete}
+\item \textit{copy}
+\item \textit{cat}
+\item \textit{isEmpty}
+\item \textit{length}
+\item \textit{isMember}
+\end{enumerate}
+Those operations will be explained further and deeper.
+
+Now, the grammar behind the type sequence is defined by the follow one:
+
+\begin{lstlisting}
+  sequence_definition : '<<' sequence_initialization '>>'
+                    ;
+
+  sequence_initialization :
+                        | values
+                        ;
+
+  values : number (',' number )*
+       ;
+
+\end{lstlisting}
+
+
 
 
 
@@ -600,13 +681,14 @@ a, b=<<>>, c=<<1,2,3>> -> sequence;
 %\section{Blocks and Control statements}
 \section{LISS blocks and statements}
 
+A LISS program is always composed of two parts: declarations and statements (a program block).
 LISS language is structured with ease and simple hierarchy.
 And this is done by structuring LISS code as a block.
 
 It begins by creating our program with a name, succeeding by implementing the declaration of variables and then the flow of the program by writing statements.
 Let's see a deeper look with one example (see Listing ~\ref{lst:block_liss}).
 
-\begin{lstlisting}[caption={Hierarchy of LISS example},label={lst:block_liss}]
+\begin{lstlisting}[caption={The structure of a LISS program (example)},label={lst:block_liss}]
 program sum{
     declarations
         int=2 -> integer;
