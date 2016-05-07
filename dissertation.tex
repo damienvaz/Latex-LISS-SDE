@@ -384,6 +384,7 @@ It is designed to have atomic or structured integer values, as well as, control 
 Now, let's explain the basic statements of the language and its data types as BNF grammar on the next section.
 
 \section{LISS Data types}
+\label{sec:data_types}
 
 There are 5 types available.
 From atomic to structured types, they are known as : integer, boolean, array, set and sequence.
@@ -403,33 +404,33 @@ As we can see in Listing ~\ref{lst:declare_variable}, some variables ('a','b','c
 Synthetically, in LISS, this is done by writing the variable name followed by an arrow and the type of the variable (see Listing ~\ref{lst:variable_declaration_BNF}).
 
 \begin{lstlisting}[caption={BNF of declaring a variable in LISS},label={lst:variable_declaration_BNF}]
-variable_declaration : vars '->' type ';'
+  variable_declaration : vars '->' type ';'
                      ;
-vars : var (',' var )*
+  vars : var (',' var )*
      ;
-var : identifier value_var
+  var : identifier value_var
     ;
-value_var :
+  value_var :
           | '=' inic_var
           ;
-type : 'integer'
+  type : 'integer'
      | 'boolean'
      | 'set'
      | 'sequence'
      | 'array' 'size' dimension
      ;
-dimension : number (',' number )*
+  dimension : number (',' number )*
           ;
-inic_var : constant
+  inic_var : constant
          | array_definition
          | set_definition
          | sequence_definition
          ;
-constant : sign number
+  constant : sign number
          | 'true'
          | 'false'
          ;
-sign :
+  sign :
      | '+'
      | '-'
      ;
@@ -646,33 +647,33 @@ Now, the grammar behind the type sequence is defined by the follow one:
 \begin{comment}
 
 However, there are restrictions on the syntactic and semantic levels on those types which we must list them below.
-Integer type operates with integer values, thus we can add or not, a sign to the integer value (see in Listing ~\ref{lst:integer_example_use}.
+Integer type operates with integer values, thus we can add or not, a sign to the integer value (see Listing ~\ref{lst:integer_example_use}.
 
 \begin{lstlisting}[caption={Example of valid operations using integers on LISS},label={lst:integer_example_use}]
-a, b=2, c=+2, d=-3 -> integer;
+  a, b=2, c=+2, d=-3 -> integer;
 \end{lstlisting}
 
-Boolean type operates with only boolean values (see in Listing ~\ref{lst:boolean_example_use}).
+Boolean type operates with only boolean values (see Listing ~\ref{lst:boolean_example_use}).
 
 \begin{lstlisting}[caption={Example of valid operations using booleans on LISS},label={lst:boolean_example_use}]
-a, b=true, c=false -> boolean;
+  a, b=true, c=false -> boolean;
 \end{lstlisting}
 
 Set type can operates with two different ways.
 The first one is the empty value and this means that the set is empty. Syntactically, this is done by writing '{}'.
 
-The other one is an identifier separated by an explicit symbol '|' and an expression. Expression is a set of operations that, at the end, result must be a boolean. Otherwise the set won't work (see in Listing ~\ref{lst:}). 
+The other one is an identifier separated by an explicit symbol '|' and an expression. Expression is a set of operations that, at the end, result must be a boolean. Otherwise the set won't work (see Listing ~\ref{lst:}). 
 
 \begin{lstlisting}[caption={Example of valid operations using set on LISS},label={lst:set_example_use}]
-a, b={}, c={e|e+1==10} -> set;
+  a, b={}, c={e|e+1==10} -> set;
 \end{lstlisting}
 
 Sequence type also have the same system of set type. 
 This means that it has the option to have an empty value or add values to the sequence.
-The empty value is, syntactically, done by writing '<<>>'. On the other hand, we can add only integers to the sequence, if the sequence is not empty (see in Listing ~\ref{lst:sequence_example_use}).
+The empty value is, syntactically, done by writing '<<>>'. On the other hand, we can add only integers to the sequence, if the sequence is not empty (see Listing ~\ref{lst:sequence_example_use}).
 
 \begin{lstlisting}[caption={Example of valid operations using sequence on LISS},label={lst:sequence_example_use}]
-a, b=<<>>, c=<<1,2,3>> -> sequence;
+  a, b=<<>>, c=<<1,2,3>> -> sequence;
 \end{lstlisting}
 
 \end{comment}
@@ -689,12 +690,12 @@ It begins by creating our program with a name, succeeding by implementing the de
 Let's see a deeper look with one example (see Listing ~\ref{lst:block_liss}).
 
 \begin{lstlisting}[caption={The structure of a LISS program (example)},label={lst:block_liss}]
-program sum{
+  program sum{
     declarations
         int=2 -> integer;
     statements
         writeln(int+3);
-}
+  }
 \end{lstlisting}
 
 So a program in LISS, begins by, syntactically, writing 'program' and then the name of the program (in this case, the name is 'sum').
@@ -704,11 +705,34 @@ After those braces, there is one important part to alert the user with the way o
 As in a traditional imperative language (let's compare 'C language'), if we don't take the habits of implementing the variable always in a certain part of the code. We may be confused by implementing and finding them randomly in the code. And this makes the life harder to the programmer in understanding the code when the code is quite long/bigger.
 
 So, in LISS, we always declare variable declarations firstly (syntactically written by 'declarations')  and then the statements secondly (syntactically written by 'statements').
-This is due to the fact that LISS want to help the user by creating solid and correctness code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere. 
+This is due to the fact that LISS want to help the user by creating solid and correctness code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere (see grammar in Listing ~\ref{lst:program_grammar}. 
 
-Then, comes the part where we implement the flow of the program under the section of 'statements'.
+\begin{lstlisting}[caption={BNF of program in LISS},label={lst:program_grammar}]
+  liss : 'program' identifier body
+     ;
 
-\subsection{Statements}
+  body : '{'
+       'declarations' declarations
+       'statements'   statements
+       '}'
+     ;
+\end{lstlisting}
+
+%Then, comes the part where we implement the flow of the program under the section of 'statements'.
+
+\subsection{LISS declarations}
+The declarations part is divided on two other parts: variable declarations and subprogram declarations, both optional.
+
+The first part is explained in section ~\ref{sec:data_types}; the subprogram part will be discussed later in section ~\ref{sec:subprograms}.
+
+This part is represented with the following grammar (see Listing ~\ref{lst:declarations_gramar}).
+
+\begin{lstlisting}[caption={BNF of declarations in LISS},label={lst:declarations_grammar}]
+  declarations : variable_declaration* subprogram_definition*
+             ;
+\end{lstlisting}
+
+\subsection{LISS statements}
 
 As said previously, under the statements part, we control and implement the flow of LISS program.
 In LISS, we may write none or multiple statements consecutively and notice that the same behavior is, also, done for declaring variables.
@@ -717,9 +741,9 @@ Every statements ends with a semicolon unless two type of statements (conditiona
 %One important thing to mention is the fact that almost every statements ends with a semicolon unless conditional or cyclic/iterative statements.
 
 \begin{lstlisting}[caption={BNF of statements in LISS},label={lst:liss_statements_bnf}]
-statements : statement*
+  statements : statement*
            ;
-statement : assignment ';'
+  statement : assignment ';'
           | write_statement ';'
           | read_statement ';'
           | conditional_statement
@@ -731,25 +755,25 @@ statement : assignment ';'
           ;
 \end{lstlisting}
 
-Let's see one example of a LISS program which shows how it is done (see in Listing ~\ref{lst:statements_example}).
+Let's see one example of a LISS program which shows how it is done (see Listing ~\ref{lst:statements_example}).
 
 \begin{lstlisting}[caption={Example of using statements in LISS},label={lst:statements_example}]
-program factorial{
+  program factorial{
     declarations
-        res=1, i=5 -> integer;
+        res=1, i -> integer;
     statements
-        writeln(res);
+	read(i);
         for(j in 1..i){
             res=res*j;
         }
         writeln(res);
-}
+  }
 \end{lstlisting}
 
 
 
 
-\subsection{Control statements}
+\subsection{LISS control statements}
 
 LISS language includes some statements for controlling the execution flow at runtime with two different kind of behavior.
 
@@ -758,15 +782,53 @@ The first one is called conditional statement and it has only one variant in LIS
 But the second one is called cyclic statement or iterative statement, and it has two cyclic different variants (see Listing ~\ref{lst:control_statements}).
 
 \begin{lstlisting}[caption={BNF of control statements in LISS},label={lst:control_statements}]
-conditional_statement : if_then_else_stat
+  conditional_statement : if_then_else_stat
                       ;
-iterative_statement : for_stat
+  iterative_statement : for_stat
                     | while_stat
                     ;
 \end{lstlisting}
 
 These control statements, mimics the syntax and the behavior, nearly,  of other modern imperative language.
-But, we should take a look on the behavior of one of the control statement in order to understand its role deeper.
+
+The 'if' statement, which is common across many modern programming languages, is a block which performs different actions for different decisions and, as in all modern languages, it is able to introduce an 'else' condition (optional).
+
+If the condition of 'if' is evaluated by being 'true', this means that the content of 'then' section will be performed. Otherwise, if the condition is 'false', this means that the condition of the if statement is finished (if an 'else' condition isn't available) or jumps directly to the 'else' condition and performs every action available there.
+
+Let's see an example in Listing ~\ref{lst:if_program}.
+
+\begin{lstlisting}[caption={LISS syntax of a if statement},label={lst:if_program}]
+  if(y==x)
+  then{
+    x=x+1;
+  }else{
+    x=x+2;
+  }
+\end{lstlisting}
+
+As we can see in ~\ref{lst:if_program}, the if-statement evaluates the conditions 'y==x'.
+If the condition, which must be a boolean, is true; then it will perform every actions available on the 'then' section.
+Thus, if an else-statement is available, and the condition is false; it will perform every actions on the 'else' section. Notice that in this example, there is an else-statement.
+
+If there weren't an else-statement, the if-condition will finish and do not perform any actions.
+
+
+The syntax behind the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}.
+
+
+
+\begin{lstlisting}[caption={BNF of iterative statement in LISS},label={lst:if_bnf}]
+  if_then_else_stat : 'if' '(' expression ')'
+                    'then' '{' statements '}'
+                    else_expression
+                    ;
+
+  else_expression :
+                | 'else' '{' statements '}'
+                ;
+\end{lstlisting}
+
+We should take a look on the behavior of one of the control statement in order to understand its role deeper.
 
 The 'for' statement has two different ways for defining his comportment.
 Normally, in a conventional way, the for-loop has a control variable which takes a value in a given range and step up or step down by a default or a explicit value.
@@ -775,9 +837,9 @@ In LISS, the control variable is set in a given integer interval defined by the 
 Additionally, we may write a condition for filtering on each step the for-loop statement, like setting an if-condition.
 This can be done with the following syntax:
 \begin{lstlisting}[caption={LISS syntax of a for-loop statement},label={lst:for-loop}]
-for(a in 1..10) stepUp 2 satisfying array[a]==1{
-	...
-}
+  for(a in 1..10) stepUp 2 satisfying array[a]==1{
+	  ...
+  }
 \end{lstlisting}
 In Listing ~\ref{lst:for-loop}, the control variable 'a' is set to a range by 1 to 10 and would be increased (due to 'stepUp' syntax) by 2. Also there is a filter condition which is applied after the 'satisfying' syntax and it will be tested on each step of the for-loop statement. Notice that the filter condition must boolean and that if it pass the condition, then the inner content of the for-loop statement would be executed. 
 
@@ -788,9 +850,9 @@ There is also the possibility for ease use, in expressing a for-each statement o
 And this is done by calling a simple syntax in LISS.
 
 \begin{lstlisting}[caption={LISS syntax of a for-each statement on array},label={lst:for-each_array}]
-for(b inArray array){
-	...
-}
+  for(b inArray array){
+       	...
+  }
 \end{lstlisting}
 In Listing ~\ref{lst:for-each_array}, the control variable  'b' is assigned with all of the elements of the array and begins with his lower index (zero) until his upper index (size of the array minus one).
 Notice that, in this case, we cannot apply an increment or decrement behavior and also a filter condition.
@@ -798,37 +860,66 @@ Notice that, in this case, we cannot apply an increment or decrement behavior an
 The next grammar fragment describes the cycle for in LISS:
 
 \begin{lstlisting}[caption={BNF of for statement in LISS}]
-for_stat : 'for' '(' interval ')' step satisfy
+  for_stat : 'for' '(' interval ')' step satisfy
            '{' statements '}'
          ;
-interval : identifier type_interval
+  interval : identifier type_interval
          ;
-type_interval : 'in' range
+  type_interval : 'in' range
               | 'inArray' identifier
               ;
-range : minimum '..' maximum
+  range : minimum '..' maximum
       ;
-minimum : number
+  minimum : number
         | identifier
         ;
-maximum : number
+  maximum : number
         | identifier
         ;
-step :
+  step :
      | up_down number
      ;
-up_down : 'stepUp'
+  up_down : 'stepUp'
         | 'stepDown'
         ;
-satisfy :
+  satisfy :
         | 'satisfying' expression
         ;
 \end{lstlisting}
 
 %write the for statetement with step and satisfy explication
 
+Finally, the while-statement consists in a block of code which execute some actions repeatly until the condition associated would be false. It is considered to be the best of those two worlds: if-statement and for-loop statement.
 
-\section{Subprograms}
+Each time that the content of a while-statement is performed, the condition associated with it will be evaluated again and see if it can performs the action associated or quit the while-statement.
+Notice that the condition must be a boolean and it can be a niche of an indefinitely loop.
+Let's see an example in Listing ~\ref{lst:while_program}.
+
+\begin{lstlisting}[caption={LISS syntax of a while-statement in LISS},label={lst:while_program}]
+  while (n > 0)
+  {
+    res = res * n;
+    pred n;
+  }
+\end{lstlisting}
+
+In Listing ~\ref{lst:while_program}, the while-statement has the following condition '\verb+n>0+' and evaluates it firstly. If the condition is true, then all the actions that are inside the braces will be performed. Later, after executing all the actions, the condition will be evaluated again. If the condition remains 'true', then those actions would be executed again otherwise if the condition is false, the while-statement will be exited.
+
+The syntax ruled behind the while-statement is shown below:
+
+\begin{lstlisting}[caption={BNF of while-statement in LISS}]
+  while_stat : 'while' '(' expression ')'
+             '{' statements '}'
+             ;
+\end{lstlisting}
+
+
+
+\subsection{Others statements}
+
+
+\section{LISS subprograms}
+\label{sec:subprograms}
 
 In LISS, it is possible to organize your code by splitting a portion of your code into sub-programs. This allows to the programmer to reuse or give more clarity to his code by creating functions or doing some procedure.
 Also, it is possible to create sub-programs into sub-programs by using a nesting strategy.
@@ -836,25 +927,25 @@ Also, it is possible to create sub-programs into sub-programs by using a nesting
 The syntax who defines a sub-program in LISS is shown in Listing ~\ref{lst:block_structure}.
 
 \begin{lstlisting}[caption={BNF of block structure in LISS},label={lst:block_structure}]
-subprogram_definition: 'subprogram' identifier '(' formal_args ')' return_type f_body
+  subprogram_definition: 'subprogram' identifier '(' formal_args ')' return_type f_body
                      ;
-f_body : '{'
+  f_body : '{'
          'declarations' declarations
          'statements' statements
          returnSubPrg
          '}'
        ;
-formal_args :
+  formal_args :
             | f_args
             ;
-f_args  : formal_arg (',' formal_arg )*
+  f_args  : formal_arg (',' formal_arg )*
         ;
-formal_arg : identifier '->' type
+  formal_arg : identifier '->' type
            ;
-return_type :
+  return_type :
             | '->' typeReturnSubProgram
             ;
-returnSubPrg :
+  returnSubPrg :
              | 'return' expression ';'
              ;
 \end{lstlisting}
