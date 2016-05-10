@@ -725,7 +725,7 @@ The declarations part is divided on two other parts: variable declarations and s
 
 The first part is explained in section ~\ref{sec:data_types}; the subprogram part will be discussed later in section ~\ref{sec:subprograms}.
 
-This part is represented with the following grammar (see Listing ~\ref{lst:declarations_gramar}).
+This part is represented with the following grammar (see Listing ~\ref{lst:declarations_grammar}).
 
 \begin{lstlisting}[caption={BNF of declarations in LISS},label={lst:declarations_grammar}]
   declarations : variable_declaration* subprogram_definition*
@@ -844,6 +844,69 @@ Note that the write operation may have atomic value as well as empty value or so
            ;
 \end{lstlisting}
 
+\textbf{Function call.} The function call is an operation which is available for using the function that were created in the program under the section 'declarations' (as described to ~\ref{sec:subprograms}).
+This will allow and have the ability for reusing functions that were created by calling them and not creating duplicated code.
+
+\begin{lstlisting}[caption={Example of call function in LISS},label={lst:call_function_example}]
+ program SubPrg {
+
+  declarations
+
+    a = 4, b= 5, c= 5 -> integer;
+    d = [10,20,30,40], ev -> array size 4;
+
+
+    subprogram calculate() -> integer
+    {
+      declarations
+            fac = 6 -> integer;
+            res = -16 -> integer;
+
+        subprogram factorial(n -> integer; m -> array size 4) -> integer
+            {
+              declarations
+                    res = 1 -> integer;
+              statements
+                    while (n > 0)
+                    {
+                        res = res * n;
+                        n = n -1;
+                    }
+
+                    for (a in 0..3) stepUp 1
+                    {
+                      d[a] = a*res;
+                    }
+                    return res;
+            }
+      statements
+            res = factorial(fac,d);
+            return res/2;
+    }
+
+
+  statements
+
+    a = calculate();
+    writeln(a);
+    writeln(d);
+}
+\end{lstlisting}
+
+In Listing ~\ref{lst:call_function_example}, we can see that the function \textit{calculate()} is called and that the function was created under the declarations section.
+
+The grammar who rules behind the function call is shown at ~\ref{lst:call_function_bnf}.
+
+\begin{lstlisting}[caption={BNF of call function in LISS},label={lst:call_function_bnf}]
+  function_call : identifier '(' sub_prg_args ')'
+              ;
+  sub_prg_args :
+             | args
+             ;
+  args : expression (',' expression )*
+     ;
+
+\end{lstlisting}
 
 \subsection{LISS control statements}
 
@@ -993,6 +1056,69 @@ The syntax ruled behind the while-statement is shown below:
 
 \subsection{Others statements}
 %falar de succ_or_pred +copy_statement + cat_statement
+
+\textbf{Succ/Pred.} Those operations are available for incrementing or decreasing a variable. This is a common situation in modern programming language which LISS had to have it and, in this case, making life easier for the developers. 
+
+The syntax 'succ' means increment and the syntax 'pred' means decrease. Beside that only integers variable can be used with those operations and that the increment/decrease is operated by incrementing/decreasing by one the variable. 
+
+Let's see an example of this operation.
+
+\begin{lstlisting}[caption={Example of using succ/pred in LISS}, label={lst:succ_or_pred_example}]
+  succ int1;
+  pred int1;
+\end{lstlisting}
+
+As we can see in Listing ~\ref{lst:succ_or_pred_example}, the example increments the variable 'int1' firstly following by a 'decrease' on the next line of the same variable.
+
+Grammar of succ and pred in LISS shown at ~\ref{lst:succ_or_pred_bnf}.
+
+
+\begin{lstlisting}[caption={BNF of succ and pred in LISS}, label={lst:succ_or_pred_bnf}]
+  succ_or_pred : succ_pred identifier
+             ;
+  succ_pred : 'succ'
+          | 'pred'
+          ;
+\end{lstlisting}
+
+\textbf{Copy statement.}
+This operation works with only and only the type: sequence.
+Basically, it copies the sequence to another sequence.
+Let's see an example at ~\ref{lst:copy_example}.
+
+\begin{lstlisting}[caption={Example of copy statement in LISS},label={lst:copy_example}]
+  copy(seq1,seq2);
+\end{lstlisting}
+
+In Listing ~\ref{lst:copy_example}, the function copy is copying the content of the variable \textit{seq1} to \textit{seq2}.
+The output of this function is void (as shown to table ~\ref{tbl:type_operations}) due to the fact that it works only internally with those variables and do not need to return anything.
+
+The grammar of copy statement is available at ~\ref{lst:copy_bnf}.
+
+\begin{lstlisting}[caption={BNF of copy statement in LISS},label={lst:copy_bnf}]
+  copy_statement : 'copy' '(' identifier ',' identifier ')'
+                 ;
+\end{lstlisting}
+
+\textbf{Cat statement.}
+
+This operation works with only and only the type: sequence.
+The behaviour of this function is to concatenate the sequence to another sequence.
+Let's see an example of this operation (see Listing ~\ref{lst:cat_example}).
+
+\begin{lstlisting}[caption={},label={}]
+  cat(seq1,seq2);
+\end{lstlisting}
+
+So, in Listing ~\ref{lst:cat_example}, the function cat is concatenating the content of \textit{seq1} to \textit{seq2}.
+The output of this function is void (as shown to table ~\ref{tbl:type_operations}) due to the fact that it works only internally with those variables and do not need to return anything.
+
+The grammar of cat statement is available at ~\ref{lst:cat_bnf}.
+
+\begin{lstlisting}[caption={BNF of cat statement in LISS},label={lst:cat_bnf}]
+  cat_statement : 'cat' '(' identifier ',' identifier ')'
+                ;
+\end{lstlisting}
 
 \section{LISS subprograms}
 \label{sec:subprograms}
