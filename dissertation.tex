@@ -746,9 +746,9 @@ Every statements ends with a semicolon unless two type of statements (conditiona
   statement : assignment ';'
           | write_statement ';'
           | read_statement ';'
+          | function_call ';'
           | conditional_statement
           | iterative_statement
-          | function_call ';'
           | succ_or_pred ';'
           | copy_statement ';'
           | cat_statement ';'
@@ -770,7 +770,79 @@ Let's see one example of a LISS program which shows how it is done (see Listing 
   }
 \end{lstlisting}
 
+\textbf{Assignment.} This statement assigns, as it is called, values to a variable and it is defined for every type available on LISS.
+This operation is done by writing the symbol "=" in which a variable is assigned to the left side of the symbol and a value to the right side of the symbol.
 
+Notice that an assignment will work only if the type is the same at both sides.
+
+Let's see an example from it.
+
+\begin{lstlisting}[caption={Example of assignment in LISS},label={lst:assignment_example}]
+  program assignment1{
+    declarations
+      intA -> integer;
+      bool -> boolean;  
+    statements
+      intA = -3 + 5 * 9;
+      bool = 2 < 8;
+  }
+\end{lstlisting}
+
+In Listing ~\ref{lst:assignment_example}, we can see assignment operations of integers and boolean types.
+Those assignments will work, as noticed in the previous text, because they have all the same type regarding to the left and right side of the symbol equals (operations of integers assigned to a variable of integer and operation of booleans assigned to a variable of boolean).
+
+The grammar behind this operation is shown at ~\ref{lst:assignment_bnf}.
+
+\begin{lstlisting}[caption={BNF of assignment in LISS},label={lst:assignment_bnf}]
+  assignment : designator '=' expression
+           ;
+\end{lstlisting}
+
+\textbf{I/O.} Those input and output type of operations are available in LISS.
+
+The \textit{read} operations, called syntactically as 'input' in LISS, assigns a value to a variable obtained from the standard input and requires to be an atomic value (in this case, only an integer value).
+
+
+\begin{lstlisting}[caption={Example of input operation in LISS}, label={lst:input_example}]
+  program input1{
+    declarations
+      myInteger -> integer;
+    statements
+      input(myInteger);
+  }
+\end{lstlisting}
+
+Notice that, in Listing ~\ref{lst:input_example}, the variable \textit{myInteger} must be declared  and must be integer otherwise the operations won't work.
+The grammar which is behind of the input operation, is shown at ~\ref{lst:input_bnf}.
+
+\begin{lstlisting}[caption={BNF of input operation in LISS}, label={lst:input_bnf}]
+ read_statement : 'input' '(' identifier ')'
+               ; 
+\end{lstlisting}
+
+The \textit{write} operations, called syntactically as 'write' or 'writeln' in LISS, writes to the standard output and is defined for any type.
+Notice that 'write' operation only prints the content and doesn't return to a new line, instead that 'writeln' does return to a new line at the end.
+
+\begin{lstlisting}[caption={Example of output operations in LISS},label={lst:output_example}]
+  writeln(4*3);
+  writeln(2);
+  writeln();
+\end{lstlisting}
+
+Note that the write operation may have atomic value as well as empty value or some complex arithmetic expressions (see grammar in ~\ref{lst:output_bnf}).
+
+\begin{lstlisting}[caption={BNF of output operations in LISS},label={lst:output_bnf}]
+  write_statement : write_expr '(' print_what ')'
+                ;
+
+  write_expr : 'write'
+           | 'writeln'
+           ;
+
+  print_what :
+           | expression
+           ;
+\end{lstlisting}
 
 
 \subsection{LISS control statements}
@@ -790,6 +862,8 @@ But the second one is called cyclic statement or iterative statement, and it has
 \end{lstlisting}
 
 These control statements, mimics the syntax and the behavior, nearly,  of other modern imperative language.
+
+\paragraph{Conditional}
 
 The 'if' statement, which is common across many modern programming languages, is a block which performs different actions for different decisions and, as in all modern languages, it is able to introduce an 'else' condition (optional).
 
@@ -827,6 +901,8 @@ The syntax behind the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}
                 | 'else' '{' statements '}'
                 ;
 \end{lstlisting}
+
+\paragraph{Iterative}
 
 We should take a look on the behavior of one of the control statement in order to understand its role deeper.
 
@@ -916,7 +992,7 @@ The syntax ruled behind the while-statement is shown below:
 
 
 \subsection{Others statements}
-
+%falar de succ_or_pred +copy_statement + cat_statement
 
 \section{LISS subprograms}
 \label{sec:subprograms}
