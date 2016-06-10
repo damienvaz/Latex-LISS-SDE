@@ -152,7 +152,7 @@
 	% Add acknowledgements ----------------------------
 	\chapter*{Acknowledgements}
 	Firstly, I would like to thank my supervisor Pedro Rangel Henriques and co-supervisor Daniela da Cruz. They are the most who supported me throw this ambitious project and took me to the final stage of my university career.\newline
-Thank you also to my family and friends (Ranim, Bruno, Chloé, Tiago, Tamara) for supporting me.\newline
+Thank you also to my family and friends (Ranim, Bruno, Chloé, Tiago, Tamara, Saozita, Nuno, David, Natália) for supporting me.\newline
 And last but not least, I would like to dedicate this thesis to my, particularly, most beautiful mother.
 Despite you couldn't be here to watch me conclude my studies. Wherever you are, I hope that you are proud of me.	
 None of this could have been made without their unconditional help.
@@ -1179,11 +1179,11 @@ However, variables declared in the program (not in a sub-program) are considered
 
 \section{Evolution of LISS syntax}
 Due to the maturity of the language already done by the professors whom invented, we have added some few but extra changes for a better experience of the programming language.
-The syntax of the LISS language (Figure ~\ref{lst:GIC_LISS} ), has been constructed with ANTLR which is ANother Tool for Language Recognition where it collaborates with the Java platform.
+%The syntax of the LISS language (Figure ~\ref{lst:GIC_LISS} ), has been constructed with ANTLR which is ANother Tool for Language Recognition where it collaborates with the Java platform.
 
-One of the first objectives is that we have changed the format of the syntax. We have translated the old LISS language to a brand new extended BNF format (as shown in Figure ~\ref{lst:GIC_LISS}).
+%One of the first objectives is that we have changed the format of the syntax. We have translated the old LISS language to a brand new extended BNF format (as shown in Figure ~\ref{lst:GIC_LISS}).
 
-Then we have added some better clarification syntactically of the programming language which was by not mixing functions and variable declarations between them (See Figure ~\ref{lst:declaration_LISS}).
+One of the first objectives is that we have added some better clarification syntactically of the programming language which was by not mixing functions and variable declarations between them (See Figure ~\ref{lst:declaration_LISS}).
 Like that we, indirectly, teach the programmer by doing it in the right way. So we declare, firstly, the variables and then the functions.
 \begin{lstlisting}[caption={},label={lst:declaration_LISS}]
 declaration : variable_declaration * subprogram_definition *
@@ -1265,7 +1265,17 @@ COMMENT
 %As mentioned in the previous section, the AG will produce MIPS assembly code throw ANTLR.
 
 \section{MIPS}
-MIPS, from Microprocessor without Interlocked Pipeline Stages, is a reduced instruction set computer (RISC) developed by MIPS Technologies. % creating low-level programming language.
+MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Instruction Set Computer (RISC) developed by MIPS Technologies. 
+Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
+The main objective for creating MIPS, was to increase performance with deep instructions pipelines. And this was due to a main problem, back to the 80's, that some instruction as division would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
+%CPU therefore has to wait before passing the next instruction into the pipeline.
+
+Earlier, MIPS architectures were 32-bit versions but nowadays, it has 64-bit versions.
+It was primarily used in embedded systems and video games consoles until late 2006, when it came to computers.
+
+
+
+% creating low-level programming language.
 %It is a symbolic representation of machine instructions.
 
 
@@ -1600,7 +1610,7 @@ To sum up, this is how a SDE works.
 
 \chapter{Conclusion}
         %Conclusions and future work.
-\section{Futur Work}
+\section{Future Work}
 %\section{Conclusion}
 %\section{Prospect for future work}
 
