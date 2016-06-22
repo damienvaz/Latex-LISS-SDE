@@ -381,7 +381,7 @@ The idea behind the design of LISS language was to create a simplified version o
 
 It is designed to have atomic or structured integer values, as well as, control statements and block structure statements.
 
-Now, let's explain the basic statements of the language and its data types as BNF grammar on the next section.
+Now, let's explain in the next sections the basic statements of the language and its data types, using a context free gammar.
 
 \section{LISS Data types}
 \label{sec:data_types}
@@ -389,8 +389,9 @@ Now, let's explain the basic statements of the language and its data types as BN
 There are 5 types available.
 From atomic to structured types, they are known as : integer, boolean, array, set and sequence.
 
-Used for declaring a variable on the program, this gives us vital information for understanding what kind of type we are dealing it regarding a certain variable.
-Let's see deeper with one LISS code example:
+Used for declaring a variable in a program, the data type gives us vital information for understanding what kind of value we are dealing with.
+
+Let's obverse a LISS code example:
 
 \begin{lstlisting}[caption={Declaring a variable in LISS},label={lst:declare_variable}]
   a -> integer;
@@ -400,10 +401,10 @@ Let's see deeper with one LISS code example:
   e -> sequence;
 \end{lstlisting}
 
-As we can see in Listing ~\ref{lst:declare_variable}, some variables ('a','b','c','d' and 'e')  are being declared with his own types ('integer', 'boolean', 'array', 'set' and 'sequence').
-Synthetically, in LISS, this is done by writing the variable name followed by an arrow and the type of the variable (see Listing ~\ref{lst:variable_declaration_BNF}).
+As we can see in Listing ~\ref{lst:declare_variable}, some variables ('a','b','c','d' and 'e')  are being declared each one associated to a type ('integer', 'boolean', 'array', 'set' and 'sequence').
+Syntactically, in LISS, this is done by writing the variable name followed by an arrow and the type of the variable (see Listing ~\ref{lst:variable_declaration_BNF}).
 
-\begin{lstlisting}[caption={BNF of declaring a variable in LISS},label={lst:variable_declaration_BNF}]
+\begin{lstlisting}[caption={CFG for declaring a variable in LISS},label={lst:variable_declaration_BNF}]
   variable_declaration : vars '->' type ';'
                      ;
   vars : var (',' var )*
@@ -455,8 +456,8 @@ sequence            & nil                                         \\ \hline
 \end{table}
 
 \newpage
-Additionally, we may change the values of the variables by initializing them with a different value (see Listing ~\ref{lst:variable_declaration}).
-This can be made by putting an equal symbol after the variable name and, then, inserting the right value according to the type (see example in Listing ~\ref{lst:variable_declaration_BNF}).
+Additionally, we may change the default values of the variables by initializing them with a different value (see an example in Listing ~\ref{lst:variable_declaration}).
+This can be made by writing an equal symbol after the variable name and, then, inserting the right value according to the type (see example in Listing ~\ref{lst:variable_declaration_BNF}).
 
 \begin{lstlisting}[caption={Initialize a variable},label={lst:variable_declaration}]
   a = 4, b -> integer;
@@ -466,7 +467,7 @@ This can be made by putting an equal symbol after the variable name and, then, i
   seq1 = <<10,20,30,40,50>>, seq3 = <<1,2>>, seq2 -> sequence;
 \end{lstlisting}
 
-Now, let's see and list which type are, correctly, associated with the arithmetic symbols and functions in LISS (see Table ~\ref{tbl:type_operations}).
+Now, let's define which types are, correctly, associated with the arithmetic operators and functions in LISS (see Table ~\ref{tbl:type_operations}).
 
 
 \begin{table}[]
@@ -475,7 +476,7 @@ Now, let's see and list which type are, correctly, associated with the arithmeti
 \label{tbl:type_operations}
 \begin{tabular}{|c|c|}
 \hline
-\textbf{Symbols \&\& Functions} & \multicolumn{1}{l|}{\textbf{Signatures}} \\ \hline
+\textbf{Operators \&\& Functions} & \multicolumn{1}{l|}{\textbf{Signatures}} \\ \hline
 + (add)                                   & integer x integer \verb+->+ integer                                        \\ \hline
 - (subtract)                              & integer x integer \verb+->+ integer                                        \\ \hline
 \verb+||+ (or)                            & boolean x boolean  \verb+->+ boolean                                       \\ \hline
@@ -486,10 +487,10 @@ Now, let's see and list which type are, correctly, associated with the arithmeti
 ** (intersection)                         & set x set \verb+->+ set                                                    \\ \hline
 == (equal)                                & integer x integer \verb+->+ integer; boolean x boolean \verb+->+ boolean   \\ \hline
 != (not equal)                            & integer x integer \verb+->+ integer; boolean x boolean \verb+->+ boolean   \\ \hline
-\textless  (less than)                    & integer x integer \verb+->+ integer                                        \\ \hline
-\textgreater  (greater than)              & integer x integer \verb+->+ integer                                        \\ \hline
-\textless= (less than or equal to)        & integer x integer \verb+->+ integer                                        \\ \hline
-\textgreater= (great than or equal to)    & integer x integer \verb+->+ integer                                        \\ \hline
+\textless  (less than)                    & integer x integer \verb+->+ boolean                                        \\ \hline
+\textgreater  (greater than)              & integer x integer \verb+->+ boolean                                        \\ \hline
+\textless= (less than or equal to)        & integer x integer \verb+->+ boolean                                        \\ \hline
+\textgreater= (great than or equal to)    & integer x integer \verb+->+ boolean                                        \\ \hline
 in (contains)                              & integer x set \verb+->+ boolean                                            \\ \hline
 tail                                      & sequence \verb+->+ sequence                                                \\ \hline
 head                                      & sequence \verb+->+ integer                                                 \\ \hline
@@ -505,23 +506,24 @@ isMember                                  & integer x sequence \verb+->+ boolean
 
 \newpage
 
-So, in Table ~\ref{tbl:type_operations}, we list the symbols and functions, who are available in LISS, and also its signature associated.
-In order to understand the table better, we will explain how to read the symbol and its signature with one example.
+So, in Table ~\ref{tbl:type_operations}, we list the operators and functions, available in LISS, and their signature.
+In order to understand the table better, we will explain how to read the table and its signature with one example.
 
-For example, the symbol '+' indicates that it can operate with, only, integers on each side of the symbol (separated by the symbol 'x') and that, the result of that operation, indicated by the symbol '\verb+->+', will be an integer.
+Consider the symbol '+' (Table ~\ref{tbl:type_operations}), indicates that both operands must be of type integer.
+The result of that operation, indicated by the symbol '\verb+->+', will be an integer.
 %Notice that semantically, operations must be validated according to the table ~\ref{tbl:type_operations}, otherwise the operations would be incorrect and throw an error.
-Semantically, operations must be validated according to table ~\ref{tbl:type_operations}, otherwise the operations would be incorrect and throw an error.
+Semantically, operations must be valid according to Table ~\ref{tbl:type_operations}; otherwise the operations would be incorrect and throw an error.
 
 \bigbreak
 
 \textbf{Arrays.}
-LISS supports a way in indexing a collections of integer values such that each value is uniquely addressed (also it supports one great and most important property of being multidimensional).
+LISS supports a way of indexing a collection of integer values such that each value is uniquely addressed. LISS also supports an important property of multidimensionality.
 
-Called as 'array', it is considered to be a static structured type due to the fact that his dimension and maximum size of elements is fixed at the declaration time.
+Called as 'array', it is considered to be a static structured type due to the fact that its dimensions and maximum size of elements in each dimension is fixed at the declaration time.
 
 %One of its, most important, property is that he may have multiple dimension.
 
-And the operations defined over an array are basic in LISS:
+The operations defined over arrays are:
 
 \begin{enumerate}
 \item \textit{indexing} %- denoted by '[' and ']', it selects the value of the chosen indexed array.
@@ -530,8 +532,8 @@ And the operations defined over an array are basic in LISS:
 
 %explaining probably indexing and assignment
 
-Arrays can be initialized, in the declaration section, partially or completely the elements of each dimension.
-For example, consider an array of dimension 3x2 with the following way:
+Arrays can be initialized, in the declaration section, partially or completely in each dimension.
+For example, consider an array of dimension 3x2 declared in the following way:
 
 \begin{lstlisting}
   array1 = [[1,2],[5]] -> array size 3,2;
@@ -543,9 +545,9 @@ Thi is equivalent to the initialization below:
   array1 = [[1,2],[5,0],[0,0]] -> array size 3,2;
 \end{lstlisting}
 
-Notice that the elements who weren't declared, are initialized with the value 0 (see Table ~\ref{tbl:data_types}).
+Notice that the elements that are not explicitly assigned, are initialized with the value 0 (see Table ~\ref{tbl:data_types}).
 
-The grammar who rules behind the syntax for array declaration and initialization is shown below.
+The grammar for array declaration and initialization is shown below.
 
 \begin{lstlisting}
   array_definition : '[' array_initialization ']'
@@ -562,18 +564,20 @@ The grammar who rules behind the syntax for array declaration and initialization
 \bigbreak
 
 \textbf{Sets.}
-The type \textit{set} in LISS, is a collection of integers with no repeated numbers.
-It operates with a comprehension list instead of an enumeration.
-Set type can operates with two different ways.
-The first one is the empty value and this means that the set is empty. Syntactically, this is done by writing '\verb+{}+'.
+The type \textit{set}, in LISS, is a collection of integers with no repeated numbers.
 
-The other one is an 'identifier' separated by an explicit symbol '\verb+|+' and an 'expression'. Expression is a set of operations that, at the end, result must be a boolean. Otherwise the set won't work
+It is defined by an expression, in a comprehension, instead of by enumeration of its element
+A \textit{set} variable can have an empty value and, syntactically, this is done by writing '\verb+{}+'.
+
+To define a set by comprehension, the free variable and the expression shall be return between curly brackets. The 'identifier' is separated from the expression by an explicit symbol '\verb+|+'. 
+
+The expression is built up from relational and boolean operators to define an integer interval.
 
 The operations defined for sets are :
 \begin{enumerate}
 \item \textit{union}
 \item \textit{intersection}
-\item \textit{in}
+\item \textit{in} (membership)
 \end{enumerate}
 
 
@@ -583,7 +587,7 @@ Let's see an example of its syntax below:
   set1 = {x | x < 6 && x > -7} -> set;
 \end{lstlisting}
 
-This set explain us that only integers from -7 to 6 are valid and every others numbers are not included on the set.
+This declaration defines a set including all the integers from -7 to 6 (operation interval) and others numbers are not included in the set.
 
 The syntax for set declaration and initialization is :
 
@@ -599,31 +603,32 @@ The syntax for set declaration and initialization is :
 \bigbreak
 
 \textbf{Sequences.}
-Considered as an array of one dimension, the type sequence is a collection of a list ordered integers. But, instead of the concept of an array, its size is not fixed; this means that it grows dinamicallly at run time like a linked list.
-There is two ways in defining sequences.
-The first way is declaring it with the empty value (syntactically done by writing '\verb+<<>>+') and the second way is by defining with integers to the sequence.
+Considered as a dynamic array of one dimension, the type sequence is a list of ordered integers. But, in opposition to the concept of an array, its size is not fixed; this means that it grows dinamicallly at run time like a linked list.
+A sequence can have the empty value (syntactically done by writing '\verb+<<>>+').
+If not empty, the sequence value is defined by enumerating its components (integers) in the right order.
 Let's see deeper with one example:
 
 \begin{lstlisting}[caption={Example of valid operations using sequence on LISS},label={lst:sequence_example_use}]
   c=<<1,2,3>> -> sequence;
 \end{lstlisting}
 
-So, the sequence example is defined by three numbers (3,2,1). 
-Also some operations are defined for the sequence type and they are known as:
+In the example of Listing ~\ref{lst:sequence_example_use} the sequence is defined by three numbers (3,2,1). 
+
+The operations defined for the sequence are:
 \begin{enumerate}
-\item \textit{tail}
-\item \textit{head}
-\item \textit{cons}
-\item \textit{delete}
-\item \textit{copy}
-\item \textit{cat}
-\item \textit{isEmpty}
-\item \textit{length}
-\item \textit{isMember}
+\item \textit{tail} (all the elements but the first)
+\item \textit{head} (the first element of the sequence)
+\item \textit{cons} (adds an element in the head of the sequence)
+\item \textit{delete} (remove a given element from the sequence)
+\item \textit{copy} (copies all the elements to another sequence)
+\item \textit{cat} (concatenates the second sequence at the end of the first sequence)
+\item \textit{isEmpty} (true if the sequence is empty)
+\item \textit{length} (number of elements of the sequence)
+\item \textit{isMember} (true if the number is an element of the sequence)
 \end{enumerate}
 Those operations will be explained further and deeper.
 
-Now, the grammar behind the type sequence is defined by the follow one:
+The grammar below defines how to declare a sequence:
 
 \begin{lstlisting}
   sequence_definition : '<<' sequence_initialization '>>'
@@ -638,56 +643,15 @@ Now, the grammar behind the type sequence is defined by the follow one:
 
 \end{lstlisting}
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\begin{comment}
-
-However, there are restrictions on the syntactic and semantic levels on those types which we must list them below.
-Integer type operates with integer values, thus we can add or not, a sign to the integer value (see Listing ~\ref{lst:integer_example_use}.
-
-\begin{lstlisting}[caption={Example of valid operations using integers on LISS},label={lst:integer_example_use}]
-  a, b=2, c=+2, d=-3 -> integer;
-\end{lstlisting}
-
-Boolean type operates with only boolean values (see Listing ~\ref{lst:boolean_example_use}).
-
-\begin{lstlisting}[caption={Example of valid operations using booleans on LISS},label={lst:boolean_example_use}]
-  a, b=true, c=false -> boolean;
-\end{lstlisting}
-
-Set type can operates with two different ways.
-The first one is the empty value and this means that the set is empty. Syntactically, this is done by writing '{}'.
-
-The other one is an identifier separated by an explicit symbol '|' and an expression. Expression is a set of operations that, at the end, result must be a boolean. Otherwise the set won't work (see Listing ~\ref{lst:}). 
-
-\begin{lstlisting}[caption={Example of valid operations using set on LISS},label={lst:set_example_use}]
-  a, b={}, c={e|e+1==10} -> set;
-\end{lstlisting}
-
-Sequence type also have the same system of set type. 
-This means that it has the option to have an empty value or add values to the sequence.
-The empty value is, syntactically, done by writing '<<>>'. On the other hand, we can add only integers to the sequence, if the sequence is not empty (see Listing ~\ref{lst:sequence_example_use}).
-
-\begin{lstlisting}[caption={Example of valid operations using sequence on LISS},label={lst:sequence_example_use}]
-  a, b=<<>>, c=<<1,2,3>> -> sequence;
-\end{lstlisting}
-
-\end{comment}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section{Blocks and Control statements}
 \section{LISS blocks and statements}
 
 A LISS program is always composed of two parts: declarations and statements (a program block).
-LISS language is structured with ease and simple hierarchy.
+LISS language is structured with a simple hierarchy.
 And this is done by structuring LISS code as a block.
 
-It begins by creating our program with a name, succeeding by implementing the declaration of variables and then the flow of the program by writing statements.
-Let's see a deeper look with one example (see Listing ~\ref{lst:block_liss}).
+Any program begins with a name then appear the declaration of variables and subprograms. After that appear the flow of the program by writing statements.
+
+Let's see one example (see Listing ~\ref{lst:block_liss}).
 
 \begin{lstlisting}[caption={The structure of a LISS program (example)},label={lst:block_liss}]
   program sum{
@@ -698,14 +662,14 @@ Let's see a deeper look with one example (see Listing ~\ref{lst:block_liss}).
   }
 \end{lstlisting}
 
-So a program in LISS, begins by, syntactically, writing 'program' and then the name of the program (in this case, the name is 'sum').
-Then appears some braces that delimits the contents of the program which is done by opening it after the name of the program and closing it at the end of the program.
-After those braces, there is one important part to alert the user with the way of declaring variables and statements.
+So a program in LISS begins by, syntactically, writing 'program' and then the name of the program (in this case, the name is 'sum').
+A pair of curly braces delimits the contents of the program; that is done by opening it after the name of the program and closing it at the end of the program.
+After the left brace, appear the declaration and statement blocks.
 
-As in a traditional imperative language (let's compare 'C language'), if we don't take the habits of implementing the variable always in a certain part of the code. We may be confused by implementing and finding them randomly in the code. And this makes the life harder to the programmer in understanding the code when the code is quite long/bigger.
+As in a traditional imperative language (let's compare 'C language'), if we don't take the habit of implementing the variable always in a certain part of the code, it become confusing. This makes the life harder to the programmer in understanding the code when the code is quite long/big.
 
-So, in LISS, we always declare variable declarations firstly (syntactically written by 'declarations')  and then the statements secondly (syntactically written by 'statements').
-This is due to the fact that LISS want to help the user by creating solid and correctness code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere (see grammar in Listing ~\ref{lst:program_grammar}. 
+So, in LISS, we always declare variables first (syntactically written by 'declarations')  and then the statements (syntactically written by 'statements').
+This is due to the fact that LISS wants to help the user to create solid and correct code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere (see grammar in Listing ~\ref{lst:program_grammar}).
 
 \begin{lstlisting}[caption={BNF of program in LISS},label={lst:program_grammar}]
   liss : 'program' identifier body
@@ -718,27 +682,24 @@ This is due to the fact that LISS want to help the user by creating solid and co
      ;
 \end{lstlisting}
 
-%Then, comes the part where we implement the flow of the program under the section of 'statements'.
-
-\subsection{LISS declarations}
-The declarations part is divided on two other parts: variable declarations and subprogram declarations, both optional.
+\subsection{LISS declarations} \label{subsec:liss_declarations}
+The declaration part is divided into two other parts: variable declarations and subprogram declarations, both optional.
 
 The first part is explained in section ~\ref{sec:data_types}; the subprogram part will be discussed later in section ~\ref{sec:subprograms}.
 
-This part is represented with the following grammar (see Listing ~\ref{lst:declarations_grammar}).
+This part is specified by the following grammar (see Listing ~\ref{lst:declarations_grammar}).
 
-\begin{lstlisting}[caption={BNF of declarations in LISS},label={lst:declarations_grammar}]
+\begin{lstlisting}[caption={CFG for declarations in LISS},label={lst:declarations_grammar}]
   declarations : variable_declaration* subprogram_definition*
              ;
 \end{lstlisting}
 
 \subsection{LISS statements}
 
-As said previously, under the statements part, we control and implement the flow of LISS program.
-In LISS, we may write none or multiple statements consecutively and notice that the same behavior is, also, done for declaring variables.
+As said previously, under the statements part, we control and implement the flow of a LISS program.
+In LISS, we may write none or, one or more statements consecutively.
 
-Every statements ends with a semicolon unless two type of statements (conditional and cyclic/iterative statement) (as shown in Listing ~\ref{lst:liss_statements_bnf}).
-%One important thing to mention is the fact that almost every statements ends with a semicolon unless conditional or cyclic/iterative statements.
+Every statement ends with a semicolon, unless two type of statements (conditional and cyclic statements) as shown in Listing ~\ref{lst:liss_statements_bnf}.
 
 \begin{lstlisting}[caption={BNF of statements in LISS},label={lst:liss_statements_bnf}]
   statements : statement*
@@ -755,14 +716,14 @@ Every statements ends with a semicolon unless two type of statements (conditiona
           ;
 \end{lstlisting}
 
-Let's see one example of a LISS program which shows how it is done (see Listing ~\ref{lst:statements_example}).
+Let's see one example of a LISS program which shows how the language shall be used (see Listing ~\ref{lst:statements_example}).
 
 \begin{lstlisting}[caption={Example of using statements in LISS},label={lst:statements_example}]
   program factorial{
     declarations
         res=1, i -> integer;
     statements
-	read(i);
+        read(i);
         for(j in 1..i){
             res=res*j;
         }
@@ -773,9 +734,9 @@ Let's see one example of a LISS program which shows how it is done (see Listing 
 \textbf{Assignment.} This statement assigns, as it is called, values to a variable and it is defined for every type available on LISS.
 This operation is done by writing the symbol "=" in which a variable is assigned to the left side of the symbol and a value to the right side of the symbol.
 
-Notice that an assignment will work only if the type is the same at both sides.
+Notice that an assignment requires that the variable on the left and the expression on the right must agree in type.
 
-Let's see an example from it.
+Let's see in Listing ~\ref{lst:assignment_example} an example.
 
 \begin{lstlisting}[caption={Example of assignment in LISS},label={lst:assignment_example}]
   program assignment1{
@@ -788,19 +749,19 @@ Let's see an example from it.
   }
 \end{lstlisting}
 
-In Listing ~\ref{lst:assignment_example}, we can see assignment operations of integers and boolean types.
-Those assignments will work, as noticed in the previous text, because they have all the same type regarding to the left and right side of the symbol equals (operations of integers assigned to a variable of integer and operation of booleans assigned to a variable of boolean).
+In Listing ~\ref{lst:assignment_example}, we can see assignment statements of integers and boolean types.
+Those assignments are correct, as noticed in the previous paragraphs, because they have the same type on the left and right side of the symbol equals (operations of integers assigned to a variable of integer type and operation of booleans assigned to a variable of boolean type).
 
-The grammar behind this operation is shown at ~\ref{lst:assignment_bnf}.
+The grammar that rules the assignment is shown at Listing ~\ref{lst:assignment_bnf}.
 
 \begin{lstlisting}[caption={BNF of assignment in LISS},label={lst:assignment_bnf}]
   assignment : designator '=' expression
            ;
 \end{lstlisting}
 
-\textbf{I/O.} Those input and output type of operations are available in LISS.
+\textbf{I/O.} The input and output statements are also available in LISS.
 
-The \textit{read} operations, called syntactically as 'input' in LISS, assigns a value to a variable obtained from the standard input and requires to be an atomic value (in this case, only an integer value).
+The \textit{read} operations, called syntactically as 'input' in LISS, assign a value to a variable obtained from the standard input and require to be an atomic value (in this case, only an integer value).
 
 
 \begin{lstlisting}[caption={Example of input operation in LISS}, label={lst:input_example}]
@@ -812,16 +773,18 @@ The \textit{read} operations, called syntactically as 'input' in LISS, assigns a
   }
 \end{lstlisting}
 
-Notice that, in Listing ~\ref{lst:input_example}, the variable \textit{myInteger} must be declared  and must be integer otherwise the operations won't work.
-The grammar which is behind of the input operation, is shown at ~\ref{lst:input_bnf}.
+Notice that, in Listing ~\ref{lst:input_example}, the variable \textit{myInteger} must be declared  and must be integer otherwise the operations fails.
+The grammar that rules the input statement, is shown in Listing ~\ref{lst:input_bnf}.
 
 \begin{lstlisting}[caption={BNF of input operation in LISS}, label={lst:input_bnf}]
  read_statement : 'input' '(' identifier ')'
                ; 
 \end{lstlisting}
 
-The \textit{write} operations, called syntactically as 'write' or 'writeln' in LISS, writes to the standard output and is defined for any type.
-Notice that 'write' operation only prints the content and doesn't return to a new line, instead that 'writeln' does return to a new line at the end.
+The \textit{write} operations, called syntactically as 'write' or 'writeln' in LISS, print an integer value in the standard output.
+Notice that 'write' operation only prints the value and doesn't move to a new line; instead, 'writeln' moves to a new line at the end.
+
+Listing ~\ref{lst:output_example} shows some more examples.
 
 \begin{lstlisting}[caption={Example of output operations in LISS},label={lst:output_example}]
   writeln(4*3);
@@ -829,7 +792,7 @@ Notice that 'write' operation only prints the content and doesn't return to a ne
   writeln();
 \end{lstlisting}
 
-Note that the write operation may have atomic value as well as empty value or some complex arithmetic expressions (see grammar in ~\ref{lst:output_bnf}).
+Note that the write statement may have as assignment, an atomic value as well as an empty value or some complex arithmetic expression (see grammar in ~\ref{lst:output_bnf}).
 
 \begin{lstlisting}[caption={BNF of output operations in LISS},label={lst:output_bnf}]
   write_statement : write_expr '(' print_what ')'
@@ -844,8 +807,10 @@ Note that the write operation may have atomic value as well as empty value or so
            ;
 \end{lstlisting}
 
-\textbf{Function call.} The function call is an operation which is available for using the function that were created in the program under the section 'declarations' (as described to ~\ref{sec:subprograms}).
-This will allow and have the ability for reusing functions that were created by calling them and not creating duplicated code.
+\textbf{Function call.} The function call is a statement that is available for using the functions created in the program under the section 'declarations' (as described in Section ~\ref{subsec:liss_declarations}).
+This will allow reusing functions that were created by calling them instead of creating duplicated code.
+
+See Listing ~\ref{lst:call_function_example} for a complete example.
 
 \begin{lstlisting}[caption={Example of call function in LISS},label={lst:call_function_example}]
  program SubPrg {
@@ -893,9 +858,9 @@ This will allow and have the ability for reusing functions that were created by 
 }
 \end{lstlisting}
 
-In Listing ~\ref{lst:call_function_example}, we can see that the function \textit{calculate()} is called and that the function was created under the declarations section.
+In Listing ~\ref{lst:call_function_example}, we can see that the function \textit{calculate()} in the main program, that is called and that is created under the declarations section.
 
-The grammar who rules behind the function call is shown at ~\ref{lst:call_function_bnf}.
+The grammar who rules the function call is shown in Listing ~\ref{lst:call_function_bnf}.
 
 \begin{lstlisting}[caption={BNF of call function in LISS},label={lst:call_function_bnf}]
   function_call : identifier '(' sub_prg_args ')'
@@ -914,7 +879,7 @@ LISS language includes some statements for controlling the execution flow at run
 
 The first one is called conditional statement and it has only one variant in LISS language (see Listing ~\ref{lst:control_statements}).
 
-But the second one is called cyclic statement or iterative statement, and it has two cyclic different variants (see Listing ~\ref{lst:control_statements}).
+The second one is called cyclic statement or iterative statement, and it has two variants (see Listing ~\ref{lst:control_statements}).
 
 \begin{lstlisting}[caption={BNF of control statements in LISS},label={lst:control_statements}]
   conditional_statement : if_then_else_stat
@@ -924,13 +889,13 @@ But the second one is called cyclic statement or iterative statement, and it has
                     ;
 \end{lstlisting}
 
-These control statements, mimics the syntax and the behavior, nearly,  of other modern imperative language.
+These control statements, mimics the syntax and the behavior  of other modern imperative language.
 
 \paragraph{Conditional}
 
-The 'if' statement, which is common across many modern programming languages, is a block which performs different actions for different decisions and, as in all modern languages, it is able to introduce an 'else' condition (optional).
+The if-statement, which is common across many modern programming languages, performs different actions according to decision depending on the truth value of a control conditional expression: an alternative 'else' block is also allowed (optional).
 
-If the condition of 'if' is evaluated by being 'true', this means that the content of 'then' section will be performed. Otherwise, if the condition is 'false', this means that the condition of the if statement is finished (if an 'else' condition isn't available) or jumps directly to the 'else' condition and performs every action available there.
+If the conditional expression evaluates 'true', the content of 'then' block will be executed. Otherwise, if the condition is 'false', the 'then' block is ignored; and if an 'else' block is provided it will be executed alternatively.
 
 Let's see an example in Listing ~\ref{lst:if_program}.
 
@@ -943,14 +908,14 @@ Let's see an example in Listing ~\ref{lst:if_program}.
   }
 \end{lstlisting}
 
-As we can see in ~\ref{lst:if_program}, the if-statement evaluates the conditions 'y==x'.
-If the condition, which must be a boolean, is true; then it will perform every actions available on the 'then' section.
-Thus, if an else-statement is available, and the condition is false; it will perform every actions on the 'else' section. Notice that in this example, there is an else-statement.
+The code shown in Listing ~\ref{lst:if_program}, means that the if-statement evaluates the conditional expression 'y==x'.
+If the expression, which must be boolean, is true, then every action in the 'then' block will be executed and the block 'else' will be ignored.
+Otherwise, if the condition is false, every action in the 'else' block is executed ignoring the 'then' block.
 
-If there weren't an else-statement, the if-condition will finish and do not perform any actions.
+If the else-statement is not provided, the if-statement will finish and do not perform any actions.
 
 
-The syntax behind the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}.
+The syntax of the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}.
 
 
 
@@ -967,7 +932,7 @@ The syntax behind the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}
 
 \paragraph{Iterative}
 
-We should take a look on the behavior of one of the control statement in order to understand its role deeper.
+We should take a look at the behavior of each iterative control statement to understand it deeper.
 
 The 'for' statement has two different ways for defining his comportment.
 Normally, in a conventional way, the for-loop has a control variable which takes a value in a given range and step up or step down by a default or a explicit value.
@@ -1267,10 +1232,11 @@ COMMENT
 \section{MIPS}
 MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Instruction Set Computer (RISC) developed by MIPS Technologies. 
 Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
+
 The main objective for creating MIPS, was to increase performance with deep instructions pipelines. And this was due to a main problem, back to the 80's, that some instruction as division would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
 %CPU therefore has to wait before passing the next instruction into the pipeline.
 
-Earlier, MIPS architectures were 32-bit versions but nowadays, it has 64-bit versions.
+MIPS architecture began with a 32-bit version until now, which has his own 64-bit versions.
 It was primarily used in embedded systems and video games consoles until late 2006, when it came to computers.
 
 
