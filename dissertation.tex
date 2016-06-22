@@ -359,7 +359,7 @@ A grammar is formally constructed by that tuple (N,$\sum$,P,S).
 
 Grammar is a set of productions rules which describes the syntax of the language (not semantic). Each grammar has only one start symbol production that defines where the grammar begins.
 %And there is two types after that the production rules are then applied in any order.
-And each production is composed by two things : LHS (Left Hand Side) and RHS (Right and Side). Left Hand Side represents the non terminal and the right hand side represents the behavior of the rule ( composed by non terminal and terminal).
+And each production is composed by two things : LHS (Left Hand Side) and RHS (Right and Side). Left Hand Side represents the non terminal and the right hand side represents the behaviour of the rule ( composed by non terminal and terminal).
 
 \begin{lstlisting}[caption={A rule production},label={lst:ruleExample}]
      liss : 'program' identifier body
@@ -566,10 +566,10 @@ The grammar for array declaration and initialization is shown below.
 \textbf{Sets.}
 The type \textit{set}, in LISS, is a collection of integers with no repeated numbers.
 
-It is defined by an expression, in a comprehension, instead of by enumeration of its element
+It is defined by an expression, in a comprehension, instead of by enumeration of its element.
 A \textit{set} variable can have an empty value and, syntactically, this is done by writing '\verb+{}+'.
 
-To define a set by comprehension, the free variable and the expression shall be return between curly brackets. The 'identifier' is separated from the expression by an explicit symbol '\verb+|+'. 
+To define a set by comprehension, the free variable and the expression shall be return between curly brackets. The 'identifier' (free variable) is separated from the expression by an explicit symbol '\verb+|+'. 
 
 The expression is built up from relational and boolean operators to define an integer interval.
 
@@ -587,7 +587,7 @@ Let's see an example of its syntax below:
   set1 = {x | x < 6 && x > -7} -> set;
 \end{lstlisting}
 
-This declaration defines a set including all the integers from -7 to 6 (operation interval) and others numbers are not included in the set.
+This declaration defines a set including all the integers from -7 to 6 (open interval) and others numbers are not included in the set.
 
 The syntax for set declaration and initialization is :
 
@@ -666,12 +666,12 @@ So a program in LISS begins by, syntactically, writing 'program' and then the na
 A pair of curly braces delimits the contents of the program; that is done by opening it after the name of the program and closing it at the end of the program.
 After the left brace, appear the declaration and statement blocks.
 
-As in a traditional imperative language (let's compare 'C language'), if we don't take the habit of implementing the variable always in a certain part of the code, it become confusing. This makes the life harder to the programmer in understanding the code when the code is quite long/big.
+As in a traditional imperative language (let's compare 'C language'), if we don't take the habit of implementing the variable always in a certain part of the code, it becomes confusing. This makes the life harder to the programmer in understanding the code when the code is quite long/big.
 
 So, in LISS, we always declare variables first (syntactically written by 'declarations')  and then the statements (syntactically written by 'statements').
 This is due to the fact that LISS wants to help the user to create solid and correct code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere (see grammar in Listing ~\ref{lst:program_grammar}).
 
-\begin{lstlisting}[caption={BNF of program in LISS},label={lst:program_grammar}]
+\begin{lstlisting}[caption={CFG for program in LISS},label={lst:program_grammar}]
   liss : 'program' identifier body
      ;
 
@@ -701,7 +701,7 @@ In LISS, we may write none or, one or more statements consecutively.
 
 Every statement ends with a semicolon, unless two type of statements (conditional and cyclic statements) as shown in Listing ~\ref{lst:liss_statements_bnf}.
 
-\begin{lstlisting}[caption={BNF of statements in LISS},label={lst:liss_statements_bnf}]
+\begin{lstlisting}[caption={CFG for statements in LISS},label={lst:liss_statements_bnf}]
   statements : statement*
            ;
   statement : assignment ';'
@@ -754,7 +754,7 @@ Those assignments are correct, as noticed in the previous paragraphs, because th
 
 The grammar that rules the assignment is shown at Listing ~\ref{lst:assignment_bnf}.
 
-\begin{lstlisting}[caption={BNF of assignment in LISS},label={lst:assignment_bnf}]
+\begin{lstlisting}[caption={CFG for assignment in LISS},label={lst:assignment_bnf}]
   assignment : designator '=' expression
            ;
 \end{lstlisting}
@@ -776,7 +776,7 @@ The \textit{read} operations, called syntactically as 'input' in LISS, assign a 
 Notice that, in Listing ~\ref{lst:input_example}, the variable \textit{myInteger} must be declared  and must be integer otherwise the operations fails.
 The grammar that rules the input statement, is shown in Listing ~\ref{lst:input_bnf}.
 
-\begin{lstlisting}[caption={BNF of input operation in LISS}, label={lst:input_bnf}]
+\begin{lstlisting}[caption={CFG for input operation in LISS}, label={lst:input_bnf}]
  read_statement : 'input' '(' identifier ')'
                ; 
 \end{lstlisting}
@@ -794,7 +794,7 @@ Listing ~\ref{lst:output_example} shows some more examples.
 
 Note that the write statement may have as assignment, an atomic value as well as an empty value or some complex arithmetic expression (see grammar in ~\ref{lst:output_bnf}).
 
-\begin{lstlisting}[caption={BNF of output operations in LISS},label={lst:output_bnf}]
+\begin{lstlisting}[caption={CFG for output operation in LISS},label={lst:output_bnf}]
   write_statement : write_expr '(' print_what ')'
                 ;
 
@@ -858,11 +858,11 @@ See Listing ~\ref{lst:call_function_example} for a complete example.
 }
 \end{lstlisting}
 
-In Listing ~\ref{lst:call_function_example}, we can see that the function \textit{calculate()} in the main program, that is called and that is created under the declarations section.
+In Listing ~\ref{lst:call_function_example}, we can see that the function \textit{calculate()}, called in the main program, and that is created under the declarations section.
 
 The grammar who rules the function call is shown in Listing ~\ref{lst:call_function_bnf}.
 
-\begin{lstlisting}[caption={BNF of call function in LISS},label={lst:call_function_bnf}]
+\begin{lstlisting}[caption={CFG for call function in LISS},label={lst:call_function_bnf}]
   function_call : identifier '(' sub_prg_args ')'
               ;
   sub_prg_args :
@@ -875,13 +875,13 @@ The grammar who rules the function call is shown in Listing ~\ref{lst:call_funct
 
 \subsection{LISS control statements}
 
-LISS language includes some statements for controlling the execution flow at runtime with two different kind of behavior.
+LISS language includes some statements for controlling the execution flow at runtime with two different kind of behaviour.
 
 The first one is called conditional statement and it has only one variant in LISS language (see Listing ~\ref{lst:control_statements}).
 
 The second one is called cyclic statement or iterative statement, and it has two variants (see Listing ~\ref{lst:control_statements}).
 
-\begin{lstlisting}[caption={BNF of control statements in LISS},label={lst:control_statements}]
+\begin{lstlisting}[caption={CFG for control statement in LISS},label={lst:control_statements}]
   conditional_statement : if_then_else_stat
                       ;
   iterative_statement : for_stat
@@ -889,7 +889,7 @@ The second one is called cyclic statement or iterative statement, and it has two
                     ;
 \end{lstlisting}
 
-These control statements, mimics the syntax and the behavior  of other modern imperative language.
+These control statements, mimics the syntax and the behaviour  of other modern imperative language.
 
 \paragraph{Conditional}
 
@@ -919,7 +919,7 @@ The syntax of the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}.
 
 
 
-\begin{lstlisting}[caption={BNF of iterative statement in LISS},label={lst:if_bnf}]
+\begin{lstlisting}[caption={CFG for iterative statement in LISS},label={lst:if_bnf}]
   if_then_else_stat : 'if' '(' expression ')'
                     'then' '{' statements '}'
                     else_expression
@@ -932,26 +932,26 @@ The syntax of the if-statement in LISS is shown in Listing ~\ref{lst:if_bnf}.
 
 \paragraph{Iterative}
 
-We should take a look at the behavior of each iterative control statement to understand it deeper.
+We should take a look at the behaviour of each iterative control statement to understand it deeper.
 
-The 'for' statement has two different ways for defining his comportment.
-Normally, in a conventional way, the for-loop has a control variable which takes a value in a given range and step up or step down by a default or a explicit value.
+The  for-statement offers two variants to control the repetition.
+Normally, in a conventional way, the for-loop has a control variable which takes a value in a given range and step up or step down by a default or an explicit value.
 
-In LISS, the control variable is set in a given integer interval defined by the lower and upper bounds. Therefore, by default, the step is incremented by one but it is possible to increment or decrease it by setting it explicitly.
-Additionally, we may write a condition for filtering on each step the for-loop statement, like setting an if-condition.
-This can be done with the following syntax:
+In LISS, the control variable is set in a given integer interval defined by the lower and upper bounds. By default, the step is one, which means that the control variable is incremented by one at the end of each iteration but it is possible to increment or decrement it by a different value, setting it explicitly.
+Additionally, we may write a condition for filtering the values in the interval.
+This can be done as shown in the following example:
 \begin{lstlisting}[caption={LISS syntax of a for-loop statement},label={lst:for-loop}]
   for(a in 1..10) stepUp 2 satisfying array[a]==1{
 	  ...
   }
 \end{lstlisting}
-In Listing ~\ref{lst:for-loop}, the control variable 'a' is set to a range by 1 to 10 and would be increased (due to 'stepUp' syntax) by 2. Also there is a filter condition which is applied after the 'satisfying' syntax and it will be tested on each step of the for-loop statement. Notice that the filter condition must boolean and that if it pass the condition, then the inner content of the for-loop statement would be executed. 
+In Listing ~\ref{lst:for-loop}, the control variable 'a' is set to a range 1 to 10 and would be increased (due to the 'stepUp' constructor) by 2. Also there is a filter condition (after the 'satisfying' keyword) that restricts the values of 'a' to those that makes the condition 'array[a]==1' true. Notice that the filter expression must be boolean. 
 
-Otherwise the control variable would be incremented with the explicit value 2 and the filter condition tested again. 
-This is the first example, about expressing in a way the for-loop statement. Let's see the second way on the next lines.
+After each cycle, the control variable will be incremented with value 2 and the filter condition tested again. 
 
-There is also the possibility for ease use, in expressing a for-each statement on a array.
-And this is done by calling a simple syntax in LISS.
+This is the first way of expressing the control in a for-loop statement. Let's see the second way in the sequel.
+
+There is also the possibility to assign to the control variable the values in an array, like illustrated in the following example:
 
 \begin{lstlisting}[caption={LISS syntax of a for-each statement on array},label={lst:for-each_array}]
   for(b inArray array){
@@ -959,11 +959,11 @@ And this is done by calling a simple syntax in LISS.
   }
 \end{lstlisting}
 In Listing ~\ref{lst:for-each_array}, the control variable  'b' is assigned with all of the elements of the array and begins with his lower index (zero) until his upper index (size of the array minus one).
-Notice that, in this case, we cannot apply an increment or decrement behavior and also a filter condition.
+Notice that, in this case, we cannot apply an increment or decrement neither a filter condition.
 
-The next grammar fragment describes the cycle for in LISS:
+The next grammar fragment describes the cycle 'for' in LISS:
 
-\begin{lstlisting}[caption={BNF of for statement in LISS}]
+\begin{lstlisting}[caption={CFG for for-statement in LISS}]
   for_stat : 'for' '(' interval ')' step satisfy
            '{' statements '}'
          ;
@@ -993,10 +993,10 @@ The next grammar fragment describes the cycle for in LISS:
 
 %write the for statetement with step and satisfy explication
 
-Finally, the while-statement consists in a block of code which execute some actions repeatly until the condition associated would be false. It is considered to be the best of those two worlds: if-statement and for-loop statement.
+Finally, the while-statement consists in a block of code that is executed repeatly until the control condition evaluates 'false'. 
 
-Each time that the content of a while-statement is performed, the condition associated with it will be evaluated again and see if it can performs the action associated or quit the while-statement.
-Notice that the condition must be a boolean and it can be a niche of an indefinitely loop.
+Each time that the 'while' block is performed, the conditional expression associated will be evaluated again to decide whether to repeat the execution of the statements in the block or to continue the normal program flow.
+
 Let's see an example in Listing ~\ref{lst:while_program}.
 
 \begin{lstlisting}[caption={LISS syntax of a while-statement in LISS},label={lst:while_program}]
@@ -1007,11 +1007,11 @@ Let's see an example in Listing ~\ref{lst:while_program}.
   }
 \end{lstlisting}
 
-In Listing ~\ref{lst:while_program}, the while-statement has the following condition '\verb+n>0+' and evaluates it firstly. If the condition is true, then all the actions that are inside the braces will be performed. Later, after executing all the actions, the condition will be evaluated again. If the condition remains 'true', then those actions would be executed again otherwise if the condition is false, the while-statement will be exited.
+In Listing ~\ref{lst:while_program}, the while-statement is controled by the conditional expression '\verb+n>0+' that is evaluated at the beginning. If the condition is true, then all the actions that are inside the braces will be performed. Later, after executing all the actions, the condition will be evaluated again. If the condition remains 'true', then those actions would be executed again otherwise if the condition is false, the while-statement will be exited.
 
-The syntax ruled behind the while-statement is shown below:
+The syntax that rule the while-statement is shown below:
 
-\begin{lstlisting}[caption={BNF of while-statement in LISS}]
+\begin{lstlisting}[caption={CFG for while-statement in LISS}]
   while_stat : 'while' '(' expression ')'
              '{' statements '}'
              ;
@@ -1020,25 +1020,26 @@ The syntax ruled behind the while-statement is shown below:
 
 
 \subsection{Others statements}
-%falar de succ_or_pred +copy_statement + cat_statement
 
-\textbf{Succ/Pred.} Those operations are available for incrementing or decreasing a variable. This is a common situation in modern programming language which LISS had to have it and, in this case, making life easier for the developers. 
+LISS language offers other statements to make it more expressive easing the codification of any imperative algorithm.
 
-The syntax 'succ' means increment and the syntax 'pred' means decrease. Beside that only integers variable can be used with those operations and that the increment/decrease is operated by incrementing/decreasing by one the variable. 
+\textbf{Succ/Pred.} Those statements are available for incrementing or decrementing a variable. This is a common situation in modern programming languages, making life easier for the developers. 
 
-Let's see an example of this operation.
+The keyword 'succ' means increment (successor) and the syntax 'pred' means decrease (predecessor). Only integer variables can be used with those constructors.
+
+Listing ~\ref{lst:succ_or_pred_example} illustrates both statements.
 
 \begin{lstlisting}[caption={Example of using succ/pred in LISS}, label={lst:succ_or_pred_example}]
   succ int1;
   pred int1;
 \end{lstlisting}
 
-As we can see in Listing ~\ref{lst:succ_or_pred_example}, the example increments the variable 'int1' firstly following by a 'decrease' on the next line of the same variable.
+As we can see in Listing ~\ref{lst:succ_or_pred_example}, variable 'int1' is, first, incremented by 1 and then it is decremented also by 1.
 
-Grammar of succ and pred in LISS shown at ~\ref{lst:succ_or_pred_bnf}.
+Grammar of 'succ' and 'pred' in LISS is shown in Listing ~\ref{lst:succ_or_pred_bnf}.
 
 
-\begin{lstlisting}[caption={BNF of succ and pred in LISS}, label={lst:succ_or_pred_bnf}]
+\begin{lstlisting}[caption={CFG for succ and pred in LISS}, label={lst:succ_or_pred_bnf}]
   succ_or_pred : succ_pred identifier
              ;
   succ_pred : 'succ'
@@ -1047,40 +1048,41 @@ Grammar of succ and pred in LISS shown at ~\ref{lst:succ_or_pred_bnf}.
 \end{lstlisting}
 
 \textbf{Copy statement.}
-This operation works with only and only the type: sequence.
-Basically, it copies the sequence to another sequence.
-Let's see an example at ~\ref{lst:copy_example}.
+This statement is applied only to variables of type sequence.
+Basically, it copies one sequence to another sequence.
+Let's see an example in Listing ~\ref{lst:copy_example}.
 
 \begin{lstlisting}[caption={Example of copy statement in LISS},label={lst:copy_example}]
   copy(seq1,seq2);
 \end{lstlisting}
 
-In Listing ~\ref{lst:copy_example}, the function copy is copying the content of the variable \textit{seq1} to \textit{seq2}.
-The output of this function is void (as shown to table ~\ref{tbl:type_operations}) due to the fact that it works only internally with those variables and do not need to return anything.
+Notice that 'copy' is a statement and not a function: it modifies the arguments but does not return any value.
 
-The grammar of copy statement is available at ~\ref{lst:copy_bnf}.
+In Listing ~\ref{lst:copy_example}, the statement 'copy' copies the content of the variable \textit{seq1} to \textit{seq2}.
 
-\begin{lstlisting}[caption={BNF of copy statement in LISS},label={lst:copy_bnf}]
+The grammar for 'copy' statement is in Listing ~\ref{lst:copy_bnf}.
+
+\begin{lstlisting}[caption={CFG for copy statement in LISS},label={lst:copy_bnf}]
   copy_statement : 'copy' '(' identifier ',' identifier ')'
                  ;
 \end{lstlisting}
 
 \textbf{Cat statement.}
 
-This operation works with only and only the type: sequence.
-The behaviour of this function is to concatenate the sequence to another sequence.
-Let's see an example of this operation (see Listing ~\ref{lst:cat_example}).
+'Cat' statement is simular to 'copy', it only operates with variables of type sequence.
+The behaviour of this statement is to concatenate a sequence to another sequence.
+Let's see an example in Listing ~\ref{lst:cat_example}).
 
-\begin{lstlisting}[caption={},label={}]
+\begin{lstlisting}[caption={Example of cat statement in LISS},label={lst:cat_example}]
   cat(seq1,seq2);
 \end{lstlisting}
 
-So, in Listing ~\ref{lst:cat_example}, the function cat is concatenating the content of \textit{seq1} to \textit{seq2}.
-The output of this function is void (as shown to table ~\ref{tbl:type_operations}) due to the fact that it works only internally with those variables and do not need to return anything.
+In Listing ~\ref{lst:cat_example}, 'cat' concatenates the content of \textit{seq2} to \textit{seq1}.
+Again, 'cat' is not a function; it modifies the arguments instead of returning a value.
 
-The grammar of cat statement is available at ~\ref{lst:cat_bnf}.
+The grammar for cat-statement is shown in Listing ~\ref{lst:cat_bnf}.
 
-\begin{lstlisting}[caption={BNF of cat statement in LISS},label={lst:cat_bnf}]
+\begin{lstlisting}[caption={CFG for cat statement in LISS},label={lst:cat_bnf}]
   cat_statement : 'cat' '(' identifier ',' identifier ')'
                 ;
 \end{lstlisting}
@@ -1088,12 +1090,12 @@ The grammar of cat statement is available at ~\ref{lst:cat_bnf}.
 \section{LISS subprograms}
 \label{sec:subprograms}
 
-In LISS, it is possible to organize your code by splitting a portion of your code into sub-programs. This allows to the programmer to reuse or give more clarity to his code by creating functions or doing some procedure.
-Also, it is possible to create sub-programs into sub-programs by using a nesting strategy.
+In LISS, it is possible to organize the code by splitting the general block of statements into sub-programs. This allows the programmer to reuse or to give more clarity to his code by creating functions or procedures.
+Also, it is possible to create sub-programs inside sub-programs by using a nesting strategy.
 
-The syntax who defines a sub-program in LISS is shown in Listing ~\ref{lst:block_structure}.
+The syntax that defines a sub-program in LISS is shown in Listing ~\ref{lst:block_structure}.
 
-\begin{lstlisting}[caption={BNF of block structure in LISS},label={lst:block_structure}]
+\begin{lstlisting}[caption={CFG for block structure in LISS},label={lst:block_structure}]
   subprogram_definition: 'subprogram' identifier '(' formal_args ')' return_type f_body
                      ;
   f_body : '{'
@@ -1117,8 +1119,10 @@ The syntax who defines a sub-program in LISS is shown in Listing ~\ref{lst:block
              ;
 \end{lstlisting}
 
-Note that every variable, who are declared inside of a sub-program, are local, and they can be access to others nested sub-program of a sub-program.
-However, variables declared in the program (not in a sub-program) are considered global and not local.
+Note that every variable declared inside of a sub-program is local, and it can be accessed only by other nested sub-programs.
+However, variables declared in the program (not in a sub-program) are considered global and can be accessed by any sub-program. The usual scope rules are applied to LISS.
+
+As can be inferred from the syntax above (Listing ~\ref{lst:block_structure}), the body of a sub-program is identical to the body of a program --- the same declarations can be made and similar statements can be used.
 
 
 
@@ -1143,19 +1147,19 @@ However, variables declared in the program (not in a sub-program) are considered
 %write appendix , code gic liss
 
 \section{Evolution of LISS syntax}
-Due to the maturity of the language already done by the professors whom invented, we have added some few but extra changes for a better experience of the programming language.
+Due to the maturity of the language already done along the years, we have added some few but extra changes for a better experience of the programming language.
 %The syntax of the LISS language (Figure ~\ref{lst:GIC_LISS} ), has been constructed with ANTLR which is ANother Tool for Language Recognition where it collaborates with the Java platform.
 
 %One of the first objectives is that we have changed the format of the syntax. We have translated the old LISS language to a brand new extended BNF format (as shown in Figure ~\ref{lst:GIC_LISS}).
 
-One of the first objectives is that we have added some better clarification syntactically of the programming language which was by not mixing functions and variable declarations between them (See Figure ~\ref{lst:declaration_LISS}).
-Like that we, indirectly, teach the programmer by doing it in the right way. So we declare, firstly, the variables and then the functions.
+One of the first changes was concerned with declarations in order to avoid mixing functions and variable declarations.
+We, indirectly, teach the programmer by doing it in the right way. So we declare, first, the variables and then the functions.
 \begin{lstlisting}[caption={},label={lst:declaration_LISS}]
 declaration : variable_declaration * subprogram_definition *
             ;
 \end{lstlisting}
 
-Another objectives was to add punctuation after each line of any statements (See Figure ~\ref{lst:statement_LISS}).
+Another change was to add punctuation after each statement (see Figure ~\ref{lst:statement_LISS}).
 \begin{lstlisting}[caption={Function statement},label={lst:statement_LISS}]
 statement : assignment  ';'
           | write_statement  ';'
@@ -1169,9 +1173,10 @@ statement : assignment  ';'
           ;
 \end{lstlisting}
 
-As adding also a 'cat\_statement' rule which works with only sets. It concatenate sets with another sets.
+Another change was adding also a 'cat\_statement' rule which works with only sequences. It concatenates a sequence with another sequence.
 
-Regarding to the arrays, it was previously able to add some expressions over the access elements of the array. But these access were able to use some boolean expression which was non sense regarding to the semantic. So we changed and allowed any other expressions less than boolean expression (See figure ~\ref{lst:elem_array_LISS}).
+Regarding arrays, it was previously possible to use any expression to access elements of the array. So it was possible to index with a boolean expression what does not make any sense.
+Now only integers are allowed (see in Listing ~\ref{lst:elem_array_LISS}).
 
 
 \begin{lstlisting}[caption={Rule element of array},label={lst:elem_array_LISS}]
@@ -1179,21 +1184,21 @@ elem_array : single_expression (',' s2=single_expression )*
            ;
 \end{lstlisting}
 
-In the previous version of the LISS, it was allowed to create a big boolean expression, but we decided to change that and only able to create one boolean expression (See figure ~\ref{lst:expression_LISS}).
-It was a non sense of having an expression like that : '3 == 4 == 5 != 6'.
-\begin{lstlisting}[caption={Rule expression},label={lst:expression_LISS}]
+In the previous version of LISS, it was allowed to create a boolean expression associating relational operators, but we decided to change that and not permit associativity; only able to create one boolean expression (see Listing ~\ref{lst:expression_LISS}).
+It does not make sense to have an expression like that : '3 == 4 == 5 != 6'.
+\begin{lstlisting}[caption={Rule for Boolean expression},label={lst:expression_LISS}]
 expression : single_expression (rel_op single_expression )?
            ;
 \end{lstlisting}
 
-We added the possibility of using some parenthesis over expressions (See figure ~\ref{lst:factor_LISS}).
+We added the possibility of using parenthesis on expressions (see Listing ~\ref{lst:factor_LISS}).
 
 \begin{lstlisting}[caption={Rule factor},label={lst:factor_LISS}]
 factor: '(' expression ')'
       ;
 \end{lstlisting}
 
-We changed the rules of two functions: 'cons' and 'del'. These functions were working with both in the same way. Waiting for an expression and a variable as arguments. Now, we decided to change that and giving more powers of expressivity to those functions ~\ref{lst:cons_del_LISS}.
+We changed the rules of two pre-defined functions: 'cons' and 'del'. These functions were working both in the same way. Waiting for an expression and a variable as arguments. Now, we decide to change that allowing to expression as arguments giving more expressive power to those functions (see Listing ~\ref{lst:cons_del_LISS}).
 
 \begin{lstlisting}[caption={Rule cons and delete},label={lst:cons_del_LISS}]
 cons // integer x sequence -> sequence
@@ -1205,7 +1210,7 @@ delete // del : integer x sequence -> sequence
        ;
 \end{lstlisting}
 
-Beside of adding some improvements to the grammar, we additionally deleted a rule which we thought it wasn't necessary to have (see figure ~\ref{lst:type_interval_LISS}).
+Besides adding some improvements to the grammar, we additionally deleted a rule which we thought not necessary to control the for-statement (see Listing ~\ref{lst:type_interval_LISS}).
 \begin{lstlisting}[caption={Rule type interval},label={lst:type_interval_LISS}]
 type_interval : 'in' range
               | 'inArray' identifier
@@ -1213,13 +1218,13 @@ type_interval : 'in' range
               ;
 \end{lstlisting}
 
-Last but not least, we also added the way of adding some comments to the programming language. Giving more power for the user in giving some informations about his code.
+Last but not least, we also added comments to the programming language, giving more power to the programmer.
 
-\begin{lstlisting}[caption={Rule comment},label={lst:comments_LISS}]
+\begin{lstlisting}[caption={Lexical rule for Comment},label={lst:comments_LISS}]
 fragment
 COMMENT
-    : '/*'.*?'*/' /* multiple comments*/
-    | '//'~('\r' | '\n')* /* single comment*/
+    : '/*'.*?'*/' /* multiple lines comment*/
+    | '//'~('\r' | '\n')* /* single line comment*/
     ;
 \end{lstlisting}
 
