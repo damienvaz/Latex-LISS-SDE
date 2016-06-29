@@ -1,4 +1,4 @@
-
+ 
 % example for dissertation.sty
 \documentclass[
   % Replace oneside by twoside if you are printing your thesis on both sides
@@ -13,11 +13,13 @@
 
 \usepackage{dissertation}
 \usepackage[utf8]{inputenc} %Needed for PT letters unavailable to EN language ( ç,....)
+\usepackage{amsmath,mathtools,calc}
 
 \usepackage{listings}
 %LISTING - GENERAL
 \lstset{
 	basicstyle=\small,
+	keywords={},
 	numbers=left,
 	numberstyle=\tiny,
 	numbersep=5pt,
@@ -643,6 +645,57 @@ The grammar below defines how to declare a sequence:
 
 \end{lstlisting}
 
+\subsection{LISS lexical conventions}
+
+Once you've declared a variable of a certain type, you cannot redeclare it again with the same name.
+
+The variable must be unique/single (see Listing ~\ref{lst:variable_name_single}).
+
+\begin{lstlisting}[caption={Conflicts with variable names},label={lst:variable_name_single}]
+  program single_variable_name{
+    declarations
+      int=1 -> integer;
+      int=true -> boolean; //cannot declare this variable with this name (already exists)
+    statements
+  }
+\end{lstlisting}
+
+Some keywords cannot be used as variable names.
+
+For example, you cannot declare a variable with the name \textit{array} due to the fact that \textit{array} is a keyword in LISS (in this case, a type).
+
+See the example in Listing ~\ref{lst:keyword_reserved_name}.
+\begin{lstlisting}[caption={Conflicts with keyword names},label={lst:keyword_reserved_name}]
+  array -> array size 3,4; //variable 'array' cannot be declared as a name
+  integer -> integer;
+\end{lstlisting}
+
+Variable names contains only letters and numbers, or underscore sign however, notice that the first character of the variable name must be a letter (lower and upper case).
+See the example below:
+
+\begin{lstlisting}[caption={},label={}]
+  My_variable_1
+  MyVariable1
+\end{lstlisting}
+
+Numbers are composed of digits (one or more). 
+Nothing more is allowed.
+
+See example below:
+
+\begin{lstlisting}[caption={},label={}]
+  1562
+  1
+\end{lstlisting}
+
+A string is a sequence of n-characters enclosed by double quotes.
+
+See example below:
+
+\begin{lstlisting}[caption={},label={}]
+  "This is a string"
+\end{lstlisting}
+
 \section{LISS blocks and statements}
 
 A LISS program is always composed of two parts: declarations and statements (a program block).
@@ -1228,30 +1281,22 @@ COMMENT
     ;
 \end{lstlisting}
 
-
-%\section{MIPS}
 \chapter{Target machine}
-
-%As mentioned in the previous section, the AG will produce MIPS assembly code throw ANTLR.
 
 \section{MIPS}
 MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Instruction Set Computer (RISC) developed by MIPS Technologies. 
 Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
 
-The main objective for creating MIPS, was to increase performance with deep instructions pipelines. And this was due to a main problem, back to the 80's, that some instruction as division would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
-%CPU therefore has to wait before passing the next instruction into the pipeline.
+The main objective for creating MIPS, was to increase performance with deep instructions pipelines, a main problem back to the 80's. 
+Some instructions, as division, would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
 
-MIPS architecture began with a 32-bit version until now, which has his own 64-bit versions.
-It was primarily used in embedded systems and video games consoles until late 2006, when it came to computers.
+As MIPS solved those problems, it was primarly used for embedded systems and video games consoles (which requires a lot of arithmetic computation) until late 2006, when it came to computers.
 
+Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....).
 
+Figure ~\ref{fig:MIPSarchitecture} illustrate the architecture of MIPS.
 
-% creating low-level programming language.
-%It is a symbolic representation of machine instructions.
-
-
-%composto o cpu, descodificador, o controlador, RAM, os registos e alem disto os 5 tipo de instruÃ§oes
-The architecture of MIPS is composed by 5 stages (see Figure ~\ref{fig:MIPSarchitecture}).
+%The architecture of MIPS is composed by 5 stages (see Figure ~\ref{fig:MIPSarchitecture}).
 
 \begin{figure}[h!]
   \centering
@@ -1264,7 +1309,127 @@ The architecture of MIPS is composed by 5 stages (see Figure ~\ref{fig:MIPSarchi
 
 \newpage
 
-It has 32 registers and 5 type of instructions :
+\section{MIPS compiler register usage}
+
+The architecture MIPS has 32 registers and there are some conventions to use those registers correctly.
+Table ~\ref{tbl:compiler_register_usage} illustrates the meaning of those registers:
+
+\newpage
+
+\begin{table}[]
+\centering
+\caption{MIPS registers}
+\label{tbl:compiler_register_usage}
+\begin{tabular}{cllc}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Number}} & \multicolumn{1}{c|}{\textbf{Use}}                                                                                                           & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Callee must\\  preserve?\end{tabular}}} \\ \hline
+\multicolumn{1}{|c|}{\$zero}        & \multicolumn{1}{l|}{\$0}             & \multicolumn{1}{l|}{has constant 0}                                                                                                         & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$at}          & \multicolumn{1}{l|}{\$1}             & \multicolumn{1}{l|}{register reserved for assembler (temporary)}                                                                            & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for values for function returns\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$a0 - \$a3}     & \multicolumn{1}{l|}{\$4 - \$7}         & \multicolumn{1}{l|}{registers reserved for function arguments}                                                                              & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$t0 - \$t7}     & \multicolumn{1}{l|}{\$8 - \$15}        & \multicolumn{1}{l|}{temporaries registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$s0 - \$s7}     & \multicolumn{1}{l|}{\$16 - \$23}       & \multicolumn{1}{l|}{saved temporaries registers}                                                                                            & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$t8 - \$t9}     & \multicolumn{1}{l|}{\$24 - \$25}       & \multicolumn{1}{l|}{temporaries registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$k0 - \$k1}     & \multicolumn{1}{l|}{\$26 - \$27}       & \multicolumn{1}{l|}{register reserved for OS kernel}                                                                                        & \multicolumn{1}{c|}{N/A}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$gp}          & \multicolumn{1}{l|}{\$28}            & \multicolumn{1}{l|}{global pointer}                                                                                                         & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$sp}          & \multicolumn{1}{l|}{\$29}            & \multicolumn{1}{l|}{stack pointer}                                                                                                          & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$fp}          & \multicolumn{1}{l|}{\$30}            & \multicolumn{1}{l|}{frame pointer}                                                                                                          & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$ra}          & \multicolumn{1}{l|}{\$31}            & \multicolumn{1}{l|}{return address}                                                                                                         & \multicolumn{1}{c|}{N/A}                                                                       \\ \hline
+\multicolumn{4}{l}{\textit{Note: N/A (Not applicable)}}                                                                                                                                                                                                                                                                  
+\end{tabular}
+\end{table}
+
+The Table ~\ref{tbl:compiler_register_usage} is composed by 4 columns:
+
+\begin{enumerate}
+\item \textit{Name} column refers to the nomenclature of the register available in MIPS. Those will be used to interact with the instructions available in MIPS.
+\item \textit{Number} column refers to the number of the register associated in MIPS. It can been also interacted with the instructions available in MIPS. But the nomenclature associated doesn't give so much context of the register (instead of \textit{Name} column).
+\item \textit{Use} column refers to the meaning/definition of each register.
+\item \textit{Callee must preserve?} column  provides information about the volatility of the register (used when a function is called).
+
+\end{enumerate}
+
+\section{MIPS instruction formats}
+
+Instructions, in MIPS, are divided into three types:
+\begin{itemize}
+\item R-type
+\item I-type
+\item J-type
+\end{itemize}
+
+And those instructions uses, each one, a mnemonic to represent each low-level machine instruction or operation.
+Let's see deeper in the next section.
+
+\subsection{MIPS R-type}
+
+R-type instruction refer a register type instruction (it is the most complex type in MIPS).
+The idea behind of that instruction is to operate with only and only registers.
+
+This type use the following format in MIPS (see Listing ~\ref{lst:r-type_format}).
+
+\begin{lstlisting}[caption={R-type instruction format},label={lst:r-type_format}]
+  OP rd, rs, rt
+\end{lstlisting}
+
+In Table ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic and three operands (note that each operand is represented by \$ sign).
+
+The \textit{OP} word is the mnemonic for the particular instruction in MIPS (it could be an ~\textit{add} for adding, ~\textit{sub} for substracting...) and the ~\textit{rd}, ~\textit{rs}, ~\textit{rt} are the registers used and available in MIPS.
+
+Take a note that ~\textit{rd} is the destination register and ~\textit{rs}, ~\textit{rt} are the source registers.
+
+In a mathematical way, those instructions have the following semantics (see below).
+
+\begin{lstlisting}[caption={},label={}]
+  rd = rs OP rt
+\end{lstlisting}
+
+
+Let's see an example of one R-type instruction in MIPS for a better understanding of that context (see Listing ~\ref{lst:example_r-type}).
+
+\begin{lstlisting}[caption={Example of a R-type instruction},label={lst:example_r-type}]
+  add $t1, $t1, $t2
+\end{lstlisting}
+
+The instruction shown in Listing ~\ref{lst:example_r-type}, means that register \$t1 (rs register according to the format of R-type instruction) shall be added (due to \textit{add} mnemonic) to register \$t2 (rt register according to the format of the R-type instruction) and their sum (the result) stored in \$t1 register (rd register according to the format of the R-type instruction).
+
+This is equivalent by saying (in a mathematical form):
+
+\begin{align*}
+  OP\ rd,\ rs,\ rt &\iff rd\ =\ rs\ OP\ rd\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
+  add\ \$t1,\ \$t1,\ \$t2 &\iff \$t1\ =\ \$t1\ add\ \$t2 \\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
+  \$t1\ &=\ \$t1\ +\ \$t2
+\end{align*}
+
+Converting the R-type instruction into machine code will perform the following way (see Table ~\ref{tbl:r-type_binary_machine_code}).
+
+\begin{table}[h!]
+\centering
+\caption{R-type binary machine code}
+\label{tbl:r-type_binary_machine_code}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\textbf{Opcode} & \textbf{rs} & \textbf{rt} & \textbf{rd} & \textbf{shift(shamt)} & \textbf{funct} \\ \hline
+6 bits          & 5 bits      & 5 bits      & 5 bits      & 5 bits                & 6 bits         \\ \hline
+\end{tabular}
+\end{table}
+
+%falar a table
+
+
+
+
+
+
+\newpage
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+MIPS has 6 type of instructions :
 
 \begin{itemize}
   \item instructions for data transfer
