@@ -1372,26 +1372,21 @@ This type use the following format in MIPS (see Listing ~\ref{lst:r-type_format}
   OP rd, rs, rt
 \end{lstlisting}
 
-In Table ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic and three operands (note that each operand is represented by \$ sign).
+In Listing ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic designed by \textit{OP} and three operands desgined by ~\textit{rd} (destination register), ~\textit{rs} (source register), ~\textit{rt} (another source register).
 
-The \textit{OP} word is the mnemonic for the particular instruction in MIPS (it could be an ~\textit{add} for adding, ~\textit{sub} for substracting...) and the ~\textit{rd}, ~\textit{rs}, ~\textit{rt} are the registers used and available in MIPS.
-
-Take a note that ~\textit{rd} is the destination register and ~\textit{rs}, ~\textit{rt} are the source registers.
-
-In a mathematical way, those instructions have the following semantics (see below).
+In a mathematical way, the R-type instruction format has the following semantic (see below).
 
 \begin{lstlisting}[caption={},label={}]
   rd = rs OP rt
 \end{lstlisting}
 
-
-Let's see an example of one R-type instruction in MIPS for a better understanding of that context (see Listing ~\ref{lst:example_r-type}).
+To understand better this instruction, let's see an example of one R-type instruction in MIPS (see Listing ~\ref{lst:example_r-type}).
 
 \begin{lstlisting}[caption={Example of a R-type instruction},label={lst:example_r-type}]
   add $t1, $t1, $t2
 \end{lstlisting}
 
-The instruction shown in Listing ~\ref{lst:example_r-type}, means that register \$t1 (rs register according to the format of R-type instruction) shall be added (due to \textit{add} mnemonic) to register \$t2 (rt register according to the format of the R-type instruction) and their sum (the result) stored in \$t1 register (rd register according to the format of the R-type instruction).
+The instruction shown in Listing ~\ref{lst:example_r-type}, means that register \$t1 shall be added (due to \textit{add} mnemonic) to register \$t2 and their sum (the result) stored in \$t1 register (note that each operand is represented by \$ sign).
 
 This is equivalent by saying (in a mathematical form):
 
@@ -1405,18 +1400,32 @@ This is equivalent by saying (in a mathematical form):
 
 Converting the R-type instruction into machine code will perform the following way (see Table ~\ref{tbl:r-type_binary_machine_code}).
 
+\newpage
+
 \begin{table}[h!]
 \centering
 \caption{R-type binary machine code}
 \label{tbl:r-type_binary_machine_code}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
-\textbf{Opcode} & \textbf{rs} & \textbf{rt} & \textbf{rd} & \textbf{shift(shamt)} & \textbf{funct} \\ \hline
+\textbf{opcode} & \textbf{rs} & \textbf{rt} & \textbf{rd} & \textbf{shift (shamt)} & \textbf{funct} \\ \hline
 6 bits          & 5 bits      & 5 bits      & 5 bits      & 5 bits                & 6 bits         \\ \hline
 \end{tabular}
 \end{table}
 
-%falar a table
+Let's explain each of the fields of the Table ~\ref{tbl:r-type_binary_machine_code}.
+
+\begin{itemize}
+\item \textbf{opcode} derivated from "operation code"; it indicates which kind of operation is it. Thus, not only the \textit{opcode} is needed only, but also the \textit{function} column is needed too (for R-type instructions). The \textit{opcode} field is 6 bits long (bit 31 to bit 26).
+\item \textbf{rs} this is the first source register; it is the register where it will load the content of the register to the operation.The \textit{rs} field is 5 bits long (bit 25 to bit 21).
+\item \textbf{rt} this is the second source register (same behaviour as \textit{rs} register). The \textit{rt} field is 5 bits long (bit 20 to bit 16).
+\item \textbf{rd} this is the destination register; it is the register where the results of the operation will be stored. The \textit{rd} field is 5 bits long (bit 15 to bit 11).
+\item \textbf{shift amount} the amount of bits to shift for shift instructions. The \textit{shift} field is 5 bits long (bit 10 to bit 6).
+\item \textbf{function} specify the operation in addition to the \textit{opcode} field. The \textit{function} field is 6 bits long (bit 5 to bit 0).
+
+\end{itemize}
+
+\subsection{MIPS I-type}
 
 
 
