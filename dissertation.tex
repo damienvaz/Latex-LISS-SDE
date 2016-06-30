@@ -14,6 +14,8 @@
 \usepackage{dissertation}
 \usepackage[utf8]{inputenc} %Needed for PT letters unavailable to EN language ( ç,....)
 \usepackage{amsmath,mathtools,calc}
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
 
 \usepackage{listings}
 %LISTING - GENERAL
@@ -1358,7 +1360,7 @@ Instructions, in MIPS, are divided into three types:
 \item J-type
 \end{itemize}
 
-And those instructions uses, each one, a mnemonic to represent each low-level machine instruction or operation.
+And those instructions use, each one, a mnemonic to represent each low-level machine instruction or operation.
 Let's see deeper in the next section.
 
 \subsection{MIPS R-type}
@@ -1372,7 +1374,7 @@ This type use the following format in MIPS (see Listing ~\ref{lst:r-type_format}
   OP rd, rs, rt
 \end{lstlisting}
 
-In Listing ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic designed by \textit{OP} and three operands desgined by ~\textit{rd} (destination register), ~\textit{rs} (source register), ~\textit{rt} (another source register).
+In Listing ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic designed by \textit{OP} and three operands designed by ~\textit{rd} (destination register), ~\textit{rs} (source register), ~\textit{rt} (another source register).
 
 In a mathematical way, the R-type instruction format has the following semantic (see below).
 
@@ -1391,14 +1393,14 @@ The instruction shown in Listing ~\ref{lst:example_r-type}, means that register 
 This is equivalent by saying (in a mathematical form):
 
 \begin{align*}
-  OP\ rd,\ rs,\ rt &\iff rd\ =\ rs\ OP\ rd\\
+  OP\ rd,\ rs,\ rt &\iff rd\ =\ rs\ OP\ rt\\
   &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
   add\ \$t1,\ \$t1,\ \$t2 &\iff \$t1\ =\ \$t1\ add\ \$t2 \\
   &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
   \$t1\ &=\ \$t1\ +\ \$t2
 \end{align*}
 
-Converting the R-type instruction into machine code will perform the following way (see Table ~\ref{tbl:r-type_binary_machine_code}).
+Converting the R-type instruction into machine code will be performed by the following way (see Table ~\ref{tbl:r-type_binary_machine_code}).
 
 \newpage
 
@@ -1416,7 +1418,7 @@ Converting the R-type instruction into machine code will perform the following w
 Let's explain each of the fields of the Table ~\ref{tbl:r-type_binary_machine_code}.
 
 \begin{itemize}
-\item \textbf{opcode} derivated from "operation code"; it indicates which kind of operation is it. Thus, not only the \textit{opcode} is needed only, but also the \textit{function} column is needed too (for R-type instructions). The \textit{opcode} field is 6 bits long (bit 31 to bit 26).
+\item \textbf{opcode} derivated from "operation code"; it indicates which kind of operation it is. Thus, not only the \textit{opcode} is needed only, but also the \textit{function} column is needed too (for R-type instructions). Note that every R-type instruction has the \textit{opcode} set to the value 0. The \textit{opcode} field is 6 bits long (bit 31 to bit 26).
 \item \textbf{rs} this is the first source register; it is the register where it will load the content of the register to the operation.The \textit{rs} field is 5 bits long (bit 25 to bit 21).
 \item \textbf{rt} this is the second source register (same behaviour as \textit{rs} register). The \textit{rt} field is 5 bits long (bit 20 to bit 16).
 \item \textbf{rd} this is the destination register; it is the register where the results of the operation will be stored. The \textit{rd} field is 5 bits long (bit 15 to bit 11).
@@ -1424,6 +1426,83 @@ Let's explain each of the fields of the Table ~\ref{tbl:r-type_binary_machine_co
 \item \textbf{function} specify the operation in addition to the \textit{opcode} field. The \textit{function} field is 6 bits long (bit 5 to bit 0).
 
 \end{itemize}
+
+Let's see an example of a R-type instruction to his transformation to machine code in Table ~\ref{tbl:r-type_transformation2machine_code}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{comment}
+\begin{align*}
+  add\ \$t0,&\ \$t0,\ \$t1\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
+  \texttt{0x01}\texttt{094020}\ &(in\ hexadecimal)\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$}
+\end{align*}
+
+
+%tabela do hexadecimal para binary
+\vspace{-8mm}
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|c|c|c|c|c|c|c|c|}
+\cline{2-10}
+\tikzmark{a}&\textbf{Hexadecimal} & 0    & 1    & 0    & 9    & 4    & 0    & 2    & 0    \\ \cline{2-10}
+\tikzmark{b}&\textbf{Binary}      & 0000 & 0001 & 0000 & 1001 & 0100 & 0000 & 0010 & 0000 \\ \cline{2-10}
+\end{tabular}
+\begin{tikzpicture}[overlay, remember picture, yshift=.25\baselineskip, shorten >=.5pt, shorten <=.5pt]
+    \draw [->] ({pic cs:a}) [bend right] to ({pic cs:b});
+  \end{tikzpicture}
+\end{table}
+\vspace{-13mm}
+
+\begin{align*}
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$}
+\end{align*}
+
+\vspace{-8mm}
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\textbf{opcode (6bits)}      & \textbf{rs (5bits)}        & \textbf{rt (5bits)}        & \textbf{rd (5bits)}        & \textbf{shift (shamt) (5bits)} & \textbf{funct (6bits)}      \\ \hline
+\multicolumn{1}{|c|}{000000} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{01001} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{00000}     & \multicolumn{1}{c|}{100000} \\ \hline
+\end{tabular}
+\end{table}
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{align*}
+  add\ \$t0,&\ \$t0,\ \$t1\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
+  add\ \$8,&\ \$8,\ \$9\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
+  (8)_{10}\ =&\ (01000)_{2}\\
+  (9)_{10}\ =&\ (01001)_{2}\\
+  &\makebox[\widthof{${}={}$}]{$\Downarrow$}
+\end{align*}
+
+\vspace{-7mm}
+\begin{table}[h!]
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\textbf{opcode (6bits)}      & \textbf{rs (5bits)}        & \textbf{rt (5bits)}        & \textbf{rd (5bits)}        & \textbf{shift (shamt) (5bits)} & \textbf{funct (6bits)}     \\ \hline
+\multicolumn{1}{|c|}{000000} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{01001} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{00000}     & \multicolumn{1}{c|}{100000} \\ \hline
+\end{tabular}
+\caption{Transformation of R-type instruction to machine code}
+\label{tbl:r-type_transformation2machine_code}
+\end{table}
+
+In Table ~\ref{tbl:r-type_transformation2machine_code}, woot
+
+
+
+
+
+
+
+
 
 \subsection{MIPS I-type}
 
