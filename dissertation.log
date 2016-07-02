@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  30 JUN 2016 18:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  2 JUL 2016 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1346,8 +1346,11 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_above_shortintertext_sep=\dimen208
 \l_MT_below_shortintertext_sep=\dimen209
 )
-(/usr/local/texlive/2015/texmf-dist/tex/latex/tikzmark/tikzlibrarytikzmark.code
-.tex)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/mdwtools/footnote.sty
+Package: footnote 1997/01/28 1.13 Save footnotes around boxes
+\fn@notes=\box47
+\fn@width=\dimen210
+)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2015/03/16 v4.15 (NLCT)
 
@@ -1457,11 +1460,11 @@ Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
 \LTpre=\skip121
 \LTpost=\skip122
 \LTchunksize=\count214
-\LTcapwidth=\dimen210
-\LT@head=\box47
-\LT@firsthead=\box48
-\LT@foot=\box49
-\LT@lastfoot=\box50
+\LTcapwidth=\dimen211
+\LT@head=\box48
+\LT@firsthead=\box49
+\LT@foot=\box50
+\LT@lastfoot=\box51
 \LT@cols=\count215
 \LT@rows=\count216
 \c@LT@tables=\count217
@@ -1478,21 +1481,21 @@ Package: glossary-super 2013/11/14 v4.0 (NLCT)
  (/usr/local/texlive/2015/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
 \c@tracingst=\count219
-\ST@wd=\dimen211
+\ST@wd=\dimen212
 \ST@rightskip=\skip125
 \ST@leftskip=\skip126
 \ST@parfillskip=\skip127
-\ST@pageleft=\dimen212
-\ST@headht=\dimen213
-\ST@tailht=\dimen214
-\ST@pagesofar=\dimen215
-\ST@pboxht=\dimen216
-\ST@lineht=\dimen217
-\ST@stretchht=\dimen218
-\ST@prevht=\dimen219
-\ST@toadd=\dimen220
-\ST@dimen=\dimen221
-\ST@pbox=\box51
+\ST@pageleft=\dimen213
+\ST@headht=\dimen214
+\ST@tailht=\dimen215
+\ST@pagesofar=\dimen216
+\ST@pboxht=\dimen217
+\ST@lineht=\dimen218
+\ST@stretchht=\dimen219
+\ST@prevht=\dimen220
+\ST@toadd=\dimen221
+\ST@dimen=\dimen222
+\ST@pbox=\box52
 ))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/glossaries/styles/glossary-tree.s
 ty
@@ -1506,34 +1509,34 @@ Package glossaries Warning: \defglsdisplayfirst is now obsolete.
 
 Package glossaries Warning: Deprecated command \glossarystyle.
  I recommend you switch to \setglossarystyle unless you want to maintain backwa
-rd compatibility on input line 73.
+rd compatibility on input line 74.
 
 \glswrite=\write6
 \glo@acronym@file=\write7
 \openout7 = `dissertation.acn'.
 
-Package glossaries Info: Writing glossary file dissertation.acn on input line 7
-9.
+Package glossaries Info: Writing glossary file dissertation.acn on input line 8
+0.
 (./dissertation.aux)
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Try loading font information for OT1+pplj on input line 151
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Try loading font information for OT1+pplj on input line 152
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pplj.fd
@@ -1542,19 +1545,19 @@ File: ot1pplj.fd 2004/09/06 font definitions for OT1/pplj.
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count220
-\scratchdimen=\dimen222
-\scratchbox=\box52
+\scratchdimen=\dimen223
+\scratchbox=\box53
 \nofMPsegments=\count221
 \nofMParguments=\count222
 \everyMPshowfont=\toks56
 \MPscratchCnt=\count223
-\MPscratchDim=\dimen223
+\MPscratchDim=\dimen224
 \MPnumerator=\count224
 \makeMPintoPDFobject=\count225
 \everyMPtoPDFconversion=\toks57
 )
-\AtBeginShipoutBox=\box53
-Package hyperref Info: Link coloring ON on input line 151.
+\AtBeginShipoutBox=\box54
+Package hyperref Info: Link coloring ON on input line 152.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
@@ -1563,10 +1566,10 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count226
 )
-LaTeX Info: Redefining \ref on input line 151.
-LaTeX Info: Redefining \pageref on input line 151.
-LaTeX Info: Redefining \nameref on input line 151.
-LaTeX Info: Redefining \microtypecontext on input line 151.
+LaTeX Info: Redefining \ref on input line 152.
+LaTeX Info: Redefining \pageref on input line 152.
+LaTeX Info: Redefining \nameref on input line 152.
+LaTeX Info: Redefining \microtypecontext on input line 152.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1588,7 +1591,7 @@ Package scrpage2 Warning: seems you are using a very small headheight.
 
 Package marginnote Info: \pdfoutput not 0 and \pdflastxpos available.
 (marginnote)             Extended position detection mode activated.
-Package soulpos Info: Loading soulutf8 on input line 151.
+Package soulpos Info: Loading soulutf8 on input line 152.
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/soulutf8.sty
 Package: soulutf8 2007/09/09 v1.0 Permit use of UTF-8 characters in soul (HO)
 
@@ -1600,9 +1603,9 @@ Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
 \SOUL@buffer=\toks61
 \SOUL@token=\toks62
 \SOUL@spaceskip=\skip129
-\SOUL@ttwidth=\dimen224
-\SOUL@uldp=\dimen225
-\SOUL@ulht=\dimen226
+\SOUL@ttwidth=\dimen225
+\SOUL@uldp=\dimen226
+\SOUL@ulht=\dimen227
 ))
 (/usr/local/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
@@ -1630,32 +1633,32 @@ Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count227
-\GPT@outputbox=\box54
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 153
+\GPT@outputbox=\box55
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 154
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 153
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 154
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 153
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 154
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 153
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 154
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 153
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 154
 .
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1zplm.fd
@@ -1665,7 +1668,7 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `zplm' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 153.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 154.
 
 
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
@@ -1688,9 +1691,9 @@ Package microtype Info: Loading generic settings for font family
 
 ]
 LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 165.
+(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 166.
 LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 165.
+(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 166.
  [1
 
 
@@ -1706,7 +1709,7 @@ LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <9> not available
 
 ]
 Package tocbasic Info: character protrusion at toc deactivated on input line 17
-5.
+6.
 
 (./dissertation.toc
 Package microtype Info: Character `013' is missing
@@ -1721,7 +1724,7 @@ Package microtype Info: Character `013' is missing
 
 ]
 Package tocbasic Info: character protrusion at lof deactivated on input line 17
-6.
+7.
  (./dissertation.lof
 Underfull \hbox (badness 10000) in paragraph at lines 7--7
 [][]\OT1/pplj/m/n/9 http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MI
@@ -1742,7 +1745,7 @@ Package natbib Warning: Citation `DAPJLH' on page v undefined on input line 8.
 
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 17
-7.
+8.
  (./dissertation.lot)
 \tf@lot=\write10
 \openout10 = `dissertation.lot'.
@@ -1778,7 +1781,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.223 F
+l.224 F
        irst, create an ANTLR version of the CFG grammar for LISS language.
 [1
 
@@ -1788,13 +1791,13 @@ l.223 F
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.241 ...{Languages and grammar: concept \& tools}
+l.242 ...{Languages and grammar: concept \& tools}
                                                    [2]
 Chapter 2.
-<img/GIC2.png, id=202, 562.1pt x 347.2975pt>
+<img/GIC2.png, id=200, 562.1pt x 347.2975pt>
 File: img/GIC2.png Graphic file (type png)
  <use img/GIC2.png>
-Package pdftex.def Info: img/GIC2.png used on input line 268.
+Package pdftex.def Info: img/GIC2.png used on input line 269.
 (pdftex.def)             Requested size: 309.85626pt x 191.44345pt.
 
 
@@ -1805,25 +1808,25 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 ] Excluding 'comment' comment.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 300.
-LaTeX Font Info:    Try loading font information for OMS+pplj on input line 301
+nput line 301.
+LaTeX Font Info:    Try loading font information for OMS+pplj on input line 302
 .
-LaTeX Font Info:    No file OMSpplj.fd. on input line 301.
+LaTeX Font Info:    No file OMSpplj.fd. on input line 302.
 
 
 LaTeX Font Warning: Font shape `OMS/pplj/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textasteriskcentered' on input line 301.
+(Font)              for symbol `textasteriskcentered' on input line 302.
 
 [4 <./img/GIC2.png>] [5] [6]
 Chapter 3.
-LaTeX Font Info:    Try loading font information for OML+pplj on input line 401
+LaTeX Font Info:    Try loading font information for OML+pplj on input line 402
 .
-LaTeX Font Info:    No file OMLpplj.fd. on input line 401.
+LaTeX Font Info:    No file OMLpplj.fd. on input line 402.
 
 LaTeX Font Warning: Font shape `OML/pplj/m/n' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textgreater' on input line 401.
+(Font)              for symbol `textgreater' on input line 402.
 
 [7
 
@@ -1831,12 +1834,12 @@ LaTeX Font Warning: Font shape `OML/pplj/m/n' undefined
 ]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 447.
+               Default added (so using `tbp') on input line 448.
 
 [8]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 477.
+               Default added (so using `tbp') on input line 478.
 
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
@@ -1847,12 +1850,12 @@ Package microtype Info: Loading generic settings for font family
 
 LaTeX Font Warning: Font shape `OML/pplj/m/it' undefined
 (Font)              using `OML/cmm/m/it' instead
-(Font)              for symbol `textgreater' on input line 1259.
+(Font)              for symbol `textgreater' on input line 1260.
 
 
 LaTeX Font Warning: Font shape `OMS/pplj/m/it' undefined
 (Font)              using `OMS/pplj/m/n' instead
-(Font)              for symbol `textbar' on input line 1272.
+(Font)              for symbol `textbar' on input line 1273.
 
 [28]
 Chapter 4.
@@ -1860,10 +1863,10 @@ Chapter 4.
 File: img/MIPSarchitecture.png Graphic file (type png)
 
 <use img/MIPSarchitecture.png>
-Package pdftex.def Info: img/MIPSarchitecture.png used on input line 1305.
+Package pdftex.def Info: img/MIPSarchitecture.png used on input line 1318.
 (pdftex.def)             Requested size: 442.65375pt x 276.66771pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1306--1306
+Underfull \hbox (badness 10000) in paragraph at lines 1319--1319
 [][]\OT1/pplj/m/n/9 http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MI
 PS[]Architecture(Pipelined).svg/300px-
  []
@@ -1877,69 +1880,72 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 ] [30 <./img/MIPSarchitecture.png>]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 1321.
+               Default added (so using `tbp') on input line 1336.
 
 [31] [32] Excluding 'comment' comment. [33] [34]
-<img/high-level-2-low-level.png, id=902, 530.98375pt x 688.5725pt>
+
+LaTeX Warning: Reference `' on page 35 undefined on input line 1543.
+
+<img/high-level-2-low-level.png, id=912, 530.98375pt x 688.5725pt>
 File: img/high-level-2-low-level.png Graphic file (type png)
 
 <use img/high-level-2-low-level.png>
-Package pdftex.def Info: img/high-level-2-low-level.png used on input line 1549
+Package pdftex.def Info: img/high-level-2-low-level.png used on input line 1582
 .
 (pdftex.def)             Requested size: 307.20918pt x 398.38567pt.
 
 
 Package natbib Warning: Citation `DAPJLH' on page 35 undefined on input line 15
-50.
+83.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[35] [36 <./img/high-level-2-low-level.png>]
+[35] [36 <./img/high-level-2-low-level.png>] [37]
 Chapter 5.
-<img/compiler.png, id=924, 923.45pt x 491.8375pt>
+<img/compiler.png, id=943, 923.45pt x 491.8375pt>
 File: img/compiler.png Graphic file (type png)
  <use img/compiler.png>
-Package pdftex.def Info: img/compiler.png used on input line 1647.
+Package pdftex.def Info: img/compiler.png used on input line 1680.
 (pdftex.def)             Requested size: 442.65375pt x 235.7566pt.
 
-[37
+[38
 
 
-] <img/parsing.png, id=936, 405.515pt x 237.88875pt>
+] <img/parsing.png, id=954, 405.515pt x 237.88875pt>
 File: img/parsing.png Graphic file (type png)
  <use img/parsing.png>
-Package pdftex.def Info: img/parsing.png used on input line 1659.
+Package pdftex.def Info: img/parsing.png used on input line 1692.
 (pdftex.def)             Requested size: 309.85626pt x 181.77737pt.
 
-[38 <./img/compiler.png>] Excluding 'comment' comment.
-Excluding 'comment' comment. [39 <./img/parsing.png>]
-<img/antlr4_parse_tree.png, id=967, 1312.905pt x 759.83875pt>
+[39 <./img/compiler.png>] Excluding 'comment' comment.
+Excluding 'comment' comment. [40 <./img/parsing.png>]
+<img/antlr4_parse_tree.png, id=986, 1312.905pt x 759.83875pt>
 File: img/antlr4_parse_tree.png Graphic file (type png)
 
 <use img/antlr4_parse_tree.png>
-Package pdftex.def Info: img/antlr4_parse_tree.png used on input line 1731.
+Package pdftex.def Info: img/antlr4_parse_tree.png used on input line 1764.
 (pdftex.def)             Requested size: 442.65375pt x 256.18523pt.
- [40 <./img/antlr4_parse_tree.png>]
+ [41 <./img/antlr4_parse_tree.png>]
 Chapter 6.
-<img/XCode-interface.png, id=995, 622.325pt x 380.42125pt>
+<img/XCode-interface.png, id=1013, 622.325pt x 380.42125pt>
 File: img/XCode-interface.png Graphic file (type png)
 
 <use img/XCode-interface.png>
-Package pdftex.def Info: img/XCode-interface.png used on input line 1760.
+Package pdftex.def Info: img/XCode-interface.png used on input line 1793.
 (pdftex.def)             Requested size: 442.65375pt x 270.59436pt.
- [41
+ [42
 
 
- <./img/XCode-interface.png>] [42]
-<img/SDE.png, id=1024, 602.25pt x 281.05pt>
+ <./img/XCode-interface.png>] [43]
+<img/SDE.png, id=1042, 602.25pt x 281.05pt>
 File: img/SDE.png Graphic file (type png)
  <use img/SDE.png>
-Package pdftex.def Info: img/SDE.png used on input line 1813.
+Package pdftex.def Info: img/SDE.png used on input line 1846.
 (pdftex.def)             Requested size: 442.65375pt x 206.57997pt.
- [43 <./img/SDE.png>]
+ [44 <./img/SDE.png>]
 Chapter 7.
-[44
+[45
 
 
 ] (./dissertation.bbl
@@ -1948,7 +1954,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--52
 iler home-page.
  []
 
-[45
+[46
 
 
 
@@ -1959,7 +1965,7 @@ Underfull \hbox (badness 6995) in paragraph at lines 163--167
 s.usfca.edu/ par-rt/-
  []
 
-[46]
+[47]
 Underfull \hbox (badness 7064) in paragraph at lines 169--175
 []\OT1/pplj/m/n/10.95 Terence Parr.  \OT1/pplj/m/it/10.95 The Defini-tive ANTLR
  Ref-er-ence: Build-ing Domain-Specific Lan-
@@ -1971,49 +1977,55 @@ Underfull \hbox (badness 1189) in paragraph at lines 169--175
 leigh, 2007.  URL [][]$\OT1/cmtt/m/n/10.95 http : / / www . amazon . de /
  []
 
-) [47]
+) [48]
 Appendix A.
-(./lissGIC.g4 [48
+(./lissGIC.g4 [49
 
 
-] [49] [50] [51] [52] [53] [54] [55]
+] [50] [51] [52] [53] [54] [55] [56]
 Overfull \hbox (21.35077pt too wide) in paragraph at lines 365--367
 [][] 
  []
 
-[56]
+[57]
 Overfull \hbox (21.35077pt too wide) in paragraph at lines 375--378
 [][] 
  []
 
-) [57] [58] [59
+) [58] [59] [60
 
 
 ]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1889.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1889.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1922.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1922.
 (./dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1889.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1889.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1922.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1922.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1889.
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1922.
  ) 
 Here is how much of TeX's memory you used:
- 37899 strings out of 493089
- 663119 string characters out of 6134841
+ 37944 strings out of 493089
+ 663369 string characters out of 6134841
  1047529 words of memory out of 5000000
- 39642 multiletter control sequences out of 15000+600000
- 56201 words of font info for 115 fonts, out of 8000000 for 9000
+ 39680 multiletter control sequences out of 15000+600000
+ 62398 words of font info for 131 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,16n,106p,2152b,2646s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exi
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
 , replaced by a fixed one
@@ -2041,18 +2053,19 @@ live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texliv
 e/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2015/texmf-di
-st/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2015/texmf-dist/fonts
-/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/
-urw/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/hel
-vetic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/
-uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (68 pages, 748500 bytes).
+2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/20
+15/texmf-dist/fonts/type1/public/fpl/fplbj8a.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
+ype1/public/fpl/fplrij8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
+w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
+tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
+lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
+b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on dissertation.pdf (69 pages, 761951 bytes).
 PDF statistics:
- 1875 PDF objects out of 2073 (max. 8388607)
- 1754 compressed objects within 18 object streams
- 1041 named destinations out of 1200 (max. 500000)
- 16685 words of extra memory for PDF output out of 17280 (max. 10000000)
+ 1895 PDF objects out of 2073 (max. 8388607)
+ 1772 compressed objects within 18 object streams
+ 1048 named destinations out of 1200 (max. 500000)
+ 20261 words of extra memory for PDF output out of 20736 (max. 10000000)
 

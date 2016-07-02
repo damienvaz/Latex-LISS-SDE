@@ -14,8 +14,8 @@
 \usepackage{dissertation}
 \usepackage[utf8]{inputenc} %Needed for PT letters unavailable to EN language ( ç,....)
 \usepackage{amsmath,mathtools,calc}
-\usepackage{tikz}
-\usetikzlibrary{tikzmark}
+\usepackage{footnote}
+\usepackage{hyperref}
 
 \usepackage{listings}
 %LISTING - GENERAL
@@ -68,6 +68,7 @@
 
 %displays the first use of an acronym in italic
 \defglsdisplayfirst[\acronymtype]{\emph{#1#4}}
+
 
 %the style of the Glossary
 \glossarystyle{listgroup}
@@ -1283,18 +1284,30 @@ COMMENT
     ;
 \end{lstlisting}
 
-\chapter{Target machine}
 
-\section{MIPS}
+
+
+
+
+
+
+
+
+
+\chapter{Target machine: MIPS}
+
+%\section{MIPS}
+
 MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Instruction Set Computer (RISC) developed by MIPS Technologies. 
 Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
 
 The main objective for creating MIPS, was to increase performance with deep instructions pipelines, a main problem back to the 80's. 
 Some instructions, as division, would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
 
-As MIPS solved those problems, it was primarly used for embedded systems and video games consoles (which requires a lot of arithmetic computation) until late 2006, when it came to computers.
+As MIPS solved those problems, it was primarly used for embedded systems and video games consoles (which requires a lot of arithmetic computation). 
+% until late 2006, when it came to computers.
 
-Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....).
+Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....) \footnote{according to wikipedia \url{https://en.wikipedia.org/wiki/MIPS_instruction_set}}.
 
 Figure ~\ref{fig:MIPSarchitecture} illustrate the architecture of MIPS.
 
@@ -1311,10 +1324,12 @@ Figure ~\ref{fig:MIPSarchitecture} illustrate the architecture of MIPS.
 
 \newpage
 
+In this chapter, we will talk about all the architecture of MIPS with the 32-bit version.
+
 \section{MIPS compiler register usage}
 
-The architecture MIPS has 32 registers and there are some conventions to use those registers correctly.
-Table ~\ref{tbl:compiler_register_usage} illustrates the meaning of those registers:
+MIPS architecture has 32 registers and there are some conventions to use those registers correctly.
+Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their usage.
 
 \newpage
 
@@ -1329,9 +1344,9 @@ Table ~\ref{tbl:compiler_register_usage} illustrates the meaning of those regist
 \multicolumn{1}{|c|}{\$at}          & \multicolumn{1}{l|}{\$1}             & \multicolumn{1}{l|}{register reserved for assembler (temporary)}                                                                            & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for values for function returns\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$a0 - \$a3}     & \multicolumn{1}{l|}{\$4 - \$7}         & \multicolumn{1}{l|}{registers reserved for function arguments}                                                                              & \multicolumn{1}{c|}{No}                                                                        \\ \hline
-\multicolumn{1}{|c|}{\$t0 - \$t7}     & \multicolumn{1}{l|}{\$8 - \$15}        & \multicolumn{1}{l|}{temporaries registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
-\multicolumn{1}{|c|}{\$s0 - \$s7}     & \multicolumn{1}{l|}{\$16 - \$23}       & \multicolumn{1}{l|}{saved temporaries registers}                                                                                            & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
-\multicolumn{1}{|c|}{\$t8 - \$t9}     & \multicolumn{1}{l|}{\$24 - \$25}       & \multicolumn{1}{l|}{temporaries registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$t0 - \$t7}     & \multicolumn{1}{l|}{\$8 - \$15}        & \multicolumn{1}{l|}{temporary registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$s0 - \$s7}     & \multicolumn{1}{l|}{\$16 - \$23}       & \multicolumn{1}{l|}{saved temporary registers}                                                                                            & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
+\multicolumn{1}{|c|}{\$t8 - \$t9}     & \multicolumn{1}{l|}{\$24 - \$25}       & \multicolumn{1}{l|}{temporary registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$k0 - \$k1}     & \multicolumn{1}{l|}{\$26 - \$27}       & \multicolumn{1}{l|}{register reserved for OS kernel}                                                                                        & \multicolumn{1}{c|}{N/A}                                                                       \\ \hline
 \multicolumn{1}{|c|}{\$gp}          & \multicolumn{1}{l|}{\$28}            & \multicolumn{1}{l|}{global pointer}                                                                                                         & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
 \multicolumn{1}{|c|}{\$sp}          & \multicolumn{1}{l|}{\$29}            & \multicolumn{1}{l|}{stack pointer}                                                                                                          & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
@@ -1341,11 +1356,11 @@ Table ~\ref{tbl:compiler_register_usage} illustrates the meaning of those regist
 \end{tabular}
 \end{table}
 
-The Table ~\ref{tbl:compiler_register_usage} is composed by 4 columns:
+The Table ~\ref{tbl:compiler_register_usage} is composed of 4 columns:
 
 \begin{enumerate}
 \item \textit{Name} column refers to the nomenclature of the register available in MIPS. Those will be used to interact with the instructions available in MIPS.
-\item \textit{Number} column refers to the number of the register associated in MIPS. It can been also interacted with the instructions available in MIPS. But the nomenclature associated doesn't give so much context of the register (instead of \textit{Name} column).
+\item \textit{Number} column defines the number of each register. This number can also be used to refer to the register in an instruction.
 \item \textit{Use} column refers to the meaning/definition of each register.
 \item \textit{Callee must preserve?} column  provides information about the volatility of the register (used when a function is called).
 
@@ -1355,42 +1370,43 @@ The Table ~\ref{tbl:compiler_register_usage} is composed by 4 columns:
 
 Instructions, in MIPS, are divided into three types:
 \begin{itemize}
-\item R-type
-\item I-type
-\item J-type
+\item R-Type
+\item I-Type
+\item J-Type
 \end{itemize}
 
-And those instructions use, each one, a mnemonic to represent each low-level machine instruction or operation.
-Let's see deeper in the next section.
+Each instruction is denoted by an unique mnemonic that represents the correspondent low-level machine instruction or operation.
 
-\subsection{MIPS R-type}
+Next sections provide the necessary details.
 
-R-type instruction refer a register type instruction (it is the most complex type in MIPS).
-The idea behind of that instruction is to operate with only and only registers.
+\subsection{MIPS R-Type}
 
-This type use the following format in MIPS (see Listing ~\ref{lst:r-type_format}).
+R-Type instruction refers a register type instruction (it is the most complex type in MIPS).
+The idea behind that instruction is to operate with registers only.
 
-\begin{lstlisting}[caption={R-type instruction format},label={lst:r-type_format}]
+This type has the following format, mostly, in MIPS (see Listing ~\ref{lst:r-type_format}).
+
+\begin{lstlisting}[caption={R-Type instruction format},label={lst:r-type_format}]
   OP rd, rs, rt
 \end{lstlisting}
 
-In Listing ~\ref{lst:r-type_format}, the instruction is composed by one mnemonic designed by \textit{OP} and three operands designed by ~\textit{rd} (destination register), ~\textit{rs} (source register), ~\textit{rt} (another source register).
+In Listing ~\ref{lst:r-type_format}, the instruction is composed of one mnemonic, denoted by \textit{OP}, and three operands, denoted by ~\textit{rd} (destination register), ~\textit{rs} (source register), ~\textit{rt} (another source register).
 
-In a mathematical way, the R-type instruction format has the following semantic (see below).
+The R-Type instruction format as the following mathematical semantics:
 
 \begin{lstlisting}[caption={},label={}]
   rd = rs OP rt
 \end{lstlisting}
 
-To understand better this instruction, let's see an example of one R-type instruction in MIPS (see Listing ~\ref{lst:example_r-type}).
+To understand better this instruction, let's see an example of one R-Type instruction in MIPS (see Listing ~\ref{lst:example_r-type}).
 
-\begin{lstlisting}[caption={Example of a R-type instruction},label={lst:example_r-type}]
+\begin{lstlisting}[caption={Example of a R-Type instruction},label={lst:example_r-type}]
   add $t1, $t1, $t2
 \end{lstlisting}
 
-The instruction shown in Listing ~\ref{lst:example_r-type}, means that register \$t1 shall be added (due to \textit{add} mnemonic) to register \$t2 and their sum (the result) stored in \$t1 register (note that each operand is represented by \$ sign).
+The instruction shown in Listing ~\ref{lst:example_r-type} means that register \$t1 shall be added (due to \textit{add} mnemonic) to register \$t2 and their sum (the result) stored in register \$t1.
 
-This is equivalent by saying (in a mathematical form):
+The following equivalence explains that meaning.
 
 \begin{align*}
   OP\ rd,\ rs,\ rt &\iff rd\ =\ rs\ OP\ rt\\
@@ -1400,13 +1416,13 @@ This is equivalent by saying (in a mathematical form):
   \$t1\ &=\ \$t1\ +\ \$t2
 \end{align*}
 
-Converting the R-type instruction into machine code will be performed by the following way (see Table ~\ref{tbl:r-type_binary_machine_code}).
+Table ~\ref{tbl:r-type_binary_machine_code} defines the bit-structure of a R-Type instruction in a 32-bit machine.
 
 \newpage
 
 \begin{table}[h!]
 \centering
-\caption{R-type binary machine code}
+\caption{R-Type binary machine code}
 \label{tbl:r-type_binary_machine_code}
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
@@ -1415,10 +1431,10 @@ Converting the R-type instruction into machine code will be performed by the fol
 \end{tabular}
 \end{table}
 
-Let's explain each of the fields of the Table ~\ref{tbl:r-type_binary_machine_code}.
+Let's explain each of the columns in Table ~\ref{tbl:r-type_binary_machine_code}.
 
 \begin{itemize}
-\item \textbf{opcode} derivated from "operation code"; it indicates which kind of operation it is. Thus, not only the \textit{opcode} is needed only, but also the \textit{function} column is needed too (for R-type instructions). Note that every R-type instruction has the \textit{opcode} set to the value 0. The \textit{opcode} field is 6 bits long (bit 31 to bit 26).
+\item \textbf{opcode}  defines the instruction type. For every R-Type instruction, \textit{opcode} is set to the value 0. The \textit{opcode} field is 6 bits long (bit 31 to bit 26).
 \item \textbf{rs} this is the first source register; it is the register where it will load the content of the register to the operation.The \textit{rs} field is 5 bits long (bit 25 to bit 21).
 \item \textbf{rt} this is the second source register (same behaviour as \textit{rs} register). The \textit{rt} field is 5 bits long (bit 20 to bit 16).
 \item \textbf{rd} this is the destination register; it is the register where the results of the operation will be stored. The \textit{rd} field is 5 bits long (bit 15 to bit 11).
@@ -1427,7 +1443,7 @@ Let's explain each of the fields of the Table ~\ref{tbl:r-type_binary_machine_co
 
 \end{itemize}
 
-Let's see an example of a R-type instruction to his transformation to machine code in Table ~\ref{tbl:r-type_transformation2machine_code}.
+Let's see an example of a R-Type instruction and its transformation to machine code in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{comment}
@@ -1471,6 +1487,7 @@ Let's see an example of a R-type instruction to his transformation to machine co
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\newpage
 
 \begin{align*}
   add\ \$t0,&\ \$t0,\ \$t1\\
@@ -1479,6 +1496,7 @@ Let's see an example of a R-type instruction to his transformation to machine co
   &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
   (8)_{10}\ =&\ (01000)_{2}\\
   (9)_{10}\ =&\ (01001)_{2}\\
+  add\ instruction\ (fu&nct\ field)\ =\ (100000)_{2}\\
   &\makebox[\widthof{${}={}$}]{$\Downarrow$}
 \end{align*}
 
@@ -1490,28 +1508,43 @@ Let's see an example of a R-type instruction to his transformation to machine co
 \textbf{opcode (6bits)}      & \textbf{rs (5bits)}        & \textbf{rt (5bits)}        & \textbf{rd (5bits)}        & \textbf{shift (shamt) (5bits)} & \textbf{funct (6bits)}     \\ \hline
 \multicolumn{1}{|c|}{000000} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{01001} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{00000}     & \multicolumn{1}{c|}{100000} \\ \hline
 \end{tabular}
-\caption{Transformation of R-type instruction to machine code}
+\caption{Transformation of R-Type instruction to machine code}
 \label{tbl:r-type_transformation2machine_code}
 \end{table}
 
-In Table ~\ref{tbl:r-type_transformation2machine_code}, woot
+In Table ~\ref{tbl:r-type_transformation2machine_code}, the instruction 'add \$t0, \$t0, \$t1' will be normalized with the name of the register according to the number associated for the register in MIPS (see Table ~\ref{tbl:compiler_register_usage}). Then we do some operations for the two numbers (~\textit{8} and ~\textit{9}), we translate them as a binary number with 5 bits long. Also we give the information for the ~\textit{add} instruction, which is set for the MIPS architecture (not predictable).
 
 
+After that, we complete the table for R-Type instruction according to Table ~\ref{tbl:r-type_binary_machine_code} with the informations available and the restriction/rules associated to R-Type instruction in MIPS.
 
+Notice that the ~\textit{opcode} field for R-Type instruction are set to the value 0 (according to the explanation from Table ~\ref{tbl:r-type_binary_machine_code}).
 
-
-
-
+Finally, we have our binary machine code for the instruction 'add \$t0, \$t0, \$t1' in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
 
 \subsection{MIPS I-type}
 
+I-type instruction is an instruction which operate with an immediate value and a register value and the immediate value cannot be longer than 16 bits.
 
+This type use the following format, mostly, in MIPS (see Listing ~\ref{lst:I-type_format}).
 
+\begin{lstlisting}[caption={I-type instruction format},label={lst:I-type_format}]
+  OP rd, rs, IMM
+\end{lstlisting}
 
+In Listing ~\ref{lst:I-type_format}, the instruction is composed by one mnemonic designed by ~\textit{OP}, two operands designed by ~\textit{rd} (destination register), ~\textit{rs} (source register) and one number value designed by ~\textit{IMM}.
 
+In a mathematical way, the I-type instruction format has the following semantic (see below).
 
-\newpage
+\begin{lstlisting}
+  rd = rs OP IMM
+\end{lstlisting}
+
+To understand better this instruction, let's see an example of one I-type instruction in MIPS (se Listing ~\ref{}).
+
+\begin{lstlisting}[caption={Example of an I-type instruction},label={}]
+  li $v0, 4
+\end{lstlisting}
 
 
 
