@@ -1326,14 +1326,35 @@ Figure ~\ref{fig:MIPSarchitecture} illustrate the architecture of MIPS.
 
 In this chapter, we will talk about all the architecture of MIPS with the 32-bit version.
 
+\section{MIPS coprocessors}
+
+MIPS was born for solving complex arithmetic problems by reducing the consuming time in those operations.
+
+And this is done by the implementation of coprocessors in MIPS.
+
+The MIPS architecture defines four coprocessors designed, respectively, CP0, CP1, CP2 and CP3:
+
+\begin{enumerate}
+\item Coprocessor 0, denoted by ~\textit{CP0}, is incorporated on the CPU chips, it supports the virtual memory system and exception handling (also known as the ~\textit{System Control Coprocessor}).
+\item Coprocessor 1, denoted by ~\textit{CP1}, is reserved the floating point coprocessor.
+\item Coprocessor 2, denoted by ~\textit{CP2}, is reserved for specific implementations.
+\item Coprocessor 3, denoted by ~\textit{CP3}, is reserved for the implementations of the architecture.
+\end{enumerate}
+
+Notice that coprocessor - ~\textit{CP0}, translates virtual addresses into physical addresses, manages excpetions, and handles switch between kernel, supervisor and user modes.
+
+
+
+
+
+
 \section{MIPS compiler register usage}
 
-MIPS architecture has 32 registers and there are some conventions to use those registers correctly.
+MIPS architecture has 32 registers dedicated and there are some conventions to use those registers correctly.
 Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their usage.
 
-\newpage
 
-\begin{table}[]
+\begin{table}[h!]
 \centering
 \caption{MIPS registers}
 \label{tbl:compiler_register_usage}
@@ -1365,6 +1386,41 @@ The Table ~\ref{tbl:compiler_register_usage} is composed of 4 columns:
 \item \textit{Callee must preserve?} column  provides information about the volatility of the register (used when a function is called).
 
 \end{enumerate}
+
+Also, beside of those 32 registers, 3 registers are dedicated to the CPU.
+
+And they are known by:
+
+\begin{itemize}
+
+\item \textit{PC} - Program Counter register
+\item \textit{HI} - Multiply and Divide register higher result
+\item \textit{LO} - Multiply and Divide register lower result
+
+\end{itemize}
+
+
+\textit{PC} is the register which holds the address of the instruction that is being executed at the current time; ~\textit{HI} and ~\textit{LO} registers has different context whenever the instruction is being executed.
+In this case, let's see what context they have:
+\begin{itemize}
+\item when there is a multiply (~\textit{mul} instruction) operation, the \textit{HI} and  ~\textit{LO}  registers store the result of integer multiply.
+\item when there is a multiply-add (~\textit{madd} instruction) or multiply-subtract (~\textit{msub} instruction) operation, the ~\textit{HI} and ~\textit{LO} register store the result of integer multiply-add or multiply-subtract.
+\item when there is a division (~\textit{div} instruction) operation, the ~\textit{HI} register store the remainder of the division and the ~\textit{LO} register store the quotient of the division operation.
+\item when there is a multiply-accumulate (~\textit{} instruction) operation, the ~\textit{HI} and ~\textit{LO} registers store the accumulated result of the operation.
+\end{itemize}
+
+See an overview of the MIPS registers in Figure ~\ref{fig:MIPS_register}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.91]{img/mips_register.png}
+    \caption{MIPS register}
+    \label{fig:MIPS_register}
+\end{figure}
+
+\newpage
+
+
 
 \section{MIPS instruction formats}
 
@@ -1522,31 +1578,43 @@ Notice that the ~\textit{opcode} field for R-Type instruction are set to the val
 Finally, we have our binary machine code for the instruction 'add \$t0, \$t0, \$t1' in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
 
-\subsection{MIPS I-type}
-
-I-type instruction is an instruction which operate with an immediate value and a register value and the immediate value cannot be longer than 16 bits.
-
-This type use the following format, mostly, in MIPS (see Listing ~\ref{lst:I-type_format}).
-
-\begin{lstlisting}[caption={I-type instruction format},label={lst:I-type_format}]
-  OP rd, rs, IMM
-\end{lstlisting}
-
-In Listing ~\ref{lst:I-type_format}, the instruction is composed by one mnemonic designed by ~\textit{OP}, two operands designed by ~\textit{rd} (destination register), ~\textit{rs} (source register) and one number value designed by ~\textit{IMM}.
-
-In a mathematical way, the I-type instruction format has the following semantic (see below).
-
-\begin{lstlisting}
-  rd = rs OP IMM
-\end{lstlisting}
-
-To understand better this instruction, let's see an example of one I-type instruction in MIPS (se Listing ~\ref{}).
-
-\begin{lstlisting}[caption={Example of an I-type instruction},label={}]
-  li $v0, 4
-\end{lstlisting}
 
 
+
+
+\subsection{MIPS I-Type}
+
+%I-Type instruction is an instruction which operate with an immediate value and a register value. The immediate value cannot be longer than 16 bits.
+
+Several different Immediate (~\textit{I-Type}) instructions formats are available.
+
+Let's see the formats for this Type in Table ~\ref{tbl:I-Type_instruction_format}.
+
+\begin{table}[h!]
+\centering
+\caption{I-Type instruction format}
+\label{tbl:I-Type_instruction_format}
+\begin{tabular}{ccccll}
+\multicolumn{1}{l|}{31 -- 26} & \multicolumn{1}{l|}{25 ---- 21} & \multicolumn{1}{l|}{20 -- 16} & \multicolumn{1}{l|}{15 -------- 11} & \multicolumn{1}{l|}{10 ------- 6} & 5 ----- 0                     \\ \hline
+\multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{rs}         & \multicolumn{1}{c|}{rt}       & \multicolumn{3}{c|}{immediate}                                                                          \\ \hline
+\multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{rd}         & \multicolumn{4}{c|}{offset}                                                                                                             \\ \hline
+\multicolumn{1}{|c|}{opcode}  & \multicolumn{5}{c|}{offset}                                                                                                                                               \\ \hline
+\multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{rs}         & \multicolumn{1}{c|}{rt}       & \multicolumn{1}{c|}{rd}             & \multicolumn{2}{c|}{offset}                                       \\ \hline
+\multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{base}       & \multicolumn{1}{c|}{rt}       & \multicolumn{2}{c|}{offset}                                             & \multicolumn{1}{c|}{function} \\ \hline
+\multicolumn{1}{l}{}          & \multicolumn{1}{l}{}            & \multicolumn{1}{l}{}          & \multicolumn{1}{l}{}                &                                   &                              
+\end{tabular}
+\end{table}
+
+
+
+\newpage
+
+
+
+\subsection{MIPS J-Type}
+
+
+\newpage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
