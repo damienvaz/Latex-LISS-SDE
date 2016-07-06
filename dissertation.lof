@@ -6,13 +6,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2}{\ignorespaces MIPS architecture \footnote {http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS\_Architecture(Pipelined).svg/300px-MIPS\_Architecture\_(Pipelined).svg.png}\relax }}{30}{figure.caption.10}
 \contentsline {figure}{\numberline {3}{\ignorespaces MIPS register\relax }}{33}{figure.caption.12}
-\contentsline {figure}{\numberline {4}{\ignorespaces Stages converting high-level language into binary machine language \footnote {\cite {DAPJLH}}\relax }}{39}{figure.caption.16}
+\contentsline {figure}{\numberline {4}{\ignorespaces Stages converting high-level language into binary machine language \footnote {\cite {DAPJLH}}\relax }}{42}{figure.caption.21}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5}{\ignorespaces Traditional compiler\relax }}{41}{figure.caption.17}
-\contentsline {figure}{\numberline {6}{\ignorespaces Parsing\relax }}{42}{figure.caption.18}
-\contentsline {figure}{\numberline {7}{\ignorespaces AST representation\relax }}{43}{figure.caption.19}
+\contentsline {figure}{\numberline {5}{\ignorespaces Traditional compiler\relax }}{44}{figure.caption.22}
+\contentsline {figure}{\numberline {6}{\ignorespaces Parsing\relax }}{45}{figure.caption.23}
+\contentsline {figure}{\numberline {7}{\ignorespaces AST representation\relax }}{46}{figure.caption.24}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {8}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{44}{figure.caption.20}
-\contentsline {figure}{\numberline {9}{\ignorespaces SDE example\relax }}{46}{figure.caption.21}
+\contentsline {figure}{\numberline {8}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{47}{figure.caption.25}
+\contentsline {figure}{\numberline {9}{\ignorespaces SDE example\relax }}{49}{figure.caption.26}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

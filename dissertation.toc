@@ -20,18 +20,20 @@
 \contentsline {section}{\numberline {3.4}Evolution of LISS syntax}{27}{section.3.4}
 \contentsline {chapter}{\numberline {4}\spacedlowsmallcaps {Target machine: MIPS}}{29}{chapter.4}
 \contentsline {section}{\numberline {4.1}MIPS coprocessors}{30}{section.4.1}
-\contentsline {section}{\numberline {4.2}MIPS compiler register usage}{31}{section.4.2}
-\contentsline {section}{\numberline {4.3}MIPS instruction formats}{34}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}MIPS R-Type}{34}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}MIPS I-Type}{36}{subsection.4.3.2}
-\contentsline {subsection}{\numberline {4.3.3}MIPS J-Type}{37}{subsection.4.3.3}
-\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{40}{chapter.5}
-\contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{42}{section.5.1}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{44}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{45}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{46}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{47}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{47}{section.7.1}
+\contentsline {section}{\numberline {4.2}MIPS cpu data formats}{31}{section.4.2}
+\contentsline {section}{\numberline {4.3}MIPS compiler register usage}{31}{section.4.3}
+\contentsline {section}{\numberline {4.4}MIPS instruction formats}{34}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}MIPS R-Type}{34}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}MIPS I-Type}{36}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}MIPS J-Type}{39}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}MIPS assembly language}{40}{section.4.5}
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{43}{chapter.5}
+\contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{45}{section.5.1}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{47}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{48}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{49}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{50}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{50}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{51}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{54}{appendix.A}

@@ -652,7 +652,7 @@ The grammar below defines how to declare a sequence:
 
 Once you've declared a variable of a certain type, you cannot redeclare it again with the same name.
 
-The variable must be unique/single (see Listing ~\ref{lst:variable_name_single}).
+The variable name must be unique (see Listing ~\ref{lst:variable_name_single}).
 
 \begin{lstlisting}[caption={Conflicts with variable names},label={lst:variable_name_single}]
   program single_variable_name{
@@ -663,7 +663,7 @@ The variable must be unique/single (see Listing ~\ref{lst:variable_name_single})
   }
 \end{lstlisting}
 
-Some keywords cannot be used as variable names.
+Keywords cannot be used as variable names.
 
 For example, you cannot declare a variable with the name \textit{array} due to the fact that \textit{array} is a keyword in LISS (in this case, a type).
 
@@ -673,7 +673,7 @@ See the example in Listing ~\ref{lst:keyword_reserved_name}.
   integer -> integer;
 \end{lstlisting}
 
-Variable names contains only letters and numbers, or underscore sign however, notice that the first character of the variable name must be a letter (lower and upper case).
+Variable names contain only letters and numbers, or the underscore sign. However the first character of the variable name must be a letter (lower or upper case).
 See the example below:
 
 \begin{lstlisting}[caption={},label={}]
@@ -722,7 +722,7 @@ So a program in LISS begins by, syntactically, writing 'program' and then the na
 A pair of curly braces delimits the contents of the program; that is done by opening it after the name of the program and closing it at the end of the program.
 After the left brace, appear the declaration and statement blocks.
 
-As in a traditional imperative language (let's compare 'C language'), if we don't take the habit of implementing the variable always in a certain part of the code, it becomes confusing. This makes the life harder to the programmer in understanding the code when the code is quite long/big.
+As in a traditional imperative language (let's compare 'C language'), if we don't take the habit of declaring the variable always in a certain part of the code, it becomes confusing. This makes the programmer's life harder to understand the code when the code is quite long.
 
 So, in LISS, we always declare variables first (syntactically written by 'declarations')  and then the statements (syntactically written by 'statements').
 This is due to the fact that LISS wants to help the user to create solid and correct code. And in this case, the user will always know that all the variable declarations will be always at the top of the statements and not randomly everywhere (see grammar in Listing ~\ref{lst:program_grammar}).
@@ -997,11 +997,11 @@ In LISS, the control variable is set in a given integer interval defined by the 
 Additionally, we may write a condition for filtering the values in the interval.
 This can be done as shown in the following example:
 \begin{lstlisting}[caption={LISS syntax of a for-loop statement},label={lst:for-loop}]
-  for(a in 1..10) stepUp 2 satisfying array[a]==1{
+  for(a in 1..10) stepUp 2 satisfying elems[a]==1{
 	  ...
   }
 \end{lstlisting}
-In Listing ~\ref{lst:for-loop}, the control variable 'a' is set to a range 1 to 10 and would be increased (due to the 'stepUp' constructor) by 2. Also there is a filter condition (after the 'satisfying' keyword) that restricts the values of 'a' to those that makes the condition 'array[a]==1' true. Notice that the filter expression must be boolean. 
+In Listing ~\ref{lst:for-loop}, the control variable 'a' is set to a range 1 to 10 and would be increased (due to the 'stepUp' constructor) by 2. Also there is a filter condition (after the 'satisfying' keyword) that restricts the values of 'a' to those that makes the condition 'elems[a]==1' true. Notice that the filter expression must be boolean. 
 
 After each cycle, the control variable will be incremented with value 2 and the filter condition tested again. 
 
@@ -1010,7 +1010,7 @@ This is the first way of expressing the control in a for-loop statement. Let's s
 There is also the possibility to assign to the control variable the values in an array, like illustrated in the following example:
 
 \begin{lstlisting}[caption={LISS syntax of a for-each statement on array},label={lst:for-each_array}]
-  for(b inArray array){
+  for(b inArray elems){
        	...
   }
 \end{lstlisting}
@@ -1330,7 +1330,7 @@ In this chapter, we will talk about all the architecture of MIPS with the 32-bit
 
 MIPS was born for solving complex arithmetic problems by reducing the consuming time in those operations.
 
-And this is done by the implementation of coprocessors in MIPS.
+And this is done by the implementation of coprocessors with MIPS.
 
 The MIPS architecture defines four coprocessors designed, respectively, CP0, CP1, CP2 and CP3:
 
@@ -1343,7 +1343,15 @@ The MIPS architecture defines four coprocessors designed, respectively, CP0, CP1
 
 Notice that coprocessor - ~\textit{CP0}, translates virtual addresses into physical addresses, manages excpetions, and handles switch between kernel, supervisor and user modes.
 
+\section{MIPS cpu data formats}
 
+The CPU of MIPS defines different formats:
+\begin{itemize}
+\item ~\textit{Bit} (1 bit, b)
+\item ~\textit{Byte} (8 bits, B)
+\item ~\textit{Halfword} (16 bits, H)
+\item ~\textit{Word} (32 bits, W)
+\end{itemize}
 
 
 
@@ -1499,47 +1507,6 @@ Let's explain each of the columns in Table ~\ref{tbl:r-type_binary_machine_code}
 
 Let's see an example of a R-Type instruction and its transformation to machine code in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{comment}
-\begin{align*}
-  add\ \$t0,&\ \$t0,\ \$t1\\
-  &\makebox[\widthof{${}={}$}]{$\Downarrow$} \\
-  \texttt{0x01}\texttt{094020}\ &(in\ hexadecimal)\\
-  &\makebox[\widthof{${}={}$}]{$\Downarrow$}
-\end{align*}
-
-
-%tabela do hexadecimal para binary
-\vspace{-8mm}
-\begin{table}[h]
-\centering
-\begin{tabular}{l|l|c|c|c|c|c|c|c|c|}
-\cline{2-10}
-\tikzmark{a}&\textbf{Hexadecimal} & 0    & 1    & 0    & 9    & 4    & 0    & 2    & 0    \\ \cline{2-10}
-\tikzmark{b}&\textbf{Binary}      & 0000 & 0001 & 0000 & 1001 & 0100 & 0000 & 0010 & 0000 \\ \cline{2-10}
-\end{tabular}
-\begin{tikzpicture}[overlay, remember picture, yshift=.25\baselineskip, shorten >=.5pt, shorten <=.5pt]
-    \draw [->] ({pic cs:a}) [bend right] to ({pic cs:b});
-  \end{tikzpicture}
-\end{table}
-\vspace{-13mm}
-
-\begin{align*}
-  &\makebox[\widthof{${}={}$}]{$\Downarrow$}
-\end{align*}
-
-\vspace{-8mm}
-\begin{table}[h]
-\centering
-\begin{tabular}{|l|l|l|l|l|l|}
-\hline
-\textbf{opcode (6bits)}      & \textbf{rs (5bits)}        & \textbf{rt (5bits)}        & \textbf{rd (5bits)}        & \textbf{shift (shamt) (5bits)} & \textbf{funct (6bits)}      \\ \hline
-\multicolumn{1}{|c|}{000000} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{01001} & \multicolumn{1}{c|}{01000} & \multicolumn{1}{c|}{00000}     & \multicolumn{1}{c|}{100000} \\ \hline
-\end{tabular}
-\end{table}
-\end{comment}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
 
@@ -1575,23 +1542,16 @@ Notice that the ~\textit{opcode} field for R-Type instruction are set to the val
 
 Finally, we have our binary machine code for the instruction 'add \$t0, \$t0, \$t1' in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
-
-
-
-
-
 \subsection{MIPS I-Type}
 
-%I-Type instruction is an instruction which operate with an immediate value and a register value. The immediate value cannot be longer than 16 bits.
+I-Type instruction is an instruction which operate with an immediate value and a register value. 
 
 Several different Immediate (~\textit{I-Type}) instructions formats are available.
 
-Let's see the formats for this Type in Table ~\ref{tbl:I-Type_instruction_format}.
+Let's see those diferents formats for this type in Table ~\ref{tbl:I-Type_instruction_format}.
 
 \begin{table}[h!]
 \centering
-\caption{I-Type instruction format}
-\label{tbl:I-Type_instruction_format}
 \begin{tabular}{ccccll}
 \multicolumn{1}{l|}{31 -- 26} & \multicolumn{1}{l|}{25 ---- 21} & \multicolumn{1}{l|}{20 -- 16} & \multicolumn{1}{l|}{15 -------- 11} & \multicolumn{1}{l|}{10 ------- 6} & 5 ----- 0                     \\ \hline
 \multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{rs}         & \multicolumn{1}{c|}{rt}       & \multicolumn{3}{c|}{immediate}                                                                          \\ \hline
@@ -1601,7 +1561,102 @@ Let's see the formats for this Type in Table ~\ref{tbl:I-Type_instruction_format
 \multicolumn{1}{|c|}{opcode}  & \multicolumn{1}{c|}{base}       & \multicolumn{1}{c|}{rt}       & \multicolumn{2}{c|}{offset}                                             & \multicolumn{1}{c|}{function} \\ \hline
 \multicolumn{1}{l}{}          & \multicolumn{1}{l}{}            & \multicolumn{1}{l}{}          & \multicolumn{1}{l}{}                &                                   &                              
 \end{tabular}
+\caption{Distinct I-Type instruction formats}
+\label{tbl:I-Type_instruction_format}
 \end{table}
+
+\newpage
+
+In Table ~\ref{tbl:I-Type_instruction_format}, there are 5 differents instruction formats which explains the structure of the bits for every instruction.
+
+The most frequent MIPS I-Type instruction is the first one, denoted as Imm16 (Immediate instruction with 16 bits immediate value), is used for logical operands, arithmetic signed operands, load/store address byte offsets and PC-relative branch signed instruction displacements (see Table ~\ref{tbl:imm16_instruction}).
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l|l}
+31 --- 26                    & 25 --- 21               & 20 --- 16               & 15 ----------------- 0         \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{1}{c|}{rs} & \multicolumn{1}{c|}{rt} & \multicolumn{1}{c|}{immediate} \\ \hline
+\end{tabular}
+\caption{Immediate (I-Type) Imm16 instruction format}
+\label{tbl:imm16_instruction}
+\end{table}
+
+Let's see examples of Imm16 instruction:
+
+\begin{lstlisting}
+  addi $t0, $t0, 10 // Arithmetic operation
+  ori $t0, $t1, 5   // Logical operation
+  beq $t0, $t1, 1    // Conditional branch operation
+  lw $t0, array1($t0) //Data transfer operation
+\end{lstlisting}
+
+The second instruction, denoted as Immediate Off21 instruction (Immediate instruction with 21bits offset), is used for comparing a register against zero and branch (offset field is larger than the usual 16-bit field (immediate field of the first instruction from the table above)).
+See Table ~\ref{tbl:imm_off21_instruction}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l|l}
+31 --- 26                    & 25 --- 21               & \multicolumn{2}{l|}{20 --------------------- 0} \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{1}{c|}{rd} & \multicolumn{2}{c|}{offset}                     \\ \hline
+\end{tabular}
+\caption{Immediate (I-Type) Off21 instruction format}
+\label{tbl:imm_off21_instruction}
+\end{table} 
+
+\begin{comment}
+Let's see an example of Immediate Off21 instruction:
+\begin{lstlisting}
+  bltz $t0, jump
+\end{lstlisting}
+\end{comment}
+
+The third instruction, denoted as Immediate Off26 instruction (Immediate instruction with 26 bits offset), is used for PC-relative branches with very large displacements (unconditional branches (BC mnemonic instruction) \& branch-and-link (BALC mnemonic instruction) with a 26-bit offset,).
+See Table ~\ref{tbl:imm_off26_instruction}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|lll}
+31 --- 26                    & \multicolumn{3}{l}{25 ------------------------------------ 0} \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{3}{c|}{offset}                                   \\ \hline
+\end{tabular}
+\caption{Immediate (I-Type) Off26 instruction format}
+\label{tbl:imm_off26_instruction}
+\end{table}
+
+The fourth instruction, denoted as Immediate Off11 instruction (Immediate instruction with 11 bits offset), is used for the newest encodings of coprocessor 2 load and store instructions (LWC2, SWC2, LDC2, SWC2).
+See Table ~\ref{tbl:imm_off11_instruction_format}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l|l|l}
+31 --- 26                    & 25 ----- 21             & 20 --------- 16         & 15 ----------- 11       & 10 ------------------- 0    \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{1}{c|}{rs} & \multicolumn{1}{c|}{rt} & \multicolumn{1}{c|}{rd} & \multicolumn{1}{c|}{offset} \\ \hline
+\end{tabular}
+\caption{Immediate (I-Type) Off11 instruction format}
+\label{tbl:imm_off11_instruction_format}
+\end{table}
+
+Finally, the last one (fifth instruction), denoted as Immediate Off9 instruction (Immediate instruction with 9 bits offset), is used for SPECIAL3 instructions such as EVA memory acceses (~\textit{LBE} mnemonic instruction). Also this is primarly used for instruction encodings that have been moved, such as ~\textit{LL} menmonic and ~\textit{SC} mnemonic instruction.
+See Table ~\ref{tbl:imm_off9_instruction_format}.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l|l|l|l}
+31 --- 26                    & 25 ----- 21               & 20 --------- 16         & 15 ------------------ 7     & 6 & 5 ------------------- 0       \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{1}{c|}{base} & \multicolumn{1}{c|}{rt} & \multicolumn{1}{c|}{offset} & 0 & \multicolumn{1}{c|}{function} \\ \hline
+\end{tabular}
+\caption{Immediate (I-type) Off9 instruction format}
+\label{tbl:imm_off9_instruction_format}
+\end{table}
+
+Notice that, for our project related to the thesis and the difficulty level required, only the first instruction (Immediate (I-Type) Imm16 instruction format) will be explained. The others format are complicated and not really related to the project.
+
+
+
+
+
+
+
 
 
 
@@ -1611,6 +1666,12 @@ Let's see the formats for this Type in Table ~\ref{tbl:I-Type_instruction_format
 
 \subsection{MIPS J-Type}
 
+
+\newpage
+
+\section{MIPS assembly language}
+
+Each of the high-level language statements in MIPS are executed sequentially (excepted loop and conditional statements).
 
 \newpage
 
