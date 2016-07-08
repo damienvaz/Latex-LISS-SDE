@@ -1708,6 +1708,23 @@ Let's see some examples of those instructions below.
 
 \begin{table}[h!]
 \centering
+\caption{Example of Data transfer instruction in MIPS}
+\label{tbl:data_transfer_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
+Store word                          & sw \$t,C(\$s)                                                                                & Memory[ \$s + C] = \$t                 & I                                    & 2B                                                                                                    & N/A                                                                                                  \\ \hline
+Load word                           & lw \$t,C(\$s)                                                                                & \$t = Memory[\$s + C]                 & I                                    & 23                                                                                                    & N/A                                                                                                  \\ \hline
+Load immediate                      & li \$t, C                                                                                  & \$t = C                               & I                                    & 9                                                                                                     & N/A                                                                                                  \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+
+\begin{table}[h!]
+\centering
 \caption{Example of Arithmetic instruction in MIPS}
 \label{tbl:arithmetic_instruction}
 \begin{tabular}{|l|l|l|l|l|l|}
@@ -1723,6 +1740,46 @@ Divide                                                  & div \$s, \$t, \$d     
 \end{table}
 
 
+
+
+
+
+\begin{table}[h!]
+\centering
+\caption{Example of Logical instruction in MIPS}
+\label{tbl:logical_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
+Set on less than                    & slt \$d,\$s,\$t                                                                              & \$d = (\$s \textless \$t)               & R                                    & 0                                                                                                     & 2A                                                                                                   \\ \hline
+Or                                  & or \$d,\$s,\$t                                                                               & \$d = \$s $\|$ \$t                         & R                                    & 0                                                                                                     & 25                                                                                                   \\ \hline
+And                                 & and \$d,\$s,\$t                                                                              & \$d = \$s $\&$ \$t                        & R                                    & 0                                                                                                     & 24                                                                                                   \\ \hline
+Set on less than unsigned           & sltu \$d,\$s,\$t                                                                             & \$d = (\$s \textless \$t)               & R                                    & 0                                                                                                     & 2B                                                                                                   \\ \hline
+Exclusive or immediate              & xori \$d,\$s,C                                                                                & \$d = \$s \textasciicircum  C           & I                                    & E                                                                                                     & N/A                                                                                                  \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+\begin{table}[h!]
+\centering
+\caption{Example of Bitwise Shift instruction in MIPS}
+\label{tbl:bitwise_shift_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}}                                      & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}  & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Shift left logical \\ immediate\end{tabular}  & sll \$d,\$t,shamt                                                                            & \$d = \$t \textless\textless shamt       & R                                    & 0                                                                                                     & 0                                                                                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Shift right logical \\ immediate\end{tabular} & srl \$d,\$t,shamt                                                                            & \$d = \$t \textgreater\textgreater shamt & R                                    & 0                                                                                                     & 2                                                                                                    \\ \hline
+Shift left logical                                                       & sllv \$d,\$t,\$s                                                                             & \$d = \$t \textless\textless \$s         & R                                    & 0                                                                                                     & 4                                                                                                    \\ \hline
+Shift right logical                                                      & srlv \$d,\$t,\$s                                                                             & \$d = \$t \textgreater\textgreater \$s   & R                                    & 0                                                                                                     & 6                                                                                                    \\ \hline
+\end{tabular}
+\end{table}
+
+
+\newpage
+
+Talking about pseudo-instructions
 
 
 Talk about the .data, .text, etc etc
