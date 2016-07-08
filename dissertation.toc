@@ -26,7 +26,7 @@
 \contentsline {subsection}{\numberline {4.4.1}MIPS R-Type}{34}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}MIPS I-Type}{36}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}MIPS J-Type}{39}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}MIPS assembly language}{40}{section.4.5}
+\contentsline {section}{\numberline {4.5}MIPS assembly language}{39}{section.4.5}
 \contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{43}{chapter.5}
 \contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{45}{section.5.1}
 \contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{47}{chapter.6}

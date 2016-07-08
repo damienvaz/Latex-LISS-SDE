@@ -16,6 +16,9 @@
 \usepackage{amsmath,mathtools,calc}
 \usepackage{footnote}
 \usepackage{hyperref}
+\usepackage{multirow}
+\usepackage[normalem]{ulem}
+
 
 \usepackage{listings}
 %LISTING - GENERAL
@@ -1596,7 +1599,7 @@ See Table ~\ref{tbl:imm_off21_instruction}.
 \begin{table}[h!]
 \centering
 \begin{tabular}{l|l|l|l}
-31 --- 26                    & 25 --- 21               & \multicolumn{2}{l|}{20 --------------------- 0} \\ \hline
+31 --- 26                    & 25 --- 21               & \multicolumn{2}{l}{20 --------------------- 0} \\ \hline
 \multicolumn{1}{|c|}{opcode} & \multicolumn{1}{c|}{rd} & \multicolumn{2}{c|}{offset}                     \\ \hline
 \end{tabular}
 \caption{Immediate (I-Type) Off21 instruction format}
@@ -1649,13 +1652,7 @@ See Table ~\ref{tbl:imm_off9_instruction_format}.
 \label{tbl:imm_off9_instruction_format}
 \end{table}
 
-Notice that, for our project related to the thesis and the difficulty level required, only the first instruction (Immediate (I-Type) Imm16 instruction format) will be explained. The others format are complicated and not really related to the project.
-
-
-
-
-
-
+Notice that, for our project related to the thesis and the difficulty level required, only the first instruction (Immediate (I-Type) Imm16 instruction format) will be explained. The others instruction format are not really important and in this case, related to the project. So we will not talk about them.
 
 
 
@@ -1665,13 +1662,73 @@ Notice that, for our project related to the thesis and the difficulty level requ
 
 
 \subsection{MIPS J-Type}
+J-Type instruction are instructions which jump to a certain address.
+Let's see his format in Table ~\ref{tbl:j-type_instruction_format}.
 
+\begin{table}[h!]
+\centering
+\begin{tabular}{l|l|l|l|l|l}
+31 --- 26                    & \multicolumn{5}{l}{25 ----------------------------------------------------------------- 0} \\ \hline
+\multicolumn{1}{|c|}{opcode} & \multicolumn{5}{c|}{address}                                                                \\ \hline
+\end{tabular}
+\caption{J-Type instruction format}
+\label{tbl:j-type_instruction_format}
+\end{table}
 
-\newpage
+In Table ~\ref{tbl:j-type_instruction_format}, 6 bits are associated to the ~\textit{opcode} field and 26 bits for the ~\textit{address} field.
+But notice that in MIPS, addresses are 32 bits long. 
+
+For solving that, MIPS use a technique which leads to shift the address left by 2 bits and then we combine 4 bits with the 4 high-order bits of the PC in front of the address.
+
+Examples of J-Type formats (see Listing ~\ref{lst:J-type_instruction}).
+
+\begin{lstlisting}[caption={Examples of J-Type instruction},label={lst:J-type_instruction}]
+  jal writeln  // Jump and link instruction
+  jr $ra	 // Jump register instruction
+  j writeln     // Jump instruction
+\end{lstlisting}
+
 
 \section{MIPS assembly language}
 
+MIPS has 6 type of instructions :
+
+\begin{itemize}
+  \item instructions for data transfer
+  \item instructions for arithmetic
+  \item instructions for logical
+  \item instructions for bitwise shift
+  \item instructions for conditional branch
+  \item instructions for unconditional jump
+\end{itemize}
+
+Let's see some examples of those instructions below.
+
+\newpage
+
+\begin{table}[h!]
+\centering
+\caption{Example of Arithmetic instruction in MIPS}
+\label{tbl:arithmetic_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}}                          & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}                                                                                                             & \multicolumn{1}{c|}{\textbf{Type}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
+Add                                                          & add \$d, \$s, \$t                                & \$d = \$s + \$t                                                                                                                                   & R                                    & 0                                                                                                     & 20                                                                                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Add\\ immediate\end{tabular}      & addi \$t, \$s, C                                   & \$t = \$s + C (signed)                                                                                                                              & I                                    & 8                                                                                                     & N/A                                                                                                  \\ \hline
+Subtract                                                     & sub \$d, \$s, \$t                                  & \$d = \$s - \$t                                                                                                                                     & R                                    & 0                                                                                                     & 22                                                                                                   \\ \hline
+Move                                                    & move \$t0, \$t1                                                                              & \$t0 = \$t1                                                                                                                                         & R                                    & 0                                                                                                     & 21                                                                                                   \\ \hline
+Multiply                                                & mul \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t * \$d\\ LO = \$t * \$d (upper 32bits)\\ HI = \$t * \$d (lower 32bits)\end{tabular} & R                                    & 0                                                                                                     & 19                                                                                                   \\ \hline
+Divide                                                  & div \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t / \$d\\ LO = \$t / \$d\\ HI = \$t \% \$d\end{tabular}                              & R                                    & 0                                                                                                     & 1A                                                                                                   \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+
+Talk about the .data, .text, etc etc
+
 Each of the high-level language statements in MIPS are executed sequentially (excepted loop and conditional statements).
+
 
 \newpage
 
@@ -1685,7 +1742,6 @@ MIPS has 6 type of instructions :
   \item instructions for logical
   \item instructions for conditional branch
   \item instructions for unconditional jump
-
 \end{itemize}
 
  %( instructions for data transfer, arithmetic, logical, conditional branch, unconditional jump).
