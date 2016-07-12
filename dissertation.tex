@@ -1434,6 +1434,7 @@ See an overview of the MIPS registers in Figure ~\ref{fig:MIPS_register}.
 
 
 \section{MIPS instruction formats}
+\label{sec:instruction_formats_mips}
 
 Instructions, in MIPS, are divided into three types:
 \begin{itemize}
@@ -1656,11 +1657,6 @@ Notice that, for our project related to the thesis and the difficulty level requ
 
 
 
-
-\newpage
-
-
-
 \subsection{MIPS J-Type}
 J-Type instruction are instructions which jump to a certain address.
 Let's see his format in Table ~\ref{tbl:j-type_instruction_format}.
@@ -1691,6 +1687,122 @@ Examples of J-Type formats (see Listing ~\ref{lst:J-type_instruction}).
 
 \section{MIPS assembly language}
 
+MIPS language is divided into 2 parts (Data and Text parts).
+
+\subsection{MIPS data declarations}
+
+This section is used for declaring variable names used in the program.
+It is allocated to the main memory (RAM) and must be identified with a particular nomenclature denoted as ~\textit{.data}.
+
+Then comes the part which we declare the variable names to the data section.
+
+Let's see the format for declaring a variable name in Listing ~\ref{lst:syntax_format_data_mips}.
+
+\begin{lstlisting}[caption={Syntax format of data declarations in MIPS},label={lst:syntax_format_data_mips}]
+  name: storage_type value(s)
+\end{lstlisting}
+
+In Listing ~\ref{lst:syntax_format_data_mips}, the ~\textit{name} field refers to the name of the variable. 
+
+The ~\textit{storage\_type} refers to the type of the variable and are denoted as :
+\begin{itemize}
+\item ~\textit{.ascii} store a string in memory without a null terminator.
+\item ~\textit{.asciiz} store a string in memory with the null terminator.
+\item ~\textit{.byte} store 'n' bytes contiguously in memory.
+\item ~\textit{.halfword} store 'n' 16-bit halfwords contiguously in memory.
+\item ~\textit{.word} store 'n' 32-bit words contiguously in memory.
+\item ~\textit{.space} store a number of bytes of space in memory.
+\end{itemize}
+
+Lastly, the ~\textit{value(s)} field refers to the value of the type associated.
+
+Let's see some example for declaring some variables in MIPS in Listing ~\ref{lst:data_declarations_examples_mips}.
+
+\begin{lstlisting}[caption={Examples for declaring variables in MIPS},label={lst:data_declarations_examples_mips}]
+  .data  # Tells assembler we're in the data segment
+    val:  .word  10, -14, 30   
+    str:  .ascii  "Hello, world"
+    num:  .byte  0x01, 0x03
+    arr:  .space 100
+\end{lstlisting}
+
+
+\subsection{MIPS text declarations}
+This section contains the program code and use a particular nomenclature, for delimiting  and declaring this section, denoted as ~\textit{.text}.
+
+As all programming languages, there is a starting point of the code and must be designed as ~\textit{main:} and, each of the high-level language statements in MIPS (written after the ~\textit{main:} field) are executed sequentially (excepted loop and conditional statements).
+
+Let's see and example in Listing ~\ref{lst:text_declarations_mips}.
+
+\begin{lstlisting}[caption={Example of Text declarations in MIPS},label={lst:text_declarations_mips}]
+  .text 
+    main:
+      li $t0, 5
+      li $t1, 5
+      mul $t0, $t0, $t1
+\end{lstlisting}
+
+In Listing ~\ref{lst:text_declarations_mips}, we see the ~\textit{.text} which begins the code of the program and the ~\textit{main:} which shows where the code must begin.
+
+Beside of the ~\textit{main:}, appears all the instruction of the program code below. 
+
+In this case, it will load two numbers in a different registers and multiply them (see Section ~\ref{sec:mips_instructions} to understand those instructions). 
+
+Notice that the code will execute sequentially.
+
+Also if some loop or conditional statements are available in MIPS, we need to know where the instructions for those conditions must be.
+And for this purpose, we need to add some context to the MIPS code.
+
+In this case, we need to replicate the same syntax as the ~\textit{main:} field but with the correct name of the condition or the loop (also inside of the text declarations parts). Like that, MIPS knows where it must jump for the next instruction.
+Let's look an example in Listing ~\ref{lst:loop_mips}.
+
+\begin{lstlisting}[caption={Example of a loop declaration in MIPS},label={lst:loop_mips}]
+  .data 
+  .text 
+    main:
+      li $t0, 5
+      li $t1, 5
+      mul $t0, $t0, $t1
+      jal jump_condition #needs to jump to the field jump_condition
+      li $t0, 4
+      li $v0, 10
+      syscall 
+    jump_condition:  #syntax for jump and conditional instruction in mips
+      li $t1, 5
+      jr $ra
+\end{lstlisting}
+
+Also, in MIPS, there is the possibility in declaring some comments to the code by adding the symbol ~\textbf{\#}  on a line (see Listing ~\ref{lst:comments_mips}).
+
+\begin{lstlisting}[caption={Example of a comment in MIPS},label={lst:comments_mips}]
+  var1:		.word	3	# create a single integer variable with initial value 3
+\end{lstlisting}
+
+Let's see the template for a MIPS assembly language program in Listing ~\ref{lst:template_mips}.
+
+\begin{lstlisting}[caption={Template of a MIPS assembly language},label={lst:template_mips}]
+  # Comment giving name of program and description of function
+  # Template.s
+  # Bare-bones outline of MIPS assembly language program
+
+    .data      # variable declarations follow this line
+                  # ...
+														
+    .text       # instructions follow this line	
+																	
+      main:   # indicates start of code (first instruction to execute)
+                  # ...
+\end{lstlisting}
+
+
+
+
+
+
+
+
+\section{MIPS instructions}
+\label{sec:mips_instructions}
 MIPS has 6 type of instructions :
 
 \begin{itemize}
@@ -1702,9 +1814,8 @@ MIPS has 6 type of instructions :
   \item instructions for unconditional jump
 \end{itemize}
 
-Let's see some examples of those instructions below.
+Let's see some examples and their meanings of those instructions below.
 
-\newpage
 
 \begin{table}[h!]
 \centering
@@ -1712,15 +1823,12 @@ Let's see some examples of those instructions below.
 \label{tbl:data_transfer_instruction}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
-Store word                          & sw \$t,C(\$s)                                                                                & Memory[ \$s + C] = \$t                 & I                                    & 2B                                                                                                    & N/A                                                                                                  \\ \hline
-Load word                           & lw \$t,C(\$s)                                                                                & \$t = Memory[\$s + C]                 & I                                    & 23                                                                                                    & N/A                                                                                                  \\ \hline
-Load immediate                      & li \$t, C                                                                                  & \$t = C                               & I                                    & 9                                                                                                     & N/A                                                                                                  \\ \hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+Store word                          & sw \$t,C(\$s)                                                                                & Memory[ \$s + C] = \$t                 & I                                    & \texttt{0x2B}                                                                                                    & N/A                                                                                                  \\ \hline
+Load word                           & lw \$t,C(\$s)                                                                                & \$t = Memory[\$s + C]                 & I                                    & \texttt{0x23}                                                                                                    & N/A                                                                                                  \\ \hline
+Load immediate                      & li \$t, C                                                                                  & \$t = C                               & I                                    & \texttt{0x9}                                                                                                     & N/A                                                                                                  \\ \hline
 \end{tabular}
 \end{table}
-
-
-
 
 
 \begin{table}[h!]
@@ -1729,13 +1837,13 @@ Load immediate                      & li \$t, C                                 
 \label{tbl:arithmetic_instruction}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Name}}                          & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}                                                                                                             & \multicolumn{1}{c|}{\textbf{Type}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
-Add                                                          & add \$d, \$s, \$t                                & \$d = \$s + \$t                                                                                                                                   & R                                    & 0                                                                                                     & 20                                                                                                   \\ \hline
-\begin{tabular}[c]{@{}l@{}}Add\\ immediate\end{tabular}      & addi \$t, \$s, C                                   & \$t = \$s + C (signed)                                                                                                                              & I                                    & 8                                                                                                     & N/A                                                                                                  \\ \hline
-Subtract                                                     & sub \$d, \$s, \$t                                  & \$d = \$s - \$t                                                                                                                                     & R                                    & 0                                                                                                     & 22                                                                                                   \\ \hline
-Move                                                    & move \$t0, \$t1                                                                              & \$t0 = \$t1                                                                                                                                         & R                                    & 0                                                                                                     & 21                                                                                                   \\ \hline
-Multiply                                                & mul \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t * \$d\\ LO = \$t * \$d (upper 32bits)\\ HI = \$t * \$d (lower 32bits)\end{tabular} & R                                    & 0                                                                                                     & 19                                                                                                   \\ \hline
-Divide                                                  & div \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t / \$d\\ LO = \$t / \$d\\ HI = \$t \% \$d\end{tabular}                              & R                                    & 0                                                                                                     & 1A                                                                                                   \\ \hline
+\multicolumn{1}{|c|}{\textbf{Name}}                          & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}                                                                                                             & \multicolumn{1}{c|}{\textbf{Type}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+Add                                                          & add \$d, \$s, \$t                                & \$d = \$s + \$t                                                                                                                                   & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x20}                                                                                                   \\ \hline
+\begin{tabular}[c]{@{}l@{}}Add\\ immediate\end{tabular}      & addi \$t, \$s, C                                   & \$t = \$s + C (signed)                                                                                                                              & I                                    & \texttt{0x8}                                                                                                     & N/A                                                                                                  \\ \hline
+Subtract                                                     & sub \$d, \$s, \$t                                  & \$d = \$s - \$t                                                                                                                                     & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x22}                                                                                                   \\ \hline
+Move                                                    & move \$t0, \$t1                                                                              & \$t0 = \$t1                                                                                                                                         & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x21}                                                                                                   \\ \hline
+Multiply                                                & mul \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t * \$d\\ LO = \$t * \$d (upper 32bits)\\ HI = \$t * \$d (lower 32bits)\end{tabular} & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x19}                                                                                                   \\ \hline
+Divide                                                  & div \$s, \$t, \$d                                                                            & \begin{tabular}[c]{@{}l@{}}\$s = \$t / \$d\\ LO = \$t / \$d\\ HI = \$t \% \$d\end{tabular}                              & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x1A}                                                                                                   \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1750,12 +1858,12 @@ Divide                                                  & div \$s, \$t, \$d     
 \label{tbl:logical_instruction}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
-Set on less than                    & slt \$d,\$s,\$t                                                                              & \$d = (\$s \textless \$t)               & R                                    & 0                                                                                                     & 2A                                                                                                   \\ \hline
-Or                                  & or \$d,\$s,\$t                                                                               & \$d = \$s $\|$ \$t                         & R                                    & 0                                                                                                     & 25                                                                                                   \\ \hline
-And                                 & and \$d,\$s,\$t                                                                              & \$d = \$s $\&$ \$t                        & R                                    & 0                                                                                                     & 24                                                                                                   \\ \hline
-Set on less than unsigned           & sltu \$d,\$s,\$t                                                                             & \$d = (\$s \textless \$t)               & R                                    & 0                                                                                                     & 2B                                                                                                   \\ \hline
-Exclusive or immediate              & xori \$d,\$s,C                                                                                & \$d = \$s \textasciicircum  C           & I                                    & E                                                                                                     & N/A                                                                                                  \\ \hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}} & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+Set on less than                    & slt \$d,\$s,\$t                                                                              & \$d = (\$s \textless \$t)               & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x2A}                                                                                                   \\ \hline
+Or                                  & or \$d,\$s,\$t                                                                               & \$d = \$s $\|$ \$t                         & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x25}                                                                                                   \\ \hline
+And                                 & and \$d,\$s,\$t                                                                              & \$d = \$s $\&$ \$t                        & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x24}                                                                                                   \\ \hline
+Set on less than unsigned           & sltu \$d,\$s,\$t                                                                             & \$d = (\$s \textless \$t)               & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x2B}                                                                                                   \\ \hline
+Exclusive or immediate              & xori \$d,\$s,C                                                                                & \$d = \$s \textasciicircum  C           & I                                    & \texttt{0xE}                                                                                                     & N/A                                                                                                  \\ \hline
 \end{tabular}
 \end{table}
 
@@ -1768,23 +1876,80 @@ Exclusive or immediate              & xori \$d,\$s,C                            
 \label{tbl:bitwise_shift_instruction}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
-\multicolumn{1}{|c|}{\textbf{Name}}                                      & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}  & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Opcode\\ (hexadecimal\\ format)\end{tabular}}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Funct\\ (hexadecimal\\ format)\end{tabular}}} \\ \hline
-\begin{tabular}[c]{@{}l@{}}Shift left logical \\ immediate\end{tabular}  & sll \$d,\$t,shamt                                                                            & \$d = \$t \textless\textless shamt       & R                                    & 0                                                                                                     & 0                                                                                                    \\ \hline
-\begin{tabular}[c]{@{}l@{}}Shift right logical \\ immediate\end{tabular} & srl \$d,\$t,shamt                                                                            & \$d = \$t \textgreater\textgreater shamt & R                                    & 0                                                                                                     & 2                                                                                                    \\ \hline
-Shift left logical                                                       & sllv \$d,\$t,\$s                                                                             & \$d = \$t \textless\textless \$s         & R                                    & 0                                                                                                     & 4                                                                                                    \\ \hline
-Shift right logical                                                      & srlv \$d,\$t,\$s                                                                             & \$d = \$t \textgreater\textgreater \$s   & R                                    & 0                                                                                                     & 6                                                                                                    \\ \hline
+\multicolumn{1}{|c|}{\textbf{Name}}                                      & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}  & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Shift left logical \\ immediate\end{tabular}  & sll \$d,\$t,shamt                                                                            & \$d = \$t \textless\textless shamt       & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x0}                                                                                                    \\ \hline
+\begin{tabular}[c]{@{}l@{}}Shift right logical \\ immediate\end{tabular} & srl \$d,\$t,shamt                                                                            & \$d = \$t \textgreater\textgreater shamt & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x2}                                                                                                    \\ \hline
+Shift left logical                                                       & sllv \$d,\$t,\$s                                                                             & \$d = \$t \textless\textless \$s         & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x4}                                                                                                    \\ \hline
+Shift right logical                                                      & srlv \$d,\$t,\$s                                                                             & \$d = \$t \textgreater\textgreater \$s   & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x6}                                                                                                    \\ \hline
 \end{tabular}
 \end{table}
 
 
+\begin{table}[h!]
+\centering
+\caption{Example of Conditional Branch instruction in MIPS}
+\label{tbl:conditional_branch_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}}                             & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}                                    & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+\begin{tabular}[c]{@{}l@{}}Branch if equal \\ zero\end{tabular} & beqz \$s, jump                                                                             & \begin{tabular}[c]{@{}l@{}}if(\$s==0) go to \\ jump address\end{tabular} & I                                    & \texttt{0x4}                                                                                                     & N/A                                                                                                  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Branch on not \\ equal\end{tabular}  & bne \$s, \$t, C                                                                              & \begin{tabular}[c]{@{}l@{}}if (\$s != \$t) go to \\ PC+4+4*C\end{tabular}  & I                                    & \texttt{0x5}                                                                                                     & N/A                                                                                                  \\ \hline
+Branch on equal                                                 & beq \$s, \$t,C                                                                                & \begin{tabular}[c]{@{}l@{}}if (\$s == \$t) go to \\ PC+4+4*C\end{tabular}  & I                                    & \texttt{0x4}                                                                                                     & N/A                                                                                                  \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\caption{Example of Unconditional Branch instruction in MIPS}
+\label{tbl:unconditional_branch_instruction}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Meaning}}                                                     & \multicolumn{1}{c|}{\textbf{Format}} & \multicolumn{1}{c|}{\textbf{Opcode}} & \multicolumn{1}{c|}{\textbf{Funct}} \\ \hline
+Jump                                & j target                                                                                        & PC = PC+4{[}31:28{]} . target*4                                                                & J                                    & \texttt{0x2}                                                                                                     & N/A                                                                                                  \\ \hline
+Jump register                       & jr \$s                                                                                     & goto address \$s                                                                          & R                                    & \texttt{0x0}                                                                                                     & \texttt{0x8}                                                                                                    \\ \hline
+Jump and link                       & jal target                                                                                      & \begin{tabular}[c]{@{}l@{}}\$31 (\$ra) = PC + 4; \\ PC = PC+4{[}31:28{]} . target*4\end{tabular} & J                                    & \texttt{0x3}                                                                                                     & N/A                                                                                                  \\ \hline
+\end{tabular}
+\end{table}
+
 \newpage
+Some nomenclature must be explained for understanding the tables shown previously:
+\begin{itemize}
+\item ~\textbf{PC} means Program Counter.
+\item ~\textbf{target} means the name of the target (used for jump instructions).
+\item ~\textbf{C} means constants.
+\item ~\textbf{\texttt{0x..}} means a hexadecimal format number.
+\item ~\textbf{N/A} means Not Applicable.
+\item ~\textbf{shamt} means the number to shift (used in shift instructions).
+\end{itemize} 
+Note that the ~\textit{Format}, ~\textit{ Opcode} and ~\textit{Funct} are the information of each field for each format instruction as explained in Section ~\ref{sec:instruction_formats_mips}.
 
-Talking about pseudo-instructions
+Beside those instructions, some others instructions are sequences of real instructions and they are denoted as pseudo instructions (see in Table ~\ref{tbl:pseudo_instructions}).
 
 
-Talk about the .data, .text, etc etc
+\begin{table}[h!]
+\centering
+\caption{Example of Pseudo Instructions in MIPS}
+\label{tbl:pseudo_instructions}
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Name}}       & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Instruction\\ Syntax\end{tabular}}} & \multicolumn{1}{c|}{\textbf{Real instruction translation}}                                          & \multicolumn{3}{c|}{\textbf{Meaning}}     \\ \hline
+Move                                      & move \$d, \$s                                                                                & add \$d, \$s, \$zero                                                                                  & \multicolumn{3}{l|}{\$d=\$s}                \\ \hline
+Load Address                              & la \$d, LabelAddr                                                                          & \begin{tabular}[c]{@{}l@{}}lui \$d, LabelAddr{[}31:16{]}\\ ori \$d, \$d, LabelAddr{[}15:0{]}\end{tabular} & \multicolumn{3}{l|}{\$d = Label Address}  \\ \hline
+\begin{tabular}[c]{@{}l@{}}Multiplies and \\ returns only first \\ 32 bits\end{tabular} & mul \$d, \$s, \$t                                                                            & \begin{tabular}[c]{@{}l@{}}mult \$s, \$t\\ mflo \$d\end{tabular}                                      & \multicolumn{3}{l|}{\$d = \$s * \$t}        \\ \hline
+\begin{tabular}[c]{@{}l@{}}Divides and \\ returns quotient\end{tabular}               & div \$d, \$s, \$t                                                                            & \begin{tabular}[c]{@{}l@{}}div \$s, \$t\\ mflo \$d\end{tabular}                                       & \multicolumn{3}{l|}{\$d = \$s / \$t}        \\ \hline
+\begin{tabular}[c]{@{}l@{}}Branch if equal \\ to zero\end{tabular}                   & beqz \$s, Label                                                                            & beq \$s, \$zero, Label                                                                                & \multicolumn{3}{l|}{if (\$s==0) PC=Label} \\ \hline
+\end{tabular}
+\end{table}
 
-Each of the high-level language statements in MIPS are executed sequentially (excepted loop and conditional statements).
+Also, notice that, every instructions who are shown in the tables, are instructions which were used for the project (almost all of them less bitwise instructions).
+
+\section{MIPS stack}
+
+\section{MIPS simulator}
+
+
+
 
 
 \newpage
