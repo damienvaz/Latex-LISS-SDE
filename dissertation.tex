@@ -1692,7 +1692,7 @@ MIPS language is divided into 2 parts (Data and Text parts).
 \subsection{MIPS data declarations}
 
 This section is used for declaring variable names used in the program.
-It is allocated to the main memory (RAM) and must be identified with a particular nomenclature denoted as ~\textit{.data}.
+It is allocated to the main memory (RAM) and must be identified with a particular nomenclature denoted as ~\textit{.data}. It is used for declaring global variables, principally.
 
 Then comes the part which we declare the variable names to the data section.
 
@@ -1942,9 +1942,82 @@ Load Address                              & la \$d, LabelAddr                   
 \end{tabular}
 \end{table}
 
-Also, notice that, every instructions who are shown in the tables, are instructions which were used for the project (almost all of them less bitwise instructions).
+Additionally, MIPS includes a number of system services for input and output interaction, denoted as ~\textbf{SYSCALL}.
+Let's see an example of those services in Table ~\ref{tbl:syscall_mips}.
 
-\section{MIPS stack}
+\begin{table}[h!]
+\centering
+\caption{Example of SYSCALL instruction in MIPS}
+\label{tbl:syscall_mips}
+\begin{tabular}{|l|c|l|l|}
+\hline
+\multicolumn{1}{|c|}{\textbf{Service}}                                & \textbf{\begin{tabular}[c]{@{}c@{}}Code in\\ \$v0\end{tabular}} & \multicolumn{1}{c|}{\textbf{Arguments}}                                                      & \multicolumn{1}{c|}{\textbf{Result}}                                                 \\ \hline
+print integer                                                         & 1                                                               & \$a0 = integer to print                                                                      &                                                                                      \\ \hline
+print string                                                          & 4                                                               & \begin{tabular}[c]{@{}l@{}}\$a0 = address of null-\\ terminated string to print\end{tabular} &                                                                                      \\ \hline
+read integer                                                          & 5                                                               &                                                                                              & \$v0 contains integer read                                                           \\ \hline
+\begin{tabular}[c]{@{}l@{}}sbrk (allocate\\ heap memory)\end{tabular} & 9                                                               & \begin{tabular}[c]{@{}l@{}}\$a0 = number of bytes to\\  allocate\end{tabular}                & \begin{tabular}[c]{@{}l@{}}\$v0 contains address of\\  allocated memory\end{tabular} \\ \hline
+\begin{tabular}[c]{@{}l@{}}exit (terminate\\ execution)\end{tabular}  & 10                                                              &                                                                                              &                                                                                      \\ \hline
+\end{tabular}
+\end{table}
+
+To understand better the table ~\ref{tbl:syscall_mips}, we need to give some explanation of it.
+The ~\textit{service} column gives us the context of the service; the ~\textit{code} column explains which value we need to set to the register \$v0 (associated to the service wished); the ~\textit{arguments} column load the arguments values depending the service and lastly, the ~\textit{result} column give some informations about the return value of the service (if available or not).
+
+Let's see an example of one service in Listing ~\ref{lst:printing_integer_mips}.
+
+\begin{lstlisting}[caption={Example of printing integer in MIPS},label={lst:printing_integer_mips}]
+  li $t0, 3             #adding the number 3 to register t0
+  li  $v0, 1           # loading the service number 1 (print integer) to register v0
+  add $a0, $t0, $zero  # loading the argument value to register a0
+  syscall  #calling the syscall for printing the integer.
+\end{lstlisting}
+
+
+
+
+Also, notice that, every instructions who are shown in the tables, are instructions which were used for the project (almost all of them).
+
+\section{MIPS Memory Management}
+
+MIPS has the possibility to controlling and coordinating the computer memory by two ways:
+\begin{enumerate}
+\item stack
+\item heap
+\end{enumerate}
+
+\subsection{MIPS stack}
+When a program is being executed, a portion of memory is set aside for the program and it is called the ~\textbf{stack}.
+
+The stack is used for functions and it set some spaces for local variables of the functions.
+
+Internally, MIPS doesn't have real instructions for pushing or popping the stack.
+But this can be made with a sequences of instructions and using the stack pointer register.
+
+Let's see an example in Listing ~\ref{lst:push_pop_mips}.
+
+\begin{lstlisting}[caption={Example of push and pop instructions in MIPS},label={lst:push_pop_mips}]
+  push:  addi $sp, $sp, -4  # Decrement stack pointer by 4
+         sw   $v0, 0($sp)   # Save register v0 to stack
+
+  pop:  lw   $v0, 0($sp)   # Copy from stack to register v0
+        addi $sp, $sp, 4   # Increment stack pointer by 4
+\end{lstlisting}
+
+\subsection{MIPS heap}
+Beside a stack, we might need to allocate some dinamic memory.
+And this can be done by using a ~\textbf{Heap}.
+
+For this purpose, in MIPS, we only need to say how much bytes we want to allocate in the heap.
+
+Let's see an example in Listing ~\ref{lst:heap_mips}.
+
+\begin{lstlisting}[caption={Example of code for allocating in the heap}, label={lst:heap_mips}]
+.text 
+  main:
+    li $a0, 4 #we want to allocate 4 bytes in the heap.
+    li $v0, 9 # we load the value 9 in register v0 for calling the heap instruction.
+    syscall   # calling the system call instruction for allocating 4 bytes into the heap. The register v0 contains the address of allocated memory.
+\end{lstlisting}
 
 \section{MIPS simulator}
 
