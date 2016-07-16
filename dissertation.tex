@@ -2023,15 +2023,15 @@ Let's see an example in Listing ~\ref{lst:heap_mips}.
 
 Several simulators are available in the market for executing MIPS assembly code and some are freely or payable.
 
-For this project, we used two nice freely simulators:
+For this project, we used two nicely free simulators:
 \begin{itemize}
-\item MARS simulator
-\item SPIM simulator
+\item MARS simulator \footnote{\url{http://courses.missouristate.edu/KenVollmar/MARS/}}
+\item SPIM simulator \footnote{\url{http://spimsimulator.sourceforge.net}}
 \end{itemize}
 
 Both simulators are for education purpose and built with a GUI.
 
-They debug and execute MIPS assembly code but only MARS simulator has the possibility to write some MIPS assembly code in their IDE.
+They debug and execute MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code.
 
 
 
@@ -2042,28 +2042,7 @@ They debug and execute MIPS assembly code but only MARS simulator has the possib
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-MIPS has 6 type of instructions :
-
-\begin{itemize}
-  \item instructions for data transfer
-  \item instructions for arithmetic
-  \item instructions for logical
-  \item instructions for conditional branch
-  \item instructions for unconditional jump
-\end{itemize}
-
- %( instructions for data transfer, arithmetic, logical, conditional branch, unconditional jump).
-
-It uses a mnemonic to represent each low-level machine instruction or operation.
-Operations require three operands in order to form a complete instruction in MIPS assembly code, the address for the result and the address of the two operands.
-
-A simple example of a complete instruction can be seen in Listing ~\ref{lst:addMIPS}.
-
-\begin{lstlisting}[caption={Sum of two registers in MIPS assembly code},label={lst:addMIPS}]
-  add  $s1,$s2,$s3
-\end{lstlisting}
-
-The instruction shown in Listing ~\ref{lst:addMIPS}, means that register \$s2 shall be added to register \$s3 and their sum (the result) stored in \$s1 register (note that each operand is represented by \$ sign).
+\begin{comment}
 
 As mentioned in the previous section, the AG processed by the compiler generator ANTLR will compose MIPS assembly. The MIPS assembly instructions generated so far will be converted into executable machine code by an assembler included in MARS environment (a MIPS simulator and debugger) according to the process depicted in Figure ~\ref{fig:hl2ll}.
 
@@ -2150,6 +2129,10 @@ Finally, exhaustive and relevant tests will be made with the tool created and, t
 
 %\part{Core of the dissertation}
 
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \chapter{Compiler development}
 %       Main result(s) and their scientific evidence
 %\section{Introduction}
@@ -2157,7 +2140,7 @@ Earlier in the history of computers, software was primarily written in assembly 
 
 A compiler is a software program which converts a high-level programming language (source code) into a lower level programing language for the target machine (known as machine code or assembly language).
 
-The compiler task is divided into several steps (see Figure \ref{fig:compiler}):
+The compiler task is divided into several steps (see Figure ~\ref{fig:compiler}):
 \begin{enumerate}
   \item Lexical analysis
   \item Syntactic analysis or parsing
