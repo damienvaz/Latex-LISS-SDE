@@ -1374,7 +1374,7 @@ Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their u
 \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Number}} & \multicolumn{1}{c|}{\textbf{Use}}                                                                                                           & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Callee must\\  preserve?\end{tabular}}} \\ \hline
 \multicolumn{1}{|c|}{\$zero}        & \multicolumn{1}{l|}{\$0}             & \multicolumn{1}{l|}{has constant 0}                                                                                                         & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$at}          & \multicolumn{1}{l|}{\$1}             & \multicolumn{1}{l|}{register reserved for assembler (temporary)}                                                                            & \multicolumn{1}{c|}{No}                                                                        \\ \hline
-\multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for values for function returns,\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for returning values of functions,\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$a0 - \$a3}     & \multicolumn{1}{l|}{\$4 - \$7}         & \multicolumn{1}{l|}{registers reserved for function arguments}                                                                              & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$t0 - \$t7}     & \multicolumn{1}{l|}{\$8 - \$15}        & \multicolumn{1}{l|}{temporary registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$s0 - \$s7}     & \multicolumn{1}{l|}{\$16 - \$23}       & \multicolumn{1}{l|}{saved temporary registers}                                                                                            & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
@@ -1398,7 +1398,7 @@ Table ~\ref{tbl:compiler_register_usage} is composed of 4 columns:
 
 \end{enumerate}
 
-Also, beside of those 32 registers, 3 registers are dedicated to the CPU.
+Beside those 32 registers, 3 more registers are dedicated to the CPU.
 
 And they are known by:
 
@@ -1411,7 +1411,7 @@ And they are known by:
 \end{itemize}
 
 
-\textit{PC} is the register which holds the address of the instruction that is being executed at the current time; ~\textit{HI} and ~\textit{LO} registers has different context whenever the instruction is being executed.
+\textit{PC} is the register which holds the address of the instruction that is being executed at the current time; ~\textit{HI} and ~\textit{LO} registers have different usage according to the instruction that is being executed.
 In this case, let's see what context they have:
 \begin{itemize}
 \item when there is a multiply (~\textit{mul} instruction) operation, the \textit{HI} and  ~\textit{LO}  registers store the result of integer multiply.
@@ -1452,7 +1452,7 @@ Next sections provide the necessary details.
 R-Type instruction refers a register type instruction (it is the most complex type in MIPS).
 The idea behind that instruction is to operate with registers only.
 
-This type has the following format, mostly, in MIPS (see Listing ~\ref{lst:r-type_format}).
+This type has the following format in MIPS (see Listing ~\ref{lst:r-type_format}).
 
 \begin{lstlisting}[caption={R-Type instruction format},label={lst:r-type_format}]
   OP rd, rs, rt
@@ -1537,18 +1537,18 @@ Let's see an example of a R-Type instruction and its transformation to machine c
 \label{tbl:r-type_transformation2machine_code}
 \end{table}
 
-In Table ~\ref{tbl:r-type_transformation2machine_code}, the instruction 'add \$t0, \$t0, \$t1' will be normalized with the name of the register according to the number associated for the register in MIPS (see Table ~\ref{tbl:compiler_register_usage}). Then we do some operations for the two numbers (~\textit{8} and ~\textit{9}), we translate them as a binary number with 5 bits long. Also we give the information for the ~\textit{add} instruction, which is set for the MIPS architecture (not predictable).
+In Table ~\ref{tbl:r-type_transformation2machine_code}, the instruction 'add \$t0, \$t0, \$t1' will be normalized with the name of the register according to the number associated for the register in MIPS (see Table ~\ref{tbl:compiler_register_usage}). Then a conversion operation is applied to the two register numbers (~\textit{8} and ~\textit{9}), translating them into their binary number with 5 bits long. Also we give the information for the ~\textit{add} instruction, which is set for the MIPS architecture (not predictable).
 
 
 After that, we complete the table for R-Type instruction according to Table ~\ref{tbl:r-type_binary_machine_code} with the informations available and the restriction/rules associated to R-Type instruction in MIPS.
 
-Notice that the ~\textit{opcode} field for R-Type instruction are set to the value 0 (according to the explanation from Table ~\ref{tbl:r-type_binary_machine_code}).
+Notice that the ~\textit{opcode} field for R-Type instruction are set to the value 0 (according to the explanation in Table ~\ref{tbl:r-type_binary_machine_code}).
 
-Finally, we have our binary machine code for the instruction 'add \$t0, \$t0, \$t1' in Table ~\ref{tbl:r-type_transformation2machine_code}.
+%Finally, we have our binary machine code for the instruction 'add \$t0, \$t0, \$t1' in Table ~\ref{tbl:r-type_transformation2machine_code}.
 
 \subsection{MIPS I-Type}
 
-I-Type instruction is an instruction which operate with an immediate value and a register value. 
+I-Type instruction is a set of instructions which operate with an immediate value and a register value. 
 
 Several different Immediate (~\textit{I-Type}) instructions formats are available.
 
@@ -1571,7 +1571,7 @@ Let's see those diferents formats for this type in Table ~\ref{tbl:I-Type_instru
 
 \newpage
 
-In Table ~\ref{tbl:I-Type_instruction_format}, there are 5 differents instruction formats which explains the structure of the bits for every instruction.
+In Table ~\ref{tbl:I-Type_instruction_format}, there are 5 differents instruction formats which corresponds to different bit structures as illustrated.
 
 The most frequent MIPS I-Type instruction is the first one, denoted as Imm16 (Immediate instruction with 16 bits immediate value), is used for logical operands, arithmetic signed operands, load/store address byte offsets and PC-relative branch signed instruction displacements (see Table ~\ref{tbl:imm16_instruction}).
 
@@ -1640,7 +1640,7 @@ See Table ~\ref{tbl:imm_off11_instruction_format}.
 \label{tbl:imm_off11_instruction_format}
 \end{table}
 
-Finally, the last one (fifth instruction), denoted as Immediate Off9 instruction (Immediate instruction with 9 bits offset), is used for SPECIAL3 instructions such as EVA memory acceses (~\textit{LBE} mnemonic instruction). Also this is primarly used for instruction encodings that have been moved, such as ~\textit{LL} menmonic and ~\textit{SC} mnemonic instruction.
+Finally, the last one (fifth instruction), denoted as Immediate Off9 instruction (Immediate instruction with 9 bits offset), is used for SPECIAL3 instructions such as EVA memory access (~\textit{LBE} mnemonic). Also this is primarly used for instruction encodings that have been moved, such as ~\textit{LL} menmonic and ~\textit{SC} mnemonic instruction.
 See Table ~\ref{tbl:imm_off9_instruction_format}.
 
 \begin{table}[h!]
@@ -1653,12 +1653,12 @@ See Table ~\ref{tbl:imm_off9_instruction_format}.
 \label{tbl:imm_off9_instruction_format}
 \end{table}
 
-Notice that, for our project related to the thesis and the difficulty level required, only the first instruction (Immediate (I-Type) Imm16 instruction format) will be explained. The others instruction format are not really important and in this case, related to the project. So we will not talk about them.
+Notice that, for the project related to the thesis, only the first instruction type (Immediate (I-Type) Imm16 instruction format) was used. The other instruction formats are not really important for this project. So we will not talk about them.
 
 
 
 \subsection{MIPS J-Type}
-J-Type instruction are instructions which jump to a certain address.
+J-Type instructions are instructions which jump to a certain address.
 Let's see his format in Table ~\ref{tbl:j-type_instruction_format}.
 
 \begin{table}[h!]
@@ -1674,9 +1674,9 @@ Let's see his format in Table ~\ref{tbl:j-type_instruction_format}.
 In Table ~\ref{tbl:j-type_instruction_format}, 6 bits are associated to the ~\textit{opcode} field and 26 bits for the ~\textit{address} field.
 But notice that in MIPS, addresses are 32 bits long. 
 
-For solving that, MIPS use a technique which leads to shift the address left by 2 bits and then we combine 4 bits with the 4 high-order bits of the PC in front of the address.
+For solving that, MIPS use a technique which leads to shift the address left by 2 bits and then combine 4 bits with the 4 high-order bits of the PC in front of the address.
 
-Examples of J-Type formats (see Listing ~\ref{lst:J-type_instruction}).
+Examples of J-Type formats can be seen in Listing ~\ref{lst:J-type_instruction}.
 
 \begin{lstlisting}[caption={Examples of J-Type instruction},label={lst:J-type_instruction}]
   jal writeln  // Jump and link instruction
@@ -1692,9 +1692,9 @@ MIPS language is divided into 2 parts (Data and Text parts).
 \subsection{MIPS data declarations}
 
 This section is used for declaring variable names used in the program.
-It is allocated to the main memory (RAM) and must be identified with a particular nomenclature denoted as ~\textit{.data}. It is used for declaring global variables, principally.
+Variables declared are allocated in the main memory (RAM) and must be identified with a particular nomenclature denoted as ~\textit{.data}. It is used for declaring global variables, principally.
 
-Then comes the part which we declare the variable names to the data section.
+Then comes the part when the variable names are declared.
 
 Let's see the format for declaring a variable name in Listing ~\ref{lst:syntax_format_data_mips}.
 
@@ -1704,14 +1704,14 @@ Let's see the format for declaring a variable name in Listing ~\ref{lst:syntax_f
 
 In Listing ~\ref{lst:syntax_format_data_mips}, the ~\textit{name} field refers to the name of the variable. 
 
-The ~\textit{storage\_type} refers to the type of the variable and are denoted as :
+The ~\textit{storage\_type} refers to the type of the variable that can be:
 \begin{itemize}
 \item ~\textit{.ascii} store a string in memory without a null terminator.
 \item ~\textit{.asciiz} store a string in memory with the null terminator.
 \item ~\textit{.byte} store 'n' bytes contiguously in memory.
 \item ~\textit{.halfword} store 'n' 16-bit halfwords contiguously in memory.
 \item ~\textit{.word} store 'n' 32-bit words contiguously in memory.
-\item ~\textit{.space} store a number of bytes of space in memory.
+\item ~\textit{.space} store a certain number of bytes of space in memory.
 \end{itemize}
 
 Lastly, the ~\textit{value(s)} field refers to the value of the type associated.
@@ -1728,25 +1728,25 @@ Let's see some example for declaring some variables in MIPS in Listing ~\ref{lst
 
 
 \subsection{MIPS text declarations}
-This section contains the program code and use a particular nomenclature, for delimiting  and declaring this section, denoted as ~\textit{.text}.
+This section contains the program code and follows a specific syntax starting with the keyword ~\textit{.text}.
 
-As all programming languages, there is a starting point of the code and must be designed as ~\textit{main:} and, each of the high-level language statements in MIPS (written after the ~\textit{main:} field) are executed sequentially (excepted loop and conditional statements).
+As all programming languages, there is a starting point in the code that must be designated as ~\textit{main:}. Each of the assembly language statements in MIPS (written after the ~\textit{main:} field) are executed sequentially (excepted loop and conditional statements).
 
-Let's see and example in Listing ~\ref{lst:text_declarations_mips}.
+Let's see an example in Listing ~\ref{lst:text_declarations_mips}.
 
 \begin{lstlisting}[caption={Example of Text declarations in MIPS},label={lst:text_declarations_mips}]
   .text 
     main:
       li $t0, 5
-      li $t1, 5
+      li $t1, 10
       mul $t0, $t0, $t1
 \end{lstlisting}
 
-In Listing ~\ref{lst:text_declarations_mips}, we see the ~\textit{.text} which begins the code of the program and the ~\textit{main:} which shows where the code must begin.
+In Listing ~\ref{lst:text_declarations_mips}, we see the ~\textit{.text} which begins the code of the program and the ~\textit{main:} which shows where the code execution must start.
 
-Beside of the ~\textit{main:}, appears all the instruction of the program code below. 
+Below the keyword ~\textit{main:} appears all the instruction of the program code. 
 
-In this case, it will load two numbers in a different registers and multiply them (see Section ~\ref{sec:mips_instructions} to understand those instructions). 
+In this case, it will load two numbers in different registers and multiply them (see Section ~\ref{sec:mips_instructions} to understand those instructions). 
 
 Notice that the code will execute sequentially.
 
@@ -1772,7 +1772,7 @@ Let's look an example in Listing ~\ref{lst:loop_mips}.
       jr $ra
 \end{lstlisting}
 
-Also, in MIPS, there is the possibility in declaring some comments to the code by adding the symbol ~\textbf{\#}  on a line (see Listing ~\ref{lst:comments_mips}).
+Also, in MIPS, there is the possibility to include inline comments in the code using the symbol ~\textbf{\#}  on a line (see Listing ~\ref{lst:comments_mips}).
 
 \begin{lstlisting}[caption={Example of a comment in MIPS},label={lst:comments_mips}]
   var1:		.word	3	# create a single integer variable with initial value 3
@@ -1807,14 +1807,14 @@ MIPS has 6 type of instructions :
 
 \begin{itemize}
   \item instructions for data transfer
-  \item instructions for arithmetic
-  \item instructions for logical
+  \item instructions for arithmetic operations
+  \item instructions for logical operations
   \item instructions for bitwise shift
   \item instructions for conditional branch
-  \item instructions for unconditional jump
+  \item instructions for unconditional branch
 \end{itemize}
 
-Let's see some examples and their meanings of those instructions below.
+Let's see some examples of those instructions and their meanings.
 
 
 \begin{table}[h!]
@@ -1913,7 +1913,7 @@ Jump and link                       & jal target                                
 \end{table}
 
 \newpage
-Some nomenclature must be explained for understanding the tables shown previously:
+Some explanation must be provided for understanding the tables shown previously:
 \begin{itemize}
 \item ~\textbf{PC} means Program Counter.
 \item ~\textbf{target} means the name of the target (used for jump instructions).
@@ -1924,7 +1924,7 @@ Some nomenclature must be explained for understanding the tables shown previousl
 \end{itemize} 
 Note that the ~\textit{Format}, ~\textit{ Opcode} and ~\textit{Funct} are the information of each field for each format instruction as explained in Section ~\ref{sec:instruction_formats_mips}.
 
-Beside those instructions, some others instructions are sequences of real instructions and they are denoted as pseudo instructions (see in Table ~\ref{tbl:pseudo_instructions}).
+Beside those instructions, some others instructions are sequences of instructions and they are called as pseudo instructions (see in Table ~\ref{tbl:pseudo_instructions}).
 
 
 \begin{table}[h!]
@@ -1960,8 +1960,8 @@ read integer                                                          & 5       
 \end{tabular}
 \end{table}
 
-To understand better the table ~\ref{tbl:syscall_mips}, we need to give some explanation of it.
-The ~\textit{service} column gives us the context of the service; the ~\textit{code} column explains which value we need to set to the register \$v0 (associated to the service wished); the ~\textit{arguments} column load the arguments values depending the service and lastly, the ~\textit{result} column give some informations about the return value of the service (if available or not).
+To understand better Table ~\ref{tbl:syscall_mips}, we need to give some explanation of it.
+The ~\textit{service} column gives us the context of the service; the ~\textit{code} column explains which value must be set into register \$v0 (associated to the service wished); the ~\textit{arguments} column specify the argument values that must be loaded depending on the service and lastly; the ~\textit{result} column gives some informations about the return value of the service (if available or not).
 
 Let's see an example of one service in Listing ~\ref{lst:printing_integer_mips}.
 
@@ -1975,11 +1975,11 @@ Let's see an example of one service in Listing ~\ref{lst:printing_integer_mips}.
 
 
 
-Also, notice that, every instructions who are shown in the tables, are instructions which were used for the project (almost all of them).
+Notice that every instructions shown in the tables, are instructions which were used for the project.
 
 \section{MIPS Memory Management}
 
-MIPS has the possibility to controlling and coordinating the computer memory by two ways:
+MIPS has the possibility to control and coordinate the computer memory by two ways:
 \begin{enumerate}
 \item stack
 \item heap
@@ -2004,7 +2004,7 @@ Let's see an example in Listing ~\ref{lst:push_pop_mips}.
 \end{lstlisting}
 
 \subsection{MIPS heap}
-Beside a stack, we might need to allocate some dinamic memory.
+Beside a stack, we might need to allocate some dynamic memory.
 And this can be done by using a ~\textbf{Heap}.
 
 For this purpose, in MIPS, we only need to say how much bytes we want to allocate in the heap.
@@ -2021,17 +2021,17 @@ Let's see an example in Listing ~\ref{lst:heap_mips}.
 
 \section{MIPS simulator}
 
-Several simulators are available in the market for executing MIPS assembly code and some are freely or payable.
+Several simulators are available in the market for executing MIPS assembly code, and some are free.
 
-For this project, we used two nicely free simulators:
+For this project, we used two nice free simulators:
 \begin{itemize}
 \item MARS simulator \footnote{\url{http://courses.missouristate.edu/KenVollmar/MARS/}}
 \item SPIM simulator \footnote{\url{http://spimsimulator.sourceforge.net}}
 \end{itemize}
 
-Both simulators are for education purpose and built with a GUI.
+Both simulators are for education purposes and built with a GUI.
 
-They debug and execute MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code.
+They execute and debug MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code.
 
 
 

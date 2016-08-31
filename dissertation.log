@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  31 AUG 2016 17:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  31 AUG 2016 22:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1936,7 +1936,7 @@ Overfull \hbox (7.57912pt too wide) in paragraph at lines 1934--1943
 
 [43] [44] [45] [46] Excluding 'comment' comment.
 Chapter 5.
-<img/compiler.png, id=1119, 923.45pt x 491.8375pt>
+<img/compiler.png, id=1118, 923.45pt x 491.8375pt>
 File: img/compiler.png Graphic file (type png)
  <use img/compiler.png>
 Package pdftex.def Info: img/compiler.png used on input line 2154.
@@ -1945,7 +1945,7 @@ Package pdftex.def Info: img/compiler.png used on input line 2154.
 [47
 
 
-] <img/parsing.png, id=1130, 405.515pt x 237.88875pt>
+] <img/parsing.png, id=1129, 405.515pt x 237.88875pt>
 File: img/parsing.png Graphic file (type png)
  <use img/parsing.png>
 Package pdftex.def Info: img/parsing.png used on input line 2166.
@@ -1953,7 +1953,7 @@ Package pdftex.def Info: img/parsing.png used on input line 2166.
 
 [48 <./img/compiler.png>] Excluding 'comment' comment.
 Excluding 'comment' comment. [49 <./img/parsing.png>]
-<img/antlr4_parse_tree.png, id=1162, 1312.905pt x 759.83875pt>
+<img/antlr4_parse_tree.png, id=1161, 1312.905pt x 759.83875pt>
 File: img/antlr4_parse_tree.png Graphic file (type png)
 
 <use img/antlr4_parse_tree.png>
@@ -1961,7 +1961,7 @@ Package pdftex.def Info: img/antlr4_parse_tree.png used on input line 2238.
 (pdftex.def)             Requested size: 442.65375pt x 256.18523pt.
  [50 <./img/antlr4_parse_tree.png>]
 Chapter 6.
-<img/XCode-interface.png, id=1189, 622.325pt x 380.42125pt>
+<img/XCode-interface.png, id=1188, 622.325pt x 380.42125pt>
 File: img/XCode-interface.png Graphic file (type png)
 
 <use img/XCode-interface.png>
@@ -1971,7 +1971,7 @@ Package pdftex.def Info: img/XCode-interface.png used on input line 2267.
 
 
  <./img/XCode-interface.png>] [52]
-<img/SDE.png, id=1219, 602.25pt x 281.05pt>
+<img/SDE.png, id=1218, 602.25pt x 281.05pt>
 File: img/SDE.png Graphic file (type png)
  <use img/SDE.png>
 Package pdftex.def Info: img/SDE.png used on input line 2320.
@@ -2038,6 +2038,9 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 2396.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2396.
  ) 
 Here is how much of TeX's memory you used:
@@ -2083,10 +2086,10 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (79 pages, 799558 bytes).
+Output written on dissertation.pdf (79 pages, 799384 bytes).
 PDF statistics:
- 2126 PDF objects out of 2487 (max. 8388607)
- 1993 compressed objects within 20 object streams
+ 2125 PDF objects out of 2487 (max. 8388607)
+ 1992 compressed objects within 20 object streams
  1148 named destinations out of 1200 (max. 500000)
  20349 words of extra memory for PDF output out of 20736 (max. 10000000)
 
