@@ -1305,50 +1305,50 @@ MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Inst
 Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
 
 The main objective for creating MIPS, was to increase performance with deep instructions pipelines, a main problem back to the 80's. 
-Some instructions, as division, would take a longer time to complete due to the fact that CPU needed to wait that the division ended before passing to the next instruction into the pipeline.
+
+Some instructions, as division, take a longer time to complete; if the CPU needs to wait that the division ends before passing to the next instruction into the pipeline, the total time is greater. If it can be done without that waiting time, the total process will be faster.
 
 As MIPS solved those problems, it was primarly used for embedded systems and video games consoles (which requires a lot of arithmetic computation). 
 % until late 2006, when it came to computers.
 
-Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....) \footnote{according to wikipedia \url{https://en.wikipedia.org/wiki/MIPS_instruction_set}}.
+Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....) \footnote{according to \url{https://imgtec.com/mips/architectures} (See also wikipedia \url{https://en.wikipedia.org/wiki/MIPS_instruction_set})}.
 
-Figure ~\ref{fig:MIPSarchitecture} illustrate the architecture of MIPS.
+Figure ~\ref{fig:MIPSarchitecture} ( from \url{http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS\_Architecture(Pipelined).svg/300px-MIPS\_Architecture\_(Pipelined).svg.png}) illustrate the architecture of MIPS.
 
 %The architecture of MIPS is composed by 5 stages (see Figure ~\ref{fig:MIPSarchitecture}).
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{img/MIPSarchitecture.png}
-    \caption{MIPS architecture \protect\footnote{http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS\_Architecture(Pipelined).svg/300px-MIPS\_Architecture\_(Pipelined).svg.png}}
+    \caption{MIPS architecture} %\protect\footnote{http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS\_Architecture(Pipelined).svg/300px-MIPS\_Architecture\_(Pipelined).svg.png}}
     \label{fig:MIPSarchitecture}
 \end{figure}
 
-%\protect\footnote{http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS_Architecture_(Pipelined).svg/300px-MIPS_Architecture_(Pipelined).svg.png}
 
 \newpage
 
-In this chapter, we will talk about all the architecture of MIPS with the 32-bit version.
+In this chapter, we will talk about the architecture components and assembly of MIPS 32-bit version.
 
 \section{MIPS coprocessors}
 
-MIPS was born for solving complex arithmetic problems by reducing the consuming time in those operations.
+MIPS was born for solving complex arithmetic problems by reducing the time consumed in those operations.
 
-And this is done by the implementation of coprocessors with MIPS.
+This is attained through the implementation of coprocessors within MIPS.
 
-The MIPS architecture defines four coprocessors designed, respectively, CP0, CP1, CP2 and CP3:
+MIPS architecture includes four coprocessors respectively, CP0, CP1, CP2 and CP3:
 
 \begin{enumerate}
-\item Coprocessor 0, denoted by ~\textit{CP0}, is incorporated on the CPU chips, it supports the virtual memory system and exception handling (also known as the ~\textit{System Control Coprocessor}).
-\item Coprocessor 1, denoted by ~\textit{CP1}, is reserved the floating point coprocessor.
+\item Coprocessor 0, denoted by ~\textit{CP0}, is incorporated in the CPU chip; it supports the virtual memory system and exception handling (also known as the ~\textit{System Control Coprocessor}).
+\item Coprocessor 1, denoted by ~\textit{CP1}, is reserved for floating point coprocessor.
 \item Coprocessor 2, denoted by ~\textit{CP2}, is reserved for specific implementations.
 \item Coprocessor 3, denoted by ~\textit{CP3}, is reserved for the implementations of the architecture.
 \end{enumerate}
 
-Notice that coprocessor - ~\textit{CP0}, translates virtual addresses into physical addresses, manages excpetions, and handles switch between kernel, supervisor and user modes.
+Notice that coprocessor ~\textit{CP0}, translates virtual addresses into physical addresses, manages exceptions, and handles switch between kernel, supervisor and user modes.
 
 \section{MIPS cpu data formats}
 
-The CPU of MIPS defines different formats:
+The CPU of MIPS defines four differents formats:
 \begin{itemize}
 \item ~\textit{Bit} (1 bit, b)
 \item ~\textit{Byte} (8 bits, B)
@@ -1374,7 +1374,7 @@ Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their u
 \multicolumn{1}{|c|}{\textbf{Name}} & \multicolumn{1}{c|}{\textbf{Number}} & \multicolumn{1}{c|}{\textbf{Use}}                                                                                                           & \multicolumn{1}{c|}{\textbf{\begin{tabular}[c]{@{}c@{}}Callee must\\  preserve?\end{tabular}}} \\ \hline
 \multicolumn{1}{|c|}{\$zero}        & \multicolumn{1}{l|}{\$0}             & \multicolumn{1}{l|}{has constant 0}                                                                                                         & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$at}          & \multicolumn{1}{l|}{\$1}             & \multicolumn{1}{l|}{register reserved for assembler (temporary)}                                                                            & \multicolumn{1}{c|}{No}                                                                        \\ \hline
-\multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for values for function returns\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
+\multicolumn{1}{|c|}{\$v0 - \$v1}     & \multicolumn{1}{l|}{\$2 - \$3}         & \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}register reserved for values for function returns,\\  and expression evaluation\end{tabular}} & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$a0 - \$a3}     & \multicolumn{1}{l|}{\$4 - \$7}         & \multicolumn{1}{l|}{registers reserved for function arguments}                                                                              & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$t0 - \$t7}     & \multicolumn{1}{l|}{\$8 - \$15}        & \multicolumn{1}{l|}{temporary registers}                                                                                                  & \multicolumn{1}{c|}{No}                                                                        \\ \hline
 \multicolumn{1}{|c|}{\$s0 - \$s7}     & \multicolumn{1}{l|}{\$16 - \$23}       & \multicolumn{1}{l|}{saved temporary registers}                                                                                            & \multicolumn{1}{c|}{Yes}                                                                       \\ \hline
@@ -1388,10 +1388,10 @@ Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their u
 \end{tabular}
 \end{table}
 
-The Table ~\ref{tbl:compiler_register_usage} is composed of 4 columns:
+Table ~\ref{tbl:compiler_register_usage} is composed of 4 columns:
 
 \begin{enumerate}
-\item \textit{Name} column refers to the nomenclature of the register available in MIPS. Those will be used to interact with the instructions available in MIPS.
+\item \textit{Name} displays the identifier of the registers available in MIPS. Those identifiers will be used as operands of MIPS instructions.
 \item \textit{Number} column defines the number of each register. This number can also be used to refer to the register in an instruction.
 \item \textit{Use} column refers to the meaning/definition of each register.
 \item \textit{Callee must preserve?} column  provides information about the volatility of the register (used when a function is called).
