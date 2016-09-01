@@ -1769,8 +1769,13 @@ In this case, it will load two numbers in different registers and multiply them 
 
 Notice that the code will execute sequentially.
 
-Also if some loop or conditional statements are available in MIPS, we need to know where the instructions for those conditions must be.
-And for this purpose, we need to add some context to the MIPS code.
+Also, in the text part beside of the code execution flow, we can write the name of branches for executing some jump instructions. This means that every jump instruction with a name associated, will see if that name is under the text part.
+Like that when a jump instruction is available it can jump to the name associated.
+
+%Also if some loop or conditional statements are available in MIPS, we need to know where the instructions for those conditions must be.
+And for this purpose, we need to add some context to the MIPS jump instruction code and understand it better.
+
+
 
 In this case, we need to replicate the same syntax as the ~\textit{main:} field but with the correct name of the condition or the loop (also inside of the text declarations parts). Like that, MIPS knows where it must jump for the next instruction.
 Let's look an example in Listing ~\ref{lst:loop_mips}.
@@ -1790,6 +1795,11 @@ Let's look an example in Listing ~\ref{lst:loop_mips}.
       li $t1, 5
       jr $ra
 \end{lstlisting}
+
+As we can see in Listing ~\ref{lst:loop_mips}, we have a ~\textit{jal} instruction available and a name associated next to the instruction. This name must be included under the ~\textit{.text} section, because the name is the name of the branch from where the jump instruction will jump. If the name isn't in the MIPS assembly code, then the program cannot execute the assembly code.
+But in the example case, we can see that the name is available below as ~\textit{jump\_condition:}.
+So this means that the ~\textit{jal} instruction will jump to that line and continue the code execution flow there.
+
 
 Also, in MIPS, there is the possibility to include inline comments in the code using the symbol ~\textbf{\#}  on a line (see Listing ~\ref{lst:comments_mips}).
 
@@ -2052,7 +2062,31 @@ Both simulators are for education purposes and built with a GUI.
 
 They execute and debug MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code.
 
+\subsection{MARS at a glance}
 
+MARS from ~\textit{Mips Assembly and Runtime Simulator}, assemble and simulate the execution of MIPS assembly language programs. The strength of the MARS comes from the interaction available between the user and the program through its integrated development environment (IDE) and the tools available there (program editing, assembling code, interactive debugging...).
+
+Let's see the MARS IDE in Figure ~\ref{fig:MARS_GUI}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/MARS_GUI.png}
+    \caption{MARS GUI}
+    \label{fig:MARS_GUI}
+\end{figure}
+
+In Figure ~\ref{fig:MARS_GUI}, we have 3 different boxes.
+The red box offers two possible views (two different perspective by switching with some tabs available at the top).
+In this case, the view is switched for programing some live MIPS assembly code (MIPS assembly code is colored).
+But if we change the tab view, then it will change to the execution mode of the MIPS assembly code (if no errors is found in the syntax or semantic of the MIPS assembly code).
+
+The orange box also has two possible views (Mars Messages or Run I/O) and it can show some errors messages regarding to the syntax and semantic of MIPS assembly code, as well as errors messages regarding to the execution of the MIPS assembly code.
+
+Lastly, the blue box has three different views (Registers, Co-processor1 and Co-processor 2), in our case it shows the states of the registers available in MIPS architecture but if we change the view it can show the states of each co-processor.
+
+
+If the MIPS assembly code is right, we can assemble it and execute it.
+Let's see the view when it is assembled in Figure ~\ref{fig:MARS_GUI_Assemble}.
 
 
 

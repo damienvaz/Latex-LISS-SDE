@@ -6,12 +6,13 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2}{\ignorespaces MIPS architecture\relax }}{30}{figure.caption.10}
 \contentsline {figure}{\numberline {3}{\ignorespaces MIPS register\relax }}{33}{figure.caption.12}
+\contentsline {figure}{\numberline {4}{\ignorespaces MARS GUI\relax }}{47}{figure.caption.30}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4}{\ignorespaces Traditional compiler\relax }}{49}{figure.caption.30}
-\contentsline {figure}{\numberline {5}{\ignorespaces Parsing\relax }}{50}{figure.caption.31}
-\contentsline {figure}{\numberline {6}{\ignorespaces AST representation\relax }}{51}{figure.caption.32}
+\contentsline {figure}{\numberline {5}{\ignorespaces Traditional compiler\relax }}{50}{figure.caption.31}
+\contentsline {figure}{\numberline {6}{\ignorespaces Parsing\relax }}{51}{figure.caption.32}
+\contentsline {figure}{\numberline {7}{\ignorespaces AST representation\relax }}{52}{figure.caption.33}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{52}{figure.caption.33}
-\contentsline {figure}{\numberline {8}{\ignorespaces SDE example\relax }}{54}{figure.caption.34}
+\contentsline {figure}{\numberline {8}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{53}{figure.caption.34}
+\contentsline {figure}{\numberline {9}{\ignorespaces SDE example\relax }}{55}{figure.caption.35}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
