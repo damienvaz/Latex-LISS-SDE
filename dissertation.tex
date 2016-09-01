@@ -1653,8 +1653,7 @@ See Table ~\ref{tbl:imm_off9_instruction_format}.
 \label{tbl:imm_off9_instruction_format}
 \end{table}
 
-Notice that, for the project related to the thesis, only the first instruction type (Immediate (I-Type) Imm16 instruction format) was used. The other instruction formats are not really important for this project. So we will not talk about them.
-
+Notice that, for the project related to the thesis, only the first instruction type (Immediate (I-Type) Imm16 instruction format) was used. The other instruction formats are not really important for this project.
 
 
 \subsection{MIPS J-Type}
@@ -1683,6 +1682,14 @@ Examples of J-Type formats can be seen in Listing ~\ref{lst:J-type_instruction}.
   jr $ra	 // Jump register instruction
   j writeln     // Jump instruction
 \end{lstlisting}
+
+In Listing ~\ref{lst:J-type_instruction}, we see three different types of jump instruction.
+The first one example, is a ~\textit{jal} instruction and it means 'jump and link' in an extensive way. Basically, it jump to the branch written in front of the ~\textit{jal} nomenclature and stores the return address (instantly) to the return address register (\$ra; \$31). In this way, the programmer don't need to use some instructions for saving the return address and continue the flow of the execution code.
+
+The second example, is a ~\textit{jr} instruction and it means 'jump to an address stored in a register'. Notice that registers are available in the MIPS architecture.
+
+The third and last example is a ~\textit{j} instruction and this is a 'jump instruction'. Summing it up, it jumps to the branch written in front of the letter ~\textit{j}, which is in this case ~\textit{writeln}.
+
 
 
 \section{MIPS assembly language}
@@ -1720,11 +1727,23 @@ Let's see some example for declaring some variables in MIPS in Listing ~\ref{lst
 
 \begin{lstlisting}[caption={Examples for declaring variables in MIPS},label={lst:data_declarations_examples_mips}]
   .data  # Tells assembler we're in the data segment
-    val:  .word  10, -14, 30   
+    val:  .word  10   
     str:  .ascii  "Hello, world"
-    num:  .byte  0x01, 0x03
+    num:  .byte  0x01, 0x02
     arr:  .space 100
 \end{lstlisting}
+
+In Listing ~\ref{lst:data_declarations_examples_mips}, there are 4 different types under the ~\textit{data} section.
+
+The variable ~\textit{val} contains the value '10' and the size of the variable is 32 bits.
+
+The variable ~\textit{str} contains the string 'Hello World' and the size of the variable is the same size as the string.
+
+The variable ~\textit{num} stores the listed value(s) (which appears after the ~\textit{.byte} nomenclature) as 8 bit bytes. In this example, it will be '0x00000201'.
+
+The variable ~\textit{arr} reserves the next specified number of bytes in the memory, which will be 100 bytes reserved for that variable.
+
+
 
 
 \subsection{MIPS text declarations}
