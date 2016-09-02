@@ -35,13 +35,13 @@
 \contentsline {subsection}{\numberline {4.7.2}MIPS heap}{46}{subsection.4.7.2}
 \contentsline {section}{\numberline {4.8}MIPS simulator}{46}{section.4.8}
 \contentsline {subsection}{\numberline {4.8.1}MARS at a glance}{47}{subsection.4.8.1}
-\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{49}{chapter.5}
-\contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{51}{section.5.1}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{53}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{54}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{55}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{56}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{56}{section.7.1}
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{50}{chapter.5}
+\contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{52}{section.5.1}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{54}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{55}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{56}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{57}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{57}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{60}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{61}{appendix.A}
