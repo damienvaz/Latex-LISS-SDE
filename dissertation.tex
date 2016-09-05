@@ -1304,8 +1304,7 @@ COMMENT
 MIPS, from Microprocessor without Interlocked Pipeline Stages, is a Reduced Instruction Set Computer (RISC) developed by MIPS Technologies. 
 Born in 1981, a team led by John L. Hennessy at Stanford University began to work on the first MIPS processor.
 
-The main objective for creating MIPS, was to increase performance with deep instructions pipelines, a main problem back to the 80's. 
-
+The main objective for creating MIPS, was to increase performance with deep pipelines, a main problem back to the 80's. 
 Some instructions, as division, take a longer time to complete; if the CPU needs to wait that the division ends before passing to the next instruction into the pipeline, the total time is greater. If it can be done without that waiting time, the total process will be faster.
 
 As MIPS solved those problems, it was primarly used for embedded systems and video games consoles (which requires a lot of arithmetic computation). 
@@ -1313,7 +1312,7 @@ As MIPS solved those problems, it was primarly used for embedded systems and vid
 
 Now, the architecture of MIPS, along the years, has gained maturity and provides different versions of it (MIPS32, MIPS64....) \footnote{according to \url{https://imgtec.com/mips/architectures} (See also wikipedia \url{https://en.wikipedia.org/wiki/MIPS_instruction_set})}.
 
-Figure ~\ref{fig:MIPSarchitecture} ( from \url{http://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS\_Architecture(Pipelined).svg/300px-MIPS\_Architecture\_(Pipelined).svg.png}) illustrate the architecture of MIPS.
+Figure ~\ref{fig:MIPSarchitecture} \footnote{ from \url{https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/MIPS_Architecture_(Pipelined).svg/300px-MIPS_Architecture_(Pipelined).svg.png}}  illustrate the architecture of MIPS.
 
 %The architecture of MIPS is composed by 5 stages (see Figure ~\ref{fig:MIPSarchitecture}).
 
@@ -1332,7 +1331,6 @@ In this chapter, we will talk about the architecture components and assembly of 
 \section{MIPS coprocessors}
 
 MIPS was born for solving complex arithmetic problems by reducing the time consumed in those operations.
-
 This is attained through the implementation of coprocessors within MIPS.
 
 MIPS architecture includes four coprocessors respectively, CP0, CP1, CP2 and CP3:
@@ -1359,7 +1357,7 @@ The CPU of MIPS defines four differents formats:
 
 
 
-\section{MIPS compiler register usage}
+\section{MIPS registers usage}
 
 MIPS architecture has 32 registers dedicated and there are some conventions to use those registers correctly.
 Table ~\ref{tbl:compiler_register_usage} summarizes those registers, and their usage.
@@ -2052,7 +2050,7 @@ Let's see an example in Listing ~\ref{lst:heap_mips}.
 
 Several simulators are available in the market for executing MIPS assembly code, and some are free.
 
-For this project, we used two nice free simulators:
+For this project, we considered two nice free simulators:
 \begin{itemize}
 \item MARS simulator \footnote{\url{http://courses.missouristate.edu/KenVollmar/MARS/}}
 \item SPIM simulator \footnote{\url{http://spimsimulator.sourceforge.net}}
@@ -2060,13 +2058,13 @@ For this project, we used two nice free simulators:
 
 Both simulators are for education purposes and built with a GUI.
 
-They execute and debug MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code.
+They execute and debug MIPS assembly code but only MARS simulator has the possibility to write some live-code MIPS assembly code. This explains why MARS was the one selected for this project.
 
 \subsection{MARS at a glance}
 
-MARS from ~\textit{Mips Assembly and Runtime Simulator}, assemble and simulate the execution of MIPS assembly language programs. The strength of the MARS comes from the interaction available between the user and the program through its integrated development environment (IDE) and the tools available there (program editing, assembling code, interactive debugging...).
+MARS from ~\textit{Mips Assembly and Runtime Simulator}, assembles and simulates the execution of MIPS assembly language programs. The strength of MARS comes from the interaction between the user and the program through its integrated development environment (IDE) and the tools available there (program editing, assembling code, interactive debugging...).
 
-Let's see the MARS IDE in Figure ~\ref{fig:MARS_GUI}.
+Let's see MARS IDE in Figure ~\ref{fig:MARS_GUI}.
 
 \begin{figure}[h!]
   \centering
@@ -2076,17 +2074,18 @@ Let's see the MARS IDE in Figure ~\ref{fig:MARS_GUI}.
 \end{figure}
 
 In Figure ~\ref{fig:MARS_GUI}, we have 3 different boxes.
-The red box offers two possible views (two different perspective by switching with some tabs available at the top).
-In this case, the view is opened for programing some live MIPS assembly code (MIPS assembly code is colored).
-But if we change the tab view, then it will change to the execution mode of the MIPS assembly code (if no errors is found in the syntax or semantic of the MIPS assembly code).
+The red box offers two possible views (two different perspective by switching between the tabs available at the top).
+In this case, the view is opened for programing some live MIPS assembly code (MIPS assembly code is colored along the left part of the window).
+But if we open the second tab view, then it will change to the execution mode of the MIPS assembly code (if no syntatic or semantic errors are found).
 
-The orange box also has two possible views (Mars Messages or Run I/O tabs) and it can show some errors messages regarding to the syntax and semantic of MIPS assembly code, as well as errors messages regarding to the execution of the MIPS assembly code.
+The orange box also has two possible views (Mars Messages or Run I/O tabs). It is used to display error messages regarding the syntax and semantic of MIPS assembly code, or error messages regarding the execution of the MIPS assembly code.
 
-Lastly, the blue box has three different views (Registers, Co-processor1 and Co-processor 2), in our case it shows the states of the registers available in MIPS architecture but if we change the view it can show the states of each co-processor (related to division, mu.
+Lastly, the blue box has three different views: Registers, Co-processor1 and Co-processor 2. In the Figure above, it shows the states of the registers available in MIPS architecture but if we change the view it can show the states of each co-processor (related to division, multiplication).
 
 
-If the MIPS assembly code is right, we can assemble it and execute it.
-Let's see the view when it is assembled in Figure ~\ref{fig:MARS_GUI_EXECUTE}.
+If the MIPS assembly code typed in (or loaded from a file) is correct (no errors detected), we can assemble it and execute it.
+
+Figure ~\ref{fig:MARS_GUI_EXECUTE} illustrates the new view offered by the IDE after assembling the source program.
 
 \begin{figure}[h!]
   \centering
@@ -2095,16 +2094,16 @@ Let's see the view when it is assembled in Figure ~\ref{fig:MARS_GUI_EXECUTE}.
     \label{fig:MARS_GUI_EXECUTE}
 \end{figure}
 
-In Figure ~\ref{fig:MARS_GUI_EXECUTE}, we have four different boxes (blue, orange, red and green). 
+In Figure ~\ref{fig:MARS_GUI_EXECUTE},  it is possible to identify the main window (the red one in Figure ~\ref{fig:MARS_GUI}) now split into three subwindows: orange, red and green. 
 
-The blue box are tools for assembling MIPS assembly code, executing MIPS assembly code totally or step by step (one instruction by one instruction). There is also the possibility to change the speed execution of the MIPS assembly code if we want to run it completely.
+Notice that above the main red window, a small blue box contains buttons to activate tools for assembling MIPS assembly code, executing MIPS assembly code totally or step by step (one instruction at a time) and also the possibility to change the speed execution of the MIPS assembly code if we want to run it completely.
 
-The orange box is the MIPS assembly code assembled and ready to execute. It shows the MIPS assembly code instructions, the code in hexadecimal for each MIPS assembly code associated, the address of the MIPS assembly code stored in the memory and it can also set some breakpoint to a certain MIPS assembly instruction. Also notice that MIPS assembly code has some pseudo-instructions; and in the orange box, there is a part where we can see the translation of the MIPS assembly code to another lower MIPS assembly code ( with no pseudo-instruction).
-The yellow blur in the Figure means that this is the next instruction to run.
+The orange box contains the MIPS assembly code assembled and ready to execute. It shows the MIPS assembly code instructions, the correspondent code in hexadecimal, the respective address in the memory, and eventually some breakpoints associated with certain MIPS assembly instructions. Also notice that MIPS assembly code has some pseudo-instructions; and in the orange box, there is a part where we can see the translation of the MIPS assembly code to another lower MIPS assembly code ( with no pseudo-instruction).
+The yellow bar, or cursor, displayed in the figure above enhances the next instruction to be executed.
 
-The red box is the identifier table for the MIPS assembly code. It contains the variable created in the MIPS assembly code and their respective address in the memory.
+The red box is the identifier table for the MIPS assembly code. It contains the variables existing in the MIPS assembly code and displays their respective address in the memory.
 
-The green box is the virtual memory of the MIPS architecture. It contains the stack and the heap memory for example, as well as others not important informations too (but related to memory). Basically, we see the value being changed throw the iteration of the MIPS assembly code being executed. This mean that if there is a store instruction for a certain variable, it will look up for the identifer table (red box), search the address associated to the variable and store to that address the value associated to the variable.
+The green box represents the virtual memory of the MIPS architecture. It displays the stack and the heap memory, as well as other informations not relevant in this context. Basically, we see the value being changed throw the iteration of the MIPS assembly code being executed. This mean that if there is a store instruction for a certain variable, it will look up for the identifer table (red box), search the address associated to the variable and store to that address the value associated to the variable.
 
 
 \newpage
@@ -2252,7 +2251,7 @@ Terence Parr, the man who is behind ANTLR (ANother Tool for Language Recognition
 
 An ANTLR specification is composed by two parts : the one with all the grammar rules and the other one with lexer grammar.
 
-Listing ~\ref{lst:agANTLR} is the one with the grammar rules; in that case it is an  example of an AG.
+Listing ~\ref{lst:agANTLR} is the one with the grammar rules; in that case it is an  example of an AG (Attribute Grammar).
 
 \begin{comment}
 \begin{figure}[h!]
@@ -2310,6 +2309,41 @@ The parser generator by ANTLR will be able to create an abstract syntax tree (AS
 \end{figure}
 
 ANTLR will be used to generate MIPS assembly code according to the semantic rule specified in the AG for LISS language.
+
+
+
+
+
+
+
+\subsection{Semantic Analyzer}
+
+
+
+
+
+
+
+\subsubsection{Symbol Table}
+
+A symbol table is a data structure used for the compiler, which helps to store some valuable informations for identifiers in a program's source code.
+
+
+
+
+
+
+
+
+\subsubsection{Semantic system for LISS}
+
+
+
+
+
+
+
+
 
 %The lexical syntax is usually a regular language, with the grammar rules consisting of regular expressions; they define the set of possible character sequences that are used to form individual tokens or lexemes. A lexer recognizes strings, and for each kind of string found the lexical program takes an action, most simply producing a token.
 
