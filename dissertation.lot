@@ -24,6 +24,13 @@
 \contentsline {table}{\numberline {19}{\ignorespaces Example of Pseudo Instructions in MIPS\relax }}{44}{table.caption.28}
 \contentsline {table}{\numberline {20}{\ignorespaces Example of SYSCALL instruction in MIPS\relax }}{45}{table.caption.29}
 \addvspace {10\p@ }
+\contentsline {table}{\numberline {21}{\ignorespaces TYPE category information\relax }}{56}{table.caption.37}
+\contentsline {table}{\numberline {22}{\ignorespaces Information related for an integer variable\relax }}{56}{table.caption.38}
+\contentsline {table}{\numberline {23}{\ignorespaces Information related for a boolean variable\relax }}{57}{table.caption.39}
+\contentsline {table}{\numberline {24}{\ignorespaces Information related to an array variable\relax }}{57}{table.caption.40}
+\contentsline {table}{\numberline {25}{\ignorespaces Information related to a set variable\relax }}{57}{table.caption.41}
+\contentsline {table}{\numberline {26}{\ignorespaces Information related to a sequence variable\relax }}{58}{table.caption.42}
+\contentsline {table}{\numberline {27}{\ignorespaces Information related to a function\relax }}{58}{table.caption.43}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

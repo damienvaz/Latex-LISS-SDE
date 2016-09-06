@@ -2354,13 +2354,13 @@ Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it does w
     \label{fig:global_symbol_table_liss}
 \end{figure}
 
-For our project we implemented the symbol table with an HashMap where the key is an identifier and the value is a LinkedList of some informations related to the identifier.
+For our project we implemented the symbol table with a HashMap where the key is an identifier and the value is a LinkedList of some informations related to the identifier.
 
 \begin{lstlisting}[caption={Data structure of the symbol table in LISS},label={lst:symbol_table_liss_java_implementation}]
 	HashMap<String, LinkedList<InfoIdentifiersTable>>
 \end{lstlisting}
 
-The identifier (associated to ~\textit{String} in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique and the ~\textit{LinkedList} must have the idea of an ordered list, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
+The identifier (related to ~\textit{String} word in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique (concept of using a HashMap) and the ~\textit{LinkedList} must have the idea of an ordered list, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
 
 Basically, the identifier is associated to a ~\textit{LinkedList} of informations related to the identifier and those informations explain which category and type is the identifier.
 
@@ -2371,20 +2371,157 @@ For our project, we have 3 different categories:
 \item FUNCTION
 \end{enumerate}
 
-The ~\textit{TYPE} category contains informations about which primative type is available in LISS. In our cases, they are known by : set, integer, sequence and boolean. And the ~\textit{TYPE} category contains information about their fixed size of each type in MIPS.
+\subsubsection{TYPE category}
+
+The ~\textit{TYPE} category contains informations about which primative type is available in LISS. In our cases, they are known by : set, integer, sequence and boolean. 
+It contains information about their fixed size of each type in MIPS as well as their level scope.
+
+\begin{table}[h!]
+\centering
+\caption{TYPE category information}
+\label{tbl:type_category_information}
+\begin{tabular}{l|c|c|c}
+\multicolumn{1}{c|}{Identifier} & \multicolumn{1}{l|}{Category} & \multicolumn{1}{l|}{Level} & \multicolumn{1}{l}{Space (Bytes)} \\ \hline
+set                             & TYPE                          & 0                          & 0                                 \\ \hline
+integer                         & TYPE                          & 0                          & 4                                 \\ \hline
+boolean                         & TYPE                          & 0                          & 4                                 \\ \hline
+sequence                        & TYPE                          & 0                          & 4                                
+\end{tabular}
+\end{table}
+
+\subsubsection{VAR category}
 
 The ~\textit{VAR} category contains informations about the variables declared in LISS code. It might be an integer, boolean, array, set or a sequence variable.
+And each variable have different respective informations for their type associated.
+
+Let's see each type in the next part.
+
+\begin{table}[h!]
+\centering
+\caption{Information related for an integer variable}
+\label{tbl:var_integer_information}
+\begin{tabular}{l|c|c|c|c}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address \\ \hline
+int                             & VAR      & 0     & integer & 0      
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:var_integer_information}, we can see the type of information that an integer variable stores into the symbol table:
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: variable.
+\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Type} - the type of the variable (integer).
+\item ~\textit{Address} - the address of the variable in the stack memory.
+\end{itemize}
+
+\newpage
+
+\begin{table}[h!]
+\centering
+\caption{Information related for a boolean variable}
+\label{tbl:var_boolean_information}
+\begin{tabular}{l|c|c|c|c}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address \\ \hline
+bool                            & VAR      & 1     & boolean & 4      
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:var_boolean_information}, this is the type of information that a boolean variable stores in the symbol table.
+
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: variable.
+\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Type} - the type of the variable (boolean).
+\item ~\textit{Address} - the address of the variable in the stack memory.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{Information related to an array variable}
+\label{tbl:var_array_information}
+\begin{tabular}{l|c|c|c|c|l|l}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address & Dimension              & Limits                        \\ \hline
+array\_1                        & VAR      & 0     & array & 8       & \multicolumn{1}{c|}{2} & \multicolumn{1}{c}{{[}2$|$3{]}}
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:var_array_information}, this is the type of information related to an array.
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: variable.
+\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Type} - the type of the variable (array).
+\item ~\textit{Address} - the address of the variable in the stack memory.
+\item ~\textit{Dimension} - the number of dimension for the array.
+\item ~\textit{Limits} - the limits of each dimension of the array.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{Information related to a set variable}
+\label{tbl:var_set_information}
+\begin{tabular}{l|c|c|c|c|l}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address & Tree Allocated              \\ \hline
+set\_1                          & VAR      & 0     & set & NULL     & \multicolumn{1}{c}{{[}x{]}}
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:var_set_information}, this is the type of information for a set.
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: variable.
+\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Type} - the type of the variable (set).
+\item ~\textit{Address} - address in the stack memory, but sets doesn't need to. It creates the MIPS assembly code.
+\item ~\textit{Tree Allocated} - indicates if the sets was initiated or not. If an 'X' letter appears, it means that the sets was initiated.
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{Information related to a sequence variable}
+\label{tbl:var_sequence_information}
+\begin{tabular}{l|c|c|c|c|l}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type     & Address & Elements\_type              \\ \hline
+sequence\_1                     & VAR      & 0     & sequence & 32      & \multicolumn{1}{c}{integer}
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:var_sequence_information}, this is the type of information for a set.
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: variable.
+\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Type} - the type of the variable (sequence).
+\item ~\textit{Address} - address in the stack memory.
+\item ~\textit{Elements\_type} - indicates the type of the elements.
+\end{itemize}
+
+\subsubsection{FUNCTION category}
 
 Lastly, the ~\textit{FUNCTION} category contains informations about the subprograms created in a LISS code.
 
-There are 5 types recognised in LISS:
-\begin{enumerate}
-\item Integer
-\item Boolean
-\item Set
-\item Sequence
-\item Array
-\end{enumerate}
+\begin{table}[h!]
+\centering
+\caption{Information related to a function}
+\label{tbl:function_information}
+\begin{tabular}{l|c|c|c|c|c|c}
+\multicolumn{1}{c|}{Identifier} & Category & Level & Type & Address & Nº Arguments & Type List Arguments    \\ \hline
+calculate                       & FUNCTION & 0     & NULL & 32      & 2            & {[}integer, boolean{]}
+\end{tabular}
+\end{table}
+
+In Table ~\ref{tbl:function_information}, this is the type of information for a function.
+\begin{itemize}
+\item ~\textit{Identifier} - name of the variable.
+\item ~\textit{Category} - the category of the identifier: function
+\item ~\textit{Level} - the level scope of the function.
+\item ~\textit{Type} - the type of the function which is NULL.
+\item ~\textit{Address} - size of the function stack in the stack memory (contains the list arguments, the variables declared in the subprogram and the return address of the function).
+\item ~\textit{Nº Arguments} - indicates how many arguments the function does have.
+\item ~\textit{Type List Arguments} - indicates the types of each arguments of the function.
+\end{itemize}
 
 Each time that the identifier is inserted in the HashMap, it insert the information related to that identifier and in this case, it is the type of the identifier.
 Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is very important for the symbol table because it says which level of the scope the identifier was found.
