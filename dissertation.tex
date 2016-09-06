@@ -2345,7 +2345,7 @@ There are a lot of types of data structure for creating a symbol table. From one
 
 For this project, we used a one large symbol table for all symbols.
 
-Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it does work the symbol table in LISS.
+Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it works the symbol table in LISS.
 
 \begin{figure}[h!]
   \centering
@@ -2360,7 +2360,8 @@ For our project we implemented the symbol table with a HashMap where the key is 
 	HashMap<String, LinkedList<InfoIdentifiersTable>>
 \end{lstlisting}
 
-The identifier (related to ~\textit{String} word in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique (concept of using a HashMap) and the ~\textit{LinkedList} must have the idea of an ordered list, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
+The identifier (related to ~\textit{String} word in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique (concept of using a HashMap) and the ~\textit{LinkedList} must have the idea of an ordered list.
+%, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
 
 Basically, the identifier is associated to a ~\textit{LinkedList} of informations related to the identifier and those informations explain which category and type is the identifier.
 
@@ -2391,10 +2392,10 @@ sequence                        & TYPE                          & 0             
 
 \subsubsection{VAR category}
 
-The ~\textit{VAR} category contains informations about the variables declared in LISS code. It might be an integer, boolean, array, set or a sequence variable.
+The ~\textit{VAR} category contains informations about the variables declared in LISS code (under ~\textit{declarations} part). It might be an integer, boolean, array, set or a sequence variable.
 And each variable have different respective informations for their type associated.
 
-Let's see each type in the next part.
+Let's see and explain each type.
 
 \begin{table}[h!]
 \centering
@@ -2523,23 +2524,31 @@ In Table ~\ref{tbl:function_information}, this is the type of information for a 
 \item ~\textit{Type List Arguments} - indicates the types of each arguments of the function.
 \end{itemize}
 
-Each time that the identifier is inserted in the HashMap, it insert the information related to that identifier and in this case, it is the type of the identifier.
-Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is very important for the symbol table because it says which level of the scope the identifier was found.
+Let's see the abstract data structure of InfoIdentifiersTable implemented in Figure ~\ref{fig:infoidentifierstable_structure}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/InfoIdentifiersTable.png}
+    \caption{InfoIdentifiersTable structure}
+    \label{fig:infoidentifierstable_structure}
+\end{figure}
+
+Each time that an identifier is inserted into the HashMap, it inserts the information related to that identifier and in this case, the type of the identifier.
+Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is a very important idea for the symbol table due to the fact that it reveals the level of the scope for the given identifier found.
 
 In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was found in two differents level scope.
 \begin{itemize}
 \item Scope level 0 - Identifier ~\textbf{b} found with type ~\textit{integer}
-\item Scope level 1 - identifier ~\textbf{b} found with type ~\textit{boolean}
+\item Scope level 1 - Identifier ~\textbf{b} found with type ~\textit{boolean}
 \end{itemize}
 
-And regarding to each type, it contains some informations which are different for each type.
-Let's explain in the next table
+Notice that every time, we look for an identifier and his respective info in the symbol table. It will always take the latest info in the ~\textit{LinkedList} data structure. 
+
+In the case of the example ~\textbf{b} in Figure ~\ref{fig:global_symbol_table_liss}, it will be the ~\textbf{boolean} info.
 
 
 
-
-
-
+Also, every time that a function ( ~\textit{subprogram} in LISS) is exited, we remove every information  available to the respective level scope of the function in the symbol table. And this is due for having a good consistency regarding to the information available in the symbol table.
 
 
 \subsubsection{Semantic system for LISS}

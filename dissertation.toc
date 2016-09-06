@@ -43,12 +43,12 @@
 \contentsline {subsubsection}{TYPE category}{56}{Item.32}
 \contentsline {subsubsection}{VAR category}{56}{table.caption.37}
 \contentsline {subsubsection}{FUNCTION category}{58}{table.caption.42}
-\contentsline {subsubsection}{Semantic system for LISS}{59}{table.caption.43}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{60}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{61}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{62}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{63}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{63}{section.7.1}
+\contentsline {subsubsection}{Semantic system for LISS}{60}{figure.caption.44}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{61}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{62}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{63}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{64}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{64}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{67}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{68}{appendix.A}
