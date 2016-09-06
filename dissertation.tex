@@ -2326,7 +2326,77 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 
 \subsubsection{Symbol Table}
 
-A symbol table is a data structure used for the compiler, which helps to store some valuable informations for identifiers in a program's source code.
+A symbol table is a data structure used for the compiler, which helps to store some valuable informations for identifiers in a program's source code. Basically, it helps the compiler for finding some semantic errors regarding to the translation of the program which will be done later.
+
+There are a lot of types of data structure for creating a symbol table. From one large symbol table for all symbols or separated, hierarchical symbol tables for different scopes.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/symbol_table_hierarchical.jpg}
+    \caption{Example of hierarchical symbol table}
+    \label{fig:hierarchical_symbol_table}
+\end{figure}
+
+%For this project, we used one large symbol table for all symbols and we will explain in the next section.
+
+\newpage
+
+\subsubsection{Symbol Table in LISS}
+
+For this project, we used a one large symbol table for all symbols.
+
+Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it does work the symbol table in LISS.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/global_symbol_table.png}
+    \caption{Global symbol table in LISS}
+    \label{fig:global_symbol_table_liss}
+\end{figure}
+
+For our project we implemented the symbol table with an HashMap where the key is an identifier and the value is a LinkedList of some informations related to the identifier.
+
+\begin{lstlisting}[caption={Data structure of the symbol table in LISS},label={lst:symbol_table_liss_java_implementation}]
+	HashMap<String, LinkedList<InfoIdentifiersTable>>
+\end{lstlisting}
+
+The identifier (associated to ~\textit{String} in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique and the ~\textit{LinkedList} must have the idea of an ordered list, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
+
+Basically, the identifier is associated to a ~\textit{LinkedList} of informations related to the identifier and those informations explain which category and type is the identifier.
+
+For our project, we have 3 different categories:
+\begin{enumerate}
+\item TYPE
+\item VAR
+\item FUNCTION
+\end{enumerate}
+
+The ~\textit{TYPE} category contains informations about which primative type is available in LISS. In our cases, they are known by : set, integer, sequence and boolean. And the ~\textit{TYPE} category contains information about their fixed size of each type in MIPS.
+
+The ~\textit{VAR} category contains informations about the variables declared in LISS code. It might be an integer, boolean, array, set or a sequence variable.
+
+Lastly, the ~\textit{FUNCTION} category contains informations about the subprograms created in a LISS code.
+
+There are 5 types recognised in LISS:
+\begin{enumerate}
+\item Integer
+\item Boolean
+\item Set
+\item Sequence
+\item Array
+\end{enumerate}
+
+Each time that the identifier is inserted in the HashMap, it insert the information related to that identifier and in this case, it is the type of the identifier.
+Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is very important for the symbol table because it says which level of the scope the identifier was found.
+
+In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was found in two differents level scope.
+\begin{itemize}
+\item Scope level 0 - Identifier ~\textbf{b} found with type ~\textit{integer}
+\item Scope level 1 - identifier ~\textbf{b} found with type ~\textit{boolean}
+\end{itemize}
+
+And regarding to each type, it contains some informations which are different for each type.
+Let's explain in the next table
 
 
 
