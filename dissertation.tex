@@ -2229,13 +2229,15 @@ The task of constructing a compiler for a particular source language is complex.
 
 The Lexical analysis divides program text into "words" or "tokens" and once words are identified, the next step is to understand sentence structure (role of the parser).
 We can think the parsing as an analogy of our world by constructing phrases which requires a subject, verb and object. So, basically, the parser do a diagramming of sentences (see Figure \ref{fig:parsing}).
-\begin{figure}
-\begin{center}
-       \includegraphics[width=0.7\textwidth]{img/parsing.png}
-\end{center}
-\caption{Parsing}
-\label{fig:parsing}
-\end{figure}
+
+%\begin{figure}
+%\begin{center}
+%       \includegraphics[width=0.7\textwidth]{img/parsing.png}
+%\end{center}
+%\caption{Parsing}
+%\label{fig:parsing}
+%\end{figure}
+
 %\newpage
 Once the sentence structure is understood, we must extract the "meaning" with the semantic analyzer.
 The duty of the semantic analyzer is to perform some semantic analysis to catch some inconsistencies.
@@ -2299,6 +2301,8 @@ NUM :   '0'..'9'+
 
 
 %\newpage
+\section{Lexical and syntatic analysis}
+
 The parser generator by ANTLR will be able to create an abstract syntax tree (AST) which is a tree representation of the abstract syntactic structure of source code written in a programming language (see Figure~\ref{fig:AST}).
 
 \begin{figure}[h!]
@@ -2316,7 +2320,7 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 
 
 
-\subsection{Semantic Analyzer}
+\section{Semantic Analysis}
 
 
 
@@ -2324,7 +2328,7 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 
 
 
-\subsubsection{Symbol Table}
+\subsection{Symbol Table}
 
 A symbol table is a data structure used for the compiler, which helps to store some valuable informations for identifiers in a program's source code. Basically, it helps the compiler for finding some semantic errors regarding to the translation of the program which will be done later.
 
@@ -2534,6 +2538,8 @@ Let's see the abstract data structure of InfoIdentifiersTable implemented in Fig
 \end{figure}
 
 Each time that an identifier is inserted into the HashMap, it inserts the information related to that identifier and in this case, the type of the identifier.
+For example, in Figure ~\ref{fig:infoidentifierstable_structure} the info that will be stored in the symbol table are the red boxes.
+
 Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is a very important idea for the symbol table due to the fact that it reveals the level of the scope for the given identifier found.
 
 In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was found in two differents level scope.
@@ -2544,14 +2550,26 @@ In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was fo
 
 Notice that every time, we look for an identifier and his respective info in the symbol table. It will always take the latest info in the ~\textit{LinkedList} data structure. 
 
-In the case of the example ~\textbf{b} in Figure ~\ref{fig:global_symbol_table_liss}, it will be the ~\textbf{boolean} info.
+In the case of the identifier example ~\textbf{b} in Figure ~\ref{fig:global_symbol_table_liss}, it will be the ~\textbf{boolean} info.
 
 
 
 Also, every time that a function ( ~\textit{subprogram} in LISS) is exited, we remove every information  available to the respective level scope of the function in the symbol table. And this is due for having a good consistency regarding to the information available in the symbol table.
 
+Let's see the functions created and available in the project, regarding to the symbol table structure in JAVA.
 
-\subsubsection{Semantic system for LISS}
+\begin{itemize}
+\item getSymbolTable - gets the symbol table.
+\item doesExist - checks if a certain identifier is available.
+\item getInfoIdentifier - gets the latest information of a certain identifier.
+\item removeLevel - removes every information according to the level scope of every identifier available in the symbol table.
+\item getAddress - gets the latest address (this address is related to the next position of an identifier that will be added in the symbol table).
+\item setAddress - sets a new address.
+\item add - adds identifiers into the symbol table.
+\item toString - gets the representation of the symbol table as a string.
+\end{itemize}
+
+\subsection{Semantic system for LISS}
 
 
 
