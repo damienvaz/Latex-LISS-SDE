@@ -2569,11 +2569,68 @@ Let's see the functions created and available in the project, regarding to the s
 \item toString - gets the representation of the symbol table as a string.
 \end{itemize}
 
-\subsection{Semantic system for LISS}
+\subsection{Semantic system}
 
+In programming language theory, the word ~\textit{semantics} is concerned by the field of studying the meaning of programming languages.
+And in this field, it concerns about a lot of area.
+For our project, every time that we see an inconsistency, we report them to an error table.
+Let's see which kind of inconsistency we can find for our project.
 
+\begin{enumerate}
+\item Finding inconsistency in types and their related specifications.
+\item Finding inconsistency in variables declared or not.
+\item Finding inconsistency regarding to the use of multiple expressions.
+\item Finding inconsistency for returning types of functions created.
+\end{enumerate}
 
+This will be talked later, let's understand firstly the error table system created.
 
+\subsection{Error table in LISS}
+
+The error table let the user to understand the problems that he is having with the code when he is trying to create or making it.
+In this way, it will facilitate the user to correct the problems found regarding to his code with ease.
+
+Let's see the table error structure made for our project in Figure ~\ref{fig:error_table_structure}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/errorTable.png}
+    \caption{ErrorTable structure}
+    \label{fig:error_table_structure}
+\end{figure}
+
+For our project, we managed to create a data structure which could handle some error messages and could give us also some informations related to the error message (line and column number).
+
+And this was done by creating that data structure in JAVA:
+
+\begin{lstlisting}[caption={Data structure of the error table in LISS},label={lst:error_table_liss_java_implementation}]
+	TreeMap<Integer,TreeMap<Integer,ArrayList<String>>>
+\end{lstlisting}
+
+Basically, this data structure is divided into two ~\textit{TreeMap} (those ~\textit{TreeMap} can be seen in Figure ~\ref{fig:error_table_structure}, blue and yellow) and a list (~\textit{ArrayList} data structure) of some error messages.
+
+We choosed the ~\textit{TreeMap} data structure for one reason, the map is sorted according to the natural ordering of its keys.
+This means that each time we insert in the ~\textit{TreeMap} data structure, the information is ordered by his key and also the key will be unique.
+In this case, the first ~\textit{TreeMap} is concerned for ordering the line number of the error message (blue tree in Figure ~\ref{fig:error_table_structure}).
+
+Then when the line number is added and ordered, we add some information linked to the line number and this is the column number of the line (yellow tree in Figure ~\ref{fig:error_table_structure}).
+
+Finally, we add the error messages to the list related to a certain line and column.
+With that data structure, we are sure that it can have a list of error messages for a certain line and column numbers and that the line and the column number are ordered for an ease interpretation regarding to the user.
+
+%example of an error message
+Let's see an example of the error table in Figure ~\ref{lst:error_table_liss_java_example}.
+
+%This error table was thrown by the example Errors.liss
+\begin{lstlisting}[caption={Example of an error table},label={lst:error_table_liss_java_example}]
+	ERROR TABLE:
+	  line: 5:18	Expression 'b'  has type 'boolean',when It should be 'integer'.
+	  line: 6:11	Expression 'flag'  has type 'integer',when It should be 'boolean'.
+	  line: 7:1	Expression 'array1=[[1,2],[2,3,4,5]],vector' has a problem with his limits.
+	  line: 8:1	Expression 'vector' already exists.
+	  line: 10:4	Expression 'seq1' already exists.
+	  line: 14:4	Expression 'b' already exists.
+\end{lstlisting}
 
 
 
