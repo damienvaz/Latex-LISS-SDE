@@ -160,7 +160,7 @@
 	% Add acknowledgements ----------------------------
 	\chapter*{Acknowledgements}
 	Firstly, I would like to thank my supervisor Pedro Rangel Henriques and co-supervisor Daniela da Cruz. They are the most who supported me throw this ambitious project and took me to the final stage of my university career.\newline
-Thank you also to my family and friends (Ranim, Bruno, Chloé, Tiago, Tamara, Saozita, Nuno, David, Natália) for supporting me.\newline
+Thank you also to my family and friends (Ranim, Bruno, Chloé, Tiago, Tamara, Saozita, Nuno, David, Karen) for supporting me.\newline
 And last but not least, I would like to dedicate this thesis to my, particularly, most beautiful mother.
 Despite you couldn't be here to watch me conclude my studies. Wherever you are, I hope that you are proud of me.	
 None of this could have been made without their unconditional help.
@@ -2594,7 +2594,8 @@ Let's see the table error structure made for our project in Figure ~\ref{fig:err
 
 \begin{figure}[h!]
   \centering
-    \includegraphics[width=1\textwidth]{img/errorTable.png}
+   % \includegraphics[width=1\textwidth]{img/errorTable.png}
+    \includegraphics[width=1\textwidth]{img/error_table_liss.png}
     \caption{ErrorTable structure}
     \label{fig:error_table_structure}
 \end{figure}
@@ -2610,13 +2611,14 @@ And this was done by creating that data structure in JAVA:
 Basically, this data structure is divided into two ~\textit{TreeMap} (those ~\textit{TreeMap} can be seen in Figure ~\ref{fig:error_table_structure}, blue and yellow) and a list (~\textit{ArrayList} data structure) of some error messages.
 
 We choosed the ~\textit{TreeMap} data structure for one reason, the map is sorted according to the natural ordering of its keys.
-This means that each time we insert in the ~\textit{TreeMap} data structure, the information is ordered by his key and also the key will be unique.
+This means that each time we insert in the ~\textit{TreeMap} data structure, the information is ordered by his key beside that also the key will be unique.
 In this case, the first ~\textit{TreeMap} is concerned for ordering the line number of the error message (blue tree in Figure ~\ref{fig:error_table_structure}).
 
 Then when the line number is added and ordered, we add some information linked to the line number and this is the column number of the line (yellow tree in Figure ~\ref{fig:error_table_structure}).
 
 Finally, we add the error messages to the list related to a certain line and column.
-With that data structure, we are sure that it can have a list of error messages for a certain line and column numbers and that the line and the column number are ordered for an ease interpretation regarding to the user.
+
+With that data structure, we are sure that it can have a list of error messages for a certain line and column numbers and that the line and the column number are ordered for an ease interpretation for the user in solving the problem regarding to his code.
 
 %example of an error message
 Let's see an example of the error table in Figure ~\ref{lst:error_table_liss_java_example}.
@@ -2632,6 +2634,94 @@ Let's see an example of the error table in Figure ~\ref{lst:error_table_liss_jav
 	  line: 14:4	Expression 'b' already exists.
 \end{lstlisting}
 
+\subsection{Types of error message}
+
+For our error table structure, we needed to add some informations relatively to the error message thrown.
+And as we said, previously, we have different kind of types for some error messages.
+
+Let's see in the Table ~\ref{tbl:types_error_message}.
+
+\newpage
+
+\begin{table}[h!]
+\centering
+\caption{Types of error message in LISS}
+\label{tbl:types_error_message}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Error type number} & \multicolumn{1}{c|}{\textbf{Error message}}                                                                                                                                                                                                                                                                                                                                             \\ \hline
+1                          & Variable \textless name\_of\_variable \textgreater isn't declared                                                                                                                                                                                                                                                                                                                       \\ \hline
+2                          & Variable \textless name\_of\_the\_variable \textgreater already exists.                                                                                                                                                                                                                                                                                                                 \\ \hline
+3                          & Variable \textless name\_of\_the\_array\_variable \textgreater must be an 'array'.                                                                                                                                                                                                                                                                                                      \\ \hline
+4                          & Variable \textless name\_of\_the\_array\_variable \textgreater has a problem with his limits.                                                                                                                                                                                                                                                                                           \\ \hline
+5                          & \begin{tabular}[c]{@{}l@{}}Variable \textless name\_of\_the\_variable \textgreater has type \textless type\_found \textgreater, when it\\  should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                                \\ \hline
+6                          & Incompatible types in Assignment.                                                                                                                                                                                                                                                                                                                                                       \\ \hline
+7                          & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless type\_found \textgreater, when it \\ should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                                   \\ \hline
+8                          & \begin{tabular}[c]{@{}l@{}}Function \textless name\_of\_the\_function \textgreater has return type \textless type\_found \textgreater, \\ when it should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                         \\ \hline
+9                          & \begin{tabular}[c]{@{}l@{}}Function \textless name\_of\_the\_function \textgreater return type must be\\ 'integer' $||$ 'boolean'.\end{tabular}                                                                                                                                                                                                                                         \\ \hline
+10                         & Function \textless name\_of\_the\_function \textgreater has an infinite cycle.                                                                                                                                                                                                                                                                                                          \\ \hline
+11                         & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless left\_type\_found \textgreater \\ \textless operator\_string \textgreater \textless right\_type\_found \textgreater, required type \\ \textless left\_type\_required \textgreater \textless operator\_string \textgreater \textless right\_type\_required \textgreater.\end{tabular} \\ \hline
+12                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater has dimension \\ \textless dimension\_found \textgreater, when it should be equal to \\ \textless dimension\_required \textgreater.\end{tabular}                                                                                                                                            \\ \hline
+13                         & 'stepUp' or 'stepDown' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                      \\ \hline
+14                         & 'satisfying' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                              \\ \hline
+15                         & Function \textless name\_of\_the\_function \textgreater does not exist.                                                                                                                                                                                                                                                                                                                 \\ \hline
+16                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater doesn't have the same \\ limits or dimensions.\end{tabular}                                                                                                                                                                                                                                 \\ \hline
+\end{tabular}
+\end{table}
+
+Notice that in Table ~\ref{tbl:types_error_message}, we have every messages used and thrown (when necessary) for the compiler and some of them have a certain semantic structure which we need to explain.
+For example, every marks:
+\begin{lstlisting}
+	<...>
+\end{lstlisting}
+found in the table message, means that it must be replaced by the correct name according to the environment that the error was found.
+
+Let's see an example in Listing ~\ref{lst:error_liss_example} to understand better the usage of the mark.
+\begin{lstlisting}[label={lst:error_liss_example},caption={Partial Listing}]
+program Errors{
+	declarations
+		seq1 =<<1,2,3,4>> -> sequence;
+		seq1 = <<1,4,7>> -> sequence;
+	statements
+}
+\end{lstlisting}
+
+In Listing ~\ref{lst:error_liss_example}, we have a LISS program which has two variables with the same name in the declarations part. As all programming language have, this behaviour of declaring two variables in the same level scope is prohibited, so the compiler must throw an error.
+
+Let's see the error table in Listing ~\ref{lst:error_table_example_liss}.
+
+\begin{lstlisting}[label={lst:error_table_example_liss},caption={Error table related to Listing ~\ref{lst:error_liss_example}}]
+  ERROR TABLE:
+  line: 4:2	Variable 'seq1' already exists.
+\end{lstlisting}
+
+The error table in ~\ref{lst:error_table_example_liss}, has an error message with the number 2 message type (see Table ~\ref{tbl:types_error_message}).
+And we can see that the mark was replaced by the name of the variable (as said in the Table ~\ref{tbl:types_error_message} regarding to the message number 2 type).
+And this is the same behavior regarding to the others messages available in the Table ~\ref{tbl:types_error_message}.
+
+Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpretation of those messages.
+
+\begin{enumerate}
+\item Message for variable that are not declared.
+\item Message for variables that already exists.
+\item Message for variables that must be an array and they are not.
+\item Message for variables that are an array type and their limits doesn't match.
+\item Message for variables that have a certain type, but they should have another type. 
+\item Message regarding to different types when an assignment is found. For example : 'integer' = 'boolean'. 
+\item Message for expressions that has different types.
+\item Message for functions regarding to the return type which might be different.
+\item Message for functions regarding to the return type which is different beside that an 'integer' or a 'boolean'.
+\item Message for functions that can be called recursively also known as infinite cycle.
+\item Message for expressions which has different types according to the operator who is being used. For example: 'integer' + 'boolean'. 
+\item Message for arrays that has different dimension, according to his declaration.
+\item Message for unconditional loop that use 'stepUp' or 'stepDown' expression.
+\item Message for unconditional loop that use 'satisfying' expression.
+\item Message for functions where the name of the function doesn't exist.
+\item Message for arrays where the limits or the dimension isn't equal as the declared array variable.
+\end{enumerate}
+
+
+\subsection{Usage of error messages}
 
 
 
