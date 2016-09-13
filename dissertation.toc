@@ -50,11 +50,14 @@
 \contentsline {subsection}{\numberline {5.3.5}Usage of error messages}{65}{subsection.5.3.5}
 \contentsline {subsubsection}{Variable declaration}{65}{subsection.5.3.5}
 \contentsline {subsubsection}{Vars}{66}{lstnumber.5.10.1}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{67}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{68}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{69}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{70}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{70}{section.7.1}
+\contentsline {subsubsection}{Set initialization}{66}{lstnumber.5.12.1}
+\contentsline {subsubsection}{Subprogram definition}{67}{lstnumber.5.15.1}
+\contentsline {subsubsection}{Assignment}{67}{lstnumber.5.17.6}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{69}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{70}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{71}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{72}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{72}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{74}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{76}{appendix.A}

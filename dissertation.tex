@@ -2608,13 +2608,13 @@ And this was done by creating that data structure in JAVA:
 	TreeMap<Integer,TreeMap<Integer,ArrayList<String>>>
 \end{lstlisting}
 
-Basically, this data structure is divided into two ~\textit{TreeMap} (those ~\textit{TreeMap} can be seen in Figure ~\ref{fig:error_table_structure}, blue and yellow) and a list (~\textit{ArrayList} data structure) of some error messages.
+Basically, this data structure is divided into two ~\textit{TreeMap} (those ~\textit{TreeMap} can be seen in Figure ~\ref{fig:error_table_structure}, black and white) and a list (~\textit{ArrayList} data structure) of some error messages.
 
 We choosed the ~\textit{TreeMap} data structure for one reason, the map is sorted according to the natural ordering of its keys.
 This means that each time we insert in the ~\textit{TreeMap} data structure, the information is ordered by his key beside that also the key will be unique.
-In this case, the first ~\textit{TreeMap} is concerned for ordering the line number of the error message (blue tree in Figure ~\ref{fig:error_table_structure}).
+In this case, the first ~\textit{TreeMap} is concerned for ordering the line number of the error message (black tree in Figure ~\ref{fig:error_table_structure}).
 
-Then when the line number is added and ordered, we add some information linked to the line number and this is the column number of the line (yellow tree in Figure ~\ref{fig:error_table_structure}).
+Then when the line number is added and ordered, we add some information linked to the line number and this is the column number of the line (white tree in Figure ~\ref{fig:error_table_structure}).
 
 Finally, we add the error messages to the list related to a certain line and column.
 
@@ -2658,14 +2658,13 @@ Let's see in the Table ~\ref{tbl:types_error_message}.
 6                          & Incompatible types in Assignment.                                                                                                                                                                                                                                                                                                                                                       \\ \hline
 7                          & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless type\_found \textgreater, when it \\ should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                                   \\ \hline
 8                          & \begin{tabular}[c]{@{}l@{}}Function \textless name\_of\_the\_function \textgreater has return type \textless type\_found \textgreater, \\ when it should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                         \\ \hline
-9                          & \begin{tabular}[c]{@{}l@{}}Function \textless name\_of\_the\_function \textgreater return type must be\\ 'integer' $||$ 'boolean'.\end{tabular}                                                                                                                                                                                                                                         \\ \hline
-10                         & Function \textless name\_of\_the\_function \textgreater has an infinite cycle.                                                                                                                                                                                                                                                                                                          \\ \hline
-11                         & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless left\_type\_found \textgreater \\ \textless operator\_string \textgreater \textless right\_type\_found \textgreater, required type \\ \textless left\_type\_required \textgreater \textless operator\_string \textgreater \textless right\_type\_required \textgreater.\end{tabular} \\ \hline
-12                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater has dimension \\ \textless dimension\_found \textgreater, when it should be equal to \\ \textless dimension\_required \textgreater.\end{tabular}                                                                                                                                            \\ \hline
-13                         & 'stepUp' or 'stepDown' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                      \\ \hline
-14                         & 'satisfying' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                              \\ \hline
-15                         & Function \textless name\_of\_the\_function \textgreater does not exist.                                                                                                                                                                                                                                                                                                                 \\ \hline
-16                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater doesn't have the same \\ limits or dimensions.\end{tabular}                                                                                                                                                                                                                                 \\ \hline
+9                         & Function \textless name\_of\_the\_function \textgreater has an infinite cycle.                                                                                                                                                                                                                                                                                                          \\ \hline
+10                        & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless left\_type\_found \textgreater \\ \textless operator\_string \textgreater \textless right\_type\_found \textgreater, required type \\ \textless left\_type\_required \textgreater \textless operator\_string \textgreater \textless right\_type\_required \textgreater.\end{tabular} \\ \hline
+11                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater has dimension \\ \textless dimension\_found \textgreater, when it should be equal to \\ \textless dimension\_required \textgreater.\end{tabular}                                                                                                                                            \\ \hline
+12                         & 'stepUp' or 'stepDown' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                      \\ \hline
+13                         & 'satisfying' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                              \\ \hline
+14                         & Function \textless name\_of\_the\_function \textgreater does not exist.                                                                                                                                                                                                                                                                                                                 \\ \hline
+15                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater doesn't have the same \\ limits or dimensions.\end{tabular}                                                                                                                                                                                                                                 \\ \hline
 \end{tabular}
 \end{table}
 
@@ -2710,7 +2709,6 @@ Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpre
 \item Message regarding to different types when an assignment is found. For example : 'integer' = 'boolean'. 
 \item Message for expressions that has different types.
 \item Message for functions regarding to the return type which might be different.
-\item Message for functions regarding to the return type which is different beside that an 'integer' or a 'boolean'.
 \item Message for functions that can be called recursively also known as infinite cycle.
 \item Message for expressions which has different types according to the operator who is being used. For example: 'integer' + 'boolean'. 
 \item Message for arrays that has different dimension, according to his declaration.
@@ -2727,7 +2725,7 @@ In this section, we are going to report where the error message will be thrown i
 
 \subsubsection{Variable declaration}
 
-\begin{lstlisting}[label={lst:variable_declaration_error},caption={Variable declaration error in LISS}]
+\begin{lstlisting}[label={lst:variable_declaration_error},caption={Variable declaration rule in LISS}]
   variable_declaration : vars '->' type ';'
 \end{lstlisting}
 
@@ -2753,9 +2751,80 @@ Let's see an example of an array type error message regarding to this case in Li
 
 \subsubsection{Vars}
 
-\begin{lstlisting}[label={lst:vars_error_message},caption={Vars error in LISS}]
+\begin{lstlisting}[label={lst:vars_error_message},caption={Vars rule in LISS}]
   vars : v1 (',' v2)*
 \end{lstlisting}
+
+In Listing ~\ref{lst:vars_error_message}, this grammar part refers to the declaration of multiple variables in a same line under the declarations section in LISS.
+
+And for this part we need to check if the variables that will be added to the symbol table, they are already created or not. If they are already, then the number 2 error message will be thrown (see Table ~\ref{tbl:types_error_message}).
+Let's see an example of LISS that can throw this error in the error table in Listing ~\ref{lst:example_var_error_message_liss}.
+
+\begin{lstlisting}[label={lst:example_var_error_message_liss},caption={Example of an error message in LISS for vars non-terminal}]
+  a = 4, a = 5 -> integer;
+\end{lstlisting}
+
+In Listing ~\ref{lst:example_var_error_message_liss}, there is a problem regarding that two variables with the same name are being created. This must throw an error as we said previously, and an error message related to the second variable.
+
+\subsubsection{Set initialization}
+
+\begin{lstlisting}[label={lst:set_initialization_error_message},caption={Set initialization rule in LISS}]
+  set_initialization :                    
+                     | identifier '|' expression
+\end{lstlisting}
+
+In Listing ~\ref{lst:set_initialization_error_message}, this part refers for declaring a set under the declarations section in LISS.
+And it has two choices for declaring a set: empty set or some content for the set.
+If there is some content available, this content must be a boolean expression. In case the expression isn't a boolean, it will throw an error message to the error table and this will be the number 7 error message (see Table ~\ref{tbl:types_error_message}).
+Let's see an example of  this error with a piece of LISS code related to set initialization in Listing ~\ref{lst:example_set_initialization_error_message}.
+
+\begin{lstlisting}[label={lst:example_set_initialization_error_message},caption={Example of an error message in LISS for set\_initialization non-terminal}]
+  set6 = { z | (z+tail(z)) < 5} -> set;
+\end{lstlisting}
+
+In Listing ~\ref{lst:example_set_initialization_error_message}, we can see that the variable won't be declared due to the fact that the content isn't correct. The function ~\textit{tail} is a function for sequence and it needs a sequence variable as an argument, not an integer variable (as we can see). The compiler will return the type of that operation as 'null' because he can't execute that operation.
+
+Then, there is an sum operator who needs a variable of type integer. But due to the previous statements we have made, the type that the sum operator will have, are: integer (from ~\textit{z} variable) and a null (from ~\textit{tail(z)}). 
+The compiler can't execute it too, so the error is being spread throw the entire operation of the set content.
+
+In the end, after calculating the content of the set initialization of the set, the error table will have that comment regarding to that variable in Listing ~\ref{lst:error_message_set_initialization}.
+
+\begin{lstlisting}[label={lst:error_message_set_initialization},caption={Error message for the set\_initialization}]
+  line: 20:18	Expression '(z+tail(z))<5'  has type 'null',when It should be 'boolean'.
+\end{lstlisting}
+
+\subsubsection{Subprogram definition}
+
+\begin{lstlisting}[label={lst:subprogram_definition_error_message},caption={Subprogram definition rule in LISS}]
+  subprogram_definition : 'subprogram' identifier '('  formal_args ')' return_type f_body
+\end{lstlisting}
+
+In Listing ~\ref{lst:subprogram_definition_error_message}, this part refers for declaring any subprogram (functions) under the declaration section in LISS.
+And for this part we need to check the return type of the subprogram.
+
+If the return type has a different type chosen and type needed (for example, type chosen is boolean, but the return type is an integer) then the number 7 error message (see Table ~\ref{tbl:types_error_message}) is thrown.
+
+Let's see an example of this case in Listing ~\ref{lst:error_message_subprogram_definition}.
+
+\begin{lstlisting}[label={lst:error_message_subprogram_definition},caption={Example of error message in LISS for subprogram\_definition non\_terminal}]
+  subprogram f(amen->boolean)->integer{
+        declarations
+               b -> boolean;
+        statements
+        return b;
+  }
+\end{lstlisting}
+
+In Listing ~\ref{lst:error_message_subprogram_definition}, we can see that the return type permitted is an integer. But with this example, the subprogram returns a variable called 'b' and has a boolean type. In this case, an error message will be reported due to the incorrectness type.
+
+\subsubsection{Assignment}
+
+\begin{lstlisting}[label={lst:assignment_error_message},caption={Assignment rule in LISS}]
+  assignment : designator '=' expression
+\end{lstlisting}
+
+
+
 
 %The lexical syntax is usually a regular language, with the grammar rules consisting of regular expressions; they define the set of possible character sequences that are used to form individual tokens or lexemes. A lexer recognizes strings, and for each kind of string found the lexical program takes an action, most simply producing a token.
 
