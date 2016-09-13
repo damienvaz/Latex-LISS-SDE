@@ -48,11 +48,13 @@
 \contentsline {subsection}{\numberline {5.3.3}Error table in LISS}{61}{subsection.5.3.3}
 \contentsline {subsection}{\numberline {5.3.4}Types of error message}{62}{subsection.5.3.4}
 \contentsline {subsection}{\numberline {5.3.5}Usage of error messages}{65}{subsection.5.3.5}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{66}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{67}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{68}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{69}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{69}{section.7.1}
+\contentsline {subsubsection}{Variable declaration}{65}{subsection.5.3.5}
+\contentsline {subsubsection}{Vars}{66}{lstnumber.5.10.1}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{67}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{68}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{69}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{70}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{70}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{73}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{74}{appendix.A}
