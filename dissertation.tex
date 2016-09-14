@@ -2932,6 +2932,46 @@ In that case the minus sign needs an integer in both side (left and right), and 
 
 \subsubsection{Single expression}
 
+\begin{lstlisting}[caption={Single\_expresion rule in LISS},label={lst:single_expression_error_message}]
+  single_expression : term ( add_op term)*
+\end{lstlisting}
+
+In Listing ~\ref{lst:single_expression_error_message}, this part refers to the expansion of the ~\textit{single\_expression} non-terminal rule of the ~\textit{expression} rule in LISS.
+And the behaviour is the same as the ~\textit{expression} rule, this means that we need to check the types required for the ~\textit{add\_op} non-terminal. If ~\textit{single\_expression} non-terminal type don't coincide with the required type regarding to the ~\textit{add\_op} non-terminal, then it must throw the number 10 error message to the error table.
+
+\subsubsection{Term}
+
+\begin{lstlisting}[caption={Term rule in LISS},label={lst:term_error_message}]
+  term : factor ( mul_op factor)*
+\end{lstlisting}
+
+In Listing ~\ref{lst:term_error_message}, this part refers to the expansion of the ~\textit{term} non-terminal rule of the ~\textit{single\_expression} rule in LISS.
+And the behaviour is the same as the ~\textit{expression} rule, this means that we need to check the types required for the ~\textit{mul\_op} non-terminal. If ~\textit{factor} non-terminal type don't coincide with the required type regarding to the ~\textit{mul\_op} non-terminal, then it must throw the number 10 error message to the error table.
+
+\subsubsection{Factor}
+
+\begin{lstlisting}[caption={Factor rule in LISS},label={lst:factor_error_message}]
+  factor : inic_var
+            | designator
+            | '(' expression ')'
+            | '!' factor
+            | function_call
+            | specialFunctions
+\end{lstlisting}
+
+In Listing ~\ref{lst:factor_error_message}, this part refers to the expansion of the ~\textit{factor} non-terminal rule of the ~\textit{term} rule in LISS.
+And as it can be seen, there is a lot of options for this rule.
+
+But we will do a particular attention to a simple one choice of that rule:
+
+\begin{lstlisting}
+  '!' factor
+\end{lstlisting}
+
+Notice that there is an exclamation mark sign and then a ~\textit{factor} non-terminal. In programming langues, the exclamation mark means that it negate the expression. And this type of negation requires a boolean type in order to work correctly.
+So, if the type of the ~\textit{factor} non-terminal is not a boolean. Then the number 7 error message will be added to the error table.
+
+\subsubsection{Print\_what}
 
 
 
