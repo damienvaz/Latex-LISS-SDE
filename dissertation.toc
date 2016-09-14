@@ -53,11 +53,16 @@
 \contentsline {subsubsection}{Set initialization}{66}{lstnumber.5.12.1}
 \contentsline {subsubsection}{Subprogram definition}{67}{lstnumber.5.15.1}
 \contentsline {subsubsection}{Assignment}{67}{lstnumber.5.17.6}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{69}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{70}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{71}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{72}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{72}{section.7.1}
+\contentsline {subsubsection}{Designator}{69}{lstnumber.5.21.1}
+\contentsline {subsubsection}{Elem array}{69}{lstnumber.5.22.1}
+\contentsline {subsubsection}{Function call}{70}{lstnumber.5.23.1}
+\contentsline {subsubsection}{Expression}{70}{lstnumber.5.24.1}
+\contentsline {subsubsection}{Single expression}{70}{lstnumber.5.26.1}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{71}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{72}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{73}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{74}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{74}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{76}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{78}{appendix.A}

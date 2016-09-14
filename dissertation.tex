@@ -2658,7 +2658,8 @@ Let's see in the Table ~\ref{tbl:types_error_message}.
 6                          & Incompatible types in Assignment.                                                                                                                                                                                                                                                                                                                                                       \\ \hline
 7                          & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless type\_found \textgreater, when it \\ should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                                   \\ \hline
 8                          & \begin{tabular}[c]{@{}l@{}}Function \textless name\_of\_the\_function \textgreater has return type \textless type\_found \textgreater, \\ when it should be \textless type\_expected \textgreater.\end{tabular}                                                                                                                                                                         \\ \hline
-9                         & Function \textless name\_of\_the\_function \textgreater has an infinite cycle.                                                                                                                                                                                                                                                                                                          \\ \hline
+9                         & Variable \textless name\_of\_the\_function \textgreater is not a function.
+ \\ \hline
 10                        & \begin{tabular}[c]{@{}l@{}}Expression \textless expression\_string \textgreater has type \textless left\_type\_found \textgreater \\ \textless operator\_string \textgreater \textless right\_type\_found \textgreater, required type \\ \textless left\_type\_required \textgreater \textless operator\_string \textgreater \textless right\_type\_required \textgreater.\end{tabular} \\ \hline
 11                         & \begin{tabular}[c]{@{}l@{}}Expression \textless name\_of\_the\_array\_variable \textgreater has dimension \\ \textless dimension\_found \textgreater, when it should be equal to \\ \textless dimension\_required \textgreater.\end{tabular}                                                                                                                                            \\ \hline
 12                         & 'stepUp' or 'stepDown' expression, not valid with "inArray" operation.                                                                                                                                                                                                                                                                                                                      \\ \hline
@@ -2709,7 +2710,7 @@ Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpre
 \item Message regarding to different types when an assignment is found. For example : 'integer' = 'boolean'. 
 \item Message for expressions that has different types.
 \item Message for functions regarding to the return type which might be different.
-\item Message for functions that can be called recursively also known as infinite cycle.
+\item Message for functions which the name of the function doesn't have the type function and does have another type.
 \item Message for expressions which has different types according to the operator who is being used. For example: 'integer' + 'boolean'. 
 \item Message for arrays that has different dimension, according to his declaration.
 \item Message for unconditional loop that use 'stepUp' or 'stepDown' expression.
@@ -2822,6 +2823,118 @@ In Listing ~\ref{lst:error_message_subprogram_definition}, we can see that the r
 \begin{lstlisting}[label={lst:assignment_error_message},caption={Assignment rule in LISS}]
   assignment : designator '=' expression
 \end{lstlisting}
+
+In Listing ~\ref{lst:assignment_error_message}, this part refers for assigning some content to a variable or an array under the statement section in LISS.
+And for this part we need to check some error messages regarding to the context available.
+Let's explain those differents context below.
+
+If the designator non-terminal in Listing ~\ref{lst:assignment_error_message}, is a variable of type ~\textit{array}. It means that we can store some content for that variable (see example of this case in Listing ~\ref{lst:store_values_to_array_assignment}).
+
+\begin{lstlisting}[caption={Example of storing some values to an array variable},label={lst:store_values_to_array_assignment}]
+  array1 = [1,2,3];
+\end{lstlisting}
+
+In Listing ~\ref{lst:store_values_to_array_assignment}, we see a variable named ~\textit{array1} with the type ~\textit{array} and it will be assigned to some values shown in the example, ~\textit{[1,2,3]}. For this example, we need to check if the values have the correct dimension and limits regarding the variable. In this case, if it isn't correct then the number 15 error message ( see Table ~\ref{tbl:types_error_message}).
+
+Also the same error message is reported for the case of the next example in Listing ~\ref{lst:storing_one_value_to_an_array_assignment}.
+
+\begin{lstlisting}[caption={Example of storing a value to a certain position in the array},label={lst:storing_one_value_to_an_array_assignment}]
+  array[3] = 1;
+\end{lstlisting}
+
+In Listing ~\ref{lst:storing_one_value_to_an_array_assignment}, if the variable ~\textit{array} has only two position available. This means that the access of the fourth position (as shown in the example), it is behind of the limits regarding to the specification of the variable.
+And, in this case, it must throw the number 15 error message too ( see Table ~\ref{tbl:types_error_message}).
+
+Last case for this part concerns about the types of ~\textit{designator} non-terminal and ~\textit{expression} non-terminal not being equals. In this case, the compiler can't execute and procede with the assignment operation.
+
+This will throw the number 6 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Let's see an example of this case in Listing ~\ref{lst:different_types_assignment}.
+
+\begin{lstlisting}[caption={Example of assignment with differents types},label={lst:different_types_assignment}]
+  boolean1 = integer1;
+\end{lstlisting}
+
+In Listing ~\ref{lst:different_types_assignment}, the example informs us that assignment operation is trying to store an integer to the ~\textit{boolean1} variable (which has the boolean type).
+As we know, if the types aren't equals then the operations cannot be executed and must report an error.
+
+\subsubsection{Designator}
+
+\begin{lstlisting}[caption={Designator rule in LISS},label={lst:designator_error_message}]
+  designator : identifier array_access
+\end{lstlisting}
+
+In Listing ~\ref{lst:designator_error_message}, this part refers for using a variable or an array variable under the statement section in LISS.
+And we need to check some errors when it used only for a variable context or in the array variable context.
+
+Let's speak firstly for the variable context.
+
+If it is only the variable context, the ~\textit{array\_access} is not available but, only, the ~\textit{identifier} non-terminal will be available.
+
+Every variable used must be declared in the symbol table. If it doesn't exist in the symbol table, it means that variable doesn't exist and we need to throw an error in the error table, number 1 error message (see Table ~\ref{tbl:types_error_message}).
+
+We need to check if the name of the ~\textit{identifier} isn't the same as the name of a type in LISS (see Table ~\ref{tbl:type_category_information}). If it is, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Now regarding to the array variable context, we need to check a lot of errors.
+
+Firstly, we need to check if the identifier is available in the symbol table otherwise it will throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+ 
+Secondly, we need to check if the name of the identifier isn't the same name as the name of a type in LISS (see Table ~\ref{tbl:type_category_information}). If it is, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Thirdly, we need to check the type of identifier. If the type isn't an array then we need to throw the number 3 error message (see Table ~\ref{tbl:types_error_message}).
+
+And finally, we need to check if the ~\textit{identifier} and the ~\textit{array\_access} non-terminal have the same dimension. If they don't have then it must be throw the number 11 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Elem array}
+
+\begin{lstlisting}[caption={Elem\_array rule in LISS},label={lst:elem_array_error_message}]
+  elem_array : s1=single_expression ( ',' s2=single_expression )*
+\end{lstlisting}
+
+In Listing ~\ref{lst:elem_array_error_message}, this part refers to the elements of an array.
+And for this part we need to check if every elements (represented by the ~\textit{single\_expression} non-terminal) has the correct type.
+
+In an array context, the type of each elements must be an integer. If it isn't then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Function call}
+
+\begin{lstlisting}[caption={Function\_call rule in LISS},label={lst:function_call_error_message}]
+  function_call : i=identifier '(' sub_prg_args ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:function_call_error_message}, this part is related to call some functions under the statement section in LISS.
+For this context, we need to check two things regarding to errors.
+
+Firstly, we need to check if the ~\textit{identifier} is available in the symbol table. If it isn't then it must throw the number 14 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Lastly, we need to check if the ~\textit{identifier} has the correct type ( ~\textit{Function} type). If it doesn't have then it must throw the number 9 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Expression}
+
+\begin{lstlisting}[caption={Expression rule in LISS}, label={lst:expression_error_message}]
+  expression : single_expression (rel_op single_expression )?
+\end{lstlisting}
+
+In Listing ~\ref{lst:expression_error_message}, this part refers to expression that can be used in a various way in LISS. 
+For this case, we need to check if the type of both ~\textit{single\_expression} non-terminal are correct in relation to the type required for the ~\textit{rel\_op} non-terminal. If they are not, then we throw the number 10 error message to the error table (see Table ~\ref{tbl:types_error_message}). 
+
+Notice that it is the ~\textit{rel\_op} non-terminal who tells which type that the left and right ~\textit{single\_expression} non-terminal must have.
+
+Let's see an example in Listing ~\ref{lst:example_expression_error_message}.
+
+\begin{lstlisting}[caption={Example of an error message in expression rule},label={lst:example_expression_error_message}]
+  2 < true
+\end{lstlisting}
+
+In Listing ~\ref{lst:example_expression_error_message}, we can see the number two ( first single\_expression annotation ) then the minus sign (the rel\_op annotation ) and finaly the true value ( the last single\_expression annotation).
+If we procede to calculate the entire expression, we can see that the types doesn't match at all between them.
+In that case the minus sign needs an integer in both side (left and right), and actually it does have an integer and a boolean expression which is an error to be thrown in the error table.
+
+\subsubsection{Single expression}
+
+
+
+
 
 
 
