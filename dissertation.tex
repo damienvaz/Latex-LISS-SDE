@@ -2973,6 +2973,49 @@ So, if the type of the ~\textit{factor} non-terminal is not a boolean. Then the 
 
 \subsubsection{Print\_what}
 
+\begin{lstlisting}[caption={Print\_what rule in LISS},label={lst:print_what_error_message}]
+  print_what : 
+             | expression
+             | string
+\end{lstlisting}
+
+In Listing ~\ref{lst:print_what_error_message}, this part refers for printing in the output with the use of LISS language.
+
+And we need to check the type of the ~\textit{expression} non-terminal. If the type is a ~\textit{set} then it must throw the number 7 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+
+Notice that the type allowed for the ~\textit{expression} non-terminal are :
+
+\begin{itemize}
+\item integer
+\item boolean
+\item sequence
+\item array
+\end{itemize}
+
+\subsubsection{Read}
+
+\begin{lstlisting}[caption={Read rule in LISS},label={lst:read_error_message}]
+  read_statement : 'input' '(' identifier ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:read_error_message}, this part refers for reading the input of the user which will be stored to the ~\textit{identifier} non-terminal in LISS.
+And we need to check some errors for that non-terminal.
+
+If the ~\textit{identifier} non-terminal doesn't exist in the symbol table, then we must thrown the number 1 error message (see Table ~\ref{tbl:types_error_message}).
+If the ~\textit{identifier} exists in the symbol table, we must check the type of it.
+If the type isn't an integer, then we must throw the number 5 error message in the error table ( see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{If\_then\_else\_stat}
+
+\begin{lstlisting}[caption={If\_then\_else\_stat rule in LISS},label={lst:if_then_else_stat_error_message}]
+  if_then_else_stat : 'if' '(' expression ')'
+                      'then' '{' statements '}'
+                       else_expression
+\end{lstlisting}
+
+In Listing ~\ref{lst:if_then_else_stat_error_message}, this part refers in the use of a conditional expression and particularly, an 'if' statement.
+
+As all programming languages, the behaviour of an 'if' statement is the same. And we do also the same in LISS, it means that the ~\textit{expression} non-terminal must be a boolean type. Because this is the condition of the 'if' statement which will say if it will enter to that branch or to another branch. If the ~\textit{expression} non-terminal type isn't a boolean, then it must throw the number 7 error message to the error table ( see Table ~\ref{tbl:types_error_message}).
 
 
 
