@@ -3015,7 +3015,116 @@ If the type isn't an integer, then we must throw the number 5 error message in t
 
 In Listing ~\ref{lst:if_then_else_stat_error_message}, this part refers in the use of a conditional expression and particularly, an 'if' statement.
 
-As all programming languages, the behaviour of an 'if' statement is the same. And we do also the same in LISS, it means that the ~\textit{expression} non-terminal must be a boolean type. Because this is the condition of the 'if' statement which will say if it will enter to that branch or to another branch. If the ~\textit{expression} non-terminal type isn't a boolean, then it must throw the number 7 error message to the error table ( see Table ~\ref{tbl:types_error_message}).
+As all programming languages, the behaviour of an 'if' statement is the same. And we do also the same in LISS, it means that the ~\textit{expression} non-terminal must be a boolean type. Because as it is a condition with an 'if' statement it will say if it will enter to that branch or to another branch regarding to the value of the condition. If the ~\textit{expression} non-terminal type isn't a boolean, then it must throw the number 7 error message to the error table ( see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{For\_stat}
+
+\begin{lstlisting}[caption={For\_stat rule in LISS},label={lst:for_stat_error_message}]
+  for_stat : 'for' '(' interval ')' step satisfy
+             {
+               statements
+             }
+\end{lstlisting}
+
+In Listing ~\ref{lst:for_stat_error_message}, this part refers to the use of a 'for-loop' statements in LISS.
+
+For this particular case, we test an error regarding to the use of a 'for-each' context or not.
+
+Remember that in LISS context, we are able to use a 'for-loop' which can access to every elements of an array, also called 'for-each'.
+And with that 'for-each' context, we cannot use ~\textit{step} non-terminal and ~\textit{satisfy} non-terminal.
+So we must check if we use a 'for-each' loop, if it is used then we need to check if the ~\textit{step} or ~\textit{satisfy} non-terminal are available.
+
+If the ~\textit{step} non-terminal is available then we must throw the number 12 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+If the ~\textit{satisfy} non-terminal is available then we must throw the number 13 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Let's see an example of those cases in Listing ~\ref{lst:for_stat_error_message_example}.
+
+\begin{lstlisting}[caption={Example of an error message in for\_stat rule},label={lst:for_stat_error_message_example}]
+  for(b inArray vector) stepDown 1 satisfying vector[0] == a
+\end{lstlisting}
+
+In Listing ~\ref{lst:for_stat_error_message_example}, the fact that there is an ~\textit{inArray} word means that the statement is a 'for-each' loop. And for this case we cannot use a ~\textit{step} or a ~\textit{satisfying} rule. But, for this case, there is.
+
+For the compiler, it means that it must throw both the number 12 and 13 error message to the error table due to the incorectness of the language LISS.
+
+\subsubsection{Interval}
+
+\begin{lstlisting}[caption={Interval rule in LISS},label={lst:interval_error_message}]
+  interval : identifier type_interval
+\end{lstlisting}
+
+In Listing ~\ref{lst:interval_error_message}, this part refers to the expansion of the ~\textit{interval} non-terminal rule of the ~\textit{for\_stat} rule in LISS.
+
+We need to check if the ~\textit{identifier} non-terminal is available to the symbol table, if it isn't then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+If the ~\textit{identifier} is on the symbol table, we need to check the type of the variable.
+
+As we said before, the 'for-each' statement refers to the use of ~\textit{array}. And the type ~\textit{array}, uses only ~\textit{integer} elements. In this case, the variable ~\textit{identifier} must also have the same type, ~\textit{integer}.
+
+So we need to check the type of the variable ~\textit{identifier} and see if it is an ~\textit{integer}.
+If it isn't, then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Type\_interval}
+
+\begin{lstlisting}[caption={Type\_interval rule in LISS},label={lst:type_interval_error_message}]
+  type_interval : 'in' range
+                | 'inArray' identifier
+\end{lstlisting}
+
+In Listing ~\ref{lst:type_interval_error_message}, this part refers to the expansion of the ~\textit{type\_interval} non-terminal rule of the ~\textit{interval} rule in LISS. It tells us which kind of operation can be a 'for-loop' in LISS.
+And as we can see there is two choices, the normal behaviour of the 'for-loop' statement (represented by ~\textit{in range}) and the 'for-each' statement (represented by ~\textit{inArray identifier}).
+For this case, we make only an attention to the 'for-each' statement, and particularly to the ~\textit{identifier} terminal.
+
+We need to check if the ~\textit{identifier} variable is on the symbol table firstly, if it isn't the number 1 error message will be throw in the error table (see Table ~\ref{tbl:types_error_message}).
+Then we need to check the type that ~\textit{identifier} variable has. If the variable isn't an ~\textit{array} then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Minimum}
+
+\begin{lstlisting}[caption={Minimum rule in LISS},label={lst:minimum_error_message}]
+  minimum : number
+          | identifier
+\end{lstlisting}
+
+In Listing ~\ref{lst:minimum_error_message}, this part refers to the expansion of the ~~\textit{range} non-terminal rule of the ~\textit{type\_interval} rule in LISS.
+
+For this case, we have two options; the first one is to give a number, the second one is to give a variable.
+And regarding for the variable, we need to check if it is avaible in the symbol table. If it isn't then it means that it isn't declared which will be throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+But if the variable belongs to the symbol table, we need to check the type of it. If the type isn't an ~\textit{integer} then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Maximum}
+
+\begin{lstlisting}[caption={Maximum rule in LISS},label={lst:maximum_error_message}]
+  maximum : number
+          | identifier
+\end{lstlisting}
+
+In Listing ~\ref{lst:maximum_error_message}, this part refers to the expansion of the ~\textit{range} non-terminal rule of the ~\textit{type\_interval} rule in LISS. And the behaviour is the same as the ~\textit{minimum} rule, this means that we need to check the ~\textit{identifier} terminal (variable) in the symbol table. If it isn't available then it means that the variable isn't declared and must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+If the variable exists, we need to check his type. If the type isn't an ~\textit{integer} then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Satisfy}
+
+\begin{lstlisting}[caption={Satisfy rule in LISS},label={lst:satisfy_error_message}]
+  satisfy :
+          | 'satisfying' expression
+\end{lstlisting}
+
+In Listing ~\ref{lst:satisfy_error_message}, this part refers to the expansion of the ~\textit{for\_stat} non-terminal rule of the ~\textit{satisfy} rule in LISS.
+Basically, the ~\textit{satisfying} word means that there is a condition who must be calculated and should be 'true' in order to proceed.
+
+In this case, the ~\textit{expression} is the condition and it must have a boolean type. If the ~\textit{expression} type isn't a boolean then it must throw  the number 7 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{While\_stat}
+
+\begin{lstlisting}[caption={While\_stat rule in LISS},label={lst:while_stat_error_message}]
+  while_stat : 'while' '(' expression ')' 
+               '{' statements '}'
+\end{lstlisting}
+
+In Listing ~\ref{lst:while_stat_error_message}, 
+
+
 
 
 
