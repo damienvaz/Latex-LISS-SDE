@@ -3122,7 +3122,82 @@ In this case, the ~\textit{expression} is the condition and it must have a boole
                '{' statements '}'
 \end{lstlisting}
 
-In Listing ~\ref{lst:while_stat_error_message}, 
+In Listing ~\ref{lst:while_stat_error_message}, this part refers to the use of a condition loop and particularly named as a ~\textit{while} statement.
+
+For this case, we need to check if the condition ( also known as ~\textit{expression} non-terminal), has the correct type.
+
+Notice that a condition must have a ~\textit{boolean} type and we need to check if the ~\textit{expression} type is a boolean. If it isn't then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Succ\_or\_pred}
+
+\begin{lstlisting}[caption={Succ\_or\_pred rule in LISS},label={lst:succ_or_pred_error_message}]
+  succ_or_pred : succ_pred identifier
+\end{lstlisting}
+
+In Listing ~\ref{lst:succ_or_pred_error_message}, this part refers for incrementing or decrementing a variable in LISS and it is used as a statement.
+Regarding to this case, we need to check two things.
+
+First, we need to check if the ~\textit{identifier} (also known as variable) is available in the symbol table. If it isn't then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+In case that the variable is in the symbol table, we need to check his type associated. If the type isn't an ~\textit{integer}, then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Tail}
+
+\begin{lstlisting}[caption={Tail rule in LISS},label={lst:tail_error_message}]
+  'tail' '(' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:tail_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Tail} function).
+
+For this case, we need to see if the ~\textit{expression} type have the correct type in order to work properly.
+
+If the ~\textit{expression} type doesn't have the ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Head}
+
+\begin{lstlisting}[caption={Head rule in LISS},label={lst:head_error_message}]
+  'head' '(' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:head_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Head} function).
+
+For this case, we need to see if the ~\textit{expression} type have the correct type in order to work properly.
+
+If the ~\textit{expression} type doesn't have the ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Cons}
+
+\begin{lstlisting}[caption={Cons rule in LISS},label={lst:cons_error_message}]
+  'cons' '(' expression ',' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:cons_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Cons} function).
+
+For this case, we need to see if both of the ~\textit{expression} non-terminal have the correct type in order to work properly.
+
+If the first ~\textit{expression} non-terminal (the most left one) doesn't have an ~\textit{integer} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Also if the second ~\textit{expression} non-terminal (the most right one) doesn't have a ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Delete}
+
+\begin{lstlisting}[caption={Delete rule in LISS},label={lst:delete_error_message}]
+  delete : 'del' '(' expression ',' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:delete_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{delete} function).
+
+For this case, we need to see if both of the ~\textit{expression} non-terminal have the correct type in order to work properly.
+
+If the first ~\textit{expression} non-terminal (the most left one) doesn't have an ~\textit{integer} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+If the second ~\textit{expression} non-terminal (the most right one) doesn't have a ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Copy\_statement}
+
+\begin{lstlisting}[caption={Copy\_statement rule in LISS},label={lst:copy_statement_error_message}]
+  'copy' '(' identifier ',' identifier ')'
+\end{lstlisting}
 
 
 
