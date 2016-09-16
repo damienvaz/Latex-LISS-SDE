@@ -76,11 +76,15 @@
 \contentsline {subsubsection}{Cons}{77}{lstnumber.5.43.1}
 \contentsline {subsubsection}{Delete}{77}{lstnumber.5.44.1}
 \contentsline {subsubsection}{Copy\_statement}{78}{lstnumber.5.45.1}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{79}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{80}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{81}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{82}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{82}{section.7.1}
+\contentsline {subsubsection}{Cat\_statement}{78}{lstnumber.5.46.1}
+\contentsline {subsubsection}{Is\_empty}{79}{lstnumber.5.47.1}
+\contentsline {subsubsection}{Length}{79}{lstnumber.5.48.1}
+\contentsline {subsubsection}{Member}{79}{lstnumber.5.49.1}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{80}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{81}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{82}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{83}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{83}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{86}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{87}{appendix.A}

@@ -3199,6 +3199,72 @@ If the second ~\textit{expression} non-terminal (the most right one) doesn't hav
   'copy' '(' identifier ',' identifier ')'
 \end{lstlisting}
 
+In Listing ~\ref{lst:copy_statement_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{copy} function).
+
+For this case, we need to see if both of the ~\textit{identifier} terminal are in the symbol table and have the correct type in order to work properly.
+
+If one of the ~\textit{identifier} aren't available in the symbol table, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+After seeing the availability of both ~\textit{identifier} in the symbol table, we need to check their type.
+If both of the variables aren't a ~\textit{sequence} type, then it must throw the number 5 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Cat\_statement}
+
+\begin{lstlisting}[caption={Cat\_statement rule in LISS},label={lst:cat_statement_error_message}]
+  cat_statement : 'cat' '(' identifier ',' identifier ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:cat_statement_error_message}, this part refers to the use a ~\textit{sequence} function (also known by ~\textit{cat} function) and it has the same behaviour as the ~\textit{copy} statement rule. 
+
+This means that we need to check if both of the ~\textit{identifier} terminal are in the symbol table and have the correct type in order to work properly.
+
+If one of the ~\textit{identifier} aren't available in the symbol table, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+Then, after checking the availability of both ~\textit{identifier} in the symbol table, we need to check their type. If both of the variables aren't a ~\textit{sequence} type, then it must throw the number 5 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Is\_empty}
+
+\begin{lstlisting}[caption={Is\_empty rule in LISS}, label={lst:is_empty_error_message}]
+  is_empty : 'isEmpty' '(' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:is_empty_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{is\_empty} function).
+
+For this case, we need to check, only, the type of ~\textit{expression} non-terminal.
+
+In order to proceed the correctness of the ~\textit{is\_empty} function, the ~\textit{expression} non-terminal type must be a ~\textit{sequence}. If it isn't, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Length}
+
+\begin{lstlisting}[caption={Length rule in LISS},label={lst:length_error_message}]
+  length : 'length''(' expression ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:length_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{length} function) and it is the same behaviour as ~\textit{is\_empty} function.
+
+We need to check, only, the type of ~\textit{expression} non-terminal.
+If the ~\textit{expression} non-terminal type isn't a ~\textit{sequence}, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+\subsubsection{Member}
+
+\begin{lstlisting}[caption={Member rule in LISS},label={lst:member_error_message}]
+  member : 'isMember''(' expression ',' identifier ')'
+\end{lstlisting}
+
+In Listing ~\ref{lst:member_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{member} function).
+For this case, we need to check firstly the ~\textit{identifier} and then the ~\textit{expression} non-terminal.
+
+If the ~\textit{identifier} terminal is not available in the symbol table, then we must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+Otherwise, if the variable is in the symbol table, we need to check the type of both (~\textit{identifier} and ~\textit{expression}).
+
+~\textit{Identifier} terminal type must be an ~\textit{integer}. If it isn't then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+If ~\textit{expression} non-terminal type isn't an ~\textit{integer}, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+
+
+%Faire un resume de l'histoire des erreurs
+
+
 
 
 
