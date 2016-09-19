@@ -2224,11 +2224,11 @@ The compiler task is divided into several steps (see Figure ~\ref{fig:compiler})
 \caption{Traditional compiler}
 \label{fig:compiler}
 \end{figure}
-\newpage
-The task of constructing a compiler for a particular source language is complex. Firstly, the lexical analysis must recognize words; these words are a string of symbols each of which is a letter, a digit or a special character.
-
+%\newpage
+Firstly, the lexical analysis must recognize words; these words are a string of symbols each of which is a letter, a digit or a special character.
 The Lexical analysis divides program text into "words" or "tokens" and once words are identified, the next step is to understand sentence structure (role of the parser).
-We can think the parsing as an analogy of our world by constructing phrases which requires a subject, verb and object. So, basically, the parser do a diagramming of sentences (see Figure \ref{fig:parsing}).
+We can think the parsing as an analogy of our world by constructing phrases which requires a subject, verb and object. So, basically, the parser do a diagramming of sentences. %(see Figure \ref{fig:parsing}).
+
 
 %\begin{figure}
 %\begin{center}
@@ -2239,15 +2239,31 @@ We can think the parsing as an analogy of our world by constructing phrases whic
 %\end{figure}
 
 %\newpage
+
 Once the sentence structure is understood, we must extract the "meaning" with the semantic analyzer.
-The duty of the semantic analyzer is to perform some semantic analysis to catch some inconsistencies.
-Finally, after that, it may or may not have some optimization regarding the source code. Then the code generator translates the intermediate representation of the high-level programming into assembly code (lower level programming).
-\newpage
+The duty of the semantic analyzer is to perform some contextual checks to catch language inconsistencies and build an intermediate representation to store the meaning of the source text.
+After that, it may or may not have some optimization regarding the source code.  
+
+Finally, the code generator translates the intermediate representation of the high-level programming into assembly code (lower level programming).
+At this stage, a new optimization phase can occur to deliver an object code shorter and faster than the original one.
+
+Notice that the task of constructing a compiler for a particular source language is complex. 
+To simplify this task, it is usual to resort to a compiler generator that is a system able to build automatically a language processor from the language grammar.
+In this master project, the compiler generator ANTLR was used, as we will be described in section~\ref{sct:compiler_generation_with_antlr}.
+
+The first tool steps, lexical and syntatical analysis, will be briefly discussed in section~\ref{sct:lexical_and_syntatical_analysis}. Then section~\ref{sct:semantic_analysis} explains in detail the implementation of LISS semantic analyzer.
+To conclude the chapter, section~\ref{sct:code_generation} provides also details about the implementation of the LISS code generator.
+
+%\newpage
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\section{Summary}
 %\section{ANTLR}
 \section{Compiler generation with ANTLR}
+\label{sct:compiler_generation_with_antlr}
 
 Terence Parr, the man who is behind ANTLR (ANother Tool for Language Recognition ~\citep{parr2007,Par05}) made a parser (or more precisely, a compiler) generator that reads a context free grammar, a translation grammar, or an attribute grammar and produces automatically a processor (based on a LL(k) recursive-descent parser) for the language defined by the input grammar.
 
@@ -2301,7 +2317,8 @@ NUM :   '0'..'9'+
 
 
 %\newpage
-\section{Lexical and syntatic analysis}
+\section{Lexical and syntatical analysis}
+\label{sct:lexical_and_syntatical_analysis}
 
 The parser generator by ANTLR will be able to create an abstract syntax tree (AST) which is a tree representation of the abstract syntactic structure of source code written in a programming language (see Figure~\ref{fig:AST}).
 
@@ -2321,7 +2338,7 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 
 
 \section{Semantic Analysis}
-
+\label{sct:semantic_analysis}
 
 
 
@@ -3263,6 +3280,62 @@ If ~\textit{expression} non-terminal type isn't an ~\textit{integer}, then it mu
 
 
 %Faire un resume de l'histoire des erreurs
+
+\section{Code Generation}
+\label{sct:code_generation}
+
+In the compiler process, after adding informations to the ~\textit{symbol table} and searching some inconsistencies to the LISS language (semantic). It is now time to convert the LISS language representation (higher level language) to MIPS assembly code (lower level language).
+
+In the process of converting the language, there is a lot of tasks who will be operated:
+
+\begin{itemize}
+\item Instruction selection : choosing which type of instruction to use.
+\item Register allocation : choosing the right register to use for a certain instruction.
+\item Instruction scheduling : choosing the right time for the instruction to be added in the code.
+\end{itemize}
+
+Let's talk it in the next section every operations and strategy used for the code generation.
+
+\subsection{Compiler register strategy}
+
+We talked previously about the MIPS architecture and for this section, we will talk about the strategy used for generating the MIPS assembly code regarding to the specific limitation of his architecture.
+
+The MIPS architecture has a limit of registers and it is a necessity to use it wisely for generating the code.
+
+So we created. in our project, an array structure with 8 positions which tells us which position are free (array type is boolean).
+From 0 to 8, it will represent the state of each register from the MIPS register structure.
+
+In this case, the association of the register with the array are :
+
+\begin{itemize}
+\item Position 0 : register \$t0
+\item Position 1 : register \$t1
+\item Position 2 : register \$t2
+\item Position 3 : register \$t3
+\item Position 4 : register \$t4
+\item Position 5 : register \$t5
+\item Position 6 : register \$t7
+\item Position 7 : register \$t8
+\end{itemize}
+
+Each time that the compiler needs or wants a register, it will always see the state of each register by ascending order. Like that, the compiler knows that the latest register needed or used will  always be the latest and not in a random order (for a better searching of the register).
+
+Then we need to apply a strategy for not having an overflow of registers being used.
+Let's explain this situation with an example in Listing ~\ref{lst:example_overflow_register}:
+
+\begin{lstlisting}[caption={Example of a sum operation with some numbers},label={lst:example_overflow_register}]
+  4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 
+\end{lstlisting}
+
+In Listing ~\ref{lst:example_overflow_register}, we see a complex summing operation being done with 9 numbers available. 
+If we wanted to put those 9 numbers to the available register, it will be impossible due to the limitation of the MIPS architecture (only 8 temporary register).
+So we need to apply a strategy for solving this situation, and it passes by removing information when they are not needed.
+For this case, we can put the value 4 to the first register (\$t0) and put the value 5 to the second register (\$t1). Then we add those two values, available in the registers, and put the result in the register \$t0. Notice that by doing that, we set the register \$t1 free which will be available for adding the next value 6 there and re-apply the same strategy. 
+
+By using this strategy, we won't have an overflow of registers. Take care that some instructions used, apply that strategy but might be different due to the complexity.
+
+
+
 
 
 
