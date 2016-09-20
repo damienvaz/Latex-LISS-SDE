@@ -3414,11 +3414,42 @@ Basically, we created the same system  as the use of conditional statements. Thi
 
 Each time, that the compiler finds a subprogram name in the LISS code, it adds to the linkedlist the information. If there is, also, the snowball effect by having a multiple subprograms inside of each one. Then it will add all those informations to the stack.
 
-When 
+When we need to add some MIPS assembly code, we just need to take the entire string available in the stack by using the concatenate method and associate the MIPS assembly code to that name.
 
+The variable ~\textit{mipsCodeFunctionCache} is a ~\textit{HashMap$<$String,String$>$} structure and the key of the HashMap refers to the name of a subprogram (it is the name that is catched in the ~\textit{linkedlist} structure explained before) and the value is the MIPS assembly code associated to the name of the function.
 
+Basically, that structure save the information of each subprogram with their MIPS assembly code associated. The fact that we used a ~\textit{HashMap} structure is for the requirements that the name of a subprogram must be unique. And those standards are perfect with a ~\textit{HashMap} because the key is always unique.
+
+Finally, the variable ~\textit{functionMipsCode} is a String which hold the MIPS assembly code of a subprogram. When the compiler is creating the MIPS assembly code of a subprogram, it will add to that variable. At the end, it will be added to the HashMap structure whenever it is necessary.
+
+\subsubsection{State of functions}
+
+In LISS language, there are some MIPS assembly code that are not automatically generated but instead, they are already defined.
+This is the case for functions like:
+
+\begin{itemize}
+\item Sequence functions (tail, head, etc...)
+\item Printing function (write, writeln)
+\item Read function (input)
+\item Index out of bound function (related to the array type)
+\end{itemize}
+
+And instead of adding those defined function in the MIPS assembly code, when they are not used in the LISS code.
+We created a structure which tells us if those functions will be used or not.
+
+\begin{itemize}
+\item  HashMap$<$String, Integer$>$ ~\textbf{functionStateUsedOrNot}
+\end{itemize}
+
+Basically, the idea behind that structure is that if a function was used, it will put the function (available in the ~\textit{HashMap} structure) set to 1(1 means true).
+When the compiler finishs to see the entire LISS language code, it will check the variable ~\textit{functionStateUsedOrNot} and see if some functions are set to 1. If it is, then it will add at the end of the generated MIPS assembly code, the appropriated and defined MIPS assembly code of that function to the end.
+
+Notice that the variable will put the state of every function available to 0 before the compiler begins in generating the code (0 means false).
+
+\subsubsection{Number of arguments for sequence functions}
 
 \subsubsection{Stack}
+
 
 \subsection{LISS language code generation}
 
