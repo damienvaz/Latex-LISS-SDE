@@ -3347,7 +3347,15 @@ For this case, we can put the value 4 to the first register (\$t0) and put the v
 
 By using this strategy, we won't have an overflow of registers. Take care that some instructions used, apply that strategy but might be different due to the complexity of some instructions.
 
-Now that we have the strategy for using the registers of the MIPS architecture, we can talk about the translation of LISS language to MIPS assembly code and add more informations regarding to the context that it will be talked.
+Also, notice that the MIPS architecture has some others registers available (saved temporary registers (reserved across call)) and we could have used them to increase the numbers of registers.
+
+But even if we increase the number of registers, the problem is still there and that is why we need to apply a strategy to solve those cases.
+
+Additionally, those saved temporary registers are reserved for jump instructions and for our case we use only them for sequence functions. Regarding to calling functions which uses also jump instruction, we use a different algorithm. We use the stack for storing the information about the function and that is why we don't need to use the saved temporary registers.
+
+Finally, as we use primarly the temporary registers from MIPS architecture in the project, we have a law that dictate that every line statement who is finished (a statement ends with a semicolon), means that the state of those temporary registers must be set to false. This means that each temporary register are free to use.
+
+%Now that we have the strategy for using the registers of the MIPS architecture, we can talk about the translation of LISS language to MIPS assembly code and add more informations regarding to the context that it will be talked.
 
 \subsubsection{Address size}
 
@@ -3446,10 +3454,23 @@ When the compiler finishs to see the entire LISS language code, it will check th
 
 Notice that the variable will put the state of every function available to 0 before the compiler begins in generating the code (0 means false).
 
-\subsubsection{Number of arguments for sequence functions}
-
 \subsubsection{Stack}
 
+For this project, we created a structure which behaviour a stack. 
+
+This structure is basically for searching some informations regarding to variables when they are created and not available in the level scope 0. Those variables are normally variables who where created on function with a level scope greater than 0.
+And this structure is here for one reason, instead of using a lot of MIPS assembly code for searching some informations. The application will use an algorithm which will find the position directly of the variable by calculating it and, in this case, use only one instruction.
+
+Let's see the structure of the stack in Figure ~\ref{fig:stack_symbol_table}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/stackSymbolTable.png}
+    \caption{Stack structure}
+    \label{fig:stack_symbol_table}
+\end{figure}
+
+In Figure ~\ref{fig:stack_symbol_table}, we see two rectangle objects. One is named ~\textit{levelStackSP} and the other is named ~\textit{stackSP}.
 
 \subsection{LISS language code generation}
 
