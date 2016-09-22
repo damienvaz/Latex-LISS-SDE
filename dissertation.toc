@@ -89,12 +89,13 @@
 \contentsline {subsubsection}{Subprogram name}{83}{lstnumber.5.52.12}
 \contentsline {subsubsection}{State of functions}{84}{Item.54}
 \contentsline {subsubsection}{Stack}{85}{Item.54}
-\contentsline {subsection}{\numberline {5.4.2}LISS language code generation}{85}{subsection.5.4.2}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{87}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{88}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{89}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{90}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{90}{section.7.1}
+\contentsline {subsubsection}{The algorithm for finding variables in the stack}{87}{Item.56}
+\contentsline {subsection}{\numberline {5.4.2}LISS language code generation}{87}{subsection.5.4.2}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{88}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{89}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{90}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{91}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{91}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{94}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{95}{appendix.A}

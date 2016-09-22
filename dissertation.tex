@@ -3343,15 +3343,15 @@ Let's explain this situation with an example in Listing ~\ref{lst:example_overfl
 In Listing ~\ref{lst:example_overflow_register}, we see a complex summing operation being done with 9 numbers available. 
 If we wanted to put those 9 numbers to the available register, it will be impossible due to the limitation of the MIPS architecture (only 8 temporary register).
 So we need to apply a strategy for solving this situation, and it passes by removing information when they are not needed.
-For this case, we can put the value 4 to the first register (\$t0) and put the value 5 to the second register (\$t1). Then we add those two values, available in the registers, and put the result in the register \$t0. Notice that by doing that, we set the register \$t1 free which will be available for adding the next value 6 there and re-apply the same strategy. 
+For this case, we can put the value 4 to the first register (\$t0) and put the value 5 to the second register (\$t1). Then we add those two values, available in the registers, and put the result in the register \$t0. Notice that by doing that, we set the register \$t1 free which will be available for adding the next value 6 there and re-apply the same strategy for continuing the sum. 
 
-By using this strategy, we won't have an overflow of registers. Take care that some instructions used, apply that strategy but might be different due to the complexity of some instructions.
+By using this strategy, we won't have an overflow of registers. Take care that some MIPS instructions used, apply that strategy but might be different due to the complexity of some instructions.
 
 Also, notice that the MIPS architecture has some others registers available (saved temporary registers (reserved across call)) and we could have used them to increase the numbers of registers.
 
 But even if we increase the number of registers, the problem is still there and that is why we need to apply a strategy to solve those cases.
 
-Additionally, those saved temporary registers are reserved for jump instructions and for our case we use only them for sequence functions. Regarding to calling functions which uses also jump instruction, we use a different algorithm. We use the stack for storing the information about the function and that is why we don't need to use the saved temporary registers.
+Additionally, those saved temporary registers are reserved for jump instructions and for our case we use them for sequence functions only. Regarding to calling functions which uses also jump instruction, we use a different algorithm. We use the stack for storing the information about the function and that is why we don't need to use the saved temporary registers.
 
 Finally, as we use primarly the temporary registers from MIPS architecture in the project, we have a law that dictate that every line statement who is finished (a statement ends with a semicolon), means that the state of those temporary registers must be set to false. This means that each temporary register are free to use.
 
@@ -3420,15 +3420,17 @@ So the variable ~\textit{functionName} is a ~\textit{LinkedList$<$String$>$} str
 
 Basically, we created the same system  as the use of conditional statements. This means that subprograms uses also a jump instruction regarding to the MIPS assembly code and the name of the function must be also unique in the MIPS assembly code.
 
-Each time, that the compiler finds a subprogram name in the LISS code, it adds to the linkedlist the information. If there is, also, the snowball effect by having a multiple subprograms inside of each one. Then it will add all those informations to the stack.
+Each time, that the compiler finds a subprogram name in the LISS code, it adds to the ~\textit{LinkedList} structure the information. If there is, also, the snowball effect by having a multiplicity of subprograms inside of each one. Then it will add all those informations to the stack.
 
 When we need to add some MIPS assembly code, we just need to take the entire string available in the stack by using the concatenate method and associate the MIPS assembly code to that name.
 
-The variable ~\textit{mipsCodeFunctionCache} is a ~\textit{HashMap$<$String,String$>$} structure and the key of the HashMap refers to the name of a subprogram (it is the name that is catched in the ~\textit{linkedlist} structure explained before) and the value is the MIPS assembly code associated to the name of the function.
+The variable ~\textit{mipsCodeFunctionCache} is a ~\textit{HashMap$<$String,String$>$} structure and the key of the HashMap refers to the name of a subprogram (it is the name that is catched in the ~\textit{LinkedList} structure explained before) and the value is the MIPS assembly code associated to the name of the function.
 
 Basically, that structure save the information of each subprogram with their MIPS assembly code associated. The fact that we used a ~\textit{HashMap} structure is for the requirements that the name of a subprogram must be unique. And those standards are perfect with a ~\textit{HashMap} because the key is always unique.
 
 Finally, the variable ~\textit{functionMipsCode} is a String which hold the MIPS assembly code of a subprogram. When the compiler is creating the MIPS assembly code of a subprogram, it will add to that variable. At the end, it will be added to the HashMap structure whenever it is necessary.
+
+Notice that when the compiler will finish to pass the entire LISS code, it will remove all the informations available in the ~\textit{HashMap} structure and add it to the string variable ~\textit{text} (talked previously in the subsection ~\textbf{Data and text part}).
 
 \subsubsection{State of functions}
 
@@ -3458,8 +3460,8 @@ Notice that the variable will put the state of every function available to 0 bef
 
 For this project, we created a structure which behaviour a stack. 
 
-This structure is basically for searching some informations regarding to variables when they are created and not available in the level scope 0. Those variables are normally variables who where created on function with a level scope greater than 0.
-And this structure is here for one reason, instead of using a lot of MIPS assembly code for searching some informations (in this case, those variables). The application will use an algorithm which will find the position directly of the variable by calculating it and using only one instruction.
+This structure is basically for searching some informations regarding to variables when they are created and not available in the level scope 0. Those variables are normally variables who were created on function with a level scope greater than 0 and they will be stored to the stack of the MIPS architecture.
+So, this structure is here for one reason, instead of using a lot of MIPS assembly code for searching some informations (in this case, those variables). The application will use an algorithm which will find the position directly of the variable by calculating it and using only one instruction.
 
 Let's see the structure of the stack in Figure ~\ref{fig:stack_symbol_table}.
 
@@ -3472,18 +3474,44 @@ Let's see the structure of the stack in Figure ~\ref{fig:stack_symbol_table}.
 
 In Figure ~\ref{fig:stack_symbol_table}, we see two rectangle objects. One is named ~\textit{levelStackSP} and the other is named ~\textit{stackSP}.
 
-The ~\textit{levelStackSP} is a stack which contains information about the other stack ~\textit{stackSP} and the main objective of this stack is to add information for subprogram created regarding to the other stack ~\textit{stackSP}. Each ~\textbf{position} of the stack ~\textit{levelStackSP} refers to the level scope, so we have in this example 3 levels (level scope 0 (position 0), level scope 1 (position 1) and level scope 2 (position 2)). Each position of the stack ~\textit{levelStackSP} contains information about the position of the other stack ~\textit{stackSP}.
+\begin{enumerate}
+\item ArrayList$<$Integer$>$ ~\textbf{levelStackSP}
+\item ArrayList$<$Integer$>$ ~\textbf{stackSP}
+\end{enumerate}
 
-The stack ~\textit{stackSP} is the main stack which holds every ~\textit{push} instruction in the MIPS assembly code. Each time that the compiler adds some information into the stack (regarding to the MIPS assembly code), it will also be added into the stack ~\textit{stackSP}. Also, every ~\textit{pop} instruction in the MIPS assembly code, it will be removed as well in that stack too.
+The ~\textit{levelStackSP} is a stack (~\textit{ArrayList type}) which contains information about the other stack ~\textit{stackSP} (~\textit{ArrayList type}) and the main objective of this stack is to add informations related with subprogram created in the LISS code (uses a FILO system). Each ~\textbf{position} of the stack ~\textit{levelStackSP} refers to a certain level scope, so we have in this example 3 levels (level scope 0 (position 0), level scope 1 (position 1) and level scope 2 (position 2)). And each position of the stack ~\textit{levelStackSP} contains information about the position of the other stack ~\textit{stackSP}.
 
-Notice that the stack ~\textit{levelStackSP} gives information about the position of any subprograms in the other stack ~\textit{stackSP}.
+The stack ~\textit{stackSP} is the main stack which holds every ~\textit{push} instruction in the MIPS assembly code and behaves as a FILO system also. Each time that the compiler adds some information into the stack (regarding to the MIPS assembly code), it will also be added into the stack ~\textit{stackSP} (last free position available). Also, every ~\textit{pop} instruction, in the MIPS assembly code, will be removed as well as in the stack too (it removes the last position who has information).
 
+To make a summary, we have two structure. One stack (~\textit{levelStackSP} ) who gives us information about the position of any subprogram that the compiler have found to the other stack ~\textit{stackSP}. And one stack (~\textit{stackSP}) who behaves the stack of MIPS architecture.
 
+Notice that each time that the stack ~\textit{stackSP} will add some information, it will add in the next free position available and will add the amount to store with the previous position. In this example, we can see that the compiler wanted to add 40 bytes of memory. So he just added to the next free position available (position 4), 24 plus 40 bytes which is equals to 64 (see the position 4 value in the stack ~\textit{stackSP}).
 
+Regarding to removing informations in the stack ~\textit{stackSP}, it just removes the last position who have information. When the last position of the stack ~\textit{stackSP} is linked to the stack ~\textit{levelStackSP} (in the example, position 2 of stack ~\textit{levelStackSP} is linked to position 4 of stack ~\textit{stackSP}). By removing the last information of the stack ~\textit{stackSP}, it will also remove the last information of the stack ~\textit{levelStackSP}.
 
+\subsubsection{The algorithm for finding variables in the stack}
 
+The algorithm of searching the position of a certain variable is simple.
+Whenever we need a variable greater than the level scope 0 (variable only available in the stack MIPS architecture), we need to check at the symbol table his availability. If the variable is there, we need to check the level scope of the variable. If the level scope is greater than 0, then we need to check at our stack structure where is the position in the stack.
+
+So, in this case, we need to check firstly the stack ~\textit{levelStackSP}. With the knowledge of the level scope of the variable, we access to the right position of that stack. Then by accessing it, we will know which position is in the other stack ~\textit{stackSP}.
+By knowing the position of the stack ~\textit{stackSP}, we just need to calculate the position of the variable in the stack.
+And the calculation is done by this way :
+
+\begin{enumerate}
+\item Take the last value added to the stack ~\textit{stackSP}.
+\item Take the value found regarding to the variable in the stack ~\textit{stackSP}.
+\item Do a substracton of those values ( step 1 - step 2 ).
+\item Get the address value regarding to the variable in the symbol table.
+\item Add the address value to step 3.
+\item Position found in the stack.
+\end{enumerate}
+
+After that, we just need to create one mips instruction which gets the right value of the position in the stack MIPS architecture regarding to the variable.
 
 \subsection{LISS language code generation}
+
+
 
 
 
