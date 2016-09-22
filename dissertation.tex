@@ -2545,6 +2545,9 @@ In Table ~\ref{tbl:function_information}, this is the type of information for a 
 \item ~\textit{Type List Arguments} - indicates the types of each arguments of the function.
 \end{itemize}
 
+
+
+
 Let's see the abstract data structure of InfoIdentifiersTable implemented in Figure ~\ref{fig:infoidentifierstable_structure}.
 
 \begin{figure}[h!]
@@ -3511,6 +3514,28 @@ After that, we just need to create one mips instruction which gets the right val
 
 \subsection{LISS language code generation}
 
+This part will talk about the code generation of every statements feasible in the LISS language.
+It will be divided by sections for each statements and then divided by the level scope equally to 0 or greater for a better view regarding to the complexity done with the MIPS architecture and his requirements.
+
+\subsubsection{Creating a variable in LISS}
+
+\begin{itemize}
+\item Level scope equals to zero
+\end{itemize}
+
+Let's see an example of LISS code in Listing ~\ref{lst:declaration_variable_code_generation}.
+
+\begin{lstlisting}[caption={Example of creating variables in LISS},label={lst:declaration_variable_code_generation}]
+program liss{
+  declarations
+    a, b = 4, c = -1, d = +2 -> integer;
+    flag, flag1 = false, flag2 = true -> boolean;
+    array1, array2 = [2,1,1], array3 = [1] -> array size 3;
+    array4 = [[1,2],[3]] -> array size 3,3;
+    set1, set2 = { y | y+1 < y+4} -> set;
+  statements
+}
+\end{lstlisting}
 
 
 
