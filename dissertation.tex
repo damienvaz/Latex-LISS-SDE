@@ -3459,7 +3459,7 @@ Notice that the variable will put the state of every function available to 0 bef
 For this project, we created a structure which behaviour a stack. 
 
 This structure is basically for searching some informations regarding to variables when they are created and not available in the level scope 0. Those variables are normally variables who where created on function with a level scope greater than 0.
-And this structure is here for one reason, instead of using a lot of MIPS assembly code for searching some informations. The application will use an algorithm which will find the position directly of the variable by calculating it and, in this case, use only one instruction.
+And this structure is here for one reason, instead of using a lot of MIPS assembly code for searching some informations (in this case, those variables). The application will use an algorithm which will find the position directly of the variable by calculating it and using only one instruction.
 
 Let's see the structure of the stack in Figure ~\ref{fig:stack_symbol_table}.
 
@@ -3471,6 +3471,17 @@ Let's see the structure of the stack in Figure ~\ref{fig:stack_symbol_table}.
 \end{figure}
 
 In Figure ~\ref{fig:stack_symbol_table}, we see two rectangle objects. One is named ~\textit{levelStackSP} and the other is named ~\textit{stackSP}.
+
+The ~\textit{levelStackSP} is a stack which contains information about the other stack ~\textit{stackSP} and the main objective of this stack is to add information for subprogram created regarding to the other stack ~\textit{stackSP}. Each ~\textbf{position} of the stack ~\textit{levelStackSP} refers to the level scope, so we have in this example 3 levels (level scope 0 (position 0), level scope 1 (position 1) and level scope 2 (position 2)). Each position of the stack ~\textit{levelStackSP} contains information about the position of the other stack ~\textit{stackSP}.
+
+The stack ~\textit{stackSP} is the main stack which holds every ~\textit{push} instruction in the MIPS assembly code. Each time that the compiler adds some information into the stack (regarding to the MIPS assembly code), it will also be added into the stack ~\textit{stackSP}. Also, every ~\textit{pop} instruction in the MIPS assembly code, it will be removed as well in that stack too.
+
+Notice that the stack ~\textit{levelStackSP} gives information about the position of any subprograms in the other stack ~\textit{stackSP}.
+
+
+
+
+
 
 \subsection{LISS language code generation}
 
