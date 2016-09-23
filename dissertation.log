@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  23 SEP 2016 12:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  23 SEP 2016 17:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1529,7 +1529,14 @@ rd compatibility on input line 77.
 
 Package glossaries Info: Writing glossary file dissertation.acn on input line 8
 3.
-(./dissertation.aux)
+(./dissertation.aux
+
+LaTeX Warning: Label `fig:ideXCode' multiply defined.
+
+
+LaTeX Warning: Label `fig:ideXCode@cref' multiply defined.
+
+)
 \openout1 = `dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 155.
@@ -1550,8 +1557,7 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 155.
 LaTeX Font Info:    ... okay on input line 155.
 LaTeX Font Info:    Try loading font information for OT1+pplj on input line 155
 .
-
-(/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pplj.fd
+ (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pplj.fd
 File: ot1pplj.fd 2004/09/06 font definitions for OT1/pplj.
 )
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -1690,7 +1696,12 @@ Package microtype Info: Loading generic settings for font family
 (microtype)             `phv' (encoding: OT1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [1
+
+Overfull \hbox (40.58112pt too wide) in paragraph at lines 157--157
+[][][]
+ []
+
+[1
 
 \openout6 = `dissertation.ist'.
 
@@ -1698,15 +1709,27 @@ Package microtype Info: Loading generic settings for font family
 
 
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2
+]
+Overfull \vbox (51.26505pt too high) has occurred while \output is active []
+
+LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 157.
+LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <9> not available
+(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 157.
+
+[2{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+Overfull \hbox (40.58112pt too wide) in paragraph at lines 158--158
+[][][]
+ []
+
+[3
 
 
 ]
-LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 169.
-LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 169.
- [1
+Overfull \vbox (51.26505pt too high) has occurred while \output is active []
+
+
+[4] [1
 
 
 
@@ -1722,8 +1745,7 @@ LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <9> not available
 ]
 Package tocbasic Info: character protrusion at toc deactivated on input line 17
 9.
-
-(./dissertation.toc
+ (./dissertation.toc
 Package microtype Info: Character `013' is missing
 (microtype)             in font `OT1/pplj/m/sc/10.95'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1749,12 +1771,12 @@ Package tocbasic Info: character protrusion at lof deactivated on input line 18
 ]
 Package tocbasic Info: character protrusion at lot deactivated on input line 18
 1.
- (./dissertation.lot)
+
+(./dissertation.lot)
 \tf@lot=\write10
 \openout10 = `dissertation.lot'.
 
-
-[7
+ [7
 
 
 
@@ -1798,7 +1820,7 @@ l.227 F
 l.245 ...{Languages and grammar: concept \& tools}
                                                    [2]
 Chapter 2.
-<img/GIC2.png, id=302, 562.1pt x 347.2975pt>
+<img/GIC2.png, id=315, 562.1pt x 347.2975pt>
 File: img/GIC2.png Graphic file (type png)
  <use img/GIC2.png>
 Package pdftex.def Info: img/GIC2.png used on input line 272.
@@ -1807,6 +1829,12 @@ Package pdftex.def Info: img/GIC2.png used on input line 272.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.291 L
+       ike that it is possible to transport information anywhere in the abst...
 [3
 
 
@@ -1822,7 +1850,12 @@ LaTeX Font Warning: Font shape `OMS/pplj/m/n' undefined
 (Font)              using `OMS/cmsy/m/n' instead
 (Font)              for symbol `textasteriskcentered' on input line 305.
 
-[4 <./img/GIC2.png>] [5] [6]
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.326 morada 
+             : STR; [4 <./img/GIC2.png>] [5] [6]
 Chapter 3.
 LaTeX Font Info:    Try loading font information for OML+pplj on input line 405
 .
@@ -1870,7 +1903,7 @@ org / wikipedia / commons / thumb / e / ea / MIPS _ Architecture _ (Pipelined )
 
  []
 
-<img/MIPSarchitecture.png, id=952, 803.0pt x 501.875pt>
+<img/MIPSarchitecture.png, id=962, 803.0pt x 501.875pt>
 File: img/MIPSarchitecture.png Graphic file (type png)
 
 <use img/MIPSarchitecture.png>
@@ -1884,7 +1917,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 ] [30 <./img/MIPSarchitecture.png>] [31]
-<img/mips_register.png, id=980, 333.245pt x 646.415pt>
+<img/mips_register.png, id=991, 333.245pt x 646.415pt>
 File: img/mips_register.png Graphic file (type png)
 
 <use img/mips_register.png>
@@ -1938,14 +1971,14 @@ Overfull \hbox (7.57912pt too wide) in paragraph at lines 1961--1970
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[44] [45] [46] <img/MARS_GUI.png, id=1174, 3115.64pt x 1977.3875pt>
+[44] [45] [46] <img/MARS_GUI.png, id=1184, 3115.64pt x 1977.3875pt>
 File: img/MARS_GUI.png Graphic file (type png)
 
 <use img/MARS_GUI.png>
 Package pdftex.def Info: img/MARS_GUI.png used on input line 2071.
 (pdftex.def)             Requested size: 442.65375pt x 280.93582pt.
  [47 <./img/MARS_GUI.png>]
-<img/MARS_GUI_EXECUTE.png, id=1182, 3115.64pt x 1977.3875pt>
+<img/MARS_GUI_EXECUTE.png, id=1192, 3115.64pt x 1977.3875pt>
 File: img/MARS_GUI_EXECUTE.png Graphic file (type png)
 
 <use img/MARS_GUI_EXECUTE.png>
@@ -1954,7 +1987,7 @@ Package pdftex.def Info: img/MARS_GUI_EXECUTE.png used on input line 2092.
  [48 <./img/MARS_GUI_EXECUTE.png>] [49]
 Excluding 'comment' comment.
 Chapter 5.
-<img/compiler.png, id=1195, 923.45pt x 491.8375pt>
+<img/compiler.png, id=1206, 923.45pt x 491.8375pt>
 File: img/compiler.png Graphic file (type png)
  <use img/compiler.png>
 Package pdftex.def Info: img/compiler.png used on input line 2222.
@@ -1965,7 +1998,7 @@ Package pdftex.def Info: img/compiler.png used on input line 2222.
 
 ] Excluding 'comment' comment. [51 <./img/compiler.png>]
 Excluding 'comment' comment.
-<img/antlr4_parse_tree.png, id=1223, 1312.905pt x 759.83875pt>
+<img/antlr4_parse_tree.png, id=1233, 1312.905pt x 759.83875pt>
 File: img/antlr4_parse_tree.png Graphic file (type png)
 
 <use img/antlr4_parse_tree.png>
@@ -1975,7 +2008,7 @@ Package pdftex.def Info: img/antlr4_parse_tree.png used on input line 2327.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[52] <img/symbol_table_hierarchical.jpg, id=1246, 587.19376pt x 362.35374pt>
+[52] <img/symbol_table_hierarchical.jpg, id=1256, 587.19376pt x 362.35374pt>
 File: img/symbol_table_hierarchical.jpg Graphic file (type jpg)
 
 <use img/symbol_table_hierarchical.jpg>
@@ -1987,7 +2020,7 @@ Package pdftex.def Info: img/symbol_table_hierarchical.jpg used on input line 2
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [53 <./img/antlr4_parse_tree.png>]
-<img/global_symbol_table.png, id=1253, 845.1575pt x 598.235pt>
+<img/global_symbol_table.png, id=1263, 845.1575pt x 598.235pt>
 File: img/global_symbol_table.png Graphic file (type png)
 
 <use img/global_symbol_table.png>
@@ -2003,14 +2036,14 @@ Overfull \hbox (21.00119pt too wide) in paragraph at lines 2531--2535
  [][] 
  []
 
-[58] <img/InfoIdentifiersTable.png, id=1290, 584.1825pt x 485.815pt>
+[58] <img/InfoIdentifiersTable.png, id=1300, 584.1825pt x 485.815pt>
 File: img/InfoIdentifiersTable.png Graphic file (type png)
 
 <use img/InfoIdentifiersTable.png>
 Package pdftex.def Info: img/InfoIdentifiersTable.png used on input line 2555.
 (pdftex.def)             Requested size: 354.12434pt x 294.5009pt.
  [59 <./img/InfoIdentifiersTable.png>]
-[60] <img/error_table_liss.png, id=1308, 304.13625pt x 243.02559pt>
+[60] <img/error_table_liss.png, id=1318, 304.13625pt x 243.02559pt>
 File: img/error_table_liss.png Graphic file (type png)
 
 <use img/error_table_liss.png>
@@ -2023,7 +2056,7 @@ Overfull \hbox (24.1041pt too wide) in paragraph at lines 2670--2690
 
 [63] [64] [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77]
 [78] [79] [80] [81] [82] [83] [84]
-<img/stackSymbolTable.png, id=1705, 845.1575pt x 598.235pt>
+<img/stackSymbolTable.png, id=1716, 845.1575pt x 598.235pt>
 File: img/stackSymbolTable.png Graphic file (type png)
 
 <use img/stackSymbolTable.png>
@@ -2034,25 +2067,32 @@ Package pdftex.def Info: img/stackSymbolTable.png used on input line 3473.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [85] [86 <./img/stackSymbolTable.png>] [87] [88] [89]
+<img/access_array.png, id=1785, 845.1575pt x 598.235pt>
+File: img/access_array.png Graphic file (type png)
+
+<use img/access_array.png>
+Package pdftex.def Info: img/access_array.png used on input line 3609.
+(pdftex.def)             Requested size: 442.65375pt x 313.32956pt.
+ [90 <./img/access_array.png>]
 Chapter 6.
-<img/XCode-interface.png, id=1772, 622.325pt x 380.42125pt>
+<img/XCode-interface.png, id=1806, 622.325pt x 380.42125pt>
 File: img/XCode-interface.png Graphic file (type png)
 
 <use img/XCode-interface.png>
-Package pdftex.def Info: img/XCode-interface.png used on input line 3595.
+Package pdftex.def Info: img/XCode-interface.png used on input line 3658.
 (pdftex.def)             Requested size: 442.65375pt x 270.59436pt.
- [90
+ [91
 
 
- <./img/XCode-interface.png>] [91]
-<img/SDE.png, id=1801, 602.25pt x 281.05pt>
+ <./img/XCode-interface.png>] [92]
+<img/SDE.png, id=1837, 602.25pt x 281.05pt>
 File: img/SDE.png Graphic file (type png)
  <use img/SDE.png>
-Package pdftex.def Info: img/SDE.png used on input line 3648.
+Package pdftex.def Info: img/SDE.png used on input line 3711.
 (pdftex.def)             Requested size: 442.65375pt x 206.57997pt.
- [92 <./img/SDE.png>]
+ [93 <./img/SDE.png>]
 Chapter 7.
-[93
+[94
 
 
 ] (./dissertation.bbl
@@ -2061,7 +2101,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 49--52
 iler home-page.
  []
 
-[94
+[95
 
 
 
@@ -2072,7 +2112,7 @@ Underfull \hbox (badness 6995) in paragraph at lines 163--167
 s.usfca.edu/ par-rt/-
  []
 
-[95]
+[96]
 Underfull \hbox (badness 7064) in paragraph at lines 169--175
 []\OT1/pplj/m/n/10.95 Terence Parr.  \OT1/pplj/m/it/10.95 The Defini-tive ANTLR
  Ref-er-ence: Build-ing Domain-Specific Lan-
@@ -2084,46 +2124,52 @@ Underfull \hbox (badness 1189) in paragraph at lines 169--175
 leigh, 2007.  URL [][]$\OT1/cmtt/m/n/10.95 http : / / www . amazon . de /
  []
 
-) [96]
+) [97]
 Appendix A.
-(./lissGIC.g4 [97
+(./lissGIC.g4 [98
 
 
-] [98] [99] [100] [101] [102] [103] [104]
+] [99] [100] [101] [102] [103] [104] [105]
 Overfull \hbox (21.35077pt too wide) in paragraph at lines 365--367
 [][] 
  []
 
-[105]
+[106]
 Overfull \hbox (21.35077pt too wide) in paragraph at lines 375--378
 [][] 
  []
 
-) [106] [107] [108
+) [107] [108] [109
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3724.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3724.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3787.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3787.
  (./dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3724.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3724.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3787.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 3787.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3724.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3787.
  ) 
 Here is how much of TeX's memory you used:
- 38723 strings out of 493089
- 677422 string characters out of 6134841
+ 38744 strings out of 493089
+ 677849 string characters out of 6134841
  1048529 words of memory out of 5000000
- 40080 multiletter control sequences out of 15000+600000
+ 40088 multiletter control sequences out of 15000+600000
  64540 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,17n,106p,2152b,2646s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exi
+pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{Hfootnote.8} has been referenced but does not exist
+, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.7} has been referenced but does not exist
 , replaced by a fixed one
@@ -2160,10 +2206,10 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (118 pages, 1715172 bytes).
+Output written on dissertation.pdf (121 pages, 1745285 bytes).
 PDF statistics:
- 2799 PDF objects out of 2984 (max. 8388607)
- 2608 compressed objects within 27 object streams
- 1412 named destinations out of 1440 (max. 500000)
- 20979 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 2836 PDF objects out of 2984 (max. 8388607)
+ 2640 compressed objects within 27 object streams
+ 1424 named destinations out of 1440 (max. 500000)
+ 20984 words of extra memory for PDF output out of 24883 (max. 10000000)
 
