@@ -3537,6 +3537,28 @@ program liss{
 }
 \end{lstlisting}
 
+In Listing ~\ref{lst:declaration_variable_code_generation}, we can see some variables being declared in the LISS code in the level scope 0.
+In this case, the compiler needs to take those informations and generate them to MIPS assembly code.
+Let's go line by line and explain them each one.
+
+In line 3, we see 4 different named variables being declared with the type ~\textit{integer}.
+The compiler adds them to the symbol table and do some checkings regarding to the semantic system implemented. Then, if everything is all right, it associate them (each variable) with a certain address to each one. Remember that the type ~\textit{integer} cost 4 bytes in the memory as explained before. So, in this case, it will generate the address 0, 4, 8 and 12 for those variables.
+
+Also, notice that the association of those addresses are not set in the same order as the variables were declared. This is due to the fact that those variables are stored in a ~\textit{HashMap} structure where the key is the name of the variable and the value are informations regarding to the variable. And we implemented a ~\textit{HashMap} structure for the case that the line (which the compiler will process entirely) can't have two variables with the same name.
+
+In the end, when the compiler will take the information of those variables for putting them into the symbol table and regarding to the ~\textit{HashMap} structure in JAVA which doesn't have the notion of ordering with keys. It will simply take the keys in any orders. Then the compiler will associate those keys (the name of the variable) with an address created. 
+Take care that there is no problem in doing that, because the compiler always knows the address of each variables (symbol table structure holds that information).
+
+Later, we need to generate the assembly code if everything worked as planned. And this is done by declaring them in the data section of the MIPS assembly code (see Listing ~\ref{lst:integer_mips_level_scope_0}).
+
+\begin{lstlisting}[caption={Code generation of integer variables in MIPS assembly code},label={lst:integer_mips_level_scope_0}]
+  .data
+	a : .word 0		# 3:4
+	b : .word 4		# 3:11
+	c : .word -1		# 3:19
+	d : .word +2		# 3:27
+\end{lstlisting}
+
 
 
 
