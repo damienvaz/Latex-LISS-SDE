@@ -3657,13 +3657,50 @@ Also, take a note that if the dimension of the array is equal to 1, the equation
 
 And to understand the formula, let's explain it with an example.
 
-\newcommand{\sep}{\hspace*{.5em}}
-\noindent
+Imagine that we have those input variables for the formula (examples taken from Figure ~\ref{fig:access_array_structure} and Listing ~\ref{lst:array_with_3_dimension_example}):
 
-l  = $\fbox{2} \sep \fbox{2} \sep \fbox{3}$
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.2\textwidth]{img/example_position_calculation.png}
+    \label{fig:example_position_calculation_structure}
+\end{figure}
 
-a = $\fbox{1} \sep \fbox{1} \sep \fbox{0}$
+By using the equation above with that example, let's unroll it.
 
+\begin{equation}
+ \begin{matrix}
+ \begin{aligned}
+  p(l,a) &= a[0] \times l[1] \times l[2] + a[1] \times l[2] + a[2] \\
+  p(l,a) &= 1 \times 2 \times 3 + 1 \times 3 + 0 \\
+  p(l,a) &= 6 + 3 + 0 \\
+  p(l,a) &= 9
+ \end{aligned}
+ \end{matrix}
+\end{equation}
+
+So, with that calculation we can see that the position of the array is the number 9.
+
+Let's see throw the next Figure ~\ref{fig:array_example_calculation} if the calculation was done correctly.
+
+\begin{figure}[h!]
+ \centering
+  \includegraphics[width=0.8\textwidth]{img/array_example_calculation.png}
+  \caption{Array structure with size 2,2,3.}
+  \label{fig:array_example_calculation}
+\end{figure}
+
+Using the positions of the variable array ~\textbf{l} and using them to find the right position in the array structure in Figure ~\ref{fig:array_example_calculation}, we go firstly to the right position of the first dimension (number 1 ( l[0] = 1)). Then, we go to the second dimension of the part where belongs the number 1 in the first dimension,  in this case it is the number 1 ( l[1] = 1 ). Finally, we go to the last dimension and go to the number 0 ( l[2] = 0).  As we can see, it goes directly to the index number 9 of the array. 
+
+This proves that the algorithm works very well and also, how it calculates the position for an array with the structure implemented in this project.
+
+Now that we know how the position is calculated in an array; let's continue to unroll the line 5 and line 6 in Listing ~\ref{lst:declaration_variable_code_generation}.
+
+%falar das instruçoes que sao geradas para colocar os valores no array para initializar e indicar que os valores do array sao initializadas a 0.
+
+
+
+
+%nao esquecer de falar das sequencias....
 
 
 
