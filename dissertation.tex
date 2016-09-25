@@ -3600,7 +3600,7 @@ However regarding to line 6 in Listing ~\ref{lst:declaration_variable_code_gener
 
 Now that we declared the space of those variables in MIPS assembly code, we need to declare the values associated to those variables.
 
-So we implemented a system which takes the information of the position of the array regarding to the value that was declared in the array.
+So we implemented a system which takes the information of each position of the array regarding to the value that was declared in the array.
 
 For example, if we have a multidimensional array with 3 dimensions like that :
 
@@ -3608,19 +3608,61 @@ For example, if we have a multidimensional array with 3 dimensions like that :
   array1 = [[[12]],[[5,6],[7]]] -> array size 2,2,3;
 \end{lstlisting}
 
-
+We need to create a system which will take the informations regarding to the array declared and this pass by taking the informations of some values who are declared in the array (see Figure ~\ref{fig:access_array_structure}).
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{img/access_array.png}
     \caption{Structure for saving information of each value declared in a array}
-    \label{fig:ideXCode}
+    \label{fig:access_array_structure}
 \end{figure}
 
+So we created a system which has this structure (see in Listing ~\ref{lst:access_array_structure}).
 
-%Variables ~\textit{array2}, ~\textit{array3} and ~\textit{array4} have values declared for some positions and we need to calculate if the dimension of the array is greater than 1.
+\begin{lstlisting}[caption={Structure of saving informations of each index in JAVA},label={lst:access_array_structure}]
+  ArrayList<ArrayList<Integer>> accessArray
+\end{lstlisting}
 
+Basically, it is a structure where one ~\textit{ArrayList} holds the informations of one index of the array processed and add it to the other ~\textit{ArrayList} whenever it have completed to process the information (it behaves like a stack).
 
+So, in Figure ~\ref{fig:access_array_structure}, we can see clearly that the left rectangle is the stack where each position of it, holds informations (a ~\textit{ArrayList} of integer informations) regarding to one index declared in the array.
+
+And this ~\textit{LinkedList} of informations has a certain architecture which must be explained.
+The size of that ~\textit{ArrayList} is equal to the dimension of the ~\textit{array} plus one (refers to the value available in the index processed). Then, the first positions of the ~\textit{ArrayList} are reserved for each dimension of the array and the last position of the ~\textit{ArrayList} is the value which needs to be stored in that index of the array.
+Each dimension will inform us which position has the value.
+
+For example, regarding to the example in Figure ~\ref{fig:access_array_structure}.
+
+The first information available in the stack is in the position 0 and this information is telling us that there is a value to be stored at the position [0,0,0] with the value 12. The second information, available in the position 1 of the stack, is telling us that there is another value to be stored at the position [1,1,0] with the value 7.
+
+After getting all those informations, we need to generate the instructions and for that we need to calculate the right position of each value with the information that it was processed.
+
+The calculation is done with the next formula (see Equation ~\ref{eq:formulae_array_position}).
+
+\begin{equation} \label{eq:formulae_array_position}
+  p(l,a) = \sum_{i=0,\ i\neq n-1}^{n-2} (a[i]\times\prod_{j=i+1}^{n-1} l[j])+a[n-1]
+\end{equation}
+
+In Equation ~\ref{eq:formulae_array_position}, the equation needs two inputs:
+
+\begin{itemize}
+\item ~\textbf{l} - array variable which has the informations about the limits of the array in question.
+\item ~\textbf{a} - array variable which has the information of the position of the array that need to be processed.
+\end{itemize}
+
+Notice that the variable ~\textbf{m}, in the equation, is equal to the dimension of the array.
+
+Then after getting those inputs variables, it calculates the position of the array in question for any n-dimensional size.
+Also, take a note that if the dimension of the array is equal to 1, the equation doesn't compute the first part (due to the restriction of the equation).
+
+And to understand the formula, let's explain it with an example.
+
+\newcommand{\sep}{\hspace*{.5em}}
+\noindent
+
+l  = $\fbox{2} \sep \fbox{2} \sep \fbox{3}$
+
+a = $\fbox{1} \sep \fbox{1} \sep \fbox{0}$
 
 
 
