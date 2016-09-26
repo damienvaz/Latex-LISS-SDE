@@ -3533,6 +3533,7 @@ program liss{
     array1, array2 = [2,1,1], array3 = [1] -> array size 3;
     array4 = [[1,2],[3]] -> array size 3,3;
     set1, set2 = { y | y+1 < y+4} -> set;
+    seq1, seq2 = <<1,2>> -> sequence;
   statements
 }
 \end{lstlisting}
@@ -3694,6 +3695,112 @@ Using the positions of the variable array ~\textbf{l} and using them to find the
 This proves that the algorithm works very well and also, how it calculates the position for an array with the structure implemented in this project.
 
 Now that we know how the position is calculated in an array; let's continue to unroll the line 5 and line 6 in Listing ~\ref{lst:declaration_variable_code_generation}.
+
+So, after creating the space of those variables ~\textit{array2}, ~\textit{array3} and ~\textit{array4}, we need to initialize them.
+
+Let's see an example of how it is done the initialization of arrays in Listing ~\ref{lst:array2_initialization_mips}.
+
+\begin{lstlisting}[caption={MIPS assembly code generated for the variable array2},label={lst:array2_initialization_mips}]
+  .text
+    main:
+       ##### Initialize Value Array :array2#####
+       li $t0,2		# 5:12
+       li $t1,0		# 5:12
+       sw $t0, array2($t1)		# 5:12
+       li $t0,1		# 5:12
+       li $t1,4		# 5:12
+       sw $t0, array2($t1)		# 5:12
+       li $t0,1		# 5:12
+       li $t1,8		# 5:12
+       sw $t0, array2($t1)		# 5:12
+       #######################################
+\end{lstlisting}
+
+In MIPS architecture, it is impossible to declare the array with the values associated in the declaration parts. So, we need to fix this situation and this is done by creating MIPS assembly code in the flow of the program execution.
+
+Basically, the idea is that the MIPS assembly code is always in the first place regarding to the flow of the program execution. In this case, we can see in Listing ~\ref{lst:array2_initialization_mips} that the MIPS assembly code for the initialization of the ~\textit{array2} variable comes first in the flow of the program execution. Then after that every initialization was made regarding to arrays, comes and begins the flow of the program execution.
+
+In Listing ~\ref{lst:array2_initialization_mips}, let's explain how the code generation works for values regarding to the array:
+
+\begin{itemize}
+\item line 4 - Loading the value 2, this is the value to be stored in the array.
+\item line 5 - Loading the position 0, this is the position which the value will be stored (use the algorithm for calculating the position).
+\item line 6 - Store the value 2 to the position 0 in the array2 memory.
+\item line 7.... - Continue to use the same strategy with the next values that needs to be added.
+\end{itemize}
+
+Storing one value in an array needs three MIPS instruction assembly code.
+
+Notice that the position calculated is always multiplied, at the end, by the size of an ~\textit{integer} (number 4).
+
+As we can see in Listing ~\ref{lst:array2_initialization_mips}, the position are :
+
+\begin{itemize}
+\item line 5 - the value is 0 =$>$ position 0 (0/4 = 0)
+\item line 8 - the value is 4 =$>$ position 1 (4/4 = 1)
+\item line 11 - the value is 8 =$>$ position 2 (8/4 = 2)
+\end{itemize}
+
+Also, take care that every other positions in the array have the value 0 and that is why we don't need to create the MIPS instructions for them, because the default value is 0 in an array non-initialized (the story changes when those arrays are created in a level scope greater than 0, but it will be talked further).
+
+In line 7 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two differents named variables being declared with the type ~\textit{set}.
+
+That type basically doesn't create any informations in the MIPS assembly code for the declarations parts. Instead it saves the information in a specific structure created for that purpose. The structure is made with the concept of a Tree structure where there are some nodes with branches or not, associated to others nodes.
+
+And this structure is made by two JAVA class:
+
+\begin{itemize}
+\item Node Class
+\item Set Class
+\end{itemize}
+
+The Node JAVA class is a class where represents the concept of a node structure in a tree. It is represented by three things:
+\begin{enumerate}
+\item String data 
+\item Node left
+\item Node right
+\end{enumerate}
+
+The variable ~\textbf{data} refers to the value represented for that node, the variables ~\textbf{left} and ~\textbf{right} refers to a node who might be to the left or right side of the node. This is how the Node Class is encapsulated in the project.
+
+Now, the Set class is a class where it saves the information of the tree structure and the free variable of the set.
+It is represented by two things:
+
+\begin{enumerate}
+\item ArrayList$<$Node$>$ identifier
+\item Node head
+\end{enumerate}
+
+The variable ~\textbf{identifer} refers to a list of free variables that are stored in the tree structure. This is done for one particularly reason, instead of browsing the entire tree and looking to those free variables, we have a list where we can change the state of those free variables available in the list and directly, change the state of the tree. The advantage of that structure is that we don't need to browse in the tree.
+
+Then we have the variable ~\textbf{head} which holds the information about the head node of the tree structure.
+
+
+
+
+
+%falar de que maneira se pode criar os sets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%In line 9 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two different named variables being declared with the type ~\textit{sequence}.
+
+
 
 %falar das instruçoes que sao geradas para colocar os valores no array para initializar e indicar que os valores do array sao initializadas a 0.
 
