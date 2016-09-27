@@ -3532,7 +3532,7 @@ program liss{
     flag, flag1 = false, flag2 = true -> boolean;
     array1, array2 = [2,1,1], array3 = [1] -> array size 3;
     array4 = [[1,2],[3]] -> array size 3,3;
-    set1, set2 = { y | y+1 < y+4} -> set;
+    set1, set2 = { y | y+1 < y+4}, set3 = {} -> set;
     seq1, seq2 = <<1,2>> -> sequence;
   statements
 }
@@ -3761,9 +3761,9 @@ The Node JAVA class is a class where represents the concept of a node structure 
 \item Node right
 \end{enumerate}
 
-The variable ~\textbf{data} refers to the value represented for that node, the variables ~\textbf{left} and ~\textbf{right} refers to a node who might be to the left or right side of the node. This is how the Node Class is encapsulated in the project.
+The variable ~\textbf{data} refers to the value represented of that node, the variables ~\textbf{left} and ~\textbf{right} refers to a node who might be to the left or right side of the actual node.
 
-Now, the Set class is a class where it saves the information of the tree structure and the free variable of the set.
+Now, the Set class is a class where it saves the information of the set in a tree structure and the free variable associated with the set. Take care, that the Set class uses and abuses the Node class.
 It is represented by two things:
 
 \begin{enumerate}
@@ -3771,9 +3771,96 @@ It is represented by two things:
 \item Node head
 \end{enumerate}
 
-The variable ~\textbf{identifer} refers to a list of free variables that are stored in the tree structure. This is done for one particularly reason, instead of browsing the entire tree and looking to those free variables, we have a list where we can change the state of those free variables available in the list and directly, change the state of the tree. The advantage of that structure is that we don't need to browse in the tree.
+The variable ~\textbf{identifer} refers to a list of free variables that are stored in the tree structure. This is done for one particularly reason, instead of browsing the entire tree and looking to those free variables, we have a list where we can change the state of those free variables available in the list and directly, it changes also in the tree. The advantage of that structure is that we don't need to browse in the tree and change or look for those free variable. Otherwise it will be a time consume by doing that.
 
 Then we have the variable ~\textbf{head} which holds the information about the head node of the tree structure.
+
+Let's see the Set structure in Figure ~\ref{fig:set_structure}.
+
+\begin{figure}[h!]
+ \centering
+  \includegraphics[width=0.8\textwidth]{img/set_structure.png}
+  \caption{Set structure in JAVA}
+  \label{fig:set_structure}
+\end{figure}
+
+Basically, a set in LISS is made with a tree structure where each nodes are a symbol of the expression associated with the set.
+For our project, we managed to create a variable which points to the head of the tree structure (also named by the variable ~\textit{head}) and a list of free variables stored in the variable named ~\textit{identifier}.
+
+We implemented a list for free variables for one reason and this reason comes with the fact that we can join multiple sets.
+Notice that each set have their own free variable which means that each free variable regarding to each sets does have differents address. And we need to collect all those addresses of each free variable with a list.
+
+Let's see an example of joining two sets in Figure ~\ref{fig:sets_associaton}.
+
+\begin{figure}[h!]
+ \centering
+  \includegraphics[width=0.8\textwidth]{img/sets_association.png}
+  \caption{Set structure in JAVA}
+  \label{fig:sets_associaton}
+\end{figure}
+
+In Figure ~\ref{fig:sets_associaton}, we can see that the head of the ~\textbf{Set} is connected with two sets (left and right). This means that we are joining two sets (~\textit{Set1} and ~\textit{Set2}) with the head of one ~\textit{Set}. And, in this case, we are growing the tree structure by doing more complex structure.
+
+Doing those changes will need some attention to fix the free variables available on each sets. And this is why we have created the set class with a list of free variables. Like that, we can get the free variables from the others sets and adds them to the list of the ~\textbf{Set}. By this way, we can change the states of each free variables available in the list of ~\textbf{Set} which will also changes in the other sets too.
+
+After that the compiler, processed the Set class for the variable, it will associate that structure to the variable added in the symbol table.
+
+Notice that the compiler will generate some code only when it will be asked it in the ~\textit{statements} part of the LISS code.
+
+Lastly, we need to talk about the different states that a set can have regarding to the declaration part.
+
+Set variable can have three different states:
+
+\begin{itemize}
+\item Universe set
+\item Empty set
+\item Defined set
+\end{itemize}
+
+The ~\textbf{universe} set is a set which basically represent the whole number system and it is represented by this syntatic in LISS code:
+
+\begin{lstlisting}
+  set1 -> set;
+\end{lstlisting}
+
+The ~\textbf{empty} set is a set which basically represents nothing in the number systems, also considered ~\textit{null} and it is represented by this syntatic in LISS code:
+
+\begin{lstlisting}
+  set1 = {} -> set;
+\end{lstlisting}
+
+The ~\textbf{defined} set is a set which basically represents the numbers expressed with the expression associated to the set and they are defined by this way in LISS code:
+
+\begin{lstlisting}
+  set1 = {y | y+1 < y+4} -> set;
+\end{lstlisting}
+
+Let's talk finally with the last line 8 in Listing ~\ref{lst:declaration_variable_code_generation}, it represents the declaration of variables with the type ~\textit{sequence}. And the idea of generating the code for that type, is almost the same as the type ~\textit{array}.
+
+Basically, the type ~\textit{sequence} creates one position of memory for each variable declared and will store the value -1 in there (value -1 is equal to NULL). By setting the value to -1, it means that the variable sequence is empty, no values are associated to that variable (the same as saying that the sequence wasn't intialized).
+
+Let's see the code generated for the example available on line 8 of Listing ~\ref{lst:declaration_variable_code_generation}:
+
+\begin{lstlisting}
+  seq2 : .word -1		# 9:10
+  seq1 : .word -1		# 9:4
+\end{lstlisting}
+
+As we can see, we create the name of the variable firstly, then the type of the variable (~\textit{.word)} and the value associated to that variable ( NULL value (-1)). Notice that the type of the variables is a 4 bytes size and this is for one main raison.
+
+The ~\textit{sequence} type is a linkedlist of integer numbers and those numbers will be stored in the ~\textit{heap} section.
+So, in this case, we need to know in which address the first element of the sequence is stored and this pass by knowing the address of the first element of the sequence. However this address must be stored on a place that can be known and this goes by storing that address to the variable name associated.
+
+Also the size of an address in the MIPS architecture is 4 bytes, then in that case the variable must be 4 bytes long and that is why we choose the type ~\textit{.word}.
+
+After creating the variables, we need to do the same thing as the ~\textit{array} type, check if the sequence is initialized or not.
+
+And if it is initialized, we need to generate some MIPS assembly code. 
+
+
+
+
+
 
 
 
