@@ -3849,26 +3849,74 @@ Let's see the code generated for the example available on line 8 of Listing ~\re
 As we can see, we create the name of the variable firstly, then the type of the variable (~\textit{.word)} and the value associated to that variable ( NULL value (-1)). Notice that the type of the variables is a 4 bytes size and this is for one main raison.
 
 The ~\textit{sequence} type is a linkedlist of integer numbers and those numbers will be stored in the ~\textit{heap} section.
-So, in this case, we need to know in which address the first element of the sequence is stored and this pass by knowing the address of the first element of the sequence. However this address must be stored on a place that can be known and this goes by storing that address to the variable name associated.
+So, in this case, we need to know in which address the first element of the sequence is stored and this pass by knowing the address of the first element of the sequence. However this address must be stored at one place that can be known and this goes by storing that address to the variable name associated.
 
-Also the size of an address in the MIPS architecture is 4 bytes, then in that case the variable must be 4 bytes long and that is why we choose the type ~\textit{.word}.
+The size of an address in the MIPS architecture is 4 bytes, so in this case the variable must be 4 bytes long and that is why we choosed the type ~\textit{.word}.
 
 After creating the variables, we need to do the same thing as the ~\textit{array} type, check if the sequence is initialized or not.
 
 And if it is initialized, we need to generate some MIPS assembly code. 
 
+For generating the code, we need to take the values that are associated to the sequence and generate each MIPS assembly code for each values.
 
+Notice also, that the MIPS assembly code that will be generated, will also be placed in the same area as the initialization of an array (before the program execution code).
 
+Let's explain it throw the example of Listing ~\ref{lst:declaration_variable_code_generation}, the code generated for the variable ~\textbf{seq2}.
 
+\begin{lstlisting}[caption={Code generated for the sequence variable},label={lst:sequence_initialization_mips}]
+  ##### Initialize Sequence :seq2#####
+	lw $s0, seq2		# 9:10
+	li $s1, 1		# 9:10
+	jal cons_sequence		# 9:10
+	move $s0, $v0		# 9:10
+	li $s1, 2		# 9:10
+	jal cons_sequence		# 9:10
+	sw $v0, seq2		# 9:10
+  #######################################
+\end{lstlisting}
 
+Basically, in our project we need some  inputs in order to add some values to a sequence and those informations are:
+\begin{enumerate}
+\item the name of the variable (for having the knowledge of which sequence that the number must be associated).
+\item the value that needs to be added to the sequence.
+\item the function who will do the work of adding the number to the heap and linking it to the variable ~\textit{sequence}.
+\end{enumerate}
 
+So, regarding to the variable ~\textbf{seq2} in Listing ~\ref{lst:declaration_variable_code_generation}, the compiler needs to take the value 1 and 2 and generate code for them to the sequence.
 
+In Listing ~\ref{lst:sequence_initialization_mips}, the compiler firstly creates an instruction which puts the address of the sequence variable to a saved registers (\$~\textit{s0}), then it loads the value 1 ( first number that must be added to the sequence) to the next saved registers (\$~\textit{s1}) and finally it calls the function that will add to the sequence (~\textit{cons\_sequence}).
 
+Notice that those steps are always the same and regarding to the use of those saved registers, the reason is that we don't need to use the stack for storing the information. Instead we use some profits of the MIPS architecture, and we use those saved registers. 
 
+Care that normally we use the saved registers for calling some functions due to the fact that those registers won't be modified within that transition of jumping to those functions. And for our case, we call the function that will add the number to the sequence.
 
-%falar de que maneira se pode criar os sets
+After that the function will finish to process (~\textit{cons\_sequence} function), it will return to the register \$v0 the return value and in this case, this is the address of the first element of the sequence. Then in line 5, it will move the address of the register \$v0 to the register \$s0, due to the fact that it needs to add the second number (number 2) to the sequence. And finally, at the end it will store the address of the first element of the sequence to the sequence variable name (line 8).
 
+\begin{itemize}
+\item Level scope greater than zero
+\end{itemize}
 
+Creating variables with a level scope greater than 0 means that those variables are created in a function.
+Let's see how they are created in a function structure in Listing ~\ref{lst:variable_declarations_greater_than_0}.
+
+\begin{lstlisting}[caption={Example of creating variables in a level scope greater than 0},label={lst:variable_declarations_greater_than_0}]
+  program liss{
+  declarations
+    subprogram test(){
+      declarations
+        a, b = 4, c = -1, d = +2 -> integer;
+        flag, flag1 = false, flag2 = true -> boolean;
+        array1, array2 = [2,1,1], array3 = [1] -> array size 3;
+        array4 = [[1,2],[3]] -> array size 3,3;
+        set1, set2 = { y | y+1 < y+4}, set3 = {} -> set;
+        seq1, seq2 = <<1,2>> -> sequence;
+      statements
+    }
+  statements
+  }
+\end{lstlisting}
+
+As we can see in Listing ~\ref{lst:variable_declarations_greater_than_0}, they are created in the same way as if it was with a level scope equals to 0. The only thing that is different is that
 
 
 
