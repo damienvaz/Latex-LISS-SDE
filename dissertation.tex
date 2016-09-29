@@ -3897,26 +3897,106 @@ After that the function will finish to process (~\textit{cons\_sequence} functio
 \end{itemize}
 
 Creating variables with a level scope greater than 0 means that those variables are created in a function.
-Let's see how they are created in a function structure in Listing ~\ref{lst:variable_declarations_greater_than_0}.
+Let's see how they are created in Listing ~\ref{lst:variable_declarations_greater_than_0}.
 
 \begin{lstlisting}[caption={Example of creating variables in a level scope greater than 0},label={lst:variable_declarations_greater_than_0}]
   program liss{
-  declarations
-    subprogram test(){
-      declarations
-        a, b = 4, c = -1, d = +2 -> integer;
-        flag, flag1 = false, flag2 = true -> boolean;
-        array1, array2 = [2,1,1], array3 = [1] -> array size 3;
-        array4 = [[1,2],[3]] -> array size 3,3;
-        set1, set2 = { y | y+1 < y+4}, set3 = {} -> set;
-        seq1, seq2 = <<1,2>> -> sequence;
-      statements
-    }
-  statements
+    declarations
+      subprogram test(){
+        declarations
+          a, b = 4, c = -1, d = +2 -> integer;
+          flag, flag1 = false, flag2 = true -> boolean;
+          array1, array2 = [2,1,1], array3 = [1] -> array size 3;
+          array4 = [[1,2],[3]] -> array size 3,3;
+          set1, set2 = { y | y+1 < y+4}, set3 = {} -> set;
+          seq1, seq2 = <<1,2>> -> sequence;
+        statements
+      }
+    statements
   }
 \end{lstlisting}
 
-As we can see in Listing ~\ref{lst:variable_declarations_greater_than_0}, they are created in the same way as if it was with a level scope equals to 0. The only thing that is different is that
+As we can see in Listing ~\ref{lst:variable_declarations_greater_than_0}, they are created in the same way as if it is with a level scope equals to 0. The only thing that is different is that they are created in a different area ( subprogram area ) and this means that the every declaration of variables will be declared and stored in the stack memory.
+
+Basically, when the compiler process a function within the LISS code, it will process firstly the arguments that the function has and secondly, every variable declaration under the ~\textit{declarations} part.
+
+When the compiler have added those informations to the symbol table, he will also calculate the total size that needs to be allocated to the stack memory in MIPS architecture.
+
+Notice that before calculating the total size of the stack memory, the compiler has already processed the information of every variables and arguments into MIPS code instruction.
+
+Let's see how the stack is organized in Figure ~\ref{fig:stack_architecture_mips}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/stack_architecture.png}
+    \caption{Architecture of the stack relatively to a function in LISS}
+    \label{fig:stack_architecture_mips}
+\end{figure}
+
+So, in Figure ~\ref{fig:stack_architecture_mips}, the stack is organized by this way: 
+\begin{itemize}
+\item the variables of the arguments function next to the new position of the stack pointer
+\item the local variables relatively to the variables declared under the declarations parts.
+\item the return address of the function.
+\end{itemize}
+
+Notice that the stack grows from the highest address to the lowest one and that there is also a reason regarding to this chosen architecture.
+
+Remember that each variables that the compiler finds and needs to add to the symbol table, an address is also associated to the variable. When the compiler enters to a function statement ( declaration of a subprogram in LISS), the address is set to zero. And in this case, each variables who are found, will begin by the address zero and then incremented relatively to their types.
+
+Now, if we want to access to a variable in that stack, we just need to get the address of the variable throw the symbol table and get the position of the ~\textit{new stack pointer} (if the level scope of the compiler, when he is processing the access, is the same as the level scope of the variable). Then we add both of them and get the position for accessing the value of the variable in the stack.
+
+Care that, in Figure ~\ref{fig:stack_architecture_mips}, it is possible that the arguments section or the local variables section might not appear in the stack (depending to the LISS code) and also that those informations are added to the stack created under the project.
+
+Now, let's explain the code generated in MIPS relatively to the Listing ~\ref{lst:variable_declarations_greater_than_0}.
+
+The fact that it is a subprogram (function), every code generated will be added relatively to the branch associated of the function name in MIPS and the first thing that must be done under that branch is to increase the stack relatively to the amount of informations that needs to be allocated (see in Listing ~\ref{lst:init_function_mips}).
+
+\begin{lstlisting}[caption={Initialization of MIPS code generated for a function},label={lst:init_function_mips}]
+    test: 
+      addi $sp, $sp, -160		
+      sw $ra, 156($sp)
+\end{lstlisting}
+
+In Listing ~\ref{lst:init_function_mips}, we see the name of the branch associated to the function in first. Then comes the part of adding some informations about the stack that the function needs to allocate. In this case, we have one instruction ~\textit{add} (line 2) which explains us that the function needs to allocate 160 bytes  in the stack memory regarding to the stack pointer and to refresh the address of the new stack pointer with the new allocation. Finally, we save the information regarding to the return address of the function into the stack (line 3).
+
+Those are always the initialization of MIPS instruction regarding to a function declared in LISS. After that, comes the MIPS assembly code relatively to the variables declared under the ~\textit{declarations} part of the function.
+
+In line 5 of Listing ~\ref{lst:variable_declarations_greater_than_0}, we are declaring integer variables and the code generated for those variables are available in Listing ~\ref{lst:integer_variable_declaration_level_scope_greater_than_0}.
+
+\begin{lstlisting}[caption={Declaring integer variables in level scope greater than 0 on MIPS.},label={lst:integer_variable_declaration_level_scope_greater_than_0}]
+  li $t0,0		# 12:12
+  sw $t0, 0($sp)
+  li $t0,4		# 12:19
+  sw $t0, 4($sp)
+  li $t0,-1		# 12:27
+  sw $t0, 8($sp)
+  li $t0,+2		# 12:35
+  sw $t0, 12($sp)
+\end{lstlisting}
+
+In Listing ~\ref{lst:integer_variable_declaration_level_scope_greater_than_0}, line 1 and 2 are related for declaring the variable ~\textbf{a}. Basically, the idea of declaring integer variable is done by this way: 
+
+\begin{enumerate}
+\item load the value to store in the variable
+\item store that value to the position related to the variable in the stack.
+\end{enumerate}
+
+Notice that the position is given by the algorithm that we explained in a previous section (stack structure).
+
+Now, line 3 and 4 are the code generated for the variable ~\textbf{b}; line 5 and 6 are the code generated for the variable ~\textbf{c}; line 7 and 8 are the code generated for the variable ~\textbf{d}.
+
+Line 6 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to variables declared with the type boolean and the code generated for that type is visible in Listing ~\ref{lst:boolean_variable_declaration_level_scope_greater_than_0}.
+
+\begin{lstlisting}[caption={Declaring boolean variables in level scope greater than 0},label={lst:boolean_variable_declaration_level_scope_greater_than_0}]
+  li $t0,0		# 13:12
+  sw $t0, 16($sp)
+  li $t0,1		# 13:41
+  sw $t0, 20($sp)
+  li $t0,0		# 13:26
+  sw $t0, 24($sp)
+\end{lstlisting}
+
 
 
 
