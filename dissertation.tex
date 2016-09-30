@@ -3997,6 +3997,94 @@ Line 6 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to var
   sw $t0, 24($sp)
 \end{lstlisting}
 
+In Listing ~\ref{lst:boolean_variable_declaration_level_scope_greater_than_0}, the methodology of creating boolean variables is the same as if it was with a level scope equals to zero. The only thing that differs, is the instruction for storing the value that is associated to the variable.
+
+Line 1 and 2 of Listing ~\ref{lst:boolean_variable_declaration_level_scope_greater_than_0} refers to the declaration of the variable ~\textbf{flag}; line 3 and 4 is the declaration of the variable ~\textbf{flag2} and line 5 and 6 is the declaration of the variable ~\textbf{flag1}.
+
+Line 7 and 8 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to variables declared with the type array and the code generated for the variable ~\textbf{array2} is visible in Listing ~\ref{lst:array_variable_declaration_level_scope_greater_than_0}.
+
+\begin{lstlisting}[caption={Declaring array variables in level scope greater than 0},label={lst:array_variable_declaration_level_scope_greater_than_0}]
+  ##### Initialize Array :array2#####
+  li $t0,0		# 14:20
+  sw $t0, 28($sp)
+  li $t0,0		# 14:20
+  sw $t0, 32($sp)
+  li $t0,0		# 14:20
+  sw $t0, 36($sp)
+  #######################################
+  ##### Initialize Value Array :array2#####
+  li $t0,2		# 14:20
+  li $t1,0		# 14:20
+  li $t2,28		# 14:20
+  add $t1, $t1, $t2	# 14:20
+  add $t1, $t1, $sp
+  sw $t0, ($t1)
+  li $t0,1		# 14:20
+  li $t1,4		# 14:20
+  li $t2,28		# 14:20
+  add $t1, $t1, $t2	# 14:20
+  add $t1, $t1, $sp
+  sw $t0, ($t1)
+  li $t0,1		# 14:20
+  li $t1,8		# 14:20
+  li $t2,28		# 14:20
+  add $t1, $t1, $t2	# 14:20
+  add $t1, $t1, $sp
+  sw $t0, ($t1)
+  #######################################
+\end{lstlisting}
+
+So the creation of a variable with the type array is done almost by the same way as if it was with a variable declared in the level scope equals to zero.
+But it differs on some points which must be explained.
+
+As we know, the stack grows and decrease by time and the values in the memory of the stack are not removed regarding to the process of the stack by growing up or decreasing it. So, regarding to variables with the type of array, we need to firstly set to zero all the position of the array in the stack (done on line 2 to 7 of Listing ~\ref{lst:array_variable_declaration_level_scope_greater_than_0}). Then, we need to put the values that were declared in the array to their right position.
+
+Let's see how it is done with the value 2 of the variable ~\textbf{array2} relatively with the code made in Listing ~\ref{lst:array_variable_declaration_level_scope_greater_than_0}:
+
+\begin{enumerate}
+\item line 10 : Put the value 2 to register.
+\item line 11 : Put the index of the value 2 regarding to the array declared to register.
+\item line 12 : Put the address of the array to register.
+\item line 13 : Sum the index with the address of the array for getting the address of the index.
+\item line 14 : Sum the index address with the stack pointer, for getting the address position in the stack.
+\item line 15 : Store the value 2 to the address position in the stack.
+\end{enumerate}
+
+And redo the same algorithm for the next values that need to be stored. Also notice that the index of the array is calculated throw the algorithm mentioned before and that the address of the array is associated to the variable and caught with the symbol table.
+
+Line 9 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to the declaration of variables with the type set and it only gets and creates the tree structure which will be associated to each variables. Nothing more will be generated as code, unless if it is used in the ~\textit{statements} section.
+
+Line 10 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to the declaration of variables with the type sequence and the code generated for the variable ~\textbf{seq2} is visible in Listing ~\ref{lst:sequence_variable_declaration_level_scope_greater_than_0}.
+
+\begin{lstlisting}[caption={Declaring sequence variable in level scope greater than 0},label={lst:sequence_variable_declaration_level_scope_greater_than_0}]
+  ##### Initialize Sequence :seq2#####
+  li $t2,-1		# 18:18
+  sw $t2, 148($sp)		# 18:18
+  lw $s0, 148($sp)		# 18:18
+  li $s1, 1		# 18:18
+  jal cons_sequence		# 18:18
+  move $s0, $v0		# 18:18
+  li $s1, 2		# 18:18
+  jal cons_sequence		# 18:18
+  sw $v0, 148($sp)		# 18:18
+  #######################################
+\end{lstlisting}
+
+The idea of  generating the code for the sequence variable is the same as an array variable.
+Firstly, we need to put the value NULL in the stack memory (line 2 and 3 of Listing ~\ref{lst:sequence_variable_declaration_level_scope_greater_than_0}) and then, if some values are associated to the variable, we need to generate the code (which is almost the same way as if it was on a level scope equals to 0).
+
+So, firstly we go get the address of the variable sequence which needs to add a certain value (line 4 of Listing ~\ref{lst:sequence_variable_declaration_level_scope_greater_than_0}), then we load the value to a register (line 5 of Listing ~\ref{lst:sequence_variable_declaration_level_scope_greater_than_0}) and finally, we call the function that will process the concatenation of the value to the sequence.
+
+Notice that after creating those generated code relatively to those variable declarations, comes the flow of the execution subprogram (everything that is created under the statements part of the subprogram). Finally, at the end of the execution of the subprogram, we need to remove the allocated stack memory of the function and return.
+
+Let's see the code generated in Listing ~\ref{}.
+
+\begin{lstlisting}
+  lw $ra, 156($sp)		
+  addi $sp, $sp, 160		
+  jr $ra	
+\end{lstlisting}
+
 
 
 
