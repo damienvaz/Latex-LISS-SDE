@@ -4179,9 +4179,68 @@ This is the code that is predefined for the read statement (see in Listing ~\ref
     jr $ra
 \end{lstlisting}
 
-\subsubsection{Creating condition statement in LISS}
+\subsubsection{Creating conditional statement in LISS}
 
+Creating a conditional statement in LISS is basically following that schema available in Figure ~\ref{fig:conditional_figure}.
 
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.7\textwidth]{img/conditional_statement.png}
+    \caption{Schema of the conditional statements in LISS}
+    \label{fig:conditional_figure}
+\end{figure}
+
+And for a better view of how it is generated let's see an example of a conditional statement in Listing ~\ref{lst:conditional_statement_liss}.
+
+\begin{lstlisting}[caption={Example of conditional statement in LISS},label={lst:conditional_statement_liss}]
+  if(flag)
+  then{
+    writeln("Then content.");
+  }else{
+    writeln("Else content.");
+  }
+\end{lstlisting}
+
+Basically we have, in Listing ~\ref{lst:conditional_statement_liss}, a conditional statement with an if and an else statement. The condition of the if-statement  in this case is false, so by this way the else content will be processed when it will be executed.
+
+Now let's see how the code is generated in Listing ~\ref{lst:conditional_code_generation}.
+
+\begin{lstlisting}[caption={Code generated for conditional statement in MIPS},label={lst:conditional_code_generation}]
+    lw $t0,flag		
+    bne $t0, 1, else1		
+    la $a0, writestring0
+    li $v0, 4
+    jal write		
+    jal writeln		
+    j l1		
+  else1:		
+    la $a0, writestring1
+    li $v0, 4
+    jal write		
+    jal writeln		
+  l1:		
+\end{lstlisting}
+
+In Listing ~\ref{lst:conditional_code_generation}, line 1 is the piece of code relatively to the condition of the conditional statement, then comes at line 2 the instruction which compares the value of the condition to the value true. If the value are different then it must jump to the else-condition. Otherwise if the value are the same, then it process the next instruction available in line 3 which is the code instruction available in the content of the then-statment. At the end of the then-statement, it exit the conditional statement (line 7).
+
+Now, if the condition of the statement is true, then it will jump to the branch of the else-statement (line 8) and execute every code instruction available there. Notice that it won't jump at the end as if it will be with the then-statement content, it will process the next instruction sequentially without jumping.
+
+Let's consider now that in the LISS code, no else-statement is used. Then the only thing that disappears is the whole code below of the else branch in Listing ~\ref{lst:conditional_code_generation}.
+
+Let's see an example of the same code relatively to Listing ~\ref{lst:conditional_code_generation} without the else-statement in Listing ~\ref{lst:conditional_statement_no_else_mips}.
+
+\begin{lstlisting}[caption={Code generated for conditional statements without an else-statement in MIPS},label={lst:conditional_statement_no_else_mips}]
+    lw $t0,flag		
+    bne $t0, 1, else1		
+    la $a0, writestring0
+    li $v0, 4
+    jal write		
+    jal writeln		
+    j l1		
+  else1:
+\end{lstlisting}
+
+\subsubsection{Creating iterative statement}
 
 
 
