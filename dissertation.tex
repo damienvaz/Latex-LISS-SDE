@@ -4077,19 +4077,109 @@ So, firstly we go get the address of the variable sequence which needs to add a 
 
 Notice that after creating those generated code relatively to those variable declarations, comes the flow of the execution subprogram (everything that is created under the statements part of the subprogram). Finally, at the end of the execution of the subprogram, we need to remove the allocated stack memory of the function and return.
 
-Let's see the code generated in Listing ~\ref{}.
+Let's see the code generated in Listing ~\ref{lst:exit_function_mips}.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption={Exiting the function in MIPS assembly code},label={lst:exit_function_mips}]
   lw $ra, 156($sp)		
   addi $sp, $sp, 160		
   jr $ra	
 \end{lstlisting}
 
+In Listing ~\ref{lst:exit_function_mips}, line 1 will get the return address of the function; then at line 2 it will remove the stack allocated for the function and finally at line 3, it will process for exiting the function with the return address.
 
+\subsubsection{Creating I/O in LISS}
 
+%\begin{itemize}
+%\item Level scope equals to zero
+%\end{itemize}
 
+Let's see an example of LISS code in Listing ~\ref{lst:io_statements_mips}.
 
+\begin{lstlisting}[caption={Example of I/O statements in LISS},label={lst:io_statements_mips}]
+  write();
+  write(a);
+  write("hello");
+  writeln();
+  writeln(a);
+  writeln("hello");
+  input(a);
+\end{lstlisting}
 
+Firstly, let's talk about the output statements. They are known by ~\textit{write} and ~\textit{writeln}.
+
+~\textit{Write} statement is an output which only prints the content and doesn't add the return carriage. However ~\textit{writeln} statement is an output which prints the content and add the return carriage at the end.
+
+Those output statements have three possibility of being declared:
+
+\begin{enumerate}
+\item empty (line 1 and 4 of Listing ~\ref{lst:io_statements_mips})
+\item expression (line 2 and 5 of Listing ~\ref{lst:io_statements_mips})
+\item string (line 3 and 6 of Listing ~\ref{lst:io_statements_mips})
+\end{enumerate}
+
+Basically, for generating each output statements, we need to generate firstly the code regarding to the content available in the parentheses and then the code related to the type of output statements is available.
+
+If the output of the statement is a ~\textit{write}, then the code will be :
+
+\begin{lstlisting}
+  jal write
+\end{lstlisting}
+
+Otherwise if the output of the statement is a ~\textit{writeln}, then the code will be :
+
+\begin{lstlisting}	
+  jal writeln
+\end{lstlisting}
+
+Notice that the behavior of the output statement ~\textit{writeln} reuses the ~\textit{write} statement plus adds the instruction code for adding the carriage return (see Listing ~\ref{lst:example_writeln_mips}).
+
+\begin{lstlisting}[caption={Code generated for line 6 in Listing ~\ref{lst:io_statements_mips}},label={lst:example_writeln_mips}]
+  la $a0, writestring0
+  li $v0, 4
+  jal write	
+  jal writeln
+\end{lstlisting}
+
+And the code already predifined regarding to both of the statement is available in Listing ~\ref{lst:write_writeln_mips}.
+
+\begin{lstlisting}[caption={MIPS assembly code of write and writeln},label={lst:write_writeln_mips}]
+  write: 
+	syscall
+	jr $ra
+  writeln: 
+	li $v0, 4
+	la $a0, newline
+	syscall
+	jr $ra
+\end{lstlisting}
+
+Now, let's talk about the input statement which is known by ~\textit{input}.
+
+The idea behind of that statment for generating the code, it is to call the function which process for the output in MIPS and then store the information to the variable that is associated to the ~\textit{input} statment inside of the parentheses.
+
+Let's see the code generated of line 7 in Listing ~\ref{lst:io_statements_mips} below:
+
+\begin{lstlisting}
+  jal read		
+  move $t0, $v0		
+  sw $t0, a		
+\end{lstlisting}
+
+As we can see, after processing the read statement. We need to move the value that the user have put to another register and finally, store the value to the variable that was associated.
+
+This is the code that is predefined for the read statement (see in Listing ~\ref{lst:read_mips}).
+
+\begin{lstlisting}[caption={Read statement code in MIPS},label={lst:read_mips}]
+  read: 
+    li $v0,4
+    la $a0,messagereadvalue
+    syscall
+    li $v0,5
+    syscall
+    jr $ra
+\end{lstlisting}
+
+\subsubsection{Creating condition statement in LISS}
 
 
 

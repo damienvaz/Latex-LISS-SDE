@@ -92,11 +92,13 @@
 \contentsline {subsubsection}{The algorithm for finding variables in the stack}{87}{Item.56}
 \contentsline {subsection}{\numberline {5.4.2}LISS language code generation}{87}{subsection.5.4.2}
 \contentsline {subsubsection}{Creating a variable in LISS}{87}{subsection.5.4.2}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{105}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{106}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{107}{section.6.2}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{108}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{108}{section.7.1}
+\contentsline {subsubsection}{Creating I/O in LISS}{105}{lstnumber.5.67.3}
+\contentsline {subsubsection}{Creating condition statement in LISS}{107}{lstnumber.5.71.7}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{108}{chapter.6}
+\contentsline {section}{\numberline {6.1}What is a template?}{109}{section.6.1}
+\contentsline {section}{\numberline {6.2}Conception of the SDE}{110}{section.6.2}
+\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{111}{chapter.7}
+\contentsline {section}{\numberline {7.1}Future Work}{111}{section.7.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{112}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{115}{appendix.A}
