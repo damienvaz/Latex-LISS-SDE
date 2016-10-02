@@ -4242,12 +4242,37 @@ Let's see an example of the same code relatively to Listing ~\ref{lst:conditiona
 
 \subsubsection{Creating iterative statement}
 
+In LISS, we have three different ways of creating iterative statement. 
+
+They are known by:
+
+\begin{enumerate}
+\item For-loop with 'in' condition.
+\item For-loop with 'inArray' condition.
+\item While-loop.
+\end{enumerate}
+
+In Figure ~\ref{fig:for-loop_in}, we can see the routine of a for-loop with an 'in' condition.
+
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{img/for-loop_in.png}
     \caption{Schema of the for-loop statement relatively with the use of the condition 'in'}
     \label{fig:for-loop_in}
 \end{figure}
+
+Notice that the black circle is where the flow of the for-loop statement begins and that the double circle is where it finish of executing the flow of the for-loop statement.
+
+Let's see a piece of LISS code relatively to a for-loop statement with an 'in' condition in Listing ~\ref{lst:for-loop_in_condition_LISS}.
+
+\begin{lstlisting}[caption={Example of a for-loop statement with 'in' condition in LISS},label={lst:for-loop_in_condition_LISS}]
+  for(a in 1..5) stepUp 1 satisfying flag==true{
+    writeln(a);
+  }
+\end{lstlisting}
+
+We can see in Listing ~\ref{lst:for-loop_in_condition_LISS}, that it is created a for-loop statement with an 'in' condition and beside that there is also more informations relatively to that loop. Informations that refers about the method for incrementing (~\textit{stepUp}) and a condition which must be tested every time before executing the block content inside of the for-loop statement (~\textit{satisfying}).
+
 
 \begin{figure}[h!]
   \centering
