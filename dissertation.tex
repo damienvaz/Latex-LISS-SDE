@@ -4273,6 +4273,48 @@ Let's see a piece of LISS code relatively to a for-loop statement with an 'in' c
 
 We can see in Listing ~\ref{lst:for-loop_in_condition_LISS}, that it is created a for-loop statement with an 'in' condition and beside that there is also more informations relatively to that loop. Informations that refers about the method for incrementing (~\textit{stepUp}) and a condition which must be tested every time before executing the block content inside of the for-loop statement (~\textit{satisfying}).
 
+Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loop_in_condition_mips}.
+
+\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:for-loop_in_condition_LISS}},label={lst:for-loop_in_condition_mips}]
+    li $t0,1		
+    sw $t0, a		
+  for_loop1:
+    lw $t0,a		
+    li $t1,5		
+    slt $t0, $t1, $t0	
+    sltu $t0, $zero, $t0	
+    xori $t0, $t0, 1	
+    bne $t0, 1, for_exit1		
+    lw $t0,flag		
+    li $t1,1		
+    slt $t2, $t0, $t1	
+    sltu $t2, $zero, $t2	
+    xori $t2, $t2, 1	
+    slt $t3, $t1, $t0	
+    sltu $t3, $zero, $t3	
+    xori $t3, $t3, 1	
+    and $t2, $t2, $t3	
+    move $t0, $t2		
+    bne $t0, 1, satisfying_exit1		
+    lw $t0,a		
+    move $a0, $t0		
+    li $v0, 1
+    jal write		
+    jal writeln		
+ satisfying_exit1:
+    lw $t1,a		
+    li $t2,1		
+    add $t1, $t1, $t2	
+    sw $t1, a		
+    j for_loop1		
+  for_exit1:
+\end{lstlisting}
+
+In Listing ~\ref{lst:for-loop_in_condition_mips}, line 1 to 2 we create the variable ~\textit{a}; line 3 we create the for-loop branch; line 4 to 9 we test if the value of the variable ~\textit{a} is in the range of the for-loop condition. If no, we exit the for-loop flow by going to the branch named ~\textit{for\_exit1}(line 32); otherwise we continue the flow of the for-loop execution by going to line 10. Line 10 to 20 refers to the ~\textit{satisfying} condition. If the condition isn't satisfied then it goes to the branch named ~\textit{satisfying\_exit1}, otherwise it continues the flow of the execution in line 21. Line 21 to 25 is the code contained in the block of the for-loop statement. Notice that line 27 to 30 is the piece of code who will increment the variable ~\textit{a} relatively to ~\textit{stepUp}. At the end (line 31), it jumps to the branch of the for-loop statement ~\textit{for\_loop1}(line 3).
+
+Notice also, that ~\textit{stepUp} and ~\textit{satisfying} informations are optional statement. If the satisfying statement is not available then the line from 10 to 20 and line 26 of Listing ~\ref{lst:for-loop_in_condition_mips} will be removed. Regarding to the ~\textit{step} statement, even if the information is not available, by definition a for-loop statement needs to  have some kind of iteraction by step by step. So, by omission, it will increment the variable by one; otherwise if the information is available, it will increment or decrease relatively the information shown.
+
+In Figure ~\ref{fig:for-loop_inArray}, we can see the routine of a for-loop with an 'inArray' condition.
 
 \begin{figure}[h!]
   \centering
@@ -4281,12 +4323,88 @@ We can see in Listing ~\ref{lst:for-loop_in_condition_LISS}, that it is created 
     \label{fig:for-loop_inArray}
 \end{figure}
 
+The idea of that for-loop statement is to have some kind of a foreach statement in LISS. Basically, the for-loop statement will pass to every positions of the array. Notice that when it is used that for-loop statement, it is unavailable for the user of declaring any ~\textit{step} or ~\textit{satisfying} statement.
+
+Let's see a piece of LISS code relatively to a for-loop statement with an 'inArray' condition in Listing ~\ref{lst:for-loop_inArray_condition_LISS}.
+
+\begin{lstlisting}[caption={Example of a for-loop statement with 'inArray' condition in LISS},label={lst:for-loop_inArray_condition_LISS}]
+  for(a inArray array1){
+      writeln(a);
+  }
+\end{lstlisting}
+
+We can see in Listing ~\ref{lst:for-loop_inArray_condition_LISS}, that it is created a for-loop statement where the ~\textit{array1} is the variable of type array and the variable ~\textit{a} will have the value of each position of the variable ~\textit{array1}.
+
+By doing a ~\textit{writeln(a)} in line 2 of Listing ~\ref{lst:for-loop_inArray_condition_LISS}, it will output the value of each position of the array named ~\textit{array1}.
+
+Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loop_inArray_condition_MIPS}.
+
+\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:for-loop_inArray_condition_LISS}},label={lst:for-loop_inArray_condition_MIPS}]
+    li $t0,0		
+    sw $t0, for_var4		
+  for_loop4:
+    lw $t0,for_var4		
+    li $t1,16		
+    slt $t0, $t1, $t0	
+    sltu $t0, $zero, $t0	
+    xori $t0, $t0, 1	
+    bne $t0, 1, for_exit4		
+    lw $t0,for_var4		
+    lw $t0, array1($t0)		
+    sw $t0, a		
+    lw $t0,a		
+    move $a0, $t0		
+    li $v0, 1
+    jal write		
+    jal writeln		
+    lw $t1,for_var4		
+    li $t2,4		
+    add $t1, $t1, $t2	
+    sw $t1, for_var4		
+    j for_loop4		
+  for_exit4:
+\end{lstlisting}
+
+In Listing ~\ref{lst:for-loop_inArray_condition_MIPS}, line 1 to 2 we create a variable named ~\textit{for\_var4} which will be used for accesing each index of the array; line 3 we create the branch name relatively to the for-loop statement; line 4 to line 9 we test if the variable ~\textit{for\_var4} is in the limits of the array. If it isn't then it must exit the for-loop statement by going to the branch named ~\textit{for\_exit4} (line 23), otherwise it continues the flow of the execution of the code to line 10. Line 10 to line 12, we refresh the value of the variable ~\textit{a} by getting the value throw the index (variable ~\textit{for\_var4}) of the array. Line 13 to 17, this is where the content of the block relatively to the for-loop statement that will be put. In this case, it is the code instruction for writing to the output the variable ~\textit{a}. Line 18 to 21, we refresh the variable ~\textit{for\_var4} to the next position of the array and this is done by summing up with 4 bytes relatively to the old value of the variable ~\textit{for\_var4}. Lastly, line 22, we jumps to the branch ~\textit{for\_loop4} and continue the flow of the execution of the for-loop statement.
+
+In Figure ~\ref{fig:for-loop_inArray}, we can see the routine of a while-loop.
+
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.6\textwidth]{img/while-loop.png}
-    \caption{Schema of the for-loop statement relatively with the use of the condition 'inArray'}
+    \caption{Schema of the while-loop statement}
     \label{fig:for-loop_inArray}
 \end{figure}
+
+Basically, behind the idea of being the most simple iterative statement, the behavior of the while-loop statement is to check the truth of the condition every iteraction. If it is true, then the content who is inside will be executed otherwise it will exit the while-loop statement.
+
+Let's see a piece of LISS code relatively to a while-loop statement in Listing ~\ref{lst:while-loop_LISS}.
+
+\begin{lstlisting}[caption={Example of a while-loop statement in LISS},label={lst:while-loop_LISS}]
+  while(flag){
+      writeln("Hello");
+  }
+\end{lstlisting}
+
+In Listing ~\ref{lst:while-loop_LISS}, we have a variable ~\textit{flag} which hold the value true. In this case, the condition is true and then it should proceed to the content available inside of the parentheses. Otherwise if the condition is false, then it will quit the while-loop statement.
+
+Let's see the code generated for that piece of code in Listing ~\ref{lst:while-loop_LISS}.
+
+\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:while-loop_LISS}},label={lst:while-loop_MIPS}]
+  while5:		
+    lw $t0,flag		
+    bne $t0, 1, while_exit5	
+    la $a0, writestring0
+    li $v0, 4
+    jal write		
+    jal writeln		
+    j while5		
+  while_exit5:		
+\end{lstlisting}
+
+In Listing ~\ref{lst:while-loop_MIPS}, line 1 is created for the branch name of the while-loop statement. Firstly, we incorporate the code of the condition associated to the while-loop statement (line 2), then we test the truth of the condition in line 3. If the condition is false, it will jump to the branch ~\textit{while\_exit5} (line 9) for exiting the while-loop statement; otherwise, it will continue the flow of the execution by going to line 4. At this part, it is included all the code relatively to the content available in the while-loop statement (line 4 to 7). Finally, at line 8, it will jump back to the branch ~\textit{while5} and redo the algorithm.
+
+\subsubsection{Creating increment or decrement variables}
 
 
 
