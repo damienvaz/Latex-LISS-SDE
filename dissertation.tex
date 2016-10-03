@@ -4406,7 +4406,45 @@ In Listing ~\ref{lst:while-loop_MIPS}, line 1 is created for the branch name of 
 
 \subsubsection{Creating increment or decrement variables}
 
+If we wanna increment an integer variable, we can use and do by this following way in Listing ~\ref{lst:succ_LISS}.
 
+\begin{lstlisting}[caption={Increment variable in LISS},label={lst:succ_LISS}]
+  succ i;
+\end{lstlisting}
+
+Basically, we use the word ~\textit{succ} to give notion of incrementing and then we write the variable which will be incremented (~\textit{i}).
+
+Let's see the piece of LISS code relatively to Listing ~\ref{lst:succ_LISS} in Listing ~\ref{lst:succ_MIPS}.
+
+\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:succ_LISS}},label={lst:succ_MIPS}]
+  lw $t0,i		
+  li $t1,1		
+  add $t0, $t0, $t1	
+  sw $t0, i		
+\end{lstlisting}
+
+In Listing ~\ref{lst:succ_MIPS}, line 1 load the variable ~\textit{i} to register; line 2 load the value 1 to register; line 3 add both last registers (value of the variable and the value 1); line 4 refresh and store the result to the variable ~\textit{i}.
+
+If we wanna decrement an integer variable, we can use and do by this following way in Listing ~\ref{lst:pred_LISS}.
+
+\begin{lstlisting}[caption={Decrement variable in LISS},label={lst:pred_LISS}]
+  pred i;
+\end{lstlisting}
+
+We use the word ~\textit{pred} for decrementing the variable and then we write the variable which will be drecremented (~\textit{i}).
+
+Let's see the piece of LISS code relatively to Listing ~\ref{lst:pred_LISS} in Listing ~\ref{lst:pred_MIPS}.
+
+\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:pred_MIPS}},label={lst:pred_MIPS}] 
+  lw $t0,i		
+  li $t1,1		
+  sub $t0, $t0, $t1	
+  sw $t0, i		
+\end{lstlisting}
+
+In Listing ~\ref{lst:pred_MIPS}, line 1 load the variable ~\textit{i} to register; line 2 load the value 1 to register; line 3 subtract both last registers (value of the variable and the value 1); line 4 refresh and store the result to the variable ~\textit{i}.
+
+\subsubsection{Assigning some values}
 
 
 
