@@ -3554,10 +3554,10 @@ Later, we need to generate the assembly code if everything worked as planned. An
 
 \begin{lstlisting}[caption={Code generation of integer variables in MIPS assembly code},label={lst:integer_mips_level_scope_0}]
   .data
-	a : .word 0		# 3:4
-	b : .word 4		# 3:11
-	c : .word -1		# 3:19
-	d : .word +2		# 3:27
+	a : .word 0		
+	b : .word 4	
+	c : .word -1		
+	d : .word +2		
 \end{lstlisting}
 
 So creating variables in the level scope 0, basically means that those variables are globals.
@@ -3574,9 +3574,9 @@ Remember that ~\textit{boolean} types cost 4 bytes in the memory. So we just nee
 We declared the name of the variable (~\textit{flag}), then we say the size type (~\textit{.word} (4 bytes)) and we write the value of the boolean (true is 1, false is 0) (see in Listing ~\ref{lst:boolean_mips_level_scope_0}).
 
 \begin{lstlisting}[caption={Code generation of boolean variables in MIPS assembly code},label={lst:boolean_mips_level_scope_0}]
-  flag : .word 0		# 4:4
-  flag2 : .word 1		# 4:33
-  flag1 : .word 0		# 4:18
+  flag : .word 0		
+  flag2 : .word 1		
+  flag1 : .word 0		
 \end{lstlisting}
 
 Notice that boolean variable who are not initialized, the default value is false.
@@ -3586,10 +3586,10 @@ The idea of an ~\textit{array} type is a fixed-size sequential collection of ele
 And in MIPS assembly code, there is a certain way of creating those types by doing with this way (see in Listing ~\ref{lst:array_mips_level_scope_0}).
 
 \begin{lstlisting}[caption={Code generation of array variables in MIPS assembly code},label={lst:array_mips_level_scope_0}]
-  array2 : .space 12		# 5:12
-  array1 : .space 12		# 5:4
-  array3 : .space 12		# 5:30
-  array4 : .space 36		# 6:4
+  array2 : .space 12		
+  array1 : .space 12		
+  array3 : .space 12		
+  array4 : .space 36		
 \end{lstlisting}
 
 In Listing ~\ref{lst:array_mips_level_scope_0}, we declare the name of the variable, then the size type (sequence of memory, ~\textit{.space}) (due to the fact that it is an ~\textit{array} type) and finally, how much space that the array will store.
@@ -3706,13 +3706,13 @@ Let's see an example of how it is done the initialization of arrays in Listing ~
        ##### Initialize Value Array :array2#####
        li $t0,2		# 5:12
        li $t1,0		# 5:12
-       sw $t0, array2($t1)		# 5:12
+       sw $t0, array2($t1)		
        li $t0,1		# 5:12
        li $t1,4		# 5:12
-       sw $t0, array2($t1)		# 5:12
+       sw $t0, array2($t1)		
        li $t0,1		# 5:12
        li $t1,8		# 5:12
-       sw $t0, array2($t1)		# 5:12
+       sw $t0, array2($t1)		
        #######################################
 \end{lstlisting}
 
@@ -3842,8 +3842,8 @@ Basically, the type ~\textit{sequence} creates one position of memory for each v
 Let's see the code generated for the example available on line 8 of Listing ~\ref{lst:declaration_variable_code_generation}:
 
 \begin{lstlisting}
-  seq2 : .word -1		# 9:10
-  seq1 : .word -1		# 9:4
+  seq2 : .word -1		
+  seq1 : .word -1		
 \end{lstlisting}
 
 As we can see, we create the name of the variable firstly, then the type of the variable (~\textit{.word)} and the value associated to that variable ( NULL value (-1)). Notice that the type of the variables is a 4 bytes size and this is for one main raison.
@@ -3864,15 +3864,13 @@ Notice also, that the MIPS assembly code that will be generated, will also be pl
 Let's explain it throw the example of Listing ~\ref{lst:declaration_variable_code_generation}, the code generated for the variable ~\textbf{seq2}.
 
 \begin{lstlisting}[caption={Code generated for the sequence variable},label={lst:sequence_initialization_mips}]
-  ##### Initialize Sequence :seq2#####
-	lw $s0, seq2		# 9:10
-	li $s1, 1		# 9:10
-	jal cons_sequence		# 9:10
-	move $s0, $v0		# 9:10
-	li $s1, 2		# 9:10
-	jal cons_sequence		# 9:10
-	sw $v0, seq2		# 9:10
-  #######################################
+ 	lw $s0, seq2		
+	li $s1, 1		
+	jal cons_sequence		
+	move $s0, $v0		
+	li $s1, 2		
+	jal cons_sequence		
+	sw $v0, seq2		
 \end{lstlisting}
 
 Basically, in our project we need some  inputs in order to add some values to a sequence and those informations are:
@@ -3965,13 +3963,13 @@ Those are always the initialization of MIPS instruction regarding to a function 
 In line 5 of Listing ~\ref{lst:variable_declarations_greater_than_0}, we are declaring integer variables and the code generated for those variables are available in Listing ~\ref{lst:integer_variable_declaration_level_scope_greater_than_0}.
 
 \begin{lstlisting}[caption={Declaring integer variables in level scope greater than 0 on MIPS.},label={lst:integer_variable_declaration_level_scope_greater_than_0}]
-  li $t0,0		# 12:12
+  li $t0,0		
   sw $t0, 0($sp)
-  li $t0,4		# 12:19
+  li $t0,4		
   sw $t0, 4($sp)
-  li $t0,-1		# 12:27
+  li $t0,-1		
   sw $t0, 8($sp)
-  li $t0,+2		# 12:35
+  li $t0,+2		
   sw $t0, 12($sp)
 \end{lstlisting}
 
@@ -3989,11 +3987,11 @@ Now, line 3 and 4 are the code generated for the variable ~\textbf{b}; line 5 an
 Line 6 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to variables declared with the type boolean and the code generated for that type is visible in Listing ~\ref{lst:boolean_variable_declaration_level_scope_greater_than_0}.
 
 \begin{lstlisting}[caption={Declaring boolean variables in level scope greater than 0},label={lst:boolean_variable_declaration_level_scope_greater_than_0}]
-  li $t0,0		# 13:12
+  li $t0,0		
   sw $t0, 16($sp)
-  li $t0,1		# 13:41
+  li $t0,1		
   sw $t0, 20($sp)
-  li $t0,0		# 13:26
+  li $t0,0		
   sw $t0, 24($sp)
 \end{lstlisting}
 
@@ -4005,30 +4003,30 @@ Line 7 and 8 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers 
 
 \begin{lstlisting}[caption={Declaring array variables in level scope greater than 0},label={lst:array_variable_declaration_level_scope_greater_than_0}]
   ##### Initialize Array :array2#####
-  li $t0,0		# 14:20
+  li $t0,0		
   sw $t0, 28($sp)
-  li $t0,0		# 14:20
+  li $t0,0		
   sw $t0, 32($sp)
-  li $t0,0		# 14:20
+  li $t0,0		
   sw $t0, 36($sp)
   #######################################
   ##### Initialize Value Array :array2#####
-  li $t0,2		# 14:20
-  li $t1,0		# 14:20
-  li $t2,28		# 14:20
-  add $t1, $t1, $t2	# 14:20
+  li $t0,2		
+  li $t1,0		
+  li $t2,28		
+  add $t1, $t1, $t2	
   add $t1, $t1, $sp
   sw $t0, ($t1)
-  li $t0,1		# 14:20
-  li $t1,4		# 14:20
-  li $t2,28		# 14:20
-  add $t1, $t1, $t2	# 14:20
+  li $t0,1		
+  li $t1,4		
+  li $t2,28		
+  add $t1, $t1, $t2	
   add $t1, $t1, $sp
   sw $t0, ($t1)
-  li $t0,1		# 14:20
-  li $t1,8		# 14:20
-  li $t2,28		# 14:20
-  add $t1, $t1, $t2	# 14:20
+  li $t0,1		
+  li $t1,8		
+  li $t2,28		
+  add $t1, $t1, $t2	
   add $t1, $t1, $sp
   sw $t0, ($t1)
   #######################################
@@ -4057,17 +4055,15 @@ Line 9 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to the
 Line 10 of Listing ~\ref{lst:variable_declarations_greater_than_0}, refers to the declaration of variables with the type sequence and the code generated for the variable ~\textbf{seq2} is visible in Listing ~\ref{lst:sequence_variable_declaration_level_scope_greater_than_0}.
 
 \begin{lstlisting}[caption={Declaring sequence variable in level scope greater than 0},label={lst:sequence_variable_declaration_level_scope_greater_than_0}]
-  ##### Initialize Sequence :seq2#####
-  li $t2,-1		# 18:18
-  sw $t2, 148($sp)		# 18:18
-  lw $s0, 148($sp)		# 18:18
-  li $s1, 1		# 18:18
-  jal cons_sequence		# 18:18
-  move $s0, $v0		# 18:18
-  li $s1, 2		# 18:18
-  jal cons_sequence		# 18:18
-  sw $v0, 148($sp)		# 18:18
-  #######################################
+  li $t2,-1		
+  sw $t2, 148($sp)		
+  lw $s0, 148($sp)	
+  li $s1, 1		
+  jal cons_sequence		
+  move $s0, $v0		
+  li $s1, 2		
+  jal cons_sequence		
+  sw $v0, 148($sp)		
 \end{lstlisting}
 
 The idea of  generating the code for the sequence variable is the same as an array variable.
