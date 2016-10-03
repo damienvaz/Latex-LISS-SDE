@@ -4447,16 +4447,9 @@ In Listing ~\ref{lst:pred_MIPS}, line 1 load the variable ~\textit{i} to registe
 
 
 
-%In line 9 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two different named variables being declared with the type ~\textit{sequence}.
 
 
 
-%falar das instruçoes que sao geradas para colocar os valores no array para initializar e indicar que os valores do array sao initializadas a 0.
-
-
-
-
-%nao esquecer de falar das sequencias....
 
 
 
@@ -4568,6 +4561,51 @@ In this example, the cursor in Figure ~\ref{fig:SDE} is placed at the placeholde
 To sum up, this is how a SDE works.
 
 \section{Conception of the SDE}
+
+By taking the ideas talked in the previous section, we managed to create a simple and ease use of a syntax directed editor based with the idea of supporting those notions:
+
+\begin{itemize}
+\item having a visualization of generating the rules with the language associated to the program (LISS).
+\item seeing the code produced relatively to the rules generated.
+\item having syntax, semantic errors output and results of the execution code.
+\end{itemize}
+
+And by this way, it was done by creating the program called ~\textit{liss$|$SDE} (see Figure ~\ref{fig:LISS-SDE}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE.png}
+    \caption{liss$|$SDE}
+    \label{fig:LISS-SDE}
+\end{figure}
+
+The program ~\textit{liss$|$SDE} is divided by three main areas (see Figure ~\ref{fig:LISS-SDE_structure}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_organization.png}
+    \caption{liss$|$SDE structure}
+    \label{fig:LISS-SDE_structure}
+\end{figure}
+
+The number 1, in Figure ~\ref{fig:LISS-SDE_structure}, is where the rules of the language LISS are available. This part was implemented with the technology called HTML and Javascript, and the main reason of implementing that part with that technology was the fact that we needed to implement a tree visualization structure. 
+
+Creating some visualization content within the JAVA context is really hard and that's why we decided to use another technology where JAVA could handle it. And for that job, HTML and Javascript was the perfect key for creating those contents, due to his powerful and ease use of creating some visualization content.
+
+Also, notice that, we implemented a tree visualization structure for one simple reason: any language is represented with a tree structure.
+
+The number 2, in Figure ~\ref{fig:LISS-SDE_structure}, is where the code of the language is processed regarding to the rules generated to the view number 1. Notice that each time, the user generates a rule, in the same time it will refresh the view number 2.
+
+Lastly, the number 3 is related to every syntax and semantic errors, as well as, the execution of the LISS code, if everything works.
+
+
+
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
