@@ -4590,14 +4590,42 @@ The program ~\textit{liss$|$SDE} is divided by three main areas (see Figure ~\re
 
 The number 1, in Figure ~\ref{fig:LISS-SDE_structure}, is where the rules of the language LISS are available. This part was implemented with the technology called HTML and Javascript, and the main reason of implementing that part with that technology was the fact that we needed to implement a tree visualization structure. 
 
-Creating some visualization content within the JAVA context is really hard and that's why we decided to use another technology where JAVA could handle it. And for that job, HTML and Javascript was the perfect key for creating those contents, due to his powerful and ease use of creating some visualization content.
+Creating some visualization content within the JAVA context is really hard and not easy, for that reason we decided to use another technology where JAVA could handle it. And for that job, HTML and Javascript was the perfect key for creating those contents, due to his powerful and ease use of creating some visualization content.
 
-Also, notice that, we implemented a tree visualization structure for one simple reason: any language is represented with a tree structure.
+Also, notice that, we implemented a tree visualization structure for one simple reason: a programming language is represented by a tree structure. So we decided to adapt it and create a tree visualization structure.
 
 The number 2, in Figure ~\ref{fig:LISS-SDE_structure}, is where the code of the language is processed regarding to the rules generated to the view number 1. Notice that each time, the user generates a rule, in the same time it will refresh the view number 2.
 
-Lastly, the number 3 is related to every syntax and semantic errors, as well as, the execution of the LISS code, if everything works.
+Lastly, the number 3 is related to every syntax and semantic errors, as well as, the output of the execution relatively to the LISS code.
 
+\subsection{Creating a program}
+
+For a better view of that section, let's see a simple piece of LISS code in Listing ~\ref{lst:liss_sde_simple}.
+
+\begin{lstlisting}[caption={LISS code},label={lst:liss_sde_simple}]
+  program helloWorld{
+    declarations
+    statements
+      writeln("Hello World!");
+  }
+\end{lstlisting}
+
+In Listing ~\ref{lst:liss_sde_simple}, we created a 'hello world' program in LISS which basically outputs the string "Hello World!".
+
+Now, let's try and create the same LISS code relatively with the program ~\textit{liss$|$SDE}.
+
+So, firstly, we need to generate the rules relatively to the LISS language and by this way we need to interact with the view number 1 from Figure ~\ref{fig:LISS-SDE_structure}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE1.png}
+    %\caption{liss$|$SDE structure}
+    \label{fig:LISS-SDE_example_1}
+\end{figure}
+
+
+
+\subsection{Executing the program}
 
 
 
