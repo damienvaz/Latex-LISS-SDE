@@ -4636,6 +4636,55 @@ Notice, also, that by generating the ~\textit{liss} rule, in the right window, t
     \label{fig:LISS-SDE_example_1}
 \end{figure}
 
+So, in this case, we need to generate those non-terminal rules and we will do it by clicking with the left click of the mouse to the ~\textit{name} branch.
+This generates a rectangle box with a name included inside of the box (called as ~\textit{IDENTIFIER} box), see Figure ~\ref{fig:LISS-SDE_example_2}.
+
+Basically, a rectangle as shown in Figure ~\ref{fig:LISS-SDE_example_2} means that this is an input interaction with the user and that the word ~\textit{IDENTIFIER} informs to the user which kind of information must be typed.
+
+In this case, the ~\textit{IDENTIFIER} word explains to the user that it must be typed a word which governs a certain pattern:
+
+\begin{lstlisting}
+  ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')*
+\end{lstlisting}
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE2.png}
+    \caption{Example of creating a LISS code (2/17)}
+    \label{fig:LISS-SDE_example_2}
+\end{figure}
+
+If the pattern isn't correct relatively to the user input, then the box will change the color and put it as red (see Figure ~\ref{fig:LISS-SDE_example_3}).
+
+Red color means that there is a problem according to the input; instead that green color means that the input is correct.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE3.png}
+    \caption{Example of creating a LISS code (3/17)}
+    \label{fig:LISS-SDE_example_3}
+\end{figure}
+
+Although, if the color of the box is green (see Figure ~\ref{fig:LISS-SDE_example_4}) then the input is correct and the ~\textit{undefined} word who was available in the right window previously (see Figure ~\ref{fig:LISS-SDE_example_3}), will change to the according name of the input.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE4.png}
+    \caption{Example of creating a LISS code (4/17)}
+    \label{fig:LISS-SDE_example_4}
+\end{figure}
+
+Now, let's proceed with the other branch ~\textit{body} by clicking it with the left click. 
+
+As we can see, in Figure ~\ref{fig:LISS-SDE_example_5}, the rule generated more rules and notice, that in the right windows, it has changed the code and that we must to generate more rules in order to make the code feasable.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE5.png}
+    \caption{Example of creating a LISS code (5/17)}
+    \label{fig:LISS-SDE_example_5}
+\end{figure}
+
 
 
 \subsection{Executing the program}
