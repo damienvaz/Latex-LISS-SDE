@@ -4720,7 +4720,7 @@ Also, take care, that each time a statement is added, it will be added at the la
 
 Relatively to the code available in Listing ~\ref{lst:liss_sde_simple}, we just need to create one statement (writeln statement) and by this way, we only need to add one statement in the program (see Figure ~\ref{fig:LISS-SDE_example_9}).
 
-By adding that statement, we see that in the right part, the code is not feasable (~\textit{undefined} word appeared) and we need to proceed for adding more content and finishing the code.
+By adding that statement, we see that in the right part, the code is not feasable (~\textit{undefined} word appears) and we need to proceed for adding more content and finish the code.
 
 \begin{figure}[h!]
   \centering
@@ -4729,7 +4729,7 @@ By adding that statement, we see that in the right part, the code is not feasabl
     \label{fig:LISS-SDE_example_9}
 \end{figure}
 
-By left clicking in the ~\textit{statement} rule 
+By left clicking to the ~\textit{statement} rule, a pop-up menu appears and we can see every rules that a ~\textit{statement} can generate (see Figure ~\ref{fig:LISS-SDE_example_10}).
 
 \begin{figure}[h!]
   \centering
@@ -4738,7 +4738,88 @@ By left clicking in the ~\textit{statement} rule
     \label{fig:LISS-SDE_example_10}
 \end{figure}
 
+So we left click to the option of adding the write statement and it generates the rule (see Figure ~\ref{fig:LISS-SDE_example_11}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE11.png}
+    \caption{Example of creating a LISS code (11/17)}
+    \label{fig:LISS-SDE_example_11}
+\end{figure}
+
+After left clicking to the ~\textit{write} statement rule, the content of that rule is generated and the right part is being refreshed (see Figure ~\ref{fig:LISS-SDE_example_12}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE12.png}
+    \caption{Example of creating a LISS code (12/17)}
+    \label{fig:LISS-SDE_example_12}
+\end{figure}
+
+Let's generate the ~\textit{write\_expr} rule in Figure ~\ref{fig:LISS-SDE_example_13} by left clicking it and in this case, it will bring a pop-up menu that will let us to choose which output statment needs to be chosen. 
+
+By the code that we are trying to clone in Listing ~\ref{lst:liss_sde_simple}, we must choose the ~\textit{Writeln} option.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE13.png}
+    \caption{Example of creating a LISS code (13/17)}
+    \label{fig:LISS-SDE_example_13}
+\end{figure}
+
+So, by left clicking that option, the right part will refresh accordingly to the terminal word name and we just need to generate the rule ~\textit{print\_what} for finishing the code (see Figure ~\ref{fig:LISS-SDE_example_14}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE14.png}
+    \caption{Example of creating a LISS code (14/17)}
+    \label{fig:LISS-SDE_example_14}
+\end{figure}
+
+The ~\textit{print\_what} non-terminal shows a pop-up menu which have three options (see Figure ~\ref{fig:LISS-SDE_example_15}) and for our case, we need to choose the option of adding a string.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE15.png}
+    \caption{Example of creating a LISS code (15/17)}
+    \label{fig:LISS-SDE_example_15}
+\end{figure}
+
+By clicking that option, a rectangle appears below (see Figure ~\ref{fig:LISS-SDE_example_16}) and use the same idea as talked previously as  the ~\textit{IDENTIFIER} box. The only thing that differs is the pattern that is different:
+
+\begin{lstlisting}
+  '"' ( ESC_SEQ | ~('"') )* '"'
+\end{lstlisting}
+
+Basically the idea of that pattern is that the string must be inside of an opened and close quotation marks.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE16.png}
+    \caption{Example of creating a LISS code (16/17)}
+    \label{fig:LISS-SDE_example_16}
+\end{figure}
+
+And so, for the last step, we manage to write the string ~\textit{"Hello World!"} in that rectangle box for finishing the creation of the program accordingly to Listing ~\ref{lst:liss_sde_simple}. 
+
+Notice that in the right part of the Figure ~\ref{fig:LISS-SDE_example_17}, no ~\textit{undefined} word is available and this means that the code can be compiled and, probably, executed by the program.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE17.png}
+    \caption{Example of creating a LISS code (17/17)}
+    \label{fig:LISS-SDE_example_17}
+\end{figure}
+
+Finally, take care that it is available from the user interaction to delete rules on every non-terminal rules applicable in the tree structure.
+
+And this is how the user can interact and create a program in ~\textit{liss$|$SDE}.
+
+\newpage
+
 \subsection{Executing the program}
+
+\subsection{Toolbar meaning}
 
 
 
