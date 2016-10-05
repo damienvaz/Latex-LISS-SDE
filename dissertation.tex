@@ -4614,12 +4614,25 @@ In Listing ~\ref{lst:liss_sde_simple}, we created a 'hello world' program in LIS
 
 Now, let's try and create the same LISS code relatively with the program ~\textit{liss$|$SDE}.
 
-So, firstly, we need to generate the rules relatively to the LISS language and by this way we need to interact with the view number 1 from Figure ~\ref{fig:LISS-SDE_structure}.
+%So, firstly, we need to generate the rule regarding to the LISS language and, by this way we need to interact with the view number 1 from Figure ~\ref{fig:LISS-SDE_structure}.
+
+In Figure ~\ref{fig:LISS-SDE_example_1}, we left click in the non-terminal ~\textit{liss} which generate the rule and adds three branches under the non-terminal ~\textit{liss}:
+
+\begin{itemize}
+\item program
+\item name
+\item body
+\end{itemize}
+
+The ~\textit{program} word is a terminal which can be seen by his bold and blurry visual; instead that the others branches are non-terminal (~\textit{name} and ~\textit{body}) and they are not bolded nor blurried. Those visual effects are really important for the user because it means that terminal aren't clickable and non-terminal are clickable.
+
+Notice, also, that by generating the ~\textit{liss} rule, in the right window, the code is also being refreshed and that the name of the terminal word appears correctly and non-terminal word doesn't appear with the correct name. And this is due for one reason (relatively to the behavior of the non-terminal), it means that the non-terminal must be generated and that the code isn't valid in this state.
+
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE1.png}
-    %\caption{liss$|$SDE structure}
+    \caption{Example of creating a LISS code (1/17)}
     \label{fig:LISS-SDE_example_1}
 \end{figure}
 
