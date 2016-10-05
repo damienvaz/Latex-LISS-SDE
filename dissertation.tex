@@ -4676,7 +4676,7 @@ Although, if the color of the box is green (see Figure ~\ref{fig:LISS-SDE_exampl
 
 Now, let's proceed with the other branch ~\textit{body} by clicking it with the left click. 
 
-As we can see, in Figure ~\ref{fig:LISS-SDE_example_5}, the rule generated more rules and notice, that in the right windows, it has changed the code and that we must to generate more rules in order to make the code feasable.
+As we can see, in Figure ~\ref{fig:LISS-SDE_example_5}, the rule generated more rules and notice, that in the right windows, it has changed the code.  And the next step are always the same, generating the rules in order to make the code feasable (no ~\textit{undefined} must be displayed in the right window).
 
 \begin{figure}[h!]
   \centering
@@ -4685,7 +4685,58 @@ As we can see, in Figure ~\ref{fig:LISS-SDE_example_5}, the rule generated more 
     \label{fig:LISS-SDE_example_5}
 \end{figure}
 
+By clicking with the left click to generate the rule ~\textit{declarations} in Figure ~\ref{fig:LISS-SDE_example_5}, it will generate more branches (see Figure ~\ref{fig:LISS-SDE_example_6}). Notice that, in the right part, one of those ~\textit{undefined} word disappeared and that in the left part, the two branches who were created by generating the ~\textit{declarations} rule have an asterisk at the end of their name. That asterisk means that the rule who has that asterisk, can create a lot of branches under that rule (multiplicity of zero to more).
 
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE6.png}
+    \caption{Example of creating a LISS code (6/17)}
+    \label{fig:LISS-SDE_example_6}
+\end{figure}
+
+Now that we finished to create the same code above the ~\textit{statements} part relatively to the LISS code in Listing ~\ref{lst:liss_sde_simple}, let's generate the rules for the ~\textit{statements} part by left clicking it (see Figure ~\ref{fig:LISS-SDE_example_7}).
+
+At this moment, we see that no ~\textit{undefined} word is available in the right part which means that the code can be compiled. But the problem is that it is not yet finished relatively to the code available in Listing ~\ref{lst:liss_sde_simple}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE7.png}
+    \caption{Example of creating a LISS code (7/17)}
+    \label{fig:LISS-SDE_example_7}
+\end{figure}
+
+So, we need to generate the ~\textit{statement*} rule by left clicking it which show us a pop-up menu (see Figure ~\ref{fig:LISS-SDE_example_8}).
+
+This pop-up menu is available for one reason, if the user creates a lot of branches under the ~\textit{statement*}, after two branches created beside of the option for adding a statement, it will have the option for deleting every branches that were created. And this is why we needed to create a menu for adding those two options (thinking about the ease use of the program).
+
+Also, take care, that each time a statement is added, it will be added at the last place (always the nearest bot side of the program).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE8.png}
+    \caption{Example of creating a LISS code (8/17)}
+    \label{fig:LISS-SDE_example_8}
+\end{figure}
+
+Relatively to the code available in Listing ~\ref{lst:liss_sde_simple}, we just need to create one statement (writeln statement) and by this way, we only need to add one statement in the program (see Figure ~\ref{fig:LISS-SDE_example_9}).
+
+By adding that statement, we see that in the right part, the code is not feasable (~\textit{undefined} word appeared) and we need to proceed for adding more content and finishing the code.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE9.png}
+    \caption{Example of creating a LISS code (9/17)}
+    \label{fig:LISS-SDE_example_9}
+\end{figure}
+
+By left clicking in the ~\textit{statement} rule 
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=1\textwidth]{img/LISS-SDE_creating_program/LISS-SDE10.png}
+    \caption{Example of creating a LISS code (10/17)}
+    \label{fig:LISS-SDE_example_10}
+\end{figure}
 
 \subsection{Executing the program}
 
