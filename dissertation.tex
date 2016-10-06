@@ -4598,7 +4598,61 @@ The number 2, in Figure ~\ref{fig:LISS-SDE_structure}, is where the code of the 
 
 Lastly, the number 3 is related to every syntax and semantic errors, as well as, the output of the execution relatively to the LISS code.
 
+\subsection{Toolbar meaning}
+
+The toolbar in ~\textit{liss$|$SDE} is available at the top of the program and it control various functions of the program.
+
+It is divided by four boxes (see Figure ~\ref{fig:LISS-SDE_toolbar_1}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{img/LISS-SDE_toolbar_menu/ToolBar_menu1.png}
+    \caption{Toolbar of ~\textit{liss$|$SDE}}
+    \label{fig:LISS-SDE_toolbar_1}
+\end{figure}
+
+The ~\textit{File} option contains functions relatively for creating new projects, saving/loading projects and exiting the application (see Figure ~\ref{fig:LISS-SDE_toolbar_2}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{img/LISS-SDE_toolbar_menu/ToolBar_menu2.png}
+    \caption{File option of toolbar in ~\textit{liss$|$SDE}}
+    \label{fig:LISS-SDE_toolbar_2}
+\end{figure}
+
+The ~\textit{Run} option contains functions relatively for running the compiler (this means that semantic system will be run and if everything is correct in the code created, getting the MIPS assembly code) and executing the code created in the program (see Figure ~\ref{fig:LISS-SDE_toolbar_3}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{img/LISS-SDE_toolbar_menu/ToolBar_menu3.png}
+    \caption{Run option of toolbar in ~\textit{liss$|$SDE}}
+    \label{fig:LISS-SDE_toolbar_3}
+\end{figure}
+
+The ~\textit{Help} option contains informations relatively to the use and explication of the program structure (see Figure ~\ref{fig:LISS-SDE_toolbar_4}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{img/LISS-SDE_toolbar_menu/ToolBar_menu4.png}
+    \caption{Help option of toolbar in ~\textit{liss$|$SDE}}
+    \label{fig:LISS-SDE_toolbar_4}
+\end{figure}
+
+Finally, the ~\textit{About} option contains informations relatively to the program; which technology and plugins used and the name of the program creator (see Figure ~\ref{fig:LISS-SDE_toolbar_5}).
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.5\textwidth]{img/LISS-SDE_toolbar_menu/ToolBar_menu5.png}
+    \caption{About option of toolbar in ~\textit{liss$|$SDE}}
+    \label{fig:LISS-SDE_toolbar_5}
+\end{figure}
+
+Also, take care that it was implemented some shortcuts for the most used functions in the toolbar which can be seen in Figure ~\ref{fig:LISS-SDE_toolbar_2} and ~\ref{fig:LISS-SDE_toolbar_3}. And this was made for facilitating some interaction for the user with the program itself.
+
+\newpage
+
 \subsection{Creating a program}
+\label{sec:creating_program_liss_sde}
 
 For a better view of that section, let's see a simple piece of LISS code in Listing ~\ref{lst:liss_sde_simple}.
 
@@ -4817,22 +4871,74 @@ And this is how the user can interact and create a program in ~\textit{liss$|$SD
 
 \newpage
 
-\subsection{Executing the program}
+\subsection{Executing a program}
 
-\subsection{Toolbar meaning}
+For executing a program in ~\textit{liss$|$SDE}, we just need to go to the toolbar, press in the ~\textit{Run} box and then hit the ~\textit{Compile and Run} option (see Figure ~\ref{fig:LISS-SDE_toolbar_3}).
 
+By doing that, it will pass throw a lot of steps (see Figure ~\ref{fig:flow_execution_program}).
 
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/executing_a_program.png}
+    \caption{Flow of the execution of a liss code in the ~\textit{liss$|$SDE}}
+    \label{fig:flow_execution_program}
+\end{figure}
 
+First step is to take the liss code and pass to the compiler. In this moment, the compiler will check the inconsistency of the code (semantic system); then, if everything is fine, it will pass the MIPS assembly code generated (at the end of the process of the compiler) to the simulator (Mars Simulator) and execute the code.
+Lastly and finally, it will output the execution of the liss code to the view number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
 
+For a visual example, let's execute the program that we created with the program ~\textit{liss$|$SDE} at section ~\ref{sec:creating_program_liss_sde} (see Figure ~\ref{fig:helloWorld_execution_liss_sde}).
 
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.8\textwidth]{img/execution_of_the_program_liss_sde_hello_world.png}
+    \caption{Output of the execution of the ~\textit{HelloWorld} program}
+    \label{fig:helloWorld_execution_liss_sde}
+\end{figure}
 
+In Figure ~\ref{fig:helloWorld_execution_liss_sde}, we can see that the string ~\textit{"Hello World!"} is shown and that the program was executed successfully and accordingly to Listing ~\ref{lst:liss_sde_simple}.
 
+\subsection{Error System in ~\textit{liss$|$SDE}}
 
+Each time that a certain liss code goes to the compiler, an error table is built. And each inconsistencies that are found in the liss code, it will be added to the error table.
+
+If the error table is empty, then it might execute the code if the user asked it. Otherwise, if the error table has some errors, then it must output those errors in the tab ~\textit{Errors} at the view number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
+
+Let's see an example of the error system in ~\textit{liss$|$SDE}.
+
+Imagine that the next piece of liss code is available on the ~\textit{liss$|$SDE} program:
+
+\begin{lstlisting}[caption={Example of a liss code that isn't semantically correct},label={lst:error_semantic_liss_sde_example}]
+  program test{
+    declarations
+      int=2->boolean;
+    statements
+      writeln(int+3);
+  }
+\end{lstlisting}
+
+Now, if we try to run the compiler or even execute the code; in ~\textit{liss$|$SDE}, the compiler will throw errors due to the inconsistencies that he found (see in Listing ~\ref{lst:error_messages_liss_sde}).
+
+\begin{lstlisting}[caption={Error messages in ~\textit{liss$|$SDE}},label={lst:error_messages_liss_sde}]
+  [16:10:40] Semantics errors found:
+  [16:10:40] line: 3:8  Variable 'int'  has type 'integer',when It should be 'boolean'.
+  [16:10:40] line: 5:16  Expression 'int + 3'  has type 'boolean + integer',required type 'integer + integer'.
+  [16:10:40] line: 5:16  Expression 'int+3'  has type 'null',when It should be 'integer | boolean | sequence | array'.
+\end{lstlisting}
+ 
+The syntax of those messages, in Listing ~\ref{lst:error_messages_liss_sde}, are organised by this way: firstly, it shows the time that was found the error (embraced by brackets); secondly, the line number that was found the inconsistency relatively to the liss code in view number 2 (see Figure ~\ref{fig:LISS-SDE_structure}) and lastly, the error message that was found.
+
+Notice that the line number is very important for showing the inconsistency to the user; throw the error messages available in Listing ~\ref{lst:error_messages_liss_sde} you can do the connection and understand those errors with the code in Listing ~\ref{lst:error_semantic_liss_sde_example} and debug easier the program for solving those inconsistencies.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Conclusion}
         %Conclusions and future work.
+
+%o que se falou na tese
+
+%dizer que foi feito 18 testes de liss code
+
 \section{Future Work}
 %\section{Conclusion}
 %\section{Prospect for future work}
