@@ -4935,9 +4935,38 @@ Notice that the line number is very important for showing the inconsistency to t
 \chapter{Conclusion}
         %Conclusions and future work.
 
-%o que se falou na tese (fazer um resumo)
+In this final chapter, it will be summarized every informations that was exposed throughout this document and remembering the aims of the project and how they were achieved.
 
-%dizer que foi feito 18 testes de liss code
+First, it begins by contextualizing the reasons of helping the developers for being more productive regarding to create some programs for computers. And this was solved by creating a software package which could make the life of a developer easier for writing programs easier and at a high level productivity. 
+But even with those notions, there is always the necessity of achieving more (creating a program at a high level productivity and in a safety way) and that is why, we introduce and aims the notion of developing an editor with the concept of a SDE (Syntax Directed Editor). 
+
+The notion of a SDE is to create programs where the developer don't use the keyboard (syntax error that might be introduced) but instead, use the mouse and create the code by generating some rules available in the program.
+And for this project, it was aimed to create the SDE with a language associated and called LISS.
+
+So, it was needed to first understand the language and then realize some test code of the language.
+After understanding the syntax of the language, it was done some improvements relatively to the language (due to the age of the language) by changing or deleting some rules.
+
+With those improvements, it is a necessity now to create the compiler for generating the code associated from a LISS code to an assembly code. And for that reason, we changed the type of the actual grammar (CFG - Context-Free Grammar) to another type (AG - Attribute Grammar).
+
+Then, before creating the compiler, we needed to understand the MIPS architecture which is the language that will be translated as assembly code. The architecture repose with a RISC architecture which makes the learning phase more easier. And after understanding his architecture, it was a necessity of testing some live code with the MIPS assembly code for a better view of that programming language.
+
+With those knowledge acquired relatively to the MIPS architecture, it was essential to reproduce the same specifications within the project by creating some adapted structure (stack, registers).
+
+As a result of all the reasoning made, we began by creating the compiler but before talking about the compiler, it must be warned that the compiler only pass one time throw the LISS code which requires some pros and cons. By executing the LISS code only one time, two things is done by multitasking; the semantic analysis and the code generation. 
+
+The semantic analysis requires some structure that are a symbol table and an error table.
+The symbol table save informations relatively to the LISS code instead that the error table stores and informs the error messages to the user relatively to the semantic analysis (both of those structures are in a sense connected). Now the most complicated work, in the project, was done with the code generation.
+
+The code generation have bring a lot of difficulties to the project and this is due to the complexity of creating a compiler which can be found:
+\begin{itemize}
+\item processing the LISS code only one time and  processing from the first character to the last one.
+\item saving some informations in the cache memory relatively for generating the code in the correct order.
+\item creating a linked-list in MIPS assembly code relatively to the sequence type in order to be workable.
+\item creating mips code with alignment address.
+\item choosing a certain architecture for generating the code (using some regisers or not, using the stack or the heap relatively to a context).
+\item applying some algorithm for the use of some structure available in the project.
+\end{itemize}
+
 
 
 
