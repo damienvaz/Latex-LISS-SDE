@@ -380,7 +380,7 @@ identifier : ID
 NBR : ('0'..'9')+
     ;
 
-ID : ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')* //removi o uso do signal '-' conflitos com os valores do signal
+ID : ('a'..'z'|'A'..'Z')('a'..'z'|'A'..'Z'|'0'..'9'|'_')* 
    ;
 
 WS  :   ( [ \t\r\n] | COMMENT) -> skip
