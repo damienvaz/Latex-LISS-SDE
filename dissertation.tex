@@ -3517,7 +3517,7 @@ After that, we just need to create one mips instruction which gets the right val
 This part will talk about the code generation of every statements feasible in the LISS language.
 It will be divided by sections for each statements and then divided by the level scope equally to 0 or greater for a better view regarding to the complexity done with the MIPS architecture and his requirements.
 
-\subsubsection{Creating a variable in LISS}
+\subsection{Creating a variable in LISS}
 
 \begin{itemize}
 \item Level scope equals to zero
@@ -4083,7 +4083,45 @@ Let's see the code generated in Listing ~\ref{lst:exit_function_mips}.
 
 In Listing ~\ref{lst:exit_function_mips}, line 1 will get the return address of the function; then at line 2 it will remove the stack allocated for the function and finally at line 3, it will process for exiting the function with the return address.
 
-\subsubsection{Creating I/O in LISS}
+
+
+
+
+\subsection{Loading a variable or a value}
+
+Loading a variable depends in only one factor, the level scope of the variable.
+
+If the level scope of the variable is equals to zero then it will load the variable by using the name of the variable (see in Listing ~\ref{lst:load_variable_level_scope_equals_0}).
+
+\begin{lstlisting}[caption={Loading a variable with level scope equals to zero},label={lst:load_variable_level_scope_equals_0}]
+  lw $t0,b
+\end{lstlisting}
+
+Otherwise if the level scope is greater than zero, then it must use the algorithm which will found the position in the stack and load the value throw the position in the stack (see in Listing ~\ref{lst:load_variable_level_scope_great_0}).
+
+\begin{lstlisting}[caption={Loading a variable with level scope greater than zero},label={lst:load_variable_level_scope_great_0}]
+  lw $t0, 4($sp)
+\end{lstlisting}
+
+Regarding to load a value, the only possible values that can be loaded are integer and boolean types and they doesn't depend on the level scope.
+Notice that the instruction for loading is the same, just it depends the type that will be used.
+
+If it is a boolean type, the value ~\textit{true} will be loaded with one; otherwise the value ~\textit{false} will be loaded with zero (see in Listing ~\ref{lst:load_boolean_type}).
+
+\begin{lstlisting}[caption={Loading a boolean value},label={lst:load_boolean_type}]
+  li $t0,1		# true value being loaded
+  li $t0,0		# false value being loaded
+\end{lstlisting}
+
+Yet, if it is an integer type, then it will load the value that it will be declared (see in Listing ~\ref{lst:load_integer_type}).
+
+\begin{lstlisting}[caption={Loading an integer value},label={lst:load_integer_type}]
+  li $t0, 5            # loading the number 5
+\end{lstlisting}
+
+
+
+\subsection{Creating I/O in LISS}
 
 %\begin{itemize}
 %\item Level scope equals to zero
@@ -4175,7 +4213,7 @@ This is the code that is predefined for the read statement (see in Listing ~\ref
     jr $ra
 \end{lstlisting}
 
-\subsubsection{Creating conditional statement in LISS}
+\subsection{Creating conditional statement in LISS}
 
 Creating a conditional statement in LISS is basically following that schema available in Figure ~\ref{fig:conditional_figure}.
 
@@ -4236,7 +4274,7 @@ Let's see an example of the same code relatively to Listing ~\ref{lst:conditiona
   else1:
 \end{lstlisting}
 
-\subsubsection{Creating iterative statement}
+\subsection{Creating iterative statement}
 
 In LISS, we have three different ways of creating iterative statement. 
 
@@ -4400,7 +4438,7 @@ Let's see the code generated for that piece of code in Listing ~\ref{lst:while-l
 
 In Listing ~\ref{lst:while-loop_MIPS}, line 1 is created for the branch name of the while-loop statement. Firstly, we incorporate the code of the condition associated to the while-loop statement (line 2), then we test the truth of the condition in line 3. If the condition is false, it will jump to the branch ~\textit{while\_exit5} (line 9) for exiting the while-loop statement; otherwise, it will continue the flow of the execution by going to line 4. At this part, it is included all the code relatively to the content available in the while-loop statement (line 4 to 7). Finally, at line 8, it will jump back to the branch ~\textit{while5} and redo the algorithm.
 
-\subsubsection{Creating increment or decrement variables}
+\subsection{Creating increment or decrement variables}
 
 If we wanna increment an integer variable, we can use and do by this following way in Listing ~\ref{lst:succ_LISS}.
 
@@ -4439,8 +4477,6 @@ Let's see the piece of LISS code relatively to Listing ~\ref{lst:pred_LISS} in L
 \end{lstlisting}
 
 In Listing ~\ref{lst:pred_MIPS}, line 1 load the variable ~\textit{i} to register; line 2 load the value 1 to register; line 3 subtract both last registers (value of the variable and the value 1); line 4 refresh and store the result to the variable ~\textit{i}.
-
-\subsubsection{Assigning some values}
 
 
 
