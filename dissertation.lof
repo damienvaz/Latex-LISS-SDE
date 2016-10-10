@@ -3,56 +3,55 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1}{\ignorespaces CFG example \footnote {http://www.biiet.org/blog/wp-content/uploads/2013/07/img028.jpg}\relax }}{4}{figure.caption.7}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2}{\ignorespaces MIPS architecture\relax }}{27}{figure.caption.10}
+\contentsline {figure}{\numberline {3}{\ignorespaces MIPS register\relax }}{30}{figure.caption.12}
+\contentsline {figure}{\numberline {4}{\ignorespaces MARS GUI\relax }}{44}{figure.caption.30}
+\contentsline {figure}{\numberline {5}{\ignorespaces MARS GUI (Execution mode)\relax }}{45}{figure.caption.31}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2}{\ignorespaces MIPS architecture\relax }}{30}{figure.caption.10}
-\contentsline {figure}{\numberline {3}{\ignorespaces MIPS register\relax }}{33}{figure.caption.12}
-\contentsline {figure}{\numberline {4}{\ignorespaces MARS GUI\relax }}{47}{figure.caption.30}
-\contentsline {figure}{\numberline {5}{\ignorespaces MARS GUI (Execution mode)\relax }}{48}{figure.caption.31}
+\contentsline {figure}{\numberline {6}{\ignorespaces Traditional compiler\relax }}{48}{figure.caption.32}
+\contentsline {figure}{\numberline {7}{\ignorespaces AST representation\relax }}{50}{figure.caption.33}
+\contentsline {figure}{\numberline {8}{\ignorespaces Example of hierarchical symbol table\relax }}{51}{figure.caption.34}
+\contentsline {figure}{\numberline {9}{\ignorespaces Global symbol table in LISS\relax }}{52}{figure.caption.35}
+\contentsline {figure}{\numberline {10}{\ignorespaces InfoIdentifiersTable structure\relax }}{56}{figure.caption.43}
+\contentsline {figure}{\numberline {11}{\ignorespaces ErrorTable structure\relax }}{58}{figure.caption.44}
+\contentsline {figure}{\numberline {12}{\ignorespaces Stack structure\relax }}{83}{figure.caption.46}
+\contentsline {figure}{\numberline {13}{\ignorespaces Structure for saving information of each value declared in a array\relax }}{88}{figure.caption.47}
+\contentsline {figure}{\numberline {14}{\ignorespaces Array structure with size 2,2,3.\relax }}{89}{figure.caption.49}
+\contentsline {figure}{\numberline {15}{\ignorespaces Set structure in JAVA\relax }}{92}{figure.caption.50}
+\contentsline {figure}{\numberline {16}{\ignorespaces Set structure in JAVA\relax }}{93}{figure.caption.51}
+\contentsline {figure}{\numberline {17}{\ignorespaces Architecture of the stack relatively to a function in LISS\relax }}{97}{figure.caption.52}
+\contentsline {figure}{\numberline {18}{\ignorespaces Schema of the conditional statements in LISS\relax }}{106}{figure.caption.53}
+\contentsline {figure}{\numberline {19}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'in'\relax }}{108}{figure.caption.54}
+\contentsline {figure}{\numberline {20}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'inArray'\relax }}{110}{figure.caption.55}
+\contentsline {figure}{\numberline {21}{\ignorespaces Schema of the while-loop statement\relax }}{112}{figure.caption.56}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6}{\ignorespaces Traditional compiler\relax }}{51}{figure.caption.32}
-\contentsline {figure}{\numberline {7}{\ignorespaces AST representation\relax }}{53}{figure.caption.33}
-\contentsline {figure}{\numberline {8}{\ignorespaces Example of hierarchical symbol table\relax }}{54}{figure.caption.34}
-\contentsline {figure}{\numberline {9}{\ignorespaces Global symbol table in LISS\relax }}{55}{figure.caption.35}
-\contentsline {figure}{\numberline {10}{\ignorespaces InfoIdentifiersTable structure\relax }}{59}{figure.caption.43}
-\contentsline {figure}{\numberline {11}{\ignorespaces ErrorTable structure\relax }}{61}{figure.caption.44}
-\contentsline {figure}{\numberline {12}{\ignorespaces Stack structure\relax }}{86}{figure.caption.46}
-\contentsline {figure}{\numberline {13}{\ignorespaces Structure for saving information of each value declared in a array\relax }}{91}{figure.caption.47}
-\contentsline {figure}{\numberline {14}{\ignorespaces Array structure with size 2,2,3.\relax }}{92}{figure.caption.49}
-\contentsline {figure}{\numberline {15}{\ignorespaces Set structure in JAVA\relax }}{95}{figure.caption.50}
-\contentsline {figure}{\numberline {16}{\ignorespaces Set structure in JAVA\relax }}{96}{figure.caption.51}
-\contentsline {figure}{\numberline {17}{\ignorespaces Architecture of the stack relatively to a function in LISS\relax }}{100}{figure.caption.52}
-\contentsline {figure}{\numberline {18}{\ignorespaces Schema of the conditional statements in LISS\relax }}{108}{figure.caption.53}
-\contentsline {figure}{\numberline {19}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'in'\relax }}{110}{figure.caption.54}
-\contentsline {figure}{\numberline {20}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'inArray'\relax }}{112}{figure.caption.55}
-\contentsline {figure}{\numberline {21}{\ignorespaces Schema of the while-loop statement\relax }}{114}{figure.caption.56}
-\addvspace {10\p@ }
-\contentsline {figure}{\numberline {22}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{117}{figure.caption.57}
-\contentsline {figure}{\numberline {23}{\ignorespaces SDE example\relax }}{119}{figure.caption.58}
-\contentsline {figure}{\numberline {24}{\ignorespaces liss$|$SDE\relax }}{120}{figure.caption.59}
-\contentsline {figure}{\numberline {25}{\ignorespaces liss$|$SDE structure\relax }}{121}{figure.caption.60}
-\contentsline {figure}{\numberline {26}{\ignorespaces Toolbar of \nobreakspace {}\textit {liss$|$SDE}\relax }}{121}{figure.caption.61}
-\contentsline {figure}{\numberline {27}{\ignorespaces File option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{122}{figure.caption.62}
-\contentsline {figure}{\numberline {28}{\ignorespaces Run option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{122}{figure.caption.63}
-\contentsline {figure}{\numberline {29}{\ignorespaces Help option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{122}{figure.caption.64}
-\contentsline {figure}{\numberline {30}{\ignorespaces About option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{122}{figure.caption.65}
-\contentsline {figure}{\numberline {31}{\ignorespaces Example of creating a LISS code (1/17)\relax }}{123}{figure.caption.66}
-\contentsline {figure}{\numberline {32}{\ignorespaces Example of creating a LISS code (2/17)\relax }}{124}{figure.caption.67}
-\contentsline {figure}{\numberline {33}{\ignorespaces Example of creating a LISS code (3/17)\relax }}{124}{figure.caption.68}
-\contentsline {figure}{\numberline {34}{\ignorespaces Example of creating a LISS code (4/17)\relax }}{124}{figure.caption.69}
-\contentsline {figure}{\numberline {35}{\ignorespaces Example of creating a LISS code (5/17)\relax }}{125}{figure.caption.70}
-\contentsline {figure}{\numberline {36}{\ignorespaces Example of creating a LISS code (6/17)\relax }}{125}{figure.caption.71}
-\contentsline {figure}{\numberline {37}{\ignorespaces Example of creating a LISS code (7/17)\relax }}{126}{figure.caption.72}
-\contentsline {figure}{\numberline {38}{\ignorespaces Example of creating a LISS code (8/17)\relax }}{126}{figure.caption.73}
-\contentsline {figure}{\numberline {39}{\ignorespaces Example of creating a LISS code (9/17)\relax }}{127}{figure.caption.74}
-\contentsline {figure}{\numberline {40}{\ignorespaces Example of creating a LISS code (10/17)\relax }}{127}{figure.caption.75}
-\contentsline {figure}{\numberline {41}{\ignorespaces Example of creating a LISS code (11/17)\relax }}{128}{figure.caption.76}
-\contentsline {figure}{\numberline {42}{\ignorespaces Example of creating a LISS code (12/17)\relax }}{128}{figure.caption.77}
-\contentsline {figure}{\numberline {43}{\ignorespaces Example of creating a LISS code (13/17)\relax }}{129}{figure.caption.78}
-\contentsline {figure}{\numberline {44}{\ignorespaces Example of creating a LISS code (14/17)\relax }}{129}{figure.caption.79}
-\contentsline {figure}{\numberline {45}{\ignorespaces Example of creating a LISS code (15/17)\relax }}{130}{figure.caption.80}
-\contentsline {figure}{\numberline {46}{\ignorespaces Example of creating a LISS code (16/17)\relax }}{131}{figure.caption.81}
-\contentsline {figure}{\numberline {47}{\ignorespaces Example of creating a LISS code (17/17)\relax }}{131}{figure.caption.82}
-\contentsline {figure}{\numberline {48}{\ignorespaces Flow of the execution of a liss code in the \nobreakspace {}\textit {liss$|$SDE}\relax }}{132}{figure.caption.83}
-\contentsline {figure}{\numberline {49}{\ignorespaces Output of the execution of the \nobreakspace {}\textit {HelloWorld} program\relax }}{132}{figure.caption.84}
+\contentsline {figure}{\numberline {22}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{115}{figure.caption.57}
+\contentsline {figure}{\numberline {23}{\ignorespaces SDE example\relax }}{117}{figure.caption.58}
+\contentsline {figure}{\numberline {24}{\ignorespaces liss$|$SDE\relax }}{118}{figure.caption.59}
+\contentsline {figure}{\numberline {25}{\ignorespaces liss$|$SDE structure\relax }}{119}{figure.caption.60}
+\contentsline {figure}{\numberline {26}{\ignorespaces Toolbar of \nobreakspace {}\textit {liss$|$SDE}\relax }}{119}{figure.caption.61}
+\contentsline {figure}{\numberline {27}{\ignorespaces File option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{120}{figure.caption.62}
+\contentsline {figure}{\numberline {28}{\ignorespaces Run option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{120}{figure.caption.63}
+\contentsline {figure}{\numberline {29}{\ignorespaces Help option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{120}{figure.caption.64}
+\contentsline {figure}{\numberline {30}{\ignorespaces About option of toolbar in \nobreakspace {}\textit {liss$|$SDE}\relax }}{120}{figure.caption.65}
+\contentsline {figure}{\numberline {31}{\ignorespaces Example of creating a LISS code (1/17)\relax }}{121}{figure.caption.66}
+\contentsline {figure}{\numberline {32}{\ignorespaces Example of creating a LISS code (2/17)\relax }}{122}{figure.caption.67}
+\contentsline {figure}{\numberline {33}{\ignorespaces Example of creating a LISS code (3/17)\relax }}{122}{figure.caption.68}
+\contentsline {figure}{\numberline {34}{\ignorespaces Example of creating a LISS code (4/17)\relax }}{122}{figure.caption.69}
+\contentsline {figure}{\numberline {35}{\ignorespaces Example of creating a LISS code (5/17)\relax }}{123}{figure.caption.70}
+\contentsline {figure}{\numberline {36}{\ignorespaces Example of creating a LISS code (6/17)\relax }}{123}{figure.caption.71}
+\contentsline {figure}{\numberline {37}{\ignorespaces Example of creating a LISS code (7/17)\relax }}{124}{figure.caption.72}
+\contentsline {figure}{\numberline {38}{\ignorespaces Example of creating a LISS code (8/17)\relax }}{124}{figure.caption.73}
+\contentsline {figure}{\numberline {39}{\ignorespaces Example of creating a LISS code (9/17)\relax }}{125}{figure.caption.74}
+\contentsline {figure}{\numberline {40}{\ignorespaces Example of creating a LISS code (10/17)\relax }}{125}{figure.caption.75}
+\contentsline {figure}{\numberline {41}{\ignorespaces Example of creating a LISS code (11/17)\relax }}{126}{figure.caption.76}
+\contentsline {figure}{\numberline {42}{\ignorespaces Example of creating a LISS code (12/17)\relax }}{126}{figure.caption.77}
+\contentsline {figure}{\numberline {43}{\ignorespaces Example of creating a LISS code (13/17)\relax }}{127}{figure.caption.78}
+\contentsline {figure}{\numberline {44}{\ignorespaces Example of creating a LISS code (14/17)\relax }}{127}{figure.caption.79}
+\contentsline {figure}{\numberline {45}{\ignorespaces Example of creating a LISS code (15/17)\relax }}{128}{figure.caption.80}
+\contentsline {figure}{\numberline {46}{\ignorespaces Example of creating a LISS code (16/17)\relax }}{129}{figure.caption.81}
+\contentsline {figure}{\numberline {47}{\ignorespaces Example of creating a LISS code (17/17)\relax }}{129}{figure.caption.82}
+\contentsline {figure}{\numberline {48}{\ignorespaces Flow of the execution of a liss code in the \nobreakspace {}\textit {liss$|$SDE}\relax }}{130}{figure.caption.83}
+\contentsline {figure}{\numberline {49}{\ignorespaces Output of the execution of the \nobreakspace {}\textit {HelloWorld} program\relax }}{130}{figure.caption.84}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -2,110 +2,114 @@
 \contentsline {chapter}{\numberline {1}\spacedlowsmallcaps {Introduction}}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Objectives}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Research Hypothesis}{2}{section.1.2}
-\contentsline {section}{\numberline {1.3}Thesis Outcomes}{2}{section.1.3}
-\contentsline {section}{\numberline {1.4}Document Structure}{2}{section.1.4}
-\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {Languages and grammar: concept \& tools}}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Formal Grammar}{5}{section.2.1}
-\contentsline {chapter}{\numberline {3}\spacedlowsmallcaps {LISS language}}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}LISS Data types}{7}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}LISS lexical conventions}{14}{subsection.3.1.1}
-\contentsline {section}{\numberline {3.2}LISS blocks and statements}{15}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}LISS declarations}{16}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}LISS statements}{16}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}LISS control statements}{20}{subsection.3.2.3}
-\contentsline {paragraph}{Conditional}{21}{lstnumber.3.20.5}
-\contentsline {paragraph}{Iterative}{21}{lstnumber.3.22.8}
-\contentsline {subsection}{\numberline {3.2.4}Others statements}{24}{subsection.3.2.4}
-\contentsline {section}{\numberline {3.3}LISS subprograms}{25}{section.3.3}
-\contentsline {section}{\numberline {3.4}Evolution of LISS syntax}{27}{section.3.4}
-\contentsline {chapter}{\numberline {4}\spacedlowsmallcaps {Target machine: MIPS}}{29}{chapter.4}
-\contentsline {section}{\numberline {4.1}MIPS coprocessors}{30}{section.4.1}
-\contentsline {section}{\numberline {4.2}MIPS cpu data formats}{31}{section.4.2}
-\contentsline {section}{\numberline {4.3}MIPS registers usage}{31}{section.4.3}
-\contentsline {section}{\numberline {4.4}MIPS instruction formats}{34}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}MIPS R-Type}{34}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}MIPS I-Type}{36}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}MIPS J-Type}{38}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}MIPS assembly language}{39}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}MIPS data declarations}{39}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}MIPS text declarations}{40}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}MIPS instructions}{42}{section.4.6}
-\contentsline {section}{\numberline {4.7}MIPS Memory Management}{45}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}MIPS stack}{45}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}MIPS heap}{46}{subsection.4.7.2}
-\contentsline {section}{\numberline {4.8}MIPS simulator}{46}{section.4.8}
-\contentsline {subsection}{\numberline {4.8.1}MARS at a glance}{47}{subsection.4.8.1}
-\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {Compiler development}}{50}{chapter.5}
-\contentsline {section}{\numberline {5.1}Compiler generation with ANTLR}{51}{section.5.1}
-\contentsline {section}{\numberline {5.2}Lexical and syntatical analysis}{52}{section.5.2}
-\contentsline {section}{\numberline {5.3}Semantic Analysis}{53}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Symbol Table}{53}{subsection.5.3.1}
-\contentsline {subsubsection}{Symbol Table in LISS}{54}{figure.caption.34}
-\contentsline {subsubsection}{TYPE category}{55}{Item.32}
-\contentsline {subsubsection}{VAR category}{55}{table.caption.36}
-\contentsline {subsubsection}{FUNCTION category}{58}{table.caption.41}
-\contentsline {subsection}{\numberline {5.3.2}Semantic system}{60}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Error table in LISS}{61}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Types of error message}{62}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Usage of error messages}{65}{subsection.5.3.5}
-\contentsline {subsubsection}{Variable declaration}{65}{subsection.5.3.5}
-\contentsline {subsubsection}{Vars}{66}{lstnumber.5.10.1}
-\contentsline {subsubsection}{Set initialization}{66}{lstnumber.5.12.1}
-\contentsline {subsubsection}{Subprogram definition}{67}{lstnumber.5.15.1}
-\contentsline {subsubsection}{Assignment}{67}{lstnumber.5.17.6}
-\contentsline {subsubsection}{Designator}{69}{lstnumber.5.21.1}
-\contentsline {subsubsection}{Elem array}{69}{lstnumber.5.22.1}
-\contentsline {subsubsection}{Function call}{70}{lstnumber.5.23.1}
-\contentsline {subsubsection}{Expression}{70}{lstnumber.5.24.1}
-\contentsline {subsubsection}{Single expression}{70}{lstnumber.5.26.1}
-\contentsline {subsubsection}{Term}{71}{lstnumber.5.27.1}
-\contentsline {subsubsection}{Factor}{71}{lstnumber.5.28.1}
-\contentsline {subsubsection}{Print\_what}{72}{lstnumber.-14.1}
-\contentsline {subsubsection}{Read}{72}{lstnumber.5.30.3}
-\contentsline {subsubsection}{If\_then\_else\_stat}{72}{lstnumber.5.31.1}
-\contentsline {subsubsection}{For\_stat}{73}{lstnumber.5.32.3}
-\contentsline {subsubsection}{Interval}{74}{lstnumber.5.34.1}
-\contentsline {subsubsection}{Type\_interval}{74}{lstnumber.5.35.1}
-\contentsline {subsubsection}{Minimum}{74}{lstnumber.5.36.2}
-\contentsline {subsubsection}{Maximum}{75}{lstnumber.5.37.2}
-\contentsline {subsubsection}{Satisfy}{75}{lstnumber.5.38.2}
-\contentsline {subsubsection}{While\_stat}{76}{lstnumber.5.39.2}
-\contentsline {subsubsection}{Succ\_or\_pred}{76}{lstnumber.5.40.2}
-\contentsline {subsubsection}{Tail}{76}{lstnumber.5.41.1}
-\contentsline {subsubsection}{Head}{77}{lstnumber.5.42.1}
-\contentsline {subsubsection}{Cons}{77}{lstnumber.5.43.1}
-\contentsline {subsubsection}{Delete}{77}{lstnumber.5.44.1}
-\contentsline {subsubsection}{Copy\_statement}{78}{lstnumber.5.45.1}
-\contentsline {subsubsection}{Cat\_statement}{78}{lstnumber.5.46.1}
-\contentsline {subsubsection}{Is\_empty}{79}{lstnumber.5.47.1}
-\contentsline {subsubsection}{Length}{79}{lstnumber.5.48.1}
-\contentsline {subsubsection}{Member}{79}{lstnumber.5.49.1}
-\contentsline {section}{\numberline {5.4}Code Generation}{80}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Strategy used for the code generation}{80}{subsection.5.4.1}
-\contentsline {subsubsection}{Data and text part}{80}{subsection.5.4.1}
-\contentsline {subsubsection}{Compiler register strategy}{80}{subsection.5.4.1}
-\contentsline {subsubsection}{Address size}{82}{lstnumber.5.51.1}
-\contentsline {subsubsection}{Conditional statement}{82}{lstnumber.5.51.1}
-\contentsline {subsubsection}{Subprogram name}{83}{lstnumber.5.52.12}
-\contentsline {subsubsection}{State of functions}{84}{Item.54}
-\contentsline {subsubsection}{Stack}{85}{Item.54}
-\contentsline {subsubsection}{The algorithm for finding variables in the stack}{87}{Item.56}
-\contentsline {subsection}{\numberline {5.4.2}LISS language code generation}{87}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Creating a variable in LISS}{87}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Loading a variable or a value}{105}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}Creating I/O in LISS}{105}{subsection.5.4.5}
-\contentsline {subsection}{\numberline {5.4.6}Creating conditional statement in LISS}{107}{subsection.5.4.6}
-\contentsline {subsection}{\numberline {5.4.7}Creating iterative statement}{110}{subsection.5.4.7}
-\contentsline {subsection}{\numberline {5.4.8}Creating increment or decrement variables}{115}{subsection.5.4.8}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{117}{chapter.6}
-\contentsline {section}{\numberline {6.1}What is a template?}{118}{section.6.1}
-\contentsline {section}{\numberline {6.2}Conception of the SDE}{119}{section.6.2}
-\contentsline {subsection}{\numberline {6.2.1}Toolbar meaning}{121}{subsection.6.2.1}
-\contentsline {subsection}{\numberline {6.2.2}Creating a program}{123}{subsection.6.2.2}
-\contentsline {subsection}{\numberline {6.2.3}Executing a program}{132}{subsection.6.2.3}
-\contentsline {subsection}{\numberline {6.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{132}{subsection.6.2.4}
-\contentsline {chapter}{\numberline {7}\spacedlowsmallcaps {Conclusion}}{134}{chapter.7}
-\contentsline {section}{\numberline {7.1}Future Work}{136}{section.7.1}
+\contentsline {section}{\numberline {1.3}Document Structure}{2}{section.1.3}
+\contentsline {chapter}{\numberline {2}\spacedlowsmallcaps {LISS language}}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Formal languages and grammar}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}LISS Data types}{5}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}LISS lexical conventions}{11}{subsection.2.2.1}
+\contentsline {section}{\numberline {2.3}LISS blocks and statements}{12}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}LISS declarations}{13}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}LISS statements}{13}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}LISS control statements}{17}{subsection.2.3.3}
+\contentsline {paragraph}{Conditional}{18}{lstnumber.2.20.5}
+\contentsline {paragraph}{Iterative}{18}{lstnumber.2.22.8}
+\contentsline {subsection}{\numberline {2.3.4}Others statements}{21}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.4}LISS subprograms}{22}{section.2.4}
+\contentsline {section}{\numberline {2.5}Evolution of LISS syntax}{24}{section.2.5}
+\contentsline {chapter}{\numberline {3}\spacedlowsmallcaps {Target machine: MIPS}}{26}{chapter.3}
+\contentsline {section}{\numberline {3.1}MIPS coprocessors}{27}{section.3.1}
+\contentsline {section}{\numberline {3.2}MIPS cpu data formats}{28}{section.3.2}
+\contentsline {section}{\numberline {3.3}MIPS registers usage}{28}{section.3.3}
+\contentsline {section}{\numberline {3.4}MIPS instruction formats}{31}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}MIPS R-Type}{31}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}MIPS I-Type}{33}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}MIPS J-Type}{35}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}MIPS assembly language}{36}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}MIPS data declarations}{36}{subsection.3.5.1}
+\contentsline {subsection}{\numberline {3.5.2}MIPS text declarations}{37}{subsection.3.5.2}
+\contentsline {section}{\numberline {3.6}MIPS instructions}{39}{section.3.6}
+\contentsline {section}{\numberline {3.7}MIPS Memory Management}{42}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}MIPS stack}{42}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}MIPS heap}{43}{subsection.3.7.2}
+\contentsline {section}{\numberline {3.8}MIPS simulator}{43}{section.3.8}
+\contentsline {subsection}{\numberline {3.8.1}MARS at a glance}{44}{subsection.3.8.1}
+\contentsline {chapter}{\numberline {4}\spacedlowsmallcaps {Compiler development}}{47}{chapter.4}
+\contentsline {section}{\numberline {4.1}Compiler generation with ANTLR}{48}{section.4.1}
+\contentsline {section}{\numberline {4.2}Lexical and syntatical analysis}{49}{section.4.2}
+\contentsline {section}{\numberline {4.3}Semantic Analysis}{50}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Symbol Table}{50}{subsection.4.3.1}
+\contentsline {subsubsection}{Symbol Table in LISS}{51}{figure.caption.34}
+\contentsline {subsubsection}{TYPE category}{52}{Item.32}
+\contentsline {subsubsection}{VAR category}{52}{table.caption.36}
+\contentsline {subsubsection}{FUNCTION category}{55}{table.caption.41}
+\contentsline {subsection}{\numberline {4.3.2}Semantic system}{57}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.3}Error table in LISS}{58}{subsection.4.3.3}
+\contentsline {subsection}{\numberline {4.3.4}Types of error message}{59}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.5}Usage of error messages}{62}{subsection.4.3.5}
+\contentsline {subsubsection}{Variable declaration}{62}{subsection.4.3.5}
+\contentsline {subsubsection}{Vars}{63}{lstnumber.4.10.1}
+\contentsline {subsubsection}{Set initialization}{63}{lstnumber.4.12.1}
+\contentsline {subsubsection}{Subprogram definition}{64}{lstnumber.4.15.1}
+\contentsline {subsubsection}{Assignment}{64}{lstnumber.4.17.6}
+\contentsline {subsubsection}{Designator}{66}{lstnumber.4.21.1}
+\contentsline {subsubsection}{Elem array}{66}{lstnumber.4.22.1}
+\contentsline {subsubsection}{Function call}{67}{lstnumber.4.23.1}
+\contentsline {subsubsection}{Expression}{67}{lstnumber.4.24.1}
+\contentsline {subsubsection}{Single expression}{67}{lstnumber.4.26.1}
+\contentsline {subsubsection}{Term}{68}{lstnumber.4.27.1}
+\contentsline {subsubsection}{Factor}{68}{lstnumber.4.28.1}
+\contentsline {subsubsection}{Print\_what}{69}{lstnumber.-14.1}
+\contentsline {subsubsection}{Read}{69}{lstnumber.4.30.3}
+\contentsline {subsubsection}{If\_then\_else\_stat}{69}{lstnumber.4.31.1}
+\contentsline {subsubsection}{For\_stat}{70}{lstnumber.4.32.3}
+\contentsline {subsubsection}{Interval}{71}{lstnumber.4.34.1}
+\contentsline {subsubsection}{Type\_interval}{71}{lstnumber.4.35.1}
+\contentsline {subsubsection}{Minimum}{71}{lstnumber.4.36.2}
+\contentsline {subsubsection}{Maximum}{72}{lstnumber.4.37.2}
+\contentsline {subsubsection}{Satisfy}{72}{lstnumber.4.38.2}
+\contentsline {subsubsection}{While\_stat}{73}{lstnumber.4.39.2}
+\contentsline {subsubsection}{Succ\_or\_pred}{73}{lstnumber.4.40.2}
+\contentsline {subsubsection}{Tail}{73}{lstnumber.4.41.1}
+\contentsline {subsubsection}{Head}{74}{lstnumber.4.42.1}
+\contentsline {subsubsection}{Cons}{74}{lstnumber.4.43.1}
+\contentsline {subsubsection}{Delete}{74}{lstnumber.4.44.1}
+\contentsline {subsubsection}{Copy\_statement}{75}{lstnumber.4.45.1}
+\contentsline {subsubsection}{Cat\_statement}{75}{lstnumber.4.46.1}
+\contentsline {subsubsection}{Is\_empty}{76}{lstnumber.4.47.1}
+\contentsline {subsubsection}{Length}{76}{lstnumber.4.48.1}
+\contentsline {subsubsection}{Member}{76}{lstnumber.4.49.1}
+\contentsline {section}{\numberline {4.4}Code Generation}{77}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Strategy used for the code generation}{77}{subsection.4.4.1}
+\contentsline {subsubsection}{Data and text part}{77}{subsection.4.4.1}
+\contentsline {subsubsection}{Compiler register strategy}{77}{subsection.4.4.1}
+\contentsline {subsubsection}{Address size}{79}{lstnumber.4.51.1}
+\contentsline {subsubsection}{Conditional statement}{79}{lstnumber.4.51.1}
+\contentsline {subsubsection}{Subprogram name}{80}{lstnumber.4.52.12}
+\contentsline {subsubsection}{State of functions}{81}{Item.54}
+\contentsline {subsubsection}{Stack}{82}{Item.54}
+\contentsline {subsubsection}{The algorithm for finding variables in the stack}{84}{Item.56}
+\contentsline {subsection}{\numberline {4.4.2}LISS language code generation}{84}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{84}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{102}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{102}{subsection.4.4.5}
+\contentsline {subsubsection}{Assignment for integer}{103}{lstnumber.4.72.8}
+\contentsline {subsubsection}{Assignment for boolean}{103}{lstnumber.4.73.6}
+\contentsline {subsubsection}{Assignment for array}{103}{lstnumber.4.73.6}
+\contentsline {subsubsection}{Assignment for set}{103}{lstnumber.4.73.6}
+\contentsline {subsubsection}{Assignment for sequence}{103}{lstnumber.4.73.6}
+\contentsline {subsection}{\numberline {4.4.6}Creating I/O in LISS}{103}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.7}Creating conditional statement in LISS}{106}{subsection.4.4.7}
+\contentsline {subsection}{\numberline {4.4.8}Creating iterative statement}{108}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Creating increment or decrement variables}{113}{subsection.4.4.9}
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{115}{chapter.5}
+\contentsline {section}{\numberline {5.1}What is a template?}{116}{section.5.1}
+\contentsline {section}{\numberline {5.2}Conception of the SDE}{117}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Toolbar meaning}{119}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Creating a program}{121}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Executing a program}{130}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{130}{subsection.5.2.4}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Conclusion}}{132}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{134}{section.6.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{140}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{138}{appendix.A}

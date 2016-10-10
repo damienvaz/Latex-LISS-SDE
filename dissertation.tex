@@ -216,7 +216,7 @@ The front-end and the back-end of that compiler will be explained and detailed a
 
 \section{Research Hypothesis}
 
-\section{Thesis Outcomes}
+
 
 \section{Document Structure}	
 
@@ -228,22 +228,37 @@ First, create an ANTLR version of the CFG grammar for LISS language.
 
 
 Second, extend the LISS CFG to an AG in order to specify throw it the generation of MIPS assembly code.
-To verify the correctness of the assembly code generated, a simple MIPS simulator, named MARS, will be selected to provide all the tools for checking it.
+Then verify the correctness of the assembly code generated with a simple MIPS simulator, named MARS, that will be selected to provide all the tools for checking it.
 
 Third, the desired Structure-Editor, SDE, will be developed based on ANTLR.
-It will be implemented in with Java SWING because ANTLR has always been implemented via Java and it is said, also, to use Java target as a reference implementation mirrored by other targets.
-SWING is a GUI widget toolkit for Java which provides all the API for creating an interface with Java.
+It will be implemented with Java (JAVAFX) because ANTLR has always been implemented via Java and it is said, also, to use Java target as a reference implementation mirrored by other targets.
+%SWING is a GUI widget toolkit for Java which provides all the API for creating an interface with Java.
 At this phase, we will create an IDE similar to other platforms but with the capacity of being a syntax-directed editor.
 
-Fourthly, to complete the SDE functionality, an incremental compiler shall be included.
-Incremental compilation ~\citep{RTD83a,Hol87a,VSK90a} means that only the part that was changed must be processed again. And like that, both tasks (edition and compilation) are done synchronously at the same time and having an editor which compiles cleverly.
+%Fourthly, to complete the SDE functionality, an incremental compiler shall be included.
+%Incremental compilation ~\citep{RTD83a,Hol87a,VSK90a} means that only the part that was changed must be processed %again. And like that, both tasks (edition and compilation) are done synchronously at the same time and having an editor %which compiles cleverly.
 
 Finally, exhaustive and relevant tests will be made with the tool created and, the outcomes will be analyzed and discussed.
 
 
-%\chapter{State of the art}
-\chapter{Languages and grammar: concept \& tools}
-%       State of the art review; related work
+
+
+
+
+\chapter{LISS language}
+
+LISS ~\citep{CH07a} -that stands for Language of Integers, Sequences and Sets- is an imperative programming language, defined by the Language Processing members (Pedro Henriques and Leonor Barroca) at UM for teaching purposes (compiler course).
+
+The idea behind the design of LISS language was to create a simplified version of the more usual imperative languages although combining functionalities from various languages.
+
+It is designed to have atomic or structured integer values, as well as, control statements and block structure statements.
+
+%Now, let's explain in the next sections the basic statements of the language and its data types, using a context free gammar.
+
+But before explaining the basic statements of the language and its data types using a context free grammar, let's introduce, firstly, to the definition of a language.
+
+\section{Formal languages and grammar}
+
 A grammar ~\citep{Chomsky62a,Gau83a,WG84a,ASU86a,Kas91c,Muchnick97,Hopcroft2006b,Grune2012a} is a set of derivation rules (or production) that explains how words are used to build the sentences of a language.
 
 A grammar ~\citep{DJB88a,Alb91a,Kas91a,SV91a,WAGA90,Rai80a,Fil83a,OPHCC2010} is considered to be a language generator and also a language recognizer (checking if a sentence is correctly derived from the grammar).
@@ -288,108 +303,8 @@ These attributes are divided into two groups: synthesized attributes and inherit
 
 The synthesized attributes are the result of the attribute evaluation rules for the root symbol of each subtree, and may also use the values of the inherited attributes. The inherited attributes are passed down from parent nodes to children or between siblings.
 
-Like that it is possible to transport information anywhere in the abstract syntax tree which is one of the strength for using an AG (as seen on Listing ~\ref{lst:ag}).
+Like that it is possible to transport information anywhere in the abstract syntax tree which is one of the strength for using an AG.
 
-%put an AG example !
-
-\begin{comment}
-\begin{figure}[h!]
-  \centering
-    \includegraphics[width=0.9\textwidth]{img/ga.png}
-    \caption{Example of an AG}
-    \label{fig:GA}
-\end{figure}
-\end{comment}	
-
-\begin{lstlisting}[caption={Example of an AG},label={lst:ag}]
-facturas : fatura (facturas)*
-         ;
-
-fatura : 'FATURA' cabec 'VENDAS' corpo {System.out.println("Total Factura: "+$corpo.totOut);}
-       ;
-
-cabec : idFat idForn 'CLIENTE' idClie {System.out.println("Factura n: "+$idFat.text);}
-      ;
-
-idFat : numFat ;
-
-numFat : ID ;
-
-idForn : nome morada 'NIF:' nif 'NIB:' nib
-       ;
-
-idClie : nome morada 'NIF:' nif
-       ;
-
-nome :  STR ;
-
-morada : STR;
-
-nif : STR;
-
-nib : STR;
-
-corpo returns [int totOut]
-    : linha '.' {$totOut += $linha.linhatot;}
-      (linha '.' {$totOut += $linha.linhatot;})*
-    ;
-
-linha returns [int linhatot]
-      : refProd '|' valUnit '|' quant {$linhatot = $valUnit.val * $quant.quan;System.out.println("Ref: "+$refProd.text+" Total linha: "+($linhatot)+" Euros");}
-      ;
-	
-	refProd : ID;
-valUnit returns [int val]
-        : NUM {$val = $NUM.int;}
-        ;
-quant returns [int quan]
-    : NUM {$quan = $NUM.int;}
-    ;
-
-\end{lstlisting}
-
-
-In this way, an AG will be used to specify the translation from syntax tree directly into code for some specific machine or into another intermediate language.
-For our thesis, the AG will be processed by ANTLR tool in order to build automatically the parser, the attribute evaluator, and the code generation.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Formal Grammar}
-According to Noam Chomsky, a classic formalization of generative grammars is composed by:
-\begin{itemize}
-        \item A finite set N of nonterminals symbols.
-        \item A finite set $\sum$  of terminals symbols.
-        \item A finite set P of production rules.
-        \item A start symbol S $\in$  P
-\end{itemize}
-A grammar is formally constructed by that tuple (N,$\sum$,P,S).
-
-
-
-Grammar is a set of productions rules which describes the syntax of the language (not semantic). Each grammar has only one start symbol production that defines where the grammar begins.
-%And there is two types after that the production rules are then applied in any order.
-And each production is composed by two things : LHS (Left Hand Side) and RHS (Right and Side). Left Hand Side represents the non terminal and the right hand side represents the behaviour of the rule ( composed by non terminal and terminal).
-
-\begin{lstlisting}[caption={A rule production},label={lst:ruleExample}]
-     liss : 'program' identifier body
-          ;
-\end{lstlisting}
-
-In ~\ref{lst:ruleExample}, we can see that it is composed by two sides. The left hand side and the right hand side, delimited by ':'.
-On the LHS, 'liss' is a non-terminal and on the RHS, it is composed by the terminal 'program' followed by two non-terminals.
-This is the syntax of one production rule of the grammar.
-
-Now let's speak about the entire syntax of the LISS.
-
-%\subsection{LISS Syntax}
-\chapter{LISS language}
-
-LISS ~\citep{CH07a} -that stands for Language of Integers, Sequences and Sets- is an imperative programming language, defined by the Language Processing members (Pedro Henriques and Leonor Barroca) at UM for teaching purposes (compiler course).
-
-The idea behind the design of LISS language was to create a simplified version of the more usual imperative languages although combining functionalities from various languages.
-
-It is designed to have atomic or structured integer values, as well as, control statements and block structure statements.
-
-Now, let's explain in the next sections the basic statements of the language and its data types, using a context free gammar.
 
 \section{LISS Data types}
 \label{sec:data_types}
@@ -4120,6 +4035,52 @@ Yet, if it is an integer type, then it will load the value that it will be decla
 \end{lstlisting}
 
 \subsection{Assigning in LISS}
+
+Assigning in LISS requires to understand the mechanics of that structure due to its complexity maneuverability.
+
+For assigning in LISS, it requires three things: the sign equals, the left content and the right content relatively to the equal sign.
+
+In order to makes the things workable, the types in the left and right content of the equal sign must be equal.
+Let's show, in this case, which cases that can appear for an assignment statement in LISS (see in Listing ~\ref{lst:cases_assignment_liss}).
+
+\begin{lstlisting}[caption={Examples of assignment for different types in LISS},label={lst:cases_assignment_liss}]
+  i = 1 + 2 + 3;
+  flag1 = 1 < 3;
+  flag = true;
+  array1[1] = 10;
+  array1 = array2;
+  array1 = [1,2,3,4]
+  set1 = set1 ++ set2
+  seq1 = tail(seq1);
+\end{lstlisting}
+
+\subsubsection{Assignment for integer}
+
+In Listing ~\ref{lst:cases_assignment_liss}, line 1 and 4 are statement that deals with integer type and their operations mode for generating the MIPS assembly code are really distinct.
+Let's explain it with the code generated for both of those lines.
+
+\begin{lstlisting}[caption={Code generated for line 1 in Listing ~\ref{lst:cases_assignment_liss}},label={lst:storing_integer}]
+  li $t0,1		
+  li $t1,2		
+  add $t0, $t0, $t1	
+  li $t1,3		
+  add $t0, $t0, $t1	
+  sw $t0, i		
+\end{lstlisting}
+
+For example, if you store an arithmetic operations to an integer variable then it must firstly create the code of the arithmetic operations (line 1 to 5) and then store it to the variable (line 6).
+
+
+
+\subsubsection{Assignment for boolean}
+
+\subsubsection{Assignment for array}
+
+\subsubsection{Assignment for set}
+
+\subsubsection{Assignment for sequence}
+
+
 
 
 
