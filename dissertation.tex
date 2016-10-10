@@ -4040,13 +4040,12 @@ Assigning in LISS requires to understand the mechanics of that structure due to 
 
 For assigning in LISS, it requires three things: the sign equals, the left content and the right content relatively to the equal sign.
 
-In order to makes the things workable, the types in the left and right content of the equal sign must be equal.
+In order to make the things workable, the types in the left and right content of the equal sign must be equal.
 Let's show, in this case, which cases that can appear for an assignment statement in LISS (see in Listing ~\ref{lst:cases_assignment_liss}).
 
 \begin{lstlisting}[caption={Examples of assignment for different types in LISS},label={lst:cases_assignment_liss}]
   i = 1 + 2 + 3;
   flag1 = 1 < 3;
-  flag = true;
   array1[1] = 10;
   array1 = array2;
   array1 = [1,2,3,4]
@@ -4056,7 +4055,8 @@ Let's show, in this case, which cases that can appear for an assignment statemen
 
 \subsubsection{Assignment for integer}
 
-In Listing ~\ref{lst:cases_assignment_liss}, line 1 and 4 are statement that deals with integer type and their operations mode for generating the MIPS assembly code are really distinct.
+In Listing ~\ref{lst:cases_assignment_liss}, line 1 and 3 are statement that deals with integer type and their operations mode for generating the MIPS assembly code are distinct and needs to make a particular attention. The normal and general way is done by assigning the content to an integer variable, instead that assigning the content to a position of an array needs to do some particular mechanism.
+
 Let's explain it with the code generated for both of those lines.
 
 \begin{lstlisting}[caption={Code generated for line 1 in Listing ~\ref{lst:cases_assignment_liss}},label={lst:storing_integer}]
@@ -4068,11 +4068,144 @@ Let's explain it with the code generated for both of those lines.
   sw $t0, i		
 \end{lstlisting}
 
-For example, if you store an arithmetic operations to an integer variable then it must firstly create the code of the arithmetic operations (line 1 to 5) and then store it to the variable (line 6).
+For example, if you store an arithmetic operations to an integer variable then it must firstly create the code of the arithmetic operations (line 1 to 5 of Listing ~\ref{lst:storing_integer}) and then store it to the variable (line 6 of Listing ~\ref{lst:storing_integer}).
 
+But if we wants to assign a value to an array, the code generated will be by this way (see in Listing ~\ref{lst:storing_integer_array}).
 
+\begin{lstlisting}[caption={Code generated for line 3 in Listing ~\ref{lst:cases_assignment_liss}},label={lst:storing_integer_array}]
+  li $t0,1		
+  ####Verify limits of the array####
+  li $t1,0		
+  slt $t2, $t0, $t1	
+  sltu $t2, $zero, $t2	
+  xori $t2, $t2, 1	
+  li $s0, 7	
+  beqz $t2, indexoutofboundError	
+  li $t1,4		
+  slt $t2, $t0, $t1	
+  li $s0, 7	
+  beqz $t2, indexoutofboundError	
+  ####End of the verification####
+  li $t1,4		
+  mul $t0, $t0, $t1	
+  li $t1,10		
+  sw $t1, array1($t0)		
+\end{lstlisting}
+
+First, it loads the position where the value will be stored (in this case, it loads the number 1 (line 1 of Listing ~\ref{lst:storing_integer_array}).
+
+Then it is introduced some mechanism for checking the position of the value that needs to be stored and check if they are inside of the limits of the array (line 3 to 12 of Listing ~\ref{lst:storing_integer_array}). Basically, it tests the position between the position 0 and 4, if they are not on those limits then it will give an index out of bound error and will stop the program.
+Though, if the position is inside of the limits then it will multiply the position by four (line 14 to 15 of Listing ~\ref{lst:storing_integer_array}) and after, it will load the right content relatively to the code generated for this part (line 16 of Listing ~\ref{lst:storing_integer_array}). Finally, it will store the content to the position of the array (line 17 of Listing ~\ref{lst:storing_integer_array}).
+
+Notice that the assignment statement, has the possibility of writing an expression in the right part of the equal sign.
+And this means that it can be used some operators for writing some complex arithmetic operations (only integer operators) and they are listed above:
+
+\begin{itemize}
+\item + (plus sign)
+\item - (minus sign)
+\item * (multiply sign)
+\item / (division sign)
+\end{itemize}
+
+Relatively to those operators, we must inform that each one uses only one instruction and not a lot of instructions (will be talked further for others operators) and it can be seen in Listing ~\ref{lst:arithmetic_operators_mips}.
+
+\begin{lstlisting}[caption={Code generated for arithmetic operators},label={lst:arithmetic_operators_mips}]
+  add $t0, $t0, $t1 # plus instruction
+  sub $t0, $t0, $t1 # minus instruction
+  mul $t0, $t0, $t1 # multiply instruction
+  div $t0, $t0, $t1 #division instruction
+\end{lstlisting}
+
+So, the mechanism of generating the code is always the same if one of those operators are found, load the code generated relatively to the left part of the operator then load the code generated relatively to the right part and finally add the operator instruction.
 
 \subsubsection{Assignment for boolean}
+
+In Listing ~\ref{lst:cases_assignment_liss}, line 2 is a statement that deals with boolean type.
+
+The method of processing the information is equals to storing an arithmetic operations to an integer variable, first it loads the code generated to the content available at the right equal sign and then the code generated to the left equal sign for storing.
+
+Let's see the code generated for a boolean assignment (see in Listing ~\ref{lst:storing_boolean_mips}).
+
+\begin{lstlisting}[caption={Code generated for line 2 of  Listing ~\ref{lst:cases_assignment_liss}},label={lst:storing_boolean_mips}]
+  li $t0,1		
+  li $t1,3		
+  slt $t0, $t0, $t1	
+  sw $t0, flag1		
+\end{lstlisting}
+
+In Listing ~\ref{lst:storing_boolean_mips}, it is processed the content relatively to the right part of the equal sign (line 1 to 3) and then it is stored to the variable associated to the assignment statement (line 4).
+
+As explained before, some operators are available for boolean assignment which can be listed under:
+
+\begin{itemize}
+\item == (double equal sign)
+\item != (different sign)
+\item $<$ (less sign)
+\item $>$ (greater sign)
+\item $<$= (less or equal sign)
+\item $>$= (greater or equal sign)
+\item $||$ (or sign)
+\end{itemize}
+
+Relatively to those operators, only tree operators use one instruction and the others uses a logic of mechanism for having the same behaviour which requires more than one instruction. Notice that this is due to the fact that MIPS architecture doesn't have all the relation instruction implemented.
+
+Let's see the code generated for each one.
+
+\begin{lstlisting}[caption={Code generated for double equal sign in MIPS},label={lst:double_equal_sign_mips}]
+  slt $t2, $t0, $t1	
+  sltu $t2, $zero, $t2	
+  xori $t2, $t2, 1	
+  slt $t3, $t1, $t0	
+  sltu $t3, $zero, $t3
+  xori $t3, $t3, 1	
+  and $t2, $t2, $t3	
+\end{lstlisting}
+
+In Listing ~\ref{lst:double_equal_sign_mips}, we translate the behaviour of a double equal sign to:
+
+\begin{equation}
+  x == y \iff (\lnot (x < y)) \land (\lnot (x > y))
+\end{equation}
+
+\begin{lstlisting}[caption={Code generated for different sign in MIPS},label={lst:different_sign_mips}]
+  slt $t2, $t0, $t1	
+  slt $t3, $t1, $t0	
+  or $t2, $t2, $t3	
+\end{lstlisting}
+
+In Listing ~\ref{lst:different_sign_mips}, we translate the behaviour of the different sign to:
+
+\begin{equation}
+  x != y \iff ( x < y \lor x > y)
+\end{equation}
+
+\begin{lstlisting}[caption={Code generated for less or equal sign in MIPS},label={lst:less_equal_sign_mips}]
+  slt $t0, $t1, $t0	
+  sltu $t0, $zero, $t0	
+  xori $t0, $t0, 1	
+\end{lstlisting}
+
+In Listing ~\ref{lst:less_equal_sign_mips}, we translate the behaviour of the less or equal sign to:
+
+\begin{equation}
+  x <= y \iff \lnot ( x > y)
+\end{equation}
+
+\begin{lstlisting}[caption={Code generated for greater or equal sign in MIPS},label={lst:greater_equal_sign_mips}]
+  slt $t0, $t0, $t1	
+  sltu $t0, $zero, $t0	
+  xori $t0, $t0, 1	
+\end{lstlisting}
+
+In Listing ~\ref{lst:greater_equal_sign_mips}, we translate the behaviour of the greater or equal sign to:
+
+\begin{equation}
+  x >= y \iff \lnot ( x < y )
+\end{equation}
+
+%talk about the <, >, || (see MIPS)
+
+
 
 \subsubsection{Assignment for array}
 
