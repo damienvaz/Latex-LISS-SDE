@@ -4050,7 +4050,9 @@ Let's show, in this case, which cases that can appear for an assignment statemen
   array1 = array2;
   array1 = [1,2,3,4]
   set1 = set1 ++ set2
+  flag = 4 in set1;
   seq1 = tail(seq1);
+  i = 1 + head(seq1);
 \end{lstlisting}
 
 \subsubsection{Assignment for integer}
@@ -4147,7 +4149,7 @@ As explained before, some operators are available for boolean assignment which c
 \item $||$ (or sign)
 \end{itemize}
 
-Relatively to those operators, only tree operators use one instruction and the others uses a logic of mechanism for having the same behaviour which requires more than one instruction. Notice that this is due to the fact that MIPS architecture doesn't have all the relation instruction implemented.
+Relatively to those operators, only tree operators uses one instruction($<$, $>$, $||$) and the others uses a logic of mechanism for having the same behaviour which requires more than one instruction. Notice that this is due to the fact that MIPS architecture doesn't have all the logic instruction implemented.
 
 Let's see the code generated for each one.
 
@@ -4211,7 +4213,11 @@ In Listing ~\ref{lst:greater_equal_sign_mips}, we translate the behaviour of the
 
 \subsubsection{Assignment for set}
 
+%falar do 4 in seq
+
 \subsubsection{Assignment for sequence}
+
+%falar do 1+ head() uso da stack
 
 
 

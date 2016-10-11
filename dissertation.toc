@@ -92,7 +92,7 @@
 \contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{84}{subsection.4.4.3}
 \contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{102}{subsection.4.4.4}
 \contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{102}{subsection.4.4.5}
-\contentsline {subsubsection}{Assignment for integer}{103}{lstnumber.4.72.7}
+\contentsline {subsubsection}{Assignment for integer}{103}{lstnumber.4.72.9}
 \contentsline {subsubsection}{Assignment for boolean}{105}{lstnumber.4.75.4}
 \contentsline {subsubsection}{Assignment for array}{107}{equation.4.4.6}
 \contentsline {subsubsection}{Assignment for set}{107}{equation.4.4.6}
