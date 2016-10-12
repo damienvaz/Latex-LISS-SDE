@@ -216,6 +216,7 @@ The front-end and the back-end of that compiler will be explained and detailed a
 
 \section{Research Hypothesis}
 
+It is possible to synthesize a complete source program, ready to be compiled and executed, selecting the appropriate alternative language constructors and writing literals in the right positions in a special editor guided by the source language structure, or syntax.
 
 
 \section{Document Structure}	
@@ -255,7 +256,7 @@ It is designed to have atomic or structured integer values, as well as, control 
 
 %Now, let's explain in the next sections the basic statements of the language and its data types, using a context free gammar.
 
-But before explaining the basic statements of the language and its data types using a context free grammar, let's introduce, firstly, to the definition of a language.
+Before explaining the basic statements of the language and its data types using a context free grammar, let’s remember briefly the basilar concepts related to formal programming languages and their definition using grammars (context free and attribute grammars).
 
 \section{Formal languages and grammar}
 
@@ -2256,6 +2257,17 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 \label{sct:semantic_analysis}
 
 
+In programming language theory, the word ~\textit{semantics} is concerned by the field of studying the meaning of programming languages.
+And in this field, it concerns about a lot of area.
+For our project, every time that we see an inconsistency, we report them to an error table.
+Let's see which kind of inconsistency we can find for our project.
+
+\begin{enumerate}
+\item Finding inconsistency in types and their related specifications.
+\item Finding inconsistency in variables declared or not.
+\item Finding inconsistency regarding to the use of multiple expressions.
+\item Finding inconsistency for returning types of functions created.
+\end{enumerate}
 
 
 
@@ -2504,22 +2516,6 @@ Let's see the functions created and available in the project, regarding to the s
 \item toString - gets the representation of the symbol table as a string.
 \end{itemize}
 
-\subsection{Semantic system}
-
-In programming language theory, the word ~\textit{semantics} is concerned by the field of studying the meaning of programming languages.
-And in this field, it concerns about a lot of area.
-For our project, every time that we see an inconsistency, we report them to an error table.
-Let's see which kind of inconsistency we can find for our project.
-
-\begin{enumerate}
-\item Finding inconsistency in types and their related specifications.
-\item Finding inconsistency in variables declared or not.
-\item Finding inconsistency regarding to the use of multiple expressions.
-\item Finding inconsistency for returning types of functions created.
-\end{enumerate}
-
-This will be talked later, let's understand firstly the error table system created.
-
 \subsection{Error table in LISS}
 
 The error table let the user to understand the problems that he is having with the code when he is trying to create or making it.
@@ -2655,7 +2651,7 @@ Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpre
 \end{enumerate}
 
 
-\subsection{Usage of error messages}
+\subsection{Implemented Validations}
 
 In this section, we are going to report where the error message will be thrown in the compiler regarding to the attribute grammar that we have.
 
@@ -4048,11 +4044,9 @@ Let's show, in this case, which cases that can appear for an assignment statemen
   flag1 = 1 < 3;
   array1[1] = 10;
   array1 = array2;
-  array1 = [1,2,3,4]
-  set1 = set1 ++ set2
-  flag = 4 in set1;
-  seq1 = tail(seq1);
-  i = 1 + head(seq1);
+  array1 = [2];
+  set1 = set2;
+  sequence1 = sequence2;
 \end{lstlisting}
 
 \subsubsection{Assignment for integer}
@@ -4207,20 +4201,113 @@ In Listing ~\ref{lst:greater_equal_sign_mips}, we translate the behaviour of the
 
 %talk about the <, >, || (see MIPS)
 
+And finally, the last three operators which are available under:
+
+\begin{lstlisting}
+  slt $t0, $t0, $t1	# less instruction
+  slt $t0, $t1, $t0	# greater instruction
+  or $t0, $t0, $t1	# or instruction
+\end{lstlisting}
+
+Notice that the difference between a less and a greater instruction is only in the use of the registers and that the mechanism for generating the code is the same as talked previously. First, load the code generated relatively to the left part of the operator; second, load the code generated for the right part of the operator and third, add the operator instruction.
+
 
 
 \subsubsection{Assignment for array}
 
+Assigning arrays can be made by two ways (see line 4 and 5 in Listing ~\ref{lst:cases_assignment_liss}).
+
+One way is to assign the name of an array variable to another array variable and the idea of that purpose is to copy the entire array to the other array (see in Listing ~\ref{lst:assign_array_to_array_mips}).
+
+\begin{lstlisting}[caption={Code generated for line 4 in Listing ~\ref{lst:cases_assignment_liss}},label={lst:assign_array_to_array_mips}]
+  li $t0,0		
+  lw $t1, array2($t0)		
+  sw $t1, array1($t0)		
+  li $t0,4		
+  lw $t1, array2($t0)		
+  sw $t1, array1($t0)		
+\end{lstlisting}
+
+In Listing ~\ref{lst:assign_array_to_array_mips}, it is copying an array with size two to another array. And before to begin the process of copying, it needs to check if the limits and the size are the same. Otherwise, the copy won't be able to do and it will throw an error. 
+
+Basically, the idea is to copy the content of each position in array2 to the same position in array1. First, it loads the position (line 1 of Listing ~\ref{lst:assign_array_to_array_mips}), then it loads the value available at that position in array2 (line 2 of Listing ~\ref{lst:assign_array_to_array_mips}) and finally it stores the value to the same position in array1 (line 3 of Listing ~\ref{lst:assign_array_to_array_mips}). Yet, it must continue to do the same process again for the next remaining position of those arrays in order to complete the copy process.
+
+Now, the other way for assign an array is by declaring the content of each position of the array (line 5 of Listing ~\ref{lst:cases_assignment_liss}).
+And the processus is different because it needs to do some calculations for knowing the position of each value that needs to be stored. Notice that the calculation is the same as it was declaring an array in the ~\textit{declarations} part and that the limits and the size must be less or equal than the variable. Otherwise, if the limits and size aren't in agreement then it will throw an error message.
+
+Let's explain it with the code generated for that situation (see in Listing ~\ref{lst:assign_array_values_mips}).
+
+\begin{lstlisting}[caption={Code generated for line 5 of Listing ~\ref{lst:cases_assignment_liss}},label={lst:assign_array_values_mips}]
+  li $t0,2		
+  li $t1,0		
+  sw $t0, array1($t1)		
+  li $t0,0		
+  li $t1,4		
+  sw $t0, array1($t1)		
+\end{lstlisting}
+
+In Listing ~\ref{lst:assign_array_values_mips}, we first load the value that needs to be stored (line 1), then comes the position of the array (line 2) and finally, the storage of that value to the required position in array1 (line 3). If some positions weren't declared or missed then it will put them with the value zero. For instance, the case of the last position (line 4 to 6) of array1 because his size is equal to two and it was declared only one value in the assignment statement.
+
 \subsubsection{Assignment for set}
 
-%falar do 4 in seq
+Assigning sets is a little different from the others assignment (see line 6 of Listing ~\ref{lst:cases_assignment_liss}).
+
+Basically, it doesn't compute any instructions but instead, it reorganize the JAVA structure available and linked to the set variable, in the symbol table, by changing it to the correct structure according to the assignment.
+
+Also, notice that it is possible to create a statement with more expressivity by using some operators relatively to the set type and they are listed above:
+
+\begin{itemize}
+\item ++ (union sign)
+\item ** (intersection sign)
+\end{itemize}
+
+Again, using those operators with sets doesn't compute any instructions but instead reorganize the structure of the set. And the meaning of each one is the same as the mathematical way (see equations above).
+
+\begin{equation}
+  A \cup B = \{ x : x \in A\ or\ x \in B\}
+\end{equation}
+
+\begin{equation}
+  A \cap B = \{ x : x \in A\ and\ x \in B\}
+\end{equation}
 
 \subsubsection{Assignment for sequence}
 
-%falar do 1+ head() uso da stack
+Assigning sequences is really simple and uses a certain mechanism took by another imperative language (see line 7 of Listing ~\ref{lst:cases_assignment_liss}).
+
+The idea of assigning two sequences is to change the pointer of one the sequence to the other sequence and in this case, the sequence that is available in the left part of the equal sign will change the address (where it is pointing in the heap memory) to the address of the sequence available in the right part of the equal sign.
+
+Let's see a code generated relatively to assigning a sequence in Listing ~\ref{lst:assign_sequence}.
+
+\begin{lstlisting}[caption={Code generated for line 7 of Listing ~\ref{lst:cases_assignment_liss}},label={lst:assign_sequence}]
+  lw $t0,sequence2		
+  sw $t0, sequence1		
+\end{lstlisting}
+
+In Listing ~\ref{lst:assign_sequence}, we load the address that the variable ~\textit{sequence2} is pointing in the heap memory (line 1) and then, it stores that address to the variable ~\textit{sequence1} (line 2).
+
+Notice that assigning sequences, doesn't copy every elements of one sequence to another one. Instead, there is a function which does that and named by ~\textit{copy} function.
 
 
+\subsection{Calling a function in LISS}
 
+Calling functions which are already created in LISS,  requires some mechanism.
+
+As we know, functions deals with the stack available in MIPS architecture and the stack will hold informations about the arguments, local variables and return adress relatively for the use of a function.
+
+This means that if a function have one or more arguments associated to the function, it is in the duty to use a certain mechanism for passing that information to the stack.
+
+And by this way, it is needed to generate some code for that situation(see in Listing ~\ref{lst:calling_function_mips}).
+
+\begin{lstlisting}[caption={Code generated for calling a function in MIPS},label={lst:calling_function_mips}]
+  lw $t0,a		
+  sw $t0, -12($sp)
+  jal factorial		
+\end{lstlisting}
+
+So the idea of calling a function is done by this way: if there are some arguments, then it is needed to generate the code relatively to those arguments and store them in the right position of the stack and finally, call the function. Otherwise if there is no arguments, then it must only call the function.
+
+In Listing ~\ref{lst:calling_function_mips}, line 1 and 2 loads the variable ~\textit{a} and then stores in the right position of the stack. Lastly, it calls the function by doing a jump instruction (line 3).
 
 
 
