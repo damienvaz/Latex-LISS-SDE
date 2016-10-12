@@ -94,22 +94,24 @@
 \contentsline {subsubsection}{Assignment for integer}{103}{lstnumber.4.72.7}
 \contentsline {subsubsection}{Assignment for boolean}{105}{lstnumber.4.75.4}
 \contentsline {subsubsection}{Assignment for array}{107}{lstnumber.-19.3}
-\contentsline {subsubsection}{Assignment for set}{108}{lstnumber.4.82.6}
+\contentsline {subsubsection}{Assignment for set}{108}{lstnumber.4.83.6}
 \contentsline {subsubsection}{Assignment for sequence}{109}{equation.4.4.8}
-\contentsline {subsection}{\numberline {4.4.6}Calling a function in LISS}{109}{subsection.4.4.6}
-\contentsline {subsection}{\numberline {4.4.7}Creating I/O in LISS}{110}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Creating conditional statement in LISS}{112}{subsection.4.4.8}
-\contentsline {subsection}{\numberline {4.4.9}Creating iterative statement}{114}{subsection.4.4.9}
-\contentsline {subsection}{\numberline {4.4.10}Creating increment or decrement variables}{119}{subsection.4.4.10}
-\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{121}{chapter.5}
-\contentsline {section}{\numberline {5.1}What is a template?}{122}{section.5.1}
-\contentsline {section}{\numberline {5.2}Conception of the SDE}{123}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Toolbar meaning}{125}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Creating a program}{127}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Executing a program}{136}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{136}{subsection.5.2.4}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Conclusion}}{138}{chapter.6}
-\contentsline {section}{\numberline {6.1}Future Work}{140}{section.6.1}
+\contentsline {subsection}{\numberline {4.4.6}Set operations}{109}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.7}Sequence operations}{110}{subsection.4.4.7}
+\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{111}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{112}{subsection.4.4.9}
+\contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{114}{subsection.4.4.10}
+\contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{116}{subsection.4.4.11}
+\contentsline {subsection}{\numberline {4.4.12}Creating increment or decrement variables}{121}{subsection.4.4.12}
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{123}{chapter.5}
+\contentsline {section}{\numberline {5.1}What is a template?}{124}{section.5.1}
+\contentsline {section}{\numberline {5.2}Conception of the SDE}{125}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Toolbar meaning}{127}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Creating a program}{129}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Executing a program}{138}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{138}{subsection.5.2.4}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Conclusion}}{140}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{142}{section.6.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{144}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{146}{appendix.A}

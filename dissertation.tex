@@ -4141,6 +4141,7 @@ As explained before, some operators are available for boolean assignment which c
 \item $<$= (less or equal sign)
 \item $>$= (greater or equal sign)
 \item $||$ (or sign)
+\item ! (negation sign)
 \end{itemize}
 
 Relatively to those operators, only tree operators uses one instruction($<$, $>$, $||$) and the others uses a logic of mechanism for having the same behaviour which requires more than one instruction. Notice that this is due to the fact that MIPS architecture doesn't have all the logic instruction implemented.
@@ -4199,6 +4200,15 @@ In Listing ~\ref{lst:greater_equal_sign_mips}, we translate the behaviour of the
   x >= y \iff \lnot ( x < y )
 \end{equation}
 
+Now, let's see the code generated for a negation (see Listing ~\ref{lst:negation_sign_mips}).
+
+\begin{lstlisting}[caption={Code generated for negation sign in MIPS},label={lst:negation_sign_mips}]
+  sltu $t0, $zero, $t0	
+  xori $t0, $t0, 1	
+\end{lstlisting}
+
+%In Listing ~\ref{lst:negation_sign_mips}, basically the idea of implementing that negation sign is to check if the value is greater than zero; if it is then the result is one, otherwise it is zero (line 1). Finally, it process to an exclusive or instruction (line 2) for negativ
+
 %talk about the <, >, || (see MIPS)
 
 And finally, the last three operators which are available under:
@@ -4209,7 +4219,7 @@ And finally, the last three operators which are available under:
   or $t0, $t0, $t1	# or instruction
 \end{lstlisting}
 
-Notice that the difference between a less and a greater instruction is only in the use of the registers and that the mechanism for generating the code is the same as talked previously. First, load the code generated relatively to the left part of the operator; second, load the code generated for the right part of the operator and third, add the operator instruction.
+Notice that the difference between a less and a greater instruction is only in the use of the registers and also, the mechanism for generating those code (boolean assignment) is the same as talked previously. First, load the code generated relatively to the left part of the operator; second, load the code generated for the right part of the operator and third, add the operator instruction.
 
 
 
@@ -4287,6 +4297,79 @@ Let's see a code generated relatively to assigning a sequence in Listing ~\ref{l
 In Listing ~\ref{lst:assign_sequence}, we load the address that the variable ~\textit{sequence2} is pointing in the heap memory (line 1) and then, it stores that address to the variable ~\textit{sequence1} (line 2).
 
 Notice that assigning sequences, doesn't copy every elements of one sequence to another one. Instead, there is a function which does that and named by ~\textit{copy} function.
+
+\subsection{Set operations}
+
+The type sets can be operated only by one way: using it as an assignment statement (see Listing ~\ref{lst:using_set_assignment_mips}).
+
+\begin{lstlisting}[caption={Example of using a set in LISS},label={lst:using_set_assignment_mips}]
+  program test{
+      declarations
+         flag -> boolean;
+         set1 = {x | x>1} -> set;
+      statements
+         flag = 4 in set1;
+  }
+\end{lstlisting}
+
+And for that, we need to use a special operator (named ~\textit{in}).
+The idea of that operator is to test a certain number relatively to the set used in the assignment.
+
+In this case, the example available in line 6 of Listing ~\ref{lst:using_set_assignment_mips} will test if the number 4 is in the range of the set named ~\textit{set1}.
+
+But it needs to be generated something in order to check the truth of that expression and at the end get the result. That is why we need to generate the code with the use of that number accordingly to the expression of the set.
+
+Let's look the code in Listing ~\ref{lst:contains_set_mips}.
+
+\begin{lstlisting}[caption={Code generated for line 6 of Listing ~\ref{lst:using_set_assignment_mips}},label={lst:contains_set_mips}]
+  li $t0,4		
+  li $t1,1		
+  slt $t0, $t1, $t0	
+  sw $t0, flag		
+\end{lstlisting}
+
+Basically, from line 1 to 3 of Listing ~\ref{lst:contains_set_mips}, it generates the code of that set with the number that it is associated to the left of the ~\textit{in} operator. After processing and checking the expression, it stores the result to the boolean variable ~\textit{flag} (line 4 of Listing ~\ref{lst:contains_set_mips}). And the result will say if the number 4 is in the range of the set.
+
+The mechanism of generating the code with sets is done by generating the code of the expression relatively to the set accordingly the number that we are trying to test and then, storing the result to a boolean variable.
+
+\subsection{Sequence operations}
+
+The type sequences can be operated by two ways: 
+
+\begin{enumerate}
+\item statement
+\item expression
+\end{enumerate}
+
+And each sequence functions are defined by those mode of operations (see Table ~\ref{tbl:sequence_function_mips}).
+
+\begin{table}[h!]
+\centering
+\caption{Sequence function name and their mode of operations}
+\label{tbl:sequence_function_mips}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Mode operations}             & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ function in LISS\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ function in MIPS\end{tabular}} \\ \hline
+\multirow{7}{*}{\textbf{expression}} & tail                                                                                      & tail\_sequence                                                                            \\ \cline{2-3} 
+                                     & head                                                                                      & head\_sequence                                                                            \\ \cline{2-3} 
+                                     & cons                                                                                      & cons\_sequence                                                                            \\ \cline{2-3} 
+                                     & isMember                                                                                  & member\_sequence                                                                          \\ \cline{2-3} 
+                                     & isEmpty                                                                                   & is\_empty\_sequence                                                                       \\ \cline{2-3} 
+                                     & length                                                                                    & length\_sequence                                                                          \\ \cline{2-3} 
+                                     & del                                                                                       & delete\_sequence                                                                          \\ \hline
+\multirow{2}{*}{\textbf{statement}}  & copy                                                                                      & copy\_sequence                                                                            \\ \cline{2-3} 
+                                     & cat                                                                                       & cat\_sequence                                                                             \\ \hline
+\end{tabular}
+\end{table}
+
+Each function available in Table ~\ref{tbl:sequence_function_mips}, are, basically, functions in MIPS assembly code. This means that it needs to use a jump instruction for processing any sequence function. And notice that it uses the name of the sequence function in MIPS (available in Table ~\ref{tbl:sequence_function_mips}) for generating the appropriated sequence jump instruction (see an example in Listing ~\ref{lst:example_sequence_function_mips}).
+
+\begin{lstlisting}[caption={Example of processing a head function in MIPS},label={lst:example_sequence_function_mips}]
+  jal head_sequence
+\end{lstlisting}
+
+%falar do modo que os argumentos sao chamados ? a recursividade ou multiplicidade das funçoes como efeito de bola de neve e do modo que é operado da direita para esquerda. e depois falar da stack e finalmente falar dos copy e cat
+
 
 
 \subsection{Calling a function in LISS}
