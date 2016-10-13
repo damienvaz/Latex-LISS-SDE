@@ -3423,6 +3423,24 @@ And the calculation is done by this way :
 
 After that, we just need to create one mips instruction which gets the right value of the position in the stack MIPS architecture regarding to the variable.
 
+\subsubsection{Calling a function}
+
+Calling a function requires some jump instruction. And those jump instructions may or may not loose informations available in the registers before processing the function.
+
+That is why we need to create a mechanism for not loosing those informations before processing a function in MIPS assembly code.
+
+And the mechanism is simple, every functions whose arguments have the possibility of calling a function or are used in a expression must use the stack available in MIPS architecture.
+
+For example, a function call of a ~\textit{subprogram} in LISS within an expression as show in Listing ~\ref{lst:function_call_expression_liss}, needs to save the information available in the register to the stack before calling and processing the information relatively to the function ~\textit{calculate}.
+
+\begin{lstlisting}[caption={Example of a function call in an expression statement},label={lst:function_call_expression_liss}]
+  i = 2 + calculate();
+\end{lstlisting}
+
+Otherwise, if the mechanism wasn't implemented, then it will lost the information and 
+
+
+
 \subsection{LISS language code generation}
 
 This part will talk about the code generation of every statements feasible in the LISS language.
@@ -4367,6 +4385,77 @@ Each function available in Table ~\ref{tbl:sequence_function_mips}, are, basical
 \begin{lstlisting}[caption={Example of processing a head function in MIPS},label={lst:example_sequence_function_mips}]
   jal head_sequence
 \end{lstlisting}
+
+Now, take care that before invocating the jump instructions; it is needed to load the arguments relatively to the type of the sequence function. And they process with a certain logic for loading those arguments:
+
+\begin{enumerate}
+\item load the register \$s0 with the name of the variable sequence.
+\item load, in a sequential way, the rest of the arguments (relatively to the type of the sequence function) into the next saved temporary registers (\$s1, \$s2,...).
+\end{enumerate}
+
+For example, ~\textit{cons} function have two arguments in order to make it workable. Let's see how is the code generated for that case in Listing ~\ref{lst:example_cons_function_mips}.
+
+\begin{lstlisting}[caption={Example of a code generated for the function ~\textit{cons}},label={lst:example_cons_function_mips}]
+  lw $t0,sequence2	
+  addi $sp, $sp, -4
+  sw $t0, 0($sp)
+  li $t0,3		
+  move $s1, $t0		
+  lw $t0, 0($sp)
+  addi $sp, $sp, 4
+  move $s0, $t0		
+  jal cons_sequence
+\end{lstlisting}
+
+In Listing ~\ref{lst:example_cons_function_mips}, we load the ~\textit{sequence2} variable (line 1) in a first step; then we process to storing that information into the stack (line 2 to 3); after, we process the information relatively to the code generated for the other argument (second one) and we move to the correct register (register \$s1) (line 4 and 5); finally, we go get back of the value that we stored earlier in the stack and we put it to the register \$s0 (line 6 and 8). Lastly, we call the function ~\textit{cons\_sequence} for processing to the execution of the function (line 9).
+
+Notice, that the way we are doing those mechanics aren't done in a random way but yes in a certain way and this is due for one reason.
+
+Only the functions who are available to use in the ~\textit{expression} rule and can use sequence type in some of their arguments, must use that way of invocating the code generated relatively to Listing ~\ref{lst:example_cons_function_mips}.
+
+Let's see an example for understanding it better (see Listing ~\ref{lst:function_call_argument_sequence_liss}).
+
+\begin{lstlisting}[caption={Example of using a function call as argument},label={lst:function_call_argument_sequence_liss}]
+  head(cons(3,cons(4,cons(5,sequence2))));
+\end{lstlisting}
+
+We must process the information for the most inner function in Listing ~\ref{lst:function_call_argument_sequence_liss}, in this case ~\textit{cons(5,sequence2)}, and then getting back and process the other functions.
+
+Let's see how it is done above:
+
+\begin{enumerate}
+\item cons(5,sequence2)
+\item cons(4,cons(5,sequence2))
+\item cons(3,cons(4,cons(5,sequence2)))
+\item head(cons(3,cons(4,cons(5,sequence2))))
+\end{enumerate}
+ 
+And this is why we always generate the code relatively to the sequence type in the first position and then, the others arguments (due to that reason).
+
+Relatively to the ~\textit{copy} and ~\textit{cat} function, as they are not used on an expression but yes as a statement. They use only one simple mechanism and this is done by loading the sequence variable to the respective saved temporary register.
+
+Let's see a code relatively to those two functions in Listing ~\ref{lst:copy_cat_function_mips}.
+
+\begin{lstlisting}[caption={Example of code generated for copy and cat statement},label={lst:copy_cat_function_mips}]
+  lw $s0, sequence1		
+  li $s1, -1		
+  jal copy_sequence
+  sw $v0, sequence2		
+  li $v0, 0
+  lw $s0, sequence1		
+  lw $s1, sequence2		
+  jal cat_sequence
+  sw $v0, sequence1		
+  li $v0, 0
+\end{lstlisting}
+
+Basically, regarding to the use of a ~\textit{copy} statement (from line 1 to 4 of Listing ~\ref{lst:copy_cat_function_mips}), it load the first argument of the function (line 1) and then load an empty sequence (line 2) (remind that an empty sequence holds the value NULL which is minus one). Then it call the cat function (line 3) and finally store the new address to the variable ~\textit{sequence2} (line 4). Lastly, we reset the content of the register \$v0 and this is done for internal reason relatively to the execution of assembly code (line 5).
+
+Take care that the copy statement, copies every element of a sequence to another sequence.
+
+
+Relatively to the use of a ~\textit{cat} statement (from line 6 to 10 of Listing ~\ref{lst:copy_cat_function_mips}, it is the same way as the ~\textit{copy} mechanism. But instead of loading an empty sequence as second argument, it loads the appropriated sequence (line 7).
+
 
 %falar do modo que os argumentos sao chamados ? a recursividade ou multiplicidade das funçoes como efeito de bola de neve e do modo que é operado da direita para esquerda. e depois falar da stack e finalmente falar dos copy e cat
 
