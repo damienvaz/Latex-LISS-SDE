@@ -2259,8 +2259,10 @@ ANTLR will be used to generate MIPS assembly code according to the semantic rule
 
 In programming language theory, the word ~\textit{semantics} is concerned by the field of studying the meaning of programming languages.
 And in this field, it concerns about a lot of area.
-For our project, every time that we see an inconsistency, we report them to an error table.
-Let's see which kind of inconsistency we can find for our project.
+
+For our project, every time that we see an inconsistency, we use some structures that helps the compiler for getting those inconsistencies and also informs the user about those inconsistencies.
+
+And the kind of inconsistency that can be found in the project are listed above:
 
 \begin{enumerate}
 \item Finding inconsistency in types and their related specifications.
@@ -2269,7 +2271,7 @@ Let's see which kind of inconsistency we can find for our project.
 \item Finding inconsistency for returning types of functions created.
 \end{enumerate}
 
-
+Now, let's talk about the structures that were made for the project.
 
 
 \subsection{Symbol Table}
@@ -3429,15 +3431,92 @@ Calling a function requires some jump instruction. And those jump instructions m
 
 That is why we need to create a mechanism for not loosing those informations before processing a function in MIPS assembly code.
 
-And the mechanism is simple, every functions whose arguments have the possibility of calling a function or are used in a expression must use the stack available in MIPS architecture.
+And the mechanism is simple, every functions whose arguments have the possibility of calling a function or are used in an expression must use the stack available in MIPS architecture.
 
-For example, a function call of a ~\textit{subprogram} in LISS within an expression as show in Listing ~\ref{lst:function_call_expression_liss}, needs to save the information available in the register to the stack before calling and processing the information relatively to the function ~\textit{calculate}.
+Let's first explain the use of the stack regarding to function call in expression. But before starting the explanation, notice that the arguments in function call doesn't allow the use of functions.
+
+If a function call is used in an expression, it needs to check firstly the availability of the temporary registers.
+
+If a temporary register contains a value and in this case, isn't empty; then it must save that information into the stack before calling the function call (example can be seen in Listing ~\ref{lst:function_call_expression_liss}).
 
 \begin{lstlisting}[caption={Example of a function call in an expression statement},label={lst:function_call_expression_liss}]
   i = 2 + calculate();
 \end{lstlisting}
 
-Otherwise, if the mechanism wasn't implemented, then it will lost the information and 
+In Listing ~\ref{lst:function_call_expression_liss}, the information that is stored to stack is the number 2. This is a valuable information that needs to be stored in order to continue and generate the correct code. At the end of the processement function, it will be restored the value.
+
+Let's see the code generated in Listing ~\ref{lst:function_call_expression_liss}.
+
+\begin{lstlisting}[caption={Code generated for the Listing ~\ref{lst:function_call_expression_liss}},label={lst:function_call_expression_liss}]
+  li $t0,2		
+  addi $sp, $sp, -4
+  sw $t0, 0($sp)
+  jal calculate		
+  lw $t0, 0($sp)
+  addi $sp, $sp, 4
+  move $t1, $v0		
+  add $t0, $t0, $t1	
+  sw $t0, i
+\end{lstlisting}
+
+In Listing ~\ref{lst:function_call_expression_liss}, it loads the value number 2 (line 1); then, the compiler knows that we function call will executed so it needs to save the number two into the stack (line 2 and 3); after it calls the instruction for executing the function (line 4); at the end of the execution of the function, it loads firstly the state that he got previously (which is loading the number two) to the register (line 5 and 6); then it loads the result of the function to the next register (line 7) and finally, it does the arithmetic operation (line 8) and stores it to the variable ~\textit{i} (line 9).
+
+However, if a function call sees that the temporary registers are empty. Then none of those mechanisms will be applied.
+
+Let's see an example in Listing ~\ref{lst:example_function_call_liss_unit}.
+
+\begin{lstlisting}[caption={Example of a function call in an assignment},label={lst:example_function_call_liss_unit}]
+  i = calculate();
+\end{lstlisting}
+
+As we can seen, in Listing ~\ref{lst:example_function_call_liss_unit}, no information are processed before the call of the function ~\textit{calculate()}. Which means that the mechanism of saving valuable information won't be applied (see in Listing ~\ref{lst:code_generated_function_call_unit}).
+
+\begin{lstlisting}[caption={Code generated for Listing ~\ref{lst:code_generated_function_call_unit}},label={lst:code_generated_function_call_unit}]
+  jal calculate		
+  move $t0, $v0		
+  sw $t0, i	
+\end{lstlisting}
+
+Now, regarding to the sequence function, the mechanism that is done with function call is also applied with the same way.
+The difference is that on sequence function you can applied also the mechanism relatively to the arguments that have an expression statement.
+
+For example, let's consider the next piece of code which uses a sequence function (see in Listing ~\ref{lst:sequence_function_example_liss}).
+
+\begin{lstlisting}[caption={Example of using a sequence function in LISS},label={lst:sequence_function_example_liss}]
+  sequence2 = cons(3+head(sequence2),sequence2);
+\end{lstlisting}
+
+In Listing ~\ref{lst:sequence_function_example_liss}, the mechanism will be applied to both of the arguments available in the ~\textit{cons} function. Firstly, due to the fact that in the second argument of the function ~\textit{cons}, it must be a sequence type and use an expression statement (this means that we can nest more sequence functions in this argument). Secondly, the first argument must be an integer type and use an expression statement too ( this mean that it can nest some sequence function in there (where those sequence function returns an integer)).
+
+And for that purpose, the compiler needs to store all those valuable informations into the stack relatively for not loosing the consistency of the code.
+
+Let's see and explain the code generated from the example in Listing ~\ref{lst:sequence_function_example_liss} (see Listing ~\ref{lst:sequence_function_stack_mips}).
+
+\begin{lstlisting}[caption={Example of code generated for Listing ~\ref{lst:sequence_function_example_liss}},label={lst:sequence_function_stack_mips}]
+  lw $t0,sequence2		
+  addi $sp, $sp, -4
+  sw $t0, 0($sp)
+  li $t0,3		
+  addi $sp, $sp, -4
+  sw $t0, 0($sp)
+  lw $t0,sequence2		
+  move $s0, $t0		
+  jal head_sequence
+  lw $t0, 0($sp)
+  addi $sp, $sp, 4
+  move $t1, $v0		
+  add $t0, $t0, $t1	
+  move $s1, $t0		
+  lw $t0, 0($sp)
+  addi $sp, $sp, 4
+  move $s0, $t0		
+  jal cons_sequence
+  move $t0, $v0		
+  sw $t0, sequence2		
+\end{lstlisting}
+
+In Listing ~\ref{lst:sequence_function_stack_mips}, we load the variable ~\textit{sequence2} relatively to the second argument of the function ~\textit{cons} (line 1); then we store that information to the stack (line 2 to 3); after, we process for the information relatively to the first argument of the ~\textit{cons} function and this means by loading the number 3 to a temporary register (line 4); now, the compiler knows that it must sum that number with a sequence function (which will use a jump instruction), so it will save the number 3 to the stack before calling the function ~\textit{head} (line 5 to 6); then, he will process for the calling function (line 7 to 9); after finishing of executing the function, the compiler knows that it needs to load the previous state which was available before calling the function, so it gets back the number 3 by going to the stack (line 10 to 11); then, put the result of the ~\textit{head} function to the next register available and do the sum (line 12 to 13);
+finally, the compiler will move the result of the sum to the appropriated register for calling the ~\textit{cons} function (line 14) and reload the information that he stored previously to the stack (relatively the second argument of the ~\textit{cons} function) (line 15 to 17); lastly, it will process the call of the ~\textit{cons} function and store the result to the variable ~\textit{sequence2} (line 18 to 20).
 
 
 
