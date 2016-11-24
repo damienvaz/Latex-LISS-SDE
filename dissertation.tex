@@ -5412,65 +5412,64 @@ Notice that the line number is very important for showing the inconsistency to t
 \chapter{Conclusion}
         %Conclusions and future work.
 
-In this final chapter, it will be summarized every informations that was exposed throughout this document and remembering the aims of the project and how they were achieved.
+In this final chapter, it will be summarized the information that was exposed throughout this document in order to remember the aims of the project and how they were achieved.
 
-First, it begins by contextualizing the reasons of helping the developers for being more productive regarding to create some programs for computers. And this was solved by creating a software package which could make the life of a developer easier for writing programs easier and at a high level productivity. 
-But even with those notions, there is always the necessity of achieving more (creating a program at a high level productivity and in a safety way) and that is why, we introduce and aims the notion of developing an editor with the concept of a SDE (Syntax Directed Editor). 
+First, it begins by contextualizing the reasons of helping the developers for being more productive regarding the creation of some programs for computers. This was attained by creating a software system (a compiler) which makes the life of a developer easier by allowing him to write programs at a high level  of productivity. 
+But as always there is the necessity of achieving more (creating a program with a high level language and in a safety way) and that is why, we introduce the notion of Syntax Directed Editor, an editor that helps the programmer writing his code guiding him through the language syntax. 
 
-The notion of a SDE is to create programs where the developer don't use the keyboard (syntax error that might be introduced) but instead, use the mouse and create the code by generating some rules available in the program.
-And for this project, it was aimed to create the SDE with a language associated and called LISS.
+The main idea underlying of a SDE is to create programs whithout the use of the keyboard avoiding syntax errors; instead, the programmer will use the mouse and create the code by selecting some rules available in the grammar of the language.
+For this project, it was aimed to create a SDE for the language called LISS.
 
-So, it was needed to first understand the language and then realize some test code of the language.
-After understanding the syntax of the language, it was done some improvements relatively to the language (due to the age of the language) by changing or deleting some rules.
+So, it was needed to first understand that language, writting some test programs.
+After understanding the syntax of the language, some improvements were introduced in the language (due to its old age) by changing or deleting some rules.
 
-With those improvements, it is a necessity now to create the compiler for generating the code associated from a LISS code to an assembly code. And for that reason, we changed the type of the actual grammar (CFG - Context-Free Grammar) to another type (AG - Attribute Grammar).
+After designing those improvements in the grammar, it was necessary to develop the compiler to analyse and check the LISS programs and generate the associated assembly code. For that purpose, the original grammar (a CFG - Context-Free Grammar) was evolved to another type (an AG - Attribute Grammar).
 
-Then, before creating the compiler, we needed to understand the MIPS architecture which is the language that will be translated as assembly code. The architecture repose with a RISC architecture which makes the learning phase more easier. And after understanding his architecture, it was a necessity of testing some live code with the MIPS assembly code for a better view of that programming language.
+Before creating the compiler, it was needed to understand the MIPS architecture which is the chosen target machine (the compiler will generate MIPS assembly code). The architecture is a RISC architecture which makes the learning phase easier. After understanding the architecture, it was necessary to test it, writting some programs in MIPS assembly code for a better view of that programming language.
 
-With those knowledge acquired relatively to the MIPS architecture, it was essential to reproduce the same specifications within the project by creating some adapted structure (stack, registers).
+With those knowledge acquired relatively to the MIPS architecture, it was essential to create some adapted data structures (stack, registers) to support the code generation and the execution of LISS program.
 
-As a result of all the reasoning made, we began by creating the compiler but before talking about the compiler, it must be warned that the compiler only pass one time throw the LISS code which requires some pros and cons. By executing the LISS code only one time, two things is done by multitasking; the semantic analysis and the code generation. 
+As a result of all the research and reasoning made, we began by creating the compiler. It is important to remember that the compiler only pass once throw the LISS code which has some pros and cons. In that single pass, two tasks are performed by the compiler's back-end; the semantic analysis and the code generation. 
 
-The semantic analysis requires some structure that are a symbol table and an error table.
-The symbol table save informations relatively to the LISS code instead that the error table stores and informs the error messages to the user relatively to the semantic analysis (both of those structures are in a sense connected). Now the most complicated work, in the project, was done with the code generation.
+The semantic analysis requires some structures that are a symbol table and an error table.
+The symbol table save information about all the LISS identifiers; the error table stores the error messages to inform the user relatively to the semantic analysis (both of those structures are in a sense connected). The symbol table is also used to support the most complex stage in the project, the code generation.
 
-The code generation has bring a lot of difficulties to the project and this is due to the complexity of creating a compiler.
-Some of the hard points found in the project can be listed under:
+The code generation rose up a lot of difficulties and this is due to some hard issues listed below:
 \begin{itemize}
-\item processing the LISS code only one time and  caring about the order that it is processing relatively for generating the code.
+\item processing the LISS code only once and caring about the order that it is processing relatively for generating the code.
 \item saving some informations in the memory relatively for generating the code in the correct order (due to the specifications of the MIPS architecture).
-\item creating a linked-list in MIPS assembly code relatively to the sequence type.
+\item creating a linked-list in MIPS assembly code to implement the sequence type.
 \item creating MIPS code with alignment address.
 \item defining a certain architecture for generating the code relatively to the context that the compiler is dealing with (using which register, stack or heap).
 \item creating some complex algorithm for the use of some structure available in the project.
 \end{itemize}
 
-Beside, also, the need of testing and checking the correctness of the code generated regarding to some LISS code examples available in the background (18 LISS code tested and approved).
+After developing the compiler there is the need of testing it and checking the correctness of the code generated. 18 LISS programs prepared specifically to cover the different types and statements that were tested and approved.
 
-After creating the compiler and remembering the aims proposed for this masters work, It was created the visual of the SDE program. By studying and reading some articles about the concept of SDE, we managed to draw the visual of the program easily and focusing on the most important notions of creating the visual with:
+Once the compiler was created, it was built the visual  (Syntax Directed Editor - SDE) program. By studying and reading some articles about the concept of SDE, we managed to draw the interface and its visual appearance, focusing on the most important notions of such an editor:
 
 \begin{itemize}
-\item having a visualization of an abstract syntax tree for the LISS language
-\item having a space where we could see the behaviour of generating the rules and see the LISS code being created.
-\item having a space where could be thrown the error messages found in the runtime compiler or messages from the program as well as the ouput of the execution code available in the program.
+\item having a visualization of the abstract syntax tree for the LISS language.
+\item having a window where the LISS code being created can be seen.
+\item having an output window where the error messages found at runtime by the compiler are displayed as well as the ouput produced by the execution.
 \end{itemize}
 
-Lastly, subsequently doing the compiler and the visual of the program, we needed to connect the compiler and the MARS simulator with the visual program. Though, the part for connecting the MARS simulator to the program, was one of the hardest part of the project due to the complexity of using process and threads in JAVA for sending some input and getting the output.
+After developing the visual editor and integrating it with the LISS compiler, it was needed to connect the compiler and the MARS simulator. This task for connecting the MARS simulator with the SDE environment, was one of the hardest parts of the project due to the complexity of using processes and threads in JAVA for sending some input and getting the output.
 
-And finally, testing the SDE program and checking if everything works.
+The last step was the final, testing of the SDE environment to check if everything works properly.
 
-It was made an inquiry for testing the application and learn more about the usability of the syntax direct direct concept. And it was concluded that this concept is a must for learning a new programming language due to the fact of getting a better perception of the syntax relatively to the programming language and the ease use of creating some code. However when the user have more better and experienced view with the programming language, the concept is not appropriated and then, the integrated development environment is, in this case, a better concept.
+It was made an inquiry for testing the application and learn more about the usability of the syntax direct editor. It was concluded that this concept is a must for learning a new programming language due to the fact of getting a better perception of the syntax of the programming language and the easy way for creating some code. However when the user has better and deeper knowledge of the programming language, that approach is not the most appropriated.
 
 \section{Future Work}
 
-It is intended to discuss some future work that might be done for improving the application relatively to the areas of improving the productivity and fastness of the program
+To conclude that dissertation, it is intended to discuss some future work that might be done for improving the application concerning the productivity of the programmer and the compiler efficiency.
 
 \begin{itemize}
-\item Adding some semantic to the abstract syntax tree available in the visual for generating the rules. This means that if we declare a variable where it is initialized with an integer value, it should know that the variable will be an integer type.
-\item Optimizing the compiler relatively for generating the code.
-\item Adding the possibility of moving some rules in the abstract syntax tree. For instance, if you wanna add a statement in a certain place you cannot do it easily with the program.
+\item Adding some semantic to the abstract syntax tree available in the visual for generating the rules. This means that if we declare a variable where it is initialized with an integer value, it should know that the variable will be an integer type. In this case, we could create a SSDE (Semantic Syntax Directed Editor).
+\item Optimizing the code generated by the compiler.
+\item Adding the possibility of moving statements in the abstract syntax tree. For instance, if you want to swap two statements, you cannot do it.
 \item Adding a feature for incremental compilation.
-\item Adding a feature to the program that can adapt any programming language and create different code beside than LISS.
+\item Adding a feature to the editor (SDE) to be adaptable to any programming language who deal with other programs not written in LISS.
 \end{itemize}
 
 
