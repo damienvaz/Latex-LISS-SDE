@@ -5297,7 +5297,7 @@ To clone the program in Listing ~\ref{lst:liss_sde_simple}, we must choose the ~
     \label{fig:LISS-SDE_example_13}
 \end{figure}
 
-So, by left clicking that option, the right part will refresh accordingly to the terminal word name and we just need to generate the rule ~\textit{print\_what} for finishing the code (see Figure ~\ref{fig:LISS-SDE_example_14}).
+So, left clicking on that option, the right part will be refreshed accordingly to the terminal keyword. Then it is needed to process the rule ~\textit{print\_what} for finishing the code (see Figure ~\ref{fig:LISS-SDE_example_14}).
 
 \begin{figure}[h!]
   \centering
@@ -5306,7 +5306,7 @@ So, by left clicking that option, the right part will refresh accordingly to the
     \label{fig:LISS-SDE_example_14}
 \end{figure}
 
-The ~\textit{print\_what} non-terminal shows a pop-up menu which have three options (see Figure ~\ref{fig:LISS-SDE_example_15}) and for our case, we need to choose the option of adding a string.
+The ~\textit{print\_what} non-terminal shows a pop-up menu with three options (see Figure ~\ref{fig:LISS-SDE_example_15}); for our case, we need to choose the option of adding a string.
 
 \begin{figure}[h!]
   \centering
@@ -5315,13 +5315,13 @@ The ~\textit{print\_what} non-terminal shows a pop-up menu which have three opti
     \label{fig:LISS-SDE_example_15}
 \end{figure}
 
-By clicking that option, a rectangle appears below (see Figure ~\ref{fig:LISS-SDE_example_16}) and use the same idea as talked previously as  the ~\textit{IDENTIFIER} box. The only thing that differs is the pattern that is different:
+By clicking on that option, a rectangle with the label ~\textbf{STRING} appears below (see Figure ~\ref{fig:LISS-SDE_example_16}), following the same idea talked previously for  the ~\textit{IDENTIFIER} box. The only thing that differs is the pattern that now is:
 
 \begin{lstlisting}
   '"' ( ESC_SEQ | ~('"') )* '"'
 \end{lstlisting}
 
-Basically the idea of that pattern is that the string must be inside of an opened and close quotation marks.
+Basically the idea of that pattern is that the string must be a sequence of any characters inside quotation marks.
 
 \begin{figure}[h!]
   \centering
@@ -5330,9 +5330,9 @@ Basically the idea of that pattern is that the string must be inside of an opene
     \label{fig:LISS-SDE_example_16}
 \end{figure}
 
-And so, for the last step, we manage to write the string ~\textit{"Hello World!"} in that rectangle box for finishing the creation of the program accordingly to Listing ~\ref{lst:liss_sde_simple}. 
+And so, for the last step, we manage to write the string ~\textit{"Hello World!"} in that rectangular box for finishing the creation of the program in Listing ~\ref{lst:liss_sde_simple}. 
 
-Notice that in the right part of the Figure ~\ref{fig:LISS-SDE_example_17}, no ~\textit{undefined} word is available and this means that the code can be compiled and, probably, executed by the program.
+Notice that in the right window of Figure ~\ref{fig:LISS-SDE_example_17}, no ~\textit{undefined} label is shown, what means that the code can be compiled and executed.
 
 \begin{figure}[h!]
   \centering
@@ -5341,7 +5341,7 @@ Notice that in the right part of the Figure ~\ref{fig:LISS-SDE_example_17}, no ~
     \label{fig:LISS-SDE_example_17}
 \end{figure}
 
-Finally, take care that it is available from the user interaction to delete rules on every non-terminal rules applicable in the tree structure.
+Finally, notice that the user can at any time delete rules by clicking on every non-terminal in the tree structure.
 
 And this is how the user can interact and create a program in ~\textit{liss$|$SDE}.
 
@@ -5349,7 +5349,7 @@ And this is how the user can interact and create a program in ~\textit{liss$|$SD
 
 \subsection{Executing a program}
 
-For executing a program in ~\textit{liss$|$SDE}, we just need to go to the toolbar, press in the ~\textit{Run} box and then hit the ~\textit{Compile and Run} option (see Figure ~\ref{fig:LISS-SDE_toolbar_3}).
+For executing a program in ~\textit{liss$|$SDE}, we just need to go to the toolbar, press the ~\textit{Run} button and then choose the ~\textit{Compile and Run} option (remember Figure ~\ref{fig:LISS-SDE_toolbar_3}).
 
 By doing that, it will pass throw a lot of steps (see Figure ~\ref{fig:flow_execution_program}).
 
@@ -5359,11 +5359,10 @@ By doing that, it will pass throw a lot of steps (see Figure ~\ref{fig:flow_exec
     \caption{Flow of the execution of a liss code in the ~\textit{liss$|$SDE}}
     \label{fig:flow_execution_program}
 \end{figure}
+The first step is to take the liss program and pass it to the compiler. In this moment, the compiler will check the consistency of the code (semantic system); then, if everything is fine, it will pass the MIPS assembly code generated (at the end of the process of the compiler) to the simulator (Mars Simulator) and execute the code.
+Lastly and finally, it will print the output of the execution of the liss code to the window number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
 
-First step is to take the liss code and pass to the compiler. In this moment, the compiler will check the inconsistency of the code (semantic system); then, if everything is fine, it will pass the MIPS assembly code generated (at the end of the process of the compiler) to the simulator (Mars Simulator) and execute the code.
-Lastly and finally, it will output the execution of the liss code to the view number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
-
-For a visual example, let's execute the program that we created with the program ~\textit{liss$|$SDE} at section ~\ref{sec:creating_program_liss_sde} (see Figure ~\ref{fig:helloWorld_execution_liss_sde}).
+For a visual example, let's execute the program created above with the ~\textit{liss$|$SDE} tool.
 
 \begin{figure}[h!]
   \centering
@@ -5372,17 +5371,17 @@ For a visual example, let's execute the program that we created with the program
     \label{fig:helloWorld_execution_liss_sde}
 \end{figure}
 
-In Figure ~\ref{fig:helloWorld_execution_liss_sde}, we can see that the string ~\textit{"Hello World!"} is shown and that the program was executed successfully and accordingly to Listing ~\ref{lst:liss_sde_simple}.
+In Figure ~\ref{fig:helloWorld_execution_liss_sde}, we can see that the string ~\textit{"Hello World!"} is printed and that the program was executed and terminates successfully.
 
 \subsection{Error System in ~\textit{liss$|$SDE}}
 
-Each time that a certain liss code goes to the compiler, an error table is built. And each inconsistencies that are found in the liss code, it will be added to the error table.
+Each time a LISS program is compiled, an error table is built. All the semantic error that are found in the LISS program, will be added to that error table.
 
-If the error table is empty, then it might execute the code if the user asked it. Otherwise, if the error table has some errors, then it must output those errors in the tab ~\textit{Errors} at the view number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
+If the error table is empty, then the code can be executed. Otherwise, if the error table contains some errors, then those errors must be outputed in the tab ~\textit{Errors} at the window number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
 
 Let's see an example of the error system in ~\textit{liss$|$SDE}.
 
-Imagine that the next piece of liss code is available on the ~\textit{liss$|$SDE} program:
+Consider the program below created with ~\textit{liss$|$SDE} environment:
 
 \begin{lstlisting}[caption={Example of a liss code that isn't semantically correct},label={lst:error_semantic_liss_sde_example}]
   program test{
@@ -5393,7 +5392,7 @@ Imagine that the next piece of liss code is available on the ~\textit{liss$|$SDE
   }
 \end{lstlisting}
 
-Now, if we try to run the compiler or even execute the code; in ~\textit{liss$|$SDE}, the compiler will throw errors due to the inconsistencies that he found (see in Listing ~\ref{lst:error_messages_liss_sde}).
+Now, if we try to run the compiler in ~\textit{liss$|$SDE}, the compiler will throw error messages due to the inconsistencies that were found (see in Listing ~\ref{lst:error_messages_liss_sde}).
 
 \begin{lstlisting}[caption={Error messages in ~\textit{liss$|$SDE}},label={lst:error_messages_liss_sde}]
   [16:10:40] Semantics errors found:
@@ -5402,9 +5401,9 @@ Now, if we try to run the compiler or even execute the code; in ~\textit{liss$|$
   [16:10:40] line: 5:16  Expression 'int+3'  has type 'null',when It should be 'integer | boolean | sequence | array'.
 \end{lstlisting}
  
-The syntax of those messages, in Listing ~\ref{lst:error_messages_liss_sde}, are organised by this way: firstly, it shows the time that was found the error (embraced by brackets); secondly, the line number that was found the inconsistency relatively to the liss code in view number 2 (see Figure ~\ref{fig:LISS-SDE_structure}) and lastly, the error message that was found.
+The notation conventions used for those messages, in Listing ~\ref{lst:error_messages_liss_sde}, is as follows: firstly, is shown the time that the error was found (embraced by square brackets); secondly, the line number of the error regarding to the liss code in window number 2 (see Figure ~\ref{fig:LISS-SDE_structure}) and lastly, the error message text.
 
-Notice that the line number is very important for showing the inconsistency to the user; throw the error messages available in Listing ~\ref{lst:error_messages_liss_sde} you can do the connection and understand those errors with the code in Listing ~\ref{lst:error_semantic_liss_sde_example} and debug easier the program for solving those inconsistencies.
+Notice that the line number is very important to locate and understand the error and correct it.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
