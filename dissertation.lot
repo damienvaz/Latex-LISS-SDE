@@ -24,12 +24,12 @@
 \contentsline {table}{\numberline {20}{\ignorespaces Example of SYSCALL instruction in MIPS\relax }}{42}{table.caption.29}
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {21}{\ignorespaces TYPE category information\relax }}{53}{table.caption.36}
-\contentsline {table}{\numberline {22}{\ignorespaces Information related for an integer variable\relax }}{53}{table.caption.37}
-\contentsline {table}{\numberline {23}{\ignorespaces Information related for a boolean variable\relax }}{54}{table.caption.38}
-\contentsline {table}{\numberline {24}{\ignorespaces Information related to an array variable\relax }}{54}{table.caption.39}
-\contentsline {table}{\numberline {25}{\ignorespaces Information related to a set variable\relax }}{54}{table.caption.40}
-\contentsline {table}{\numberline {26}{\ignorespaces Information related to a sequence variable\relax }}{55}{table.caption.41}
-\contentsline {table}{\numberline {27}{\ignorespaces Information related to a function\relax }}{55}{table.caption.42}
+\contentsline {table}{\numberline {22}{\ignorespaces ST information for an integer variable\relax }}{53}{table.caption.37}
+\contentsline {table}{\numberline {23}{\ignorespaces ST information for a boolean variable\relax }}{54}{table.caption.38}
+\contentsline {table}{\numberline {24}{\ignorespaces ST information for an array variable\relax }}{54}{table.caption.39}
+\contentsline {table}{\numberline {25}{\ignorespaces ST information for a set variable\relax }}{54}{table.caption.40}
+\contentsline {table}{\numberline {26}{\ignorespaces ST information for a sequence variable\relax }}{55}{table.caption.41}
+\contentsline {table}{\numberline {27}{\ignorespaces ST information for a function\relax }}{55}{table.caption.42}
 \contentsline {table}{\numberline {28}{\ignorespaces Types of error message in LISS\relax }}{60}{table.caption.45}
 \contentsline {table}{\numberline {29}{\ignorespaces Sequence function name and their mode of operations\relax }}{114}{table.caption.53}
 \addvspace {10\p@ }

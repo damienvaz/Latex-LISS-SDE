@@ -2293,9 +2293,9 @@ There are a lot of types of data structure for creating a symbol table. From one
 
 \subsubsection{Symbol Table in LISS}
 
-For this project, we used a one large symbol table for all symbols.
+For this project, we used only one symbol table (ST) for all symbols.
 
-Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it works the symbol table in LISS.
+Let's explain throw Figure ~\ref{fig:global_symbol_table_liss}, the usage of the symbol table in LISS.
 
 \begin{figure}[h!]
   \centering
@@ -2304,16 +2304,16 @@ Let's explain throw the Figure ~\ref{fig:global_symbol_table_liss} how it works 
     \label{fig:global_symbol_table_liss}
 \end{figure}
 
-For our project we implemented the symbol table with a HashMap where the key is an identifier and the value is a LinkedList of some informations related to the identifier.
+For our project we implemented the symbol table with a HashMap where the key is an identifier and the value is a LinkedList of variables information associated with the identifier.
 
 \begin{lstlisting}[caption={Data structure of the symbol table in LISS},label={lst:symbol_table_liss_java_implementation}]
 	HashMap<String, LinkedList<InfoIdentifiersTable>>
 \end{lstlisting}
 
-The identifier (related to ~\textit{String} word in ~\ref{lst:symbol_table_liss_java_implementation}) must be unique (concept of using a HashMap) and the ~\textit{LinkedList} must have the idea of an ordered list.
+The identifier (of type ~\textit{String}, as shown in Listing ~\ref{lst:symbol_table_liss_java_implementation}) must be unique (concept of using a HashMap) and the ~\textit{LinkedList} must be an ordered list.
 %, that's why we choosed to use a ~\textit{HashMap} data structure associated to a ~\textit{LinkedList}.
 
-Basically, the identifier is associated to a ~\textit{LinkedList} of informations related to the identifier and those informations explain which category and type is the identifier.
+Basically, the identifier is associated to a ~\textit{LinkedList} of information related to the identifier that explains among other things the category and type of the identifier.
 
 For our project, we have 3 different categories:
 \begin{enumerate}
@@ -2324,8 +2324,8 @@ For our project, we have 3 different categories:
 
 \subsubsection{TYPE category}
 
-The ~\textit{TYPE} category contains informations about which primative type is available in LISS. In our cases, they are known by : set, integer, sequence and boolean. 
-It contains information about their fixed size of each type in MIPS as well as their level scope.
+The ~\textit{TYPE} category aggregates all the identifiers that denote the primitive (or pre-defined) types available in LISS. In our language, they are: set, integer, sequence and boolean. 
+In this case, the ST contains information about the fixed size of each type in MIPS representation, as well as their scope level as summarized in Table ~\ref{tbl:type_category_information}.
 
 \begin{table}[h!]
 \centering
@@ -2342,26 +2342,26 @@ sequence                        & TYPE                          & 0             
 
 \subsubsection{VAR category}
 
-The ~\textit{VAR} category contains informations about the variables declared in LISS code (under ~\textit{declarations} part). It might be an integer, boolean, array, set or a sequence variable.
-And each variable have different respective informations for their type associated.
+The ~\textit{VAR} category aggregates all the identifiers that denote the variables declared in LISS (in the program ~\textit{declarations} part). The variable type may be integer, boolean, array, set or sequence.
+The information associated with each variable depends on its type.
 
-Let's see and explain each type.
+Let's see and explain in detail the information per type.
 
 \begin{table}[h!]
 \centering
-\caption{Information related for an integer variable}
+\caption{ST information for an integer variable}
 \label{tbl:var_integer_information}
 \begin{tabular}{l|c|c|c|c}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address \\ \hline
-int                             & VAR      & 0     & integer & 0      
+x                             & VAR      & 0     & integer & 0      
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:var_integer_information}, we can see the type of information that an integer variable stores into the symbol table:
+In Table ~\ref{tbl:var_integer_information}, we can see the information stored in ST for an integer variable:
 \begin{itemize}
 \item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: variable.
-\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Category} - the category of the identifier: VAR.
+\item ~\textit{Level} - the scope level of the variable.
 \item ~\textit{Type} - the type of the variable (integer).
 \item ~\textit{Address} - the address of the variable in the stack memory.
 \end{itemize}
@@ -2370,7 +2370,7 @@ In Table ~\ref{tbl:var_integer_information}, we can see the type of information 
 
 \begin{table}[h!]
 \centering
-\caption{Information related for a boolean variable}
+\caption{ST information for a boolean variable}
 \label{tbl:var_boolean_information}
 \begin{tabular}{l|c|c|c|c}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address \\ \hline
@@ -2378,19 +2378,19 @@ bool                            & VAR      & 1     & boolean & 4
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:var_boolean_information}, this is the type of information that a boolean variable stores in the symbol table.
+In Table ~\ref{tbl:var_boolean_information}, it can be seen the information stored in ST for a boolean variable:
 
 \begin{itemize}
 \item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: variable.
-\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Category} - the category of the identifier: VAR.
+\item ~\textit{Level} - the scope level of the variable.
 \item ~\textit{Type} - the type of the variable (boolean).
 \item ~\textit{Address} - the address of the variable in the stack memory.
 \end{itemize}
 
 \begin{table}[h!]
 \centering
-\caption{Information related to an array variable}
+\caption{ST information for an array variable}
 \label{tbl:var_array_information}
 \begin{tabular}{l|c|c|c|c|l|l}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address & Dimension              & Limits                        \\ \hline
@@ -2398,11 +2398,11 @@ array\_1                        & VAR      & 0     & array & 8       & \multicol
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:var_array_information}, this is the type of information related to an array.
+In Table ~\ref{tbl:var_array_information}, it can be seen information stored in ST for an array.
 \begin{itemize}
 \item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: variable.
-\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Category} - the category of the identifier: VAR.
+\item ~\textit{Level} - the scope level of the variable.
 \item ~\textit{Type} - the type of the variable (array).
 \item ~\textit{Address} - the address of the variable in the stack memory.
 \item ~\textit{Dimension} - the number of dimension for the array.
@@ -2411,7 +2411,7 @@ In Table ~\ref{tbl:var_array_information}, this is the type of information relat
 
 \begin{table}[h!]
 \centering
-\caption{Information related to a set variable}
+\caption{ST information for a set variable}
 \label{tbl:var_set_information}
 \begin{tabular}{l|c|c|c|c|l}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type    & Address & Tree Allocated              \\ \hline
@@ -2419,19 +2419,19 @@ set\_1                          & VAR      & 0     & set & NULL     & \multicolu
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:var_set_information}, this is the type of information for a set.
+In Table ~\ref{tbl:var_set_information}, it can be seen the information stored in ST for a set.
 \begin{itemize}
 \item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: variable.
-\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Category} - the category of the identifier: VAR.
+\item ~\textit{Level} - the scope level of the variable.
 \item ~\textit{Type} - the type of the variable (set).
-\item ~\textit{Address} - address in the stack memory, but sets doesn't need to. It creates the MIPS assembly code.
-\item ~\textit{Tree Allocated} - indicates if the sets was initiated or not. If an 'X' letter appears, it means that the sets was initiated.
+\item ~\textit{Address} - not used (no memory address).
+\item ~\textit{Tree Allocated} - indicates if the set has an initiate value associated. Letter 'X' means that the set was initialized.
 \end{itemize}
 
 \begin{table}[h!]
 \centering
-\caption{Information related to a sequence variable}
+\caption{ST information for a sequence variable}
 \label{tbl:var_sequence_information}
 \begin{tabular}{l|c|c|c|c|l}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type     & Address & Elements\_type              \\ \hline
@@ -2439,11 +2439,11 @@ sequence\_1                     & VAR      & 0     & sequence & 32      & \multi
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:var_sequence_information}, this is the type of information for a set.
+In Table ~\ref{tbl:var_sequence_information}, it can be seen the information stored in ST for a set.
 \begin{itemize}
 \item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: variable.
-\item ~\textit{Level} - the level scope of the variable.
+\item ~\textit{Category} - the category of the identifier: VAR.
+\item ~\textit{Level} - the scope level of the variable.
 \item ~\textit{Type} - the type of the variable (sequence).
 \item ~\textit{Address} - address in the stack memory.
 \item ~\textit{Elements\_type} - indicates the type of the elements.
@@ -2451,11 +2451,11 @@ In Table ~\ref{tbl:var_sequence_information}, this is the type of information fo
 
 \subsubsection{FUNCTION category}
 
-Lastly, the ~\textit{FUNCTION} category contains informations about the subprograms created in a LISS code.
+The ~\textit{FUNCTION} category contains informations about the subprograms created in a LISS code.
 
 \begin{table}[h!]
 \centering
-\caption{Information related to a function}
+\caption{ST information for a function}
 \label{tbl:function_information}
 \begin{tabular}{l|c|c|c|c|c|c}
 \multicolumn{1}{c|}{Identifier} & Category & Level & Type & Address & Nº Arguments & Type List Arguments    \\ \hline
@@ -2463,21 +2463,21 @@ calculate                       & FUNCTION & 0     & NULL & 32      & 2         
 \end{tabular}
 \end{table}
 
-In Table ~\ref{tbl:function_information}, this is the type of information for a function.
+In Table ~\ref{tbl:function_information}, it can be seen the information stored in ST for a function.
 \begin{itemize}
-\item ~\textit{Identifier} - name of the variable.
-\item ~\textit{Category} - the category of the identifier: function
-\item ~\textit{Level} - the level scope of the function.
-\item ~\textit{Type} - the type of the function which is NULL.
-\item ~\textit{Address} - size of the function stack in the stack memory (contains the list arguments, the variables declared in the subprogram and the return address of the function).
+\item ~\textit{Identifier} - name of the function.
+\item ~\textit{Category} - the category of the identifier: FUNCTION.
+\item ~\textit{Level} - the scope level of the function.
+\item ~\textit{Type} - field not used.
+\item ~\textit{Address} - size of the function stack in the stack memory (includes the arguments list, the variables declared in the subprogram and the return value).
 \item ~\textit{Nº Arguments} - indicates how many arguments the function does have.
-\item ~\textit{Type List Arguments} - indicates the types of each arguments of the function.
+\item ~\textit{Type List Arguments} - indicates the type of each argument.
 \end{itemize}
 
 
 
 
-Let's see the abstract data structure of InfoIdentifiersTable implemented in Figure ~\ref{fig:infoidentifierstable_structure}.
+Let's see in Figure ~\ref{fig:infoidentifierstable_structure}, the abstract data structure of InfoIdentifiersTable implemented.
 
 \begin{figure}[h!]
   \centering
@@ -2486,15 +2486,15 @@ Let's see the abstract data structure of InfoIdentifiersTable implemented in Fig
     \label{fig:infoidentifierstable_structure}
 \end{figure}
 
-Each time that an identifier is inserted into the HashMap, it inserts the information related to that identifier and in this case, the type of the identifier.
-For example, in Figure ~\ref{fig:infoidentifierstable_structure} the info that will be stored in the symbol table are the red boxes.
+Each time that an identifier is inserted into the HashMap, the information described related to that identifier is inserted according to its category.
+%For example, in Figure ~\ref{fig:infoidentifierstable_structure} the info that will be stored in the symbol table are the red boxes.
 
-Care that ~\textit{LinkedList} has the notion of being an ordered list, and this is a very important idea for the symbol table due to the fact that it reveals the level of the scope for the given identifier found.
+The usage of a ~\textit{LinkedList$<$InfoIdentifiersTable$>$} has the notion of being an ordered list, and this is very important due to the fact that it reveals the level of a given identifier found.
 
-In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was found in two differents level scope.
+In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was found in two differents scope level.
 \begin{itemize}
-\item Scope level 0 - Identifier ~\textbf{b} found with type ~\textit{integer}
-\item Scope level 1 - Identifier ~\textbf{b} found with type ~\textit{boolean}
+\item Level 0 - Identifier ~\textbf{b} found with type ~\textit{integer}
+\item Level 1 - Identifier ~\textbf{b} found with type ~\textit{boolean}
 \end{itemize}
 
 Notice that every time, we look for an identifier and his respective info in the symbol table. It will always take the latest info in the ~\textit{LinkedList} data structure. 
@@ -2653,7 +2653,7 @@ Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpre
 \end{enumerate}
 
 
-\subsection{Implemented Validations}
+\subsection{Validations Implemented}
 
 In this section, we are going to report where the error message will be thrown in the compiler regarding to the attribute grammar that we have.
 

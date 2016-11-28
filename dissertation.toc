@@ -44,7 +44,7 @@
 \contentsline {subsubsection}{FUNCTION category}{55}{table.caption.41}
 \contentsline {subsection}{\numberline {4.3.2}Error table in LISS}{57}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Types of error message}{59}{subsection.4.3.3}
-\contentsline {subsection}{\numberline {4.3.4}Implemented Validations}{62}{subsection.4.3.4}
+\contentsline {subsection}{\numberline {4.3.4}Validations Implemented}{62}{subsection.4.3.4}
 \contentsline {subsubsection}{Variable declaration}{62}{subsection.4.3.4}
 \contentsline {subsubsection}{Vars}{63}{lstnumber.4.10.1}
 \contentsline {subsubsection}{Set initialization}{63}{lstnumber.4.12.1}

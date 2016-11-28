@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  26 NOV 2016 17:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  28 NOV 2016 17:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1999,7 +1999,7 @@ Overfull \hbox (21.00119pt too wide) in paragraph at lines 2460--2464
  [][] 
  []
 
-[55] <img/InfoIdentifiersTable.png, id=1322, 584.1825pt x 485.815pt>
+[55] <img/InfoIdentifiersTable.png, id=1323, 584.1825pt x 485.815pt>
 File: img/InfoIdentifiersTable.png Graphic file (type png)
 
 <use img/InfoIdentifiersTable.png>
@@ -2538,7 +2538,7 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (173 pages, 3237237 bytes).
+Output written on dissertation.pdf (173 pages, 3226159 bytes).
 PDF statistics:
  4071 PDF objects out of 4296 (max. 8388607)
  3726 compressed objects within 38 object streams
