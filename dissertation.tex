@@ -2659,7 +2659,7 @@ Now, let's explain Table ~\ref{tbl:types_error_message} for an easy interpretati
 
 \subsection{Validations Implemented}
 
-In this section, we are going to report where the error message will be thrown in the compiler regarding to the attribute grammar that we have.
+In this section, we are going to report where the error message will be thrown by the compiler according to contextual conditions expressed in the attribute grammar that we have.
 
 \subsubsection{Variable declaration}
 
@@ -2667,19 +2667,19 @@ In this section, we are going to report where the error message will be thrown i
   variable_declaration : vars '->' type ';'
 \end{lstlisting}
 
-In Listing ~\ref{lst:variable_declaration_error}, this is the part where we declare some variables with the types chosen under the declarations part.
-And this also where we add the information into the symbol table too.
-So, before we add the information into the symbol table, we need to check if every variables does have the correct type regarding to the type chosen. If not, then it will throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
+Listing ~\ref{lst:variable_declaration_error}, shows the declaration part where the programmer declares variables with the respective type.
+Processing this part, the compiler adds the information into the symbol table.
+As variable can be initialized at this stage, before adding the information into the symbol table, we need to check if every variable has the correct type regarding the type of literal value assigned. If not, error message 5 (see Table ~\ref{tbl:types_error_message}) must be printed.
 
-Let's see an error that might happen for this case in Listing ~\ref{lst:example_error_message_variable_declaration}.
+Let's see in Listing ~\ref{lst:example_error_message_variable_declaration}, an error that may happen in this case.
 
 \begin{lstlisting}[label={lst:example_error_message_variable_declaration},caption={Example of an error message in variable declaration}]
   b = boolean -> integer;
 \end{lstlisting}
 
-Notice that in this section, we create the mips code for every variables. And there is one type which can throw an error message too in this section, it is called the ~\textit{array} type. For this type, we need to check if the limits are correct, if they are not then it throw the number 4 error message (see Table ~\ref{tbl:types_error_message}).
+While processing this section, the compiler creates the mips code for each variable. There is one type which can throw an error message too in this section, it is called the ~\textit{array} type. For this type, we need to check if the index respects the limits (the index value is in bounds); if not then error message number 4 must be issued (see Table ~\ref{tbl:types_error_message}).
 
-Regarding to the others type, we don't check in this section. Because the ~\textit{array} type, is the only one who is the hardest one to deal (needs to calculate the position of the array) for creating the mips code instruction.
+Regarding to the other types, we don't check values in this section. Notice that the ~\textit{array} type is the hardest one to deal (needs to calculate the position of the array) for creating the mips code instruction.
 
 Let's see an example of an array type error message regarding to this case in Listing ~\ref{lst:example_error_message_variable_declaration_2}.
 
