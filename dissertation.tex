@@ -2497,33 +2497,34 @@ In Figure ~\ref{fig:global_symbol_table_liss}, the identifier ~\textbf{b} was fo
 \item Level 1 - Identifier ~\textbf{b} found with type ~\textit{boolean}
 \end{itemize}
 
-Notice that every time, we look for an identifier and his respective info in the symbol table. It will always take the latest info in the ~\textit{LinkedList} data structure. 
+Notice that every time, we look for an identifier and its respective info in the symbol table, the most recent (the one that was the latest inserted) info in the ~\textit{LinkedList} will be inserted. 
 
-In the case of the identifier example ~\textbf{b} in Figure ~\ref{fig:global_symbol_table_liss}, it will be the ~\textbf{boolean} info.
+In the case of the identifier ~\textbf{b} in Figure ~\ref{fig:global_symbol_table_liss}, it will be the ~\textbf{boolean} info.
 
 
 
-Also, every time that a function ( ~\textit{subprogram} in LISS) is exited, we remove every information  available to the respective level scope of the function in the symbol table. And this is due for having a good consistency regarding to the information available in the symbol table.
+Every time that a function (~\textit{subprogram} in LISS) is exited, we remove every information associated with the scope level of the function from the symbol table. 
+%And this is due for having a good consistency regarding to the information available in the symbol table.
 
-Let's see the functions created and available in the project, regarding to the symbol table structure in JAVA.
+The JAVA functions created and available in the project, regarding the symbol table handling.
 
 \begin{itemize}
 \item getSymbolTable - gets the symbol table.
-\item doesExist - checks if a certain identifier is available.
-\item getInfoIdentifier - gets the latest information of a certain identifier.
-\item removeLevel - removes every information according to the level scope of every identifier available in the symbol table.
-\item getAddress - gets the latest address (this address is related to the next position of an identifier that will be added in the symbol table).
+\item doesExist - checks whether a certain identifier is in ST.
+\item getInfoIdentifier - gets the most recent information associated with a certain identifier.
+\item removeLevel - removes from the symbol table every information related to a given scope level.
+\item getAddress - gets the most recent address (this address is related to the next position of an identifier that will be added to the symbol table).
 \item setAddress - sets a new address.
-\item add - adds identifiers into the symbol table.
+\item add - adds an identifier into the symbol table.
 \item toString - gets the representation of the symbol table as a string.
 \end{itemize}
 
 \subsection{Error table in LISS}
 
-The error table let the user to understand the problems that he is having with the code when he is trying to create or making it.
-In this way, it will facilitate the user to correct the problems found regarding to his code with ease.
+The error table let the user to understand the problems that he is having with the code when he is trying to create (write) a LISS program.
+In this way, it will facilitate the user to fix the errors found in his code.
 
-Let's see the table error structure made for our project in Figure ~\ref{fig:error_table_structure}.
+Figure ~\ref{fig:error_table_structure} shows the structure of the error table built for our project.
 
 \begin{figure}[h!]
   \centering
@@ -2533,28 +2534,27 @@ Let's see the table error structure made for our project in Figure ~\ref{fig:err
     \label{fig:error_table_structure}
 \end{figure}
 
-For our project, we managed to create a data structure which could handle some error messages and could give us also some informations related to the error message (line and column number).
+We managed to create a data structure which can handle some error messages and also store some information related to the error message (line and column number).
 
-And this was done by creating that data structure in JAVA:
+This was done by creating the following data structure in JAVA:
 
 \begin{lstlisting}[caption={Data structure of the error table in LISS},label={lst:error_table_liss_java_implementation}]
 	TreeMap<Integer,TreeMap<Integer,ArrayList<String>>>
 \end{lstlisting}
 
-Basically, this data structure is divided into two ~\textit{TreeMap} (those ~\textit{TreeMap} can be seen in Figure ~\ref{fig:error_table_structure}, black and white) and a list (~\textit{ArrayList} data structure) of some error messages.
+Basically, this data structure is divided into two ~\textit{TreeMaps} (as can be seen in Figure ~\ref{fig:error_table_structure}, black and white) and a list (~\textit{ArrayList} data structure) of some error messages.
 
-We choosed the ~\textit{TreeMap} data structure for one reason, the map is sorted according to the natural ordering of its keys.
-This means that each time we insert in the ~\textit{TreeMap} data structure, the information is ordered by his key beside that also the key will be unique.
-In this case, the first ~\textit{TreeMap} is concerned for ordering the line number of the error message (black tree in Figure ~\ref{fig:error_table_structure}).
+We chose the ~\textit{TreeMap} data structure for one reason, the map is sorted according to the natural ordering of its keys.
+This means that each time we insert a pair $<$key, value$>$ in the ~\textit{TreeMap} data structure, the information is ordered by the unique key.
+In this case, the first ~\textit{TreeMap} is intended for ordering the line number of the error message (black tree in Figure ~\ref{fig:error_table_structure}).
 
 Then when the line number is added and ordered, we add some information linked to the line number and this is the column number of the line (white tree in Figure ~\ref{fig:error_table_structure}).
 
 Finally, we add the error messages to the list related to a certain line and column.
 
-With that data structure, we are sure that it can have a list of error messages for a certain line and column numbers and that the line and the column number are ordered for an ease interpretation for the user in solving the problem regarding to his code.
+With that data structure, we are sure that it can have a list of error messages for a certain line and column numbers and that the line and the column number are ordered for an easy reading.
 
-%example of an error message
-Let's see an example of the error table in Figure ~\ref{lst:error_table_liss_java_example}.
+Listing ~\ref{lst:error_table_liss_java_example} shows some error message issued after processing a LISS program.
 
 %This error table was thrown by the example Errors.liss
 \begin{lstlisting}[caption={Example of an error table},label={lst:error_table_liss_java_example}]
@@ -2567,14 +2567,20 @@ Let's see an example of the error table in Figure ~\ref{lst:error_table_liss_jav
 	  line: 14:4	Expression 'b' already exists.
 \end{lstlisting}
 
+And regarding to the data structure created, Figure ~\ref{fig:error_table_structure_example} shows an example of how the error messages are being handled relatively to Listing ~\ref{lst:error_table_liss_java_example}.
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[width=0.7\textwidth]{img/error_message_example_treemap.png}
+    \caption{ErrorTable structure with some example of Listing ~\ref{lst:error_table_liss_java_example}}
+    \label{fig:error_table_structure_example}
+\end{figure}
+
 \subsection{Types of error message}
 
-For our error table structure, we needed to add some informations relatively to the error message thrown.
-And as we said, previously, we have different kind of types for some error messages.
+As said, previously, we have different kinds of error messages, that can be seen in Table ~\ref{tbl:types_error_message}.
 
-Let's see in the Table ~\ref{tbl:types_error_message}.
-
-\newpage
+%Let's see in the Table ~\ref{tbl:types_error_message}.
 
 \begin{table}[h!]
 \centering
@@ -2602,14 +2608,14 @@ Let's see in the Table ~\ref{tbl:types_error_message}.
 \end{tabular}
 \end{table}
 
-Notice that in Table ~\ref{tbl:types_error_message}, we have every messages used and thrown (when necessary) for the compiler and some of them have a certain semantic structure which we need to explain.
-For example, every marks:
+Notice that in Table ~\ref{tbl:types_error_message}, we have all the messages used and thrown (when necessary) by the compiler that we need to explain the notation used.
+For example, the mark:
 \begin{lstlisting}
 	<...>
 \end{lstlisting}
-found in the table message, means that it must be replaced by the correct name according to the environment that the error was found.
+represents  a placeholder; it means that it must be replaced by the correct name according to the environment where the error was found.
 
-Let's see an example in Listing ~\ref{lst:error_liss_example} to understand better the usage of the mark.
+To understand better the usage of the mark, let's consider the program example in Listing ~\ref{lst:error_liss_example}.
 \begin{lstlisting}[label={lst:error_liss_example},caption={Partial Listing}]
 program Errors{
 	declarations
@@ -2619,37 +2625,35 @@ program Errors{
 }
 \end{lstlisting}
 
-In Listing ~\ref{lst:error_liss_example}, we have a LISS program which has two variables with the same name in the declarations part. As all programming language have, this behaviour of declaring two variables in the same level scope is prohibited, so the compiler must throw an error.
-
-Let's see the error table in Listing ~\ref{lst:error_table_example_liss}.
+The LISS program in Listing ~\ref{lst:error_liss_example} declares two variables with the same name in the declarations part. As in all programming language, in LISS it is not allowed to declare two variables in the same scope level. So the compiler must throw an error, printing the message in Listing ~\ref{lst:error_table_example_liss}.
 
 \begin{lstlisting}[label={lst:error_table_example_liss},caption={Error table related to Listing ~\ref{lst:error_liss_example}}]
   ERROR TABLE:
   line: 4:2	Variable 'seq1' already exists.
 \end{lstlisting}
 
-The error table in ~\ref{lst:error_table_example_liss}, has an error message with the number 2 message type (see Table ~\ref{tbl:types_error_message}).
-And we can see that the mark was replaced by the name of the variable (as said in the Table ~\ref{tbl:types_error_message} regarding to the message number 2 type).
-And this is the same behavior regarding to the others messages available in the Table ~\ref{tbl:types_error_message}.
+The error message in Listing ~\ref{lst:error_table_example_liss} has a type with the number 2 message in Table ~\ref{tbl:types_error_message}.
+We can see that the mark was replaced by the name of the variable.
+The same exactly happens regarding the other messages in the Table ~\ref{tbl:types_error_message}.
 
-Now, let's explain the Table ~\ref{tbl:types_error_message} for an ease interpretation of those messages.
+Now, let's explain Table ~\ref{tbl:types_error_message} for an easy interpretation of those messages.
 
 \begin{enumerate}
-\item Message for variable that are not declared.
-\item Message for variables that already exists.
-\item Message for variables that must be an array and they are not.
-\item Message for variables that are an array type and their limits doesn't match.
-\item Message for variables that have a certain type, but they should have another type. 
-\item Message regarding to different types when an assignment is found. For example : 'integer' = 'boolean'. 
-\item Message for expressions that has different types.
-\item Message for functions regarding to the return type which might be different.
-\item Message for functions which the name of the function doesn't have the type function and does have another type.
+\item Message for a variable not declared.
+\item Message for a variable already declared.
+\item Message for a variable that must be an array and is not.
+\item Message for a variable that is of type array and its limits that doesn't match.
+\item Message for a variable that has a certain type, but should have another type. 
+\item Message regarding an assignment found with different types. For example : 'integer' = 'boolean'. 
+\item Message for an expression that contains operand with different types.
+\item Message for a function when the return type must be different.
+\item Message for a function where the name of the function doesn't have the type function and does have another type.
 \item Message for expressions which has different types according to the operator who is being used. For example: 'integer' + 'boolean'. 
-\item Message for arrays that has different dimension, according to his declaration.
-\item Message for unconditional loop that use 'stepUp' or 'stepDown' expression.
-\item Message for unconditional loop that use 'satisfying' expression.
-\item Message for functions where the name of the function doesn't exist.
-\item Message for arrays where the limits or the dimension isn't equal as the declared array variable.
+\item Message for an array that has a different number of dimensions, according to its declaration.
+\item Message for an unconditional loop that use 'stepUp' or 'stepDown' expression.
+\item Message for an unconditional loop that use 'satisfying' expression.
+\item Message for a function when its name do not exist.
+\item Message for an array where the limits or the dimension do not agree with it.
 \end{enumerate}
 
 
