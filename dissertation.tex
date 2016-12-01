@@ -2572,7 +2572,7 @@ Regarding the data structure explained above, Figure ~\ref{fig:error_table_struc
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.7\textwidth]{img/error_message_example_treemap.png}
-    \caption{ErrorTable structure with some example of Listing ~\ref{lst:error_table_liss_java_example}}
+    \caption{ErrorTable structure instantiated for example in Listing ~\ref{lst:error_table_liss_java_example}}
     \label{fig:error_table_structure_example}
 \end{figure}
 
@@ -2687,16 +2687,19 @@ Let's see an example of an array type error message regarding to this case in Li
   array1 = [[1,2],[2,3,4,5]], vector -> array size 4,3;
 \end{lstlisting}
 
+In the left side of a declaration, before the type name the programmer can define one or more variables. Listing ~\ref{lst:vars_error_message} shows the grammar rule for ~\textit{Vars}.
+
+
 \subsubsection{Vars}
 
 \begin{lstlisting}[label={lst:vars_error_message},caption={Vars rule in LISS}]
   vars : v1 (',' v2)*
 \end{lstlisting}
 
-In Listing ~\ref{lst:vars_error_message}, this grammar part refers to the declaration of multiple variables in a same line under the declarations section in LISS.
+The grammar rule in Listing ~\ref{lst:vars_error_message} refers to the declaration of multiple variables of the same type.
 
-And for this part we need to check if the variables that will be added to the symbol table, they are already created or not. If they are already, then the number 2 error message will be thrown (see Table ~\ref{tbl:types_error_message}).
-Let's see an example of LISS that can throw this error in the error table in Listing ~\ref{lst:example_var_error_message_liss}.
+In this case, the compiler needs to check if the variables that will be added to the symbol table have been already declared. If one variable has been previously declared, then an error message type number 2 will be thrown (see Table ~\ref{tbl:types_error_message}).
+Let's see an example of a LISS program that illustrates this error in Listing ~\ref{lst:example_var_error_message_liss}.
 
 \begin{lstlisting}[label={lst:example_var_error_message_liss},caption={Example of an error message in LISS for vars non-terminal}]
   a = 4, a = 5 -> integer;
@@ -2707,25 +2710,27 @@ In Listing ~\ref{lst:example_var_error_message_liss}, there is a problem regardi
 \subsubsection{Set initialization}
 
 \begin{lstlisting}[label={lst:set_initialization_error_message},caption={Set initialization rule in LISS}]
+  set_definition : '{' set_initialization '}'
+                 ;
   set_initialization :                    
                      | identifier '|' expression
 \end{lstlisting}
 
-In Listing ~\ref{lst:set_initialization_error_message}, this part refers for declaring a set under the declarations section in LISS.
-And it has two choices for declaring a set: empty set or some content for the set.
-If there is some content available, this content must be a boolean expression. In case the expression isn't a boolean, it will throw an error message to the error table and this will be the number 7 error message (see Table ~\ref{tbl:types_error_message}).
+In Listing ~\ref{lst:set_initialization_error_message}, we can see how to declare a set under the declarations section in LISS.
+And it has two choices for declaring a set: empty set or some content in the set.
+If there is some content available, this content must be defined by a boolean expression. In case the expression is not a boolean, an error message with the number 7 (see Table ~\ref{tbl:types_error_message}) will be thrown.
 Let's see an example of  this error with a piece of LISS code related to set initialization in Listing ~\ref{lst:example_set_initialization_error_message}.
 
-\begin{lstlisting}[label={lst:example_set_initialization_error_message},caption={Example of an error message in LISS for set\_initialization non-terminal}]
+\begin{lstlisting}[label={lst:example_set_initialization_error_message},caption={Example of an error in LISS for set\_initialization}]
   set6 = { z | (z+tail(z)) < 5} -> set;
 \end{lstlisting}
 
 In Listing ~\ref{lst:example_set_initialization_error_message}, we can see that the variable won't be declared due to the fact that the content isn't correct. The function ~\textit{tail} is a function for sequence and it needs a sequence variable as an argument, not an integer variable (as we can see). The compiler will return the type of that operation as 'null' because he can't execute that operation.
 
-Then, there is an sum operator who needs a variable of type integer. But due to the previous statements we have made, the type that the sum operator will have, are: integer (from ~\textit{z} variable) and a null (from ~\textit{tail(z)}). 
+Moreover, there is another error concerned with the add operator that defines both operands of type integer. But, due to the previous statements made, the types that the add operator will see: integer (from ~\textit{z} variable) and a null (from ~\textit{tail(z)}). 
 The compiler can't execute it too, so the error is being spread throw the entire operation of the set content.
 
-In the end, after calculating the content of the set initialization of the set, the error table will have that comment regarding to that variable in Listing ~\ref{lst:error_message_set_initialization}.
+In the end, after calculating the content of the set initialization, an error message will be printed out, as can be seen in Listing ~\ref{lst:error_message_set_initialization}.
 
 \begin{lstlisting}[label={lst:error_message_set_initialization},caption={Error message for the set\_initialization}]
   line: 20:18	Expression '(z+tail(z))<5'  has type 'null',when It should be 'boolean'.
@@ -2737,10 +2742,10 @@ In the end, after calculating the content of the set initialization of the set, 
   subprogram_definition : 'subprogram' identifier '('  formal_args ')' return_type f_body
 \end{lstlisting}
 
-In Listing ~\ref{lst:subprogram_definition_error_message}, this part refers for declaring any subprogram (functions) under the declaration section in LISS.
-And for this part we need to check the return type of the subprogram.
+In Listing ~\ref{lst:subprogram_definition_error_message}, we can see how to declare subprogram (function) under the declaration section in LISS.
+In this case, we need to check the return type of the subprogram.
 
-If the return type has a different type chosen and type needed (for example, type chosen is boolean, but the return type is an integer) then the number 7 error message (see Table ~\ref{tbl:types_error_message}) is thrown.
+If the type of the returned expression is different from the type declared (for example, the return expression is of type boolean, but the return type declared is integer) then an error message number 7 (see Table ~\ref{tbl:types_error_message}) is thrown.
 
 Let's see an example of this case in Listing ~\ref{lst:error_message_subprogram_definition}.
 
@@ -2753,7 +2758,7 @@ Let's see an example of this case in Listing ~\ref{lst:error_message_subprogram_
   }
 \end{lstlisting}
 
-In Listing ~\ref{lst:error_message_subprogram_definition}, we can see that the return type permitted is an integer. But with this example, the subprogram returns a variable called 'b' and has a boolean type. In this case, an error message will be reported due to the incorrectness type.
+In Listing ~\ref{lst:error_message_subprogram_definition}, we can see that the return type declared is integer. However in this example, the subprogram returns a variable called 'b' that has boolean type. In this case, an error message will be reported due to the incompatible types.
 
 \subsubsection{Assignment}
 
@@ -2761,13 +2766,13 @@ In Listing ~\ref{lst:error_message_subprogram_definition}, we can see that the r
   assignment : designator '=' expression
 \end{lstlisting}
 
-In Listing ~\ref{lst:assignment_error_message}, this part refers for assigning some content to a variable or an array under the statement section in LISS.
-And for this part we need to check some error messages regarding to the context available.
-Let's explain those differents context below.
+In Listing ~\ref{lst:assignment_error_message}, we can see the syntax for assigning some content to a variable or an array under the statement section in LISS.
+For this part we need to check some possible error regarding to the context available.
+Let's explain those differents contexts below.
 
-If the designator non-terminal in Listing ~\ref{lst:assignment_error_message}, is a variable of type ~\textit{array}. It means that we can store some content for that variable (see example of this case in Listing ~\ref{lst:store_values_to_array_assignment}).
+Suppose the designator non-terminal in Listing ~\ref{lst:assignment_error_message}, is a variable of type ~\textit{array}; In that case, the content that we can assign to that variable is restricted (see an example in Listing ~\ref{lst:store_values_to_array_assignment}).
 
-\begin{lstlisting}[caption={Example of storing some values to an array variable},label={lst:store_values_to_array_assignment}]
+\begin{lstlisting}[caption={Example of assigning a constant value to an array variable},label={lst:store_values_to_array_assignment}]
   array1 = [1,2,3];
 \end{lstlisting}
 
