@@ -57,11 +57,11 @@
 \contentsline {subsubsection}{Single expression}{67}{lstnumber.4.26.1}
 \contentsline {subsubsection}{Term}{68}{lstnumber.4.27.1}
 \contentsline {subsubsection}{Factor}{68}{lstnumber.4.28.1}
-\contentsline {subsubsection}{Print\_what}{69}{lstnumber.-14.1}
+\contentsline {subsubsection}{Print\_what}{68}{lstnumber.-14.1}
 \contentsline {subsubsection}{Read}{69}{lstnumber.4.30.3}
 \contentsline {subsubsection}{If\_then\_else\_stat}{69}{lstnumber.4.31.1}
 \contentsline {subsubsection}{For\_stat}{70}{lstnumber.4.32.3}
-\contentsline {subsubsection}{Interval}{71}{lstnumber.4.34.1}
+\contentsline {subsubsection}{Interval}{70}{lstnumber.4.34.1}
 \contentsline {subsubsection}{Type\_interval}{71}{lstnumber.4.35.1}
 \contentsline {subsubsection}{Minimum}{71}{lstnumber.4.36.2}
 \contentsline {subsubsection}{Maximum}{72}{lstnumber.4.37.2}
@@ -69,10 +69,10 @@
 \contentsline {subsubsection}{While\_stat}{72}{lstnumber.4.39.2}
 \contentsline {subsubsection}{Succ\_or\_pred}{73}{lstnumber.4.40.2}
 \contentsline {subsubsection}{Tail}{73}{lstnumber.4.41.1}
-\contentsline {subsubsection}{Head}{74}{lstnumber.4.42.1}
+\contentsline {subsubsection}{Head}{73}{lstnumber.4.42.1}
 \contentsline {subsubsection}{Cons}{74}{lstnumber.4.43.1}
 \contentsline {subsubsection}{Delete}{74}{lstnumber.4.44.1}
-\contentsline {subsubsection}{Copy\_statement}{75}{lstnumber.4.45.1}
+\contentsline {subsubsection}{Copy\_statement}{74}{lstnumber.4.45.1}
 \contentsline {subsubsection}{Cat\_statement}{75}{lstnumber.4.46.1}
 \contentsline {subsubsection}{Is\_empty}{75}{lstnumber.4.47.1}
 \contentsline {subsubsection}{Length}{76}{lstnumber.4.48.1}
@@ -93,13 +93,13 @@
 \contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{104}{subsection.4.4.4}
 \contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{105}{subsection.4.4.5}
 \contentsline {subsubsection}{Assignment for integer}{106}{lstnumber.4.78.7}
-\contentsline {subsubsection}{Assignment for boolean}{108}{lstnumber.4.81.4}
+\contentsline {subsubsection}{Assignment for boolean}{107}{lstnumber.4.81.4}
 \contentsline {subsubsection}{Assignment for array}{110}{lstnumber.-19.3}
 \contentsline {subsubsection}{Assignment for set}{111}{lstnumber.4.89.6}
-\contentsline {subsubsection}{Assignment for sequence}{112}{equation.4.4.8}
+\contentsline {subsubsection}{Assignment for sequence}{111}{equation.4.4.8}
 \contentsline {subsection}{\numberline {4.4.6}Set operations}{112}{subsection.4.4.6}
 \contentsline {subsection}{\numberline {4.4.7}Sequence operations}{113}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{116}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{115}{subsection.4.4.8}
 \contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{116}{subsection.4.4.9}
 \contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{118}{subsection.4.4.10}
 \contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{120}{subsection.4.4.11}

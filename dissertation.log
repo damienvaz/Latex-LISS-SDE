@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  1 DEC 2016 15:45
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  1 DEC 2016 17:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2042,7 +2042,7 @@ Package pdftex.def Info: img/stackSymbolTable.png used on input line 3395.
 (pdftex.def)             Requested size: 442.65375pt x 313.32956pt.
  [82 <./img/stackSymbolTable.png>] [83] [84]
 [85] [86] [87] [88] [89]
-<img/access_array.png, id=1889, 845.1575pt x 598.235pt>
+<img/access_array.png, id=1891, 845.1575pt x 598.235pt>
 File: img/access_array.png Graphic file (type png)
 
 <use img/access_array.png>
@@ -2057,7 +2057,7 @@ Package pdftex.def Info: img/example_position_calculation.png used on input lin
 e 3682.
 (pdftex.def)             Requested size: 88.52939pt x 63.16624pt.
  [91 <./img/example_position_calculation.png>]
-<img/array_example_calculation.png, id=1916, 845.1575pt x 442.65375pt>
+<img/array_example_calculation.png, id=1917, 845.1575pt x 442.65375pt>
 File: img/array_example_calculation.png Graphic file (type png)
 
 <use img/array_example_calculation.png>
@@ -2081,12 +2081,8 @@ File: img/sets_association.png Graphic file (type png)
 <use img/sets_association.png>
 Package pdftex.def Info: img/sets_association.png used on input line 3814.
 (pdftex.def)             Requested size: 354.12434pt x 250.66364pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[95 <./img/set_structure.png>] [96 <./img/sets_association.png>] [97] [98]
-<img/stack_architecture.png, id=2012, 845.1575pt x 598.235pt>
+ [95 <./img/set_structure.png> <./img/sets_association.png>] [96] [97] [98]
+<img/stack_architecture.png, id=2016, 845.1575pt x 598.235pt>
 File: img/stack_architecture.png Graphic file (type png)
 
 <use img/stack_architecture.png>
@@ -2098,7 +2094,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [99] [100 <./img/stack_architecture.png>] [101] [102] [103] [104] [105]
 [106] [107] [108] [109] [110] [111] [112] [113] [114] [115] [116] [117]
-<img/conditional_statement.png, id=2466, 584.1825pt x 598.235pt>
+<img/conditional_statement.png, id=2467, 584.1825pt x 598.235pt>
 File: img/conditional_statement.png Graphic file (type png)
 
 <use img/conditional_statement.png>
@@ -2110,27 +2106,31 @@ Package pdftex.def Info: img/conditional_statement.png used on input line 4672.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [118] [119 <./img/conditional_statement.png>]
-<img/for-loop_in.png, id=2515, 608.2725pt x 639.38875pt>
+<img/for-loop_in.png, id=2518, 608.2725pt x 639.38875pt>
 File: img/for-loop_in.png Graphic file (type png)
 
 <use img/for-loop_in.png>
 Package pdftex.def Info: img/for-loop_in.png used on input line 4743.
 (pdftex.def)             Requested size: 354.12434pt x 372.25063pt.
- [120] [121 <./img/for-loop_in.png>] [122]
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[120] [121 <./img/for-loop_in.png>] [122]
 <img/for-loop_inArray.png, id=2591, 432.61626pt x 479.7925pt>
 File: img/for-loop_inArray.png Graphic file (type png)
 
 <use img/for-loop_inArray.png>
 Package pdftex.def Info: img/for-loop_inArray.png used on input line 4805.
 (pdftex.def)             Requested size: 221.32687pt x 245.45963pt.
- [123 <./img/for-loop_inArray.png>] [124]
-<img/while-loop.png, id=2638, 516.93124pt x 301.125pt>
+ [123 <./img/for-loop_inArray.png>]
+<img/while-loop.png, id=2609, 516.93124pt x 301.125pt>
 File: img/while-loop.png Graphic file (type png)
 
 <use img/while-loop.png>
 Package pdftex.def Info: img/while-loop.png used on input line 4858.
 (pdftex.def)             Requested size: 265.59494pt x 154.7204pt.
- [125 <./img/while-loop.png>] [126] [127]
+ [124] [125 <./img/while-loop.png>] [126] [127]
 Chapter 5.
 <img/XCode-interface.png, id=2713, 622.325pt x 380.42125pt>
 File: img/XCode-interface.png Graphic file (type png)
@@ -2495,10 +2495,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5537.
  ) 
 Here is how much of TeX's memory you used:
- 39728 strings out of 493089
- 699771 string characters out of 6134841
+ 39727 strings out of 493089
+ 699764 string characters out of 6134841
  1048523 words of memory out of 5000000
- 40461 multiletter control sequences out of 15000+600000
+ 40460 multiletter control sequences out of 15000+600000
  65456 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,17n,106p,2152b,2646s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2540,7 +2540,7 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (173 pages, 3265070 bytes).
+Output written on dissertation.pdf (173 pages, 3274817 bytes).
 PDF statistics:
  4083 PDF objects out of 4296 (max. 8388607)
  3735 compressed objects within 38 object streams
