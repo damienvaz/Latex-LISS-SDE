@@ -2887,8 +2887,8 @@ In a similar way, we need to check the types of the operands required by the ~\t
   term : factor ( mul_op factor)*
 \end{lstlisting}
 
-In Listing ~\ref{lst:term_error_message}, this part refers to the expansion of the ~\textit{term} non-terminal rule of the ~\textit{single\_expression} rule in LISS.
-And the behaviour is the same as the ~\textit{expression} rule, this means that we need to check the types required for the ~\textit{mul\_op} non-terminal. If ~\textit{factor} non-terminal type don't coincide with the required type regarding to the ~\textit{mul\_op} non-terminal, then it must throw the number 10 error message to the error table.
+In Listing ~\ref{lst:term_error_message} is specified the syntax to expand a ~\textit{term} non-terminal in LISS.
+In a similar way, we need to check the types of the operands required by the ~\textit{mul\_op}. If the ~\textit{factors} type don't agree with the required type regarding ~\textit{mul\_op}, then it must throw the number 10 error message.
 
 \subsubsection{Factor}
 
@@ -2901,17 +2901,17 @@ And the behaviour is the same as the ~\textit{expression} rule, this means that 
             | specialFunctions
 \end{lstlisting}
 
-In Listing ~\ref{lst:factor_error_message}, this part refers to the expansion of the ~\textit{factor} non-terminal rule of the ~\textit{term} rule in LISS.
-And as it can be seen, there is a lot of options for this rule.
+In Listing ~\ref{lst:factor_error_message}, we can see the syntax to expand a ~\textit{factor} in LISS.
+As it can be seen, there are a lot of alternative rules; however the majority do not require any special check.
 
-But we will do a particular attention to a simple one choice of that rule:
+We will only discuss a particular one:
 
 \begin{lstlisting}
   '!' factor
 \end{lstlisting}
 
-Notice that there is an exclamation mark sign and then a ~\textit{factor} non-terminal. In programming langues, the exclamation mark means that it negate the expression. And this type of negation requires a boolean type in order to work correctly.
-So, if the type of the ~\textit{factor} non-terminal is not a boolean. Then the number 7 error message will be added to the error table.
+In this option there is an exclamation mark sign and then a ~\textit{factor} non-terminal. In programming languages, the exclamation mark represents the negation of the expression. So, the negation operation requires an operand of boolean type in order to work correctly.
+If the type of the ~\textit{factor} is not a boolean, then the number 7 error message will be added to the error table.
 
 \subsubsection{Print\_what}
 
@@ -2921,11 +2921,11 @@ So, if the type of the ~\textit{factor} non-terminal is not a boolean. Then the 
              | string
 \end{lstlisting}
 
-In Listing ~\ref{lst:print_what_error_message}, this part refers for printing in the output with the use of LISS language.
+In Listing ~\ref{lst:print_what_error_message}, it is shown the syntax for printing a value (numeric or alphanumeric) in the output in LISS language.
 
-And we need to check the type of the ~\textit{expression} non-terminal. If the type is a ~\textit{set} then it must throw the number 7 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+In this case, we need to check the type of the ~\textit{expression} in the context of the first alternative. If the type is a ~\textit{set} then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
-Notice that the type allowed for the ~\textit{expression} non-terminal are :
+Notice that the type allowed for the ~\textit{expression} are :
 
 \begin{itemize}
 \item integer
@@ -2940,12 +2940,12 @@ Notice that the type allowed for the ~\textit{expression} non-terminal are :
   read_statement : 'input' '(' identifier ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:read_error_message}, this part refers for reading the input of the user which will be stored to the ~\textit{identifier} non-terminal in LISS.
-And we need to check some errors for that non-terminal.
+In Listing ~\ref{lst:read_error_message}, it is shown the syntax for reading the input to get the value from the user to be stored in the given ~\textit{identifier} in LISS.
+In this case, we need to check some possible errors.
 
-If the ~\textit{identifier} non-terminal doesn't exist in the symbol table, then we must thrown the number 1 error message (see Table ~\ref{tbl:types_error_message}).
+If the ~\textit{identifier} doesn't exist in the symbol table, then we must thrown the number 1 error message (see Table ~\ref{tbl:types_error_message}).
 If the ~\textit{identifier} exists in the symbol table, we must check the type of it.
-If the type isn't an integer, then we must throw the number 5 error message in the error table ( see Table ~\ref{tbl:types_error_message}).
+If the type isn't an integer, then we must throw the number 5 error message ( see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{If\_then\_else\_stat}
 
@@ -2955,9 +2955,9 @@ If the type isn't an integer, then we must throw the number 5 error message in t
                        else_expression
 \end{lstlisting}
 
-In Listing ~\ref{lst:if_then_else_stat_error_message}, this part refers in the use of a conditional expression and particularly, an 'if' statement.
+Listing ~\ref{lst:if_then_else_stat_error_message} defines the syntax of a conditional statement, in particular, for the 'if' statement.
 
-As all programming languages, the behaviour of an 'if' statement is the same. And we do also the same in LISS, it means that the ~\textit{expression} non-terminal must be a boolean type. Because as it is a condition with an 'if' statement it will say if it will enter to that branch or to another branch regarding to the value of the condition. If the ~\textit{expression} non-terminal type isn't a boolean, then it must throw the number 7 error message to the error table ( see Table ~\ref{tbl:types_error_message}).
+As for all programming languages, the behaviour of an 'if' statement is the same. It means that the ~\textit{expression} non-terminal must be of boolean type, in order to be possible to decide if it will enter to the next branch (~\textit{then}) or  has to jump to the ~\textit{else} branch. If the ~\textit{expression} type isn't a boolean, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{For\_stat}
 
