@@ -61,55 +61,55 @@
 \contentsline {subsubsection}{Read}{69}{lstnumber.4.30.3}
 \contentsline {subsubsection}{If\_then\_else\_stat}{69}{lstnumber.4.31.1}
 \contentsline {subsubsection}{For\_stat}{70}{lstnumber.4.32.3}
-\contentsline {subsubsection}{Interval}{70}{lstnumber.4.34.1}
-\contentsline {subsubsection}{Satisfy}{71}{lstnumber.4.35.13}
-\contentsline {subsubsection}{While\_stat}{72}{lstnumber.4.36.2}
-\contentsline {subsubsection}{Succ\_or\_pred}{72}{lstnumber.4.37.2}
-\contentsline {subsubsection}{Tail}{72}{lstnumber.4.38.1}
-\contentsline {subsubsection}{Head}{73}{lstnumber.4.39.1}
-\contentsline {subsubsection}{Cons}{73}{lstnumber.4.40.1}
-\contentsline {subsubsection}{Delete}{73}{lstnumber.4.41.1}
-\contentsline {subsubsection}{Copy\_statement}{74}{lstnumber.4.42.1}
-\contentsline {subsubsection}{Cat\_statement}{74}{lstnumber.4.43.1}
-\contentsline {subsubsection}{Is\_empty}{75}{lstnumber.4.44.1}
-\contentsline {subsubsection}{Length}{75}{lstnumber.4.45.1}
-\contentsline {subsubsection}{Member}{75}{lstnumber.4.46.1}
-\contentsline {section}{\numberline {4.4}Code Generation}{76}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Strategy used for the code generation}{76}{subsection.4.4.1}
-\contentsline {subsubsection}{Data and text part}{76}{subsection.4.4.1}
-\contentsline {subsubsection}{Compiler register strategy}{77}{subsection.4.4.1}
-\contentsline {subsubsection}{Address size}{78}{lstnumber.4.48.1}
-\contentsline {subsubsection}{Conditional statement}{78}{lstnumber.4.48.1}
-\contentsline {subsubsection}{Subprogram name}{80}{lstnumber.4.49.12}
-\contentsline {subsubsection}{State of functions}{81}{Item.54}
-\contentsline {subsubsection}{Stack}{81}{Item.54}
-\contentsline {subsubsection}{The algorithm for finding variables in the stack}{83}{Item.56}
+\contentsline {subsubsection}{Range}{71}{lstnumber.4.34.1}
+\contentsline {subsubsection}{Satisfy}{71}{lstnumber.4.34.1}
+\contentsline {subsubsection}{While\_stat}{72}{lstnumber.4.34.1}
+\contentsline {subsubsection}{Succ\_or\_pred}{72}{lstnumber.4.35.2}
+\contentsline {subsubsection}{Tail}{72}{lstnumber.4.36.1}
+\contentsline {subsubsection}{Head}{73}{lstnumber.4.37.1}
+\contentsline {subsubsection}{Cons}{73}{lstnumber.4.38.1}
+\contentsline {subsubsection}{Delete}{73}{lstnumber.4.39.1}
+\contentsline {subsubsection}{Copy\_statement}{73}{lstnumber.4.40.1}
+\contentsline {subsubsection}{Cat\_statement}{74}{lstnumber.4.41.1}
+\contentsline {subsubsection}{Is\_empty}{74}{lstnumber.4.42.1}
+\contentsline {subsubsection}{Length}{74}{lstnumber.4.43.1}
+\contentsline {subsubsection}{Member}{75}{lstnumber.4.44.1}
+\contentsline {section}{\numberline {4.4}Code Generation}{75}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Strategy used for the code generation}{75}{subsection.4.4.1}
+\contentsline {subsubsection}{Data and text part}{75}{subsection.4.4.1}
+\contentsline {subsubsection}{Compiler register strategy}{76}{subsection.4.4.1}
+\contentsline {subsubsection}{Address size}{77}{lstnumber.4.46.1}
+\contentsline {subsubsection}{Conditional statement}{78}{lstnumber.4.46.1}
+\contentsline {subsubsection}{Subprogram name}{79}{lstnumber.4.47.12}
+\contentsline {subsubsection}{State of functions}{80}{Item.54}
+\contentsline {subsubsection}{Stack}{80}{Item.54}
+\contentsline {subsubsection}{The algorithm for finding variables in the stack}{82}{Item.56}
 \contentsline {subsubsection}{Calling a function}{83}{Item.62}
 \contentsline {subsection}{\numberline {4.4.2}LISS language code generation}{86}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{87}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{104}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{86}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{103}{subsection.4.4.4}
 \contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{104}{subsection.4.4.5}
-\contentsline {subsubsection}{Assignment for integer}{105}{lstnumber.4.75.7}
-\contentsline {subsubsection}{Assignment for boolean}{107}{lstnumber.4.78.4}
-\contentsline {subsubsection}{Assignment for array}{109}{lstnumber.-19.3}
-\contentsline {subsubsection}{Assignment for set}{110}{lstnumber.4.86.6}
-\contentsline {subsubsection}{Assignment for sequence}{111}{equation.4.4.8}
-\contentsline {subsection}{\numberline {4.4.6}Set operations}{111}{subsection.4.4.6}
-\contentsline {subsection}{\numberline {4.4.7}Sequence operations}{112}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{115}{subsection.4.4.8}
-\contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{116}{subsection.4.4.9}
-\contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{118}{subsection.4.4.10}
-\contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{120}{subsection.4.4.11}
-\contentsline {subsection}{\numberline {4.4.12}Creating increment or decrement variables}{125}{subsection.4.4.12}
-\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{127}{chapter.5}
-\contentsline {section}{\numberline {5.1}What is a template?}{128}{section.5.1}
-\contentsline {section}{\numberline {5.2}Conception of the SDE}{129}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Toolbar meaning}{131}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Creating a program}{133}{subsection.5.2.2}
-\contentsline {subsection}{\numberline {5.2.3}Executing a program}{143}{subsection.5.2.3}
-\contentsline {subsection}{\numberline {5.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{143}{subsection.5.2.4}
-\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Conclusion}}{145}{chapter.6}
-\contentsline {section}{\numberline {6.1}Future Work}{147}{section.6.1}
+\contentsline {subsubsection}{Assignment for integer}{104}{lstnumber.4.73.7}
+\contentsline {subsubsection}{Assignment for boolean}{106}{lstnumber.4.76.4}
+\contentsline {subsubsection}{Assignment for array}{108}{lstnumber.-19.3}
+\contentsline {subsubsection}{Assignment for set}{109}{lstnumber.4.84.6}
+\contentsline {subsubsection}{Assignment for sequence}{110}{equation.4.4.8}
+\contentsline {subsection}{\numberline {4.4.6}Set operations}{110}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.7}Sequence operations}{111}{subsection.4.4.7}
+\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{114}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{115}{subsection.4.4.9}
+\contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{117}{subsection.4.4.10}
+\contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{119}{subsection.4.4.11}
+\contentsline {subsection}{\numberline {4.4.12}Creating increment or decrement variables}{124}{subsection.4.4.12}
+\contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{126}{chapter.5}
+\contentsline {section}{\numberline {5.1}What is a template?}{127}{section.5.1}
+\contentsline {section}{\numberline {5.2}Conception of the SDE}{128}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Toolbar meaning}{130}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Creating a program}{132}{subsection.5.2.2}
+\contentsline {subsection}{\numberline {5.2.3}Executing a program}{142}{subsection.5.2.3}
+\contentsline {subsection}{\numberline {5.2.4}Error System in \nobreakspace {}\textit {liss$|$SDE}}{142}{subsection.5.2.4}
+\contentsline {chapter}{\numberline {6}\spacedlowsmallcaps {Conclusion}}{144}{chapter.6}
+\contentsline {section}{\numberline {6.1}Future Work}{146}{section.6.1}
 \vspace \bigskipamount 
 \vspace \bigskipamount 
-\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{151}{appendix.A}
+\contentsline {chapter}{\numberline {A}\spacedlowsmallcaps {Liss Context Free Grammar}}{150}{appendix.A}

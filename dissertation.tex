@@ -2966,30 +2966,6 @@ As for all programming languages, the behaviour of an 'if' statement is the same
              {
                statements
              }
-\end{lstlisting}
-
-Listing ~\ref{lst:for_stat_error_message} defines the use of a 'for-loop' statement in LISS.
-
-A particular case of this statement is the use of 'for-each' interval.
-
-In LISS, we are able to use a 'for-loop' which can access all the elements of an array, also called 'for-each'.
-In that 'for-each' context, we cannot use ~\textit{step} non-terminal nor ~\textit{satisfy} non-terminal.
-
-If the ~\textit{step} non-terminal is present then we must throw the number 12 error message (see Table ~\ref{tbl:types_error_message}); if the ~\textit{satisfy} non-terminal is present then we must throw the number 13 error message (see Table ~\ref{tbl:types_error_message}).
-
-Let's see an example of those cases in Listing ~\ref{lst:for_stat_error_message_example}.
-
-\begin{lstlisting}[caption={Example of an error message in for\_stat rule},label={lst:for_stat_error_message_example}]
-  for(b inArray vector) stepDown 1 satisfying vector[0] == a
-\end{lstlisting}
-
-In Listing ~\ref{lst:for_stat_error_message_example}, the fact that there is an ~\textit{inArray} keyword means that the statement is a 'for-each' loop and for this case we cannot use ~\textit{step} or ~\textit{satisfying} construct.
-
-So, as said previously, the compiler will throw both the number 12 and 13 error messages.
-
-\subsubsection{Interval}
-
-\begin{lstlisting}[caption={Interval rule in LISS},label={lst:interval_error_message}]
   interval : identifier type_interval
            ;
   type_interval : 'in' range
@@ -3003,20 +2979,42 @@ So, as said previously, the compiler will throw both the number 12 and 13 error 
   maximum : number
           | identifier
           ;
+  satisfy :
+          | 'satisfying' expression
+      ;
 \end{lstlisting}
 
-Listing ~\ref{lst:interval_error_message} is specified how to expand the ~\textit{interval} non-terminal in the context of the ~\textit{for\_stat} in LISS.
+Listing ~\ref{lst:for_stat_error_message} defines the use of a 'for-loop' statement in LISS.
+
+A particular case of this statement is the use of 'for-each' interval which is denoted with the keyword ~\textit{inArray}.
+
+In LISS, we are able to use a 'for-loop' which can access all the elements of an array, also called 'for-each'.
+In that 'for-each' context, we cannot use ~\textit{step} non-terminal nor ~\textit{satisfy} non-terminal.
+
+Let's see an example of that case in Listing ~\ref{lst:for_stat_error_message_example}.
+
+\begin{lstlisting}[caption={Example of an error message in for\_stat rule},label={lst:for_stat_error_message_example}]
+  for(b inArray vector) stepDown 1 satisfying vector[0] == a
+\end{lstlisting}
+
+In Listing ~\ref{lst:for_stat_error_message_example}, the fact that there is an ~\textit{inArray} keyword means that the statement is a 'for-each' loop and for this case we cannot use ~\textit{step} or ~\textit{satisfying} construct.
+
+If the ~\textit{step} non-terminal is present then we must throw the number 12 error message (see Table ~\ref{tbl:types_error_message}); if the ~\textit{satisfy} non-terminal is present then we must throw the number 13 error message (see Table ~\ref{tbl:types_error_message}).
+
+However, if the 'for-each' statement isn't used, we can use the known and normal behaviour of a 'for-loop' statement by using the ~\textit{in} keyword instead of ~\textit{inArray}.
+
+%So, as said previously, the compiler will throw both the number 12 and 13 error messages.
+
+\subsubsection{Range}
+
+Listing ~\ref{lst:for_stat_error_message} is specified how to expand the ~\textit{interval} non-terminal in the context of the ~\textit{for\_stat} in LISS.
 
 We need to check if the ~\textit{identifier} is in the symbol table, If it isn't then it must throw the number 1 error message (see Table ~\ref{tbl:types_error_message}).
 
 If the ~\textit{identifier} is in the symbol table, we need to check its type. If it isn't a variable of type integer, then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
 
 
-
-
-
-
-The ~\textit{type\_interval} non-terminal of the ~\textit{interval} rule in LISS (Listing ~\ref{lst:interval_error_message}) tells us which kind of operation can be a 'for-loop' in LISS.
+The ~\textit{type\_interval} non-terminal of the ~\textit{interval} rule in LISS (Listing ~\ref{lst:for_stat_error_message}) tells us which kind of operation can be a 'for-loop' in LISS.
 As we can see there are two choices, the normal behaviour of the 'for-loop' statement (represented by ~\textit{in range}) and the 'for-each' statement (represented by ~\textit{inArray identifier}).
 In the case of the constructor, we need to check if the ~\textit{identifier} variable is in the symbol table and if it isn't, the number 1 error message will be thrown (see Table ~\ref{tbl:types_error_message}).
 Then we need to check the type that ~\textit{identifier} variable has. If the variable isn't an ~\textit{array} then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
@@ -3029,12 +3027,7 @@ In a similar way, ~\textit{maximum} rule has the same behaviour as ~\textit{mini
 
 \subsubsection{Satisfy}
 
-\begin{lstlisting}[caption={Satisfy rule in LISS},label={lst:satisfy_error_message}]
-  satisfy :
-          | 'satisfying' expression
-\end{lstlisting}
-
-Listing ~\ref{lst:satisfy_error_message} is shown the syntax to define a condition ~\textit{satisfy} in the context of the ~\textit{for\_stat} in LISS.
+Listing ~\ref{lst:for_stat_error_message} is shown the syntax to define a condition ~\textit{satisfy} in the context of the ~\textit{for\_stat} in LISS.
 Basically, the ~\textit{satisfying} keyword means that there is a condition that must be evaluated and should be 'true' in order to proceed.
 
 In this case, the ~\textit{expression} is the condition and it must have a boolean type. If the ~\textit{expression} type isn't a boolean then it must throw  the number 7 error message (see Table ~\ref{tbl:types_error_message}).
@@ -3046,11 +3039,9 @@ In this case, the ~\textit{expression} is the condition and it must have a boole
                '{' statements '}'
 \end{lstlisting}
 
-In Listing ~\ref{lst:while_stat_error_message}, this part refers to the use of a condition loop and particularly named as a ~\textit{while} statement.
+In Listing ~\ref{lst:while_stat_error_message} is shown the syntax to write the interation control flow statement ~\textit{while}.
 
-For this case, we need to check if the condition ( also known as ~\textit{expression} non-terminal), has the correct type.
-
-Notice that a condition must have a ~\textit{boolean} type and we need to check if the ~\textit{expression} type is a boolean. If it isn't then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+For this case, we need to check if the condition (represented above by the non-terminal ~\textit{expression}) has the correct type. Notice that a condition must be an expression with ~\textit{boolean} type. If it isn't then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Succ\_or\_pred}
 
@@ -3058,50 +3049,46 @@ Notice that a condition must have a ~\textit{boolean} type and we need to check 
   succ_or_pred : succ_pred identifier
 \end{lstlisting}
 
-In Listing ~\ref{lst:succ_or_pred_error_message}, this part refers for incrementing or decrementing a variable in LISS and it is used as a statement.
-Regarding to this case, we need to check two things.
+Listing ~\ref{lst:succ_or_pred_error_message} defines the syntax of the increment or decrement statement in LISS.
+In this case, we need to check two things.
 
-First, we need to check if the ~\textit{identifier} (also known as variable) is available in the symbol table. If it isn't then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+First, we need to check if the ~\textit{identifier} (also known as variable) is in the symbol table. If it isn't then it must throw the number 1 error message (see Table ~\ref{tbl:types_error_message}).
 
-In case that the variable is in the symbol table, we need to check his type associated. If the type isn't an ~\textit{integer}, then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+In case that the variable is in the symbol table, we need to check its type. If the type isn't an ~\textit{integer}, then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Tail}
 
 \begin{lstlisting}[caption={Tail rule in LISS},label={lst:tail_error_message}]
-  'tail' '(' expression ')'
+  tail : 'tail' '(' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:tail_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Tail} function).
+Concerning the operations of sequences, Listing ~\ref{lst:tail_error_message} defines the syntax for the tail function for sequences.
 
-For this case, we need to see if the ~\textit{expression} type have the correct type in order to work properly.
-
-If the ~\textit{expression} type doesn't have the ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+For this case, we need to see if the ~\textit{expression} type has the correct type.
+If the ~\textit{expression} doesn't have ~\textit{sequence} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Head}
 
 \begin{lstlisting}[caption={Head rule in LISS},label={lst:head_error_message}]
-  'head' '(' expression ')'
+  head : 'head' '(' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:head_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Head} function).
+Similarly, Listing ~\ref{lst:head_error_message} defines the syntax for the ~\textit{Head} function for sequences.
 
-For this case, we need to see if the ~\textit{expression} type have the correct type in order to work properly.
-
-If the ~\textit{expression} type doesn't have the ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+For this case, we need to see if the ~\textit{expression} type has the correct type.
+If the ~\textit{expression} doesn't have ~\textit{sequence} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Cons}
 
 \begin{lstlisting}[caption={Cons rule in LISS},label={lst:cons_error_message}]
-  'cons' '(' expression ',' expression ')'
+  cons : 'cons' '(' expression ',' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:cons_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{Cons} function).
+In Listing ~\ref{lst:cons_error_message}, we can see how to write the ~\textit{Cons} function for sequences.
 
-For this case, we need to see if both of the ~\textit{expression} non-terminal have the correct type in order to work properly.
-
-If the first ~\textit{expression} non-terminal (the most left one) doesn't have an ~\textit{integer} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
-
-Also if the second ~\textit{expression} non-terminal (the most right one) doesn't have a ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+For this case, we need to see if both ~\textit{expression} have the correct type.
+If the first ~\textit{expression} (the left one) doesn't have ~\textit{integer} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
+If the second ~\textit{expression} (the right one) doesn't have ~\textit{sequence} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Delete}
 
@@ -3109,28 +3096,23 @@ Also if the second ~\textit{expression} non-terminal (the most right one) doesn'
   delete : 'del' '(' expression ',' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:delete_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{delete} function).
+In Listing ~\ref{lst:delete_error_message} is presented the syntax for the ~\textit{delete} function for sequences.
 
-For this case, we need to see if both of the ~\textit{expression} non-terminal have the correct type in order to work properly.
-
-If the first ~\textit{expression} non-terminal (the most left one) doesn't have an ~\textit{integer} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
-
-If the second ~\textit{expression} non-terminal (the most right one) doesn't have a ~\textit{sequence} type, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+For this case, we need to see if both ~\textit{expressions} have the correct type.
+If the first ~\textit{expression} (the left one) doesn't have ~\textit{integer} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
+If the second ~\textit{expression} (the right one) doesn't have ~\textit{sequence} type, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Copy\_statement}
 
 \begin{lstlisting}[caption={Copy\_statement rule in LISS},label={lst:copy_statement_error_message}]
-  'copy' '(' identifier ',' identifier ')'
+  copy : 'copy' '(' identifier ',' identifier ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:copy_statement_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{copy} function).
-
-For this case, we need to see if both of the ~\textit{identifier} terminal are in the symbol table and have the correct type in order to work properly.
-
-If one of the ~\textit{identifier} aren't available in the symbol table, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
-
-After seeing the availability of both ~\textit{identifier} in the symbol table, we need to check their type.
-If both of the variables aren't a ~\textit{sequence} type, then it must throw the number 5 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+In Listing ~\ref{lst:copy_statement_error_message} is presented the syntax for the ~\textit{copy} statement.
+For this case, we need to see if both the ~\textit{identifiers} are in the symbol table and have the correct type.
+If one of the ~\textit{identifier} is not in the symbol table, then it must throw the number 1 error message (see Table ~\ref{tbl:types_error_message}).
+After checking the availability of both ~\textit{identifiers} in the symbol table, we need to check their type.
+If a variable is not of ~\textit{sequence} type, then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Cat\_statement}
 
@@ -3138,13 +3120,11 @@ If both of the variables aren't a ~\textit{sequence} type, then it must throw th
   cat_statement : 'cat' '(' identifier ',' identifier ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:cat_statement_error_message}, this part refers to the use a ~\textit{sequence} function (also known by ~\textit{cat} function) and it has the same behaviour as the ~\textit{copy} statement rule. 
+In Listing ~\ref{lst:cat_statement_error_message} is shown the syntax for ~\textit{cat} statement and it has the same behaviour as the ~\textit{copy} statement.
 
-This means that we need to check if both of the ~\textit{identifier} terminal are in the symbol table and have the correct type in order to work properly.
-
-If one of the ~\textit{identifier} aren't available in the symbol table, then it must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
-
-Then, after checking the availability of both ~\textit{identifier} in the symbol table, we need to check their type. If both of the variables aren't a ~\textit{sequence} type, then it must throw the number 5 error message in the error table (see Table ~\ref{tbl:types_error_message}).
+This means that we need to check if both ~\textit{identifiers} are in the symbol table and have the correct type.
+If one of the ~\textit{identifiers} is not in the symbol table, then it must throw the number 1 error message (see Table ~\ref{tbl:types_error_message}).
+Then, after checking the availability of both ~\textit{identifiers} in the symbol table, we need to check their type. If a variable is not of ~\textit{sequence} type, then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Is\_empty}
 
@@ -3152,11 +3132,8 @@ Then, after checking the availability of both ~\textit{identifier} in the symbol
   is_empty : 'isEmpty' '(' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:is_empty_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{is\_empty} function).
-
-For this case, we need to check, only, the type of ~\textit{expression} non-terminal.
-
-In order to proceed the correctness of the ~\textit{is\_empty} function, the ~\textit{expression} non-terminal type must be a ~\textit{sequence}. If it isn't, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+In Listing ~\ref{lst:is_empty_error_message}, we can see the syntax for function ~\textit{is\_empty} for sequences.
+In this case, we need to check, only, the type of ~\textit{expression} that must be a ~\textit{sequence}. If it isn't, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Length}
 
@@ -3164,10 +3141,10 @@ In order to proceed the correctness of the ~\textit{is\_empty} function, the ~\t
   length : 'length''(' expression ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:length_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{length} function) and it is the same behaviour as ~\textit{is\_empty} function.
+In Listing ~\ref{lst:length_error_message} is shown the syntax for function ~\textit{length}, that is the same behaviour as ~\textit{is\_empty} function.
 
-We need to check, only, the type of ~\textit{expression} non-terminal.
-If the ~\textit{expression} non-terminal type isn't a ~\textit{sequence}, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+We need to check, only, the type of ~\textit{expression} that must be sequence type.
+If it isn't, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Member}
 
@@ -3175,15 +3152,12 @@ If the ~\textit{expression} non-terminal type isn't a ~\textit{sequence}, then i
   member : 'isMember''(' expression ',' identifier ')'
 \end{lstlisting}
 
-In Listing ~\ref{lst:member_error_message}, this part refers to the use of a ~\textit{sequence} function (also known by ~\textit{member} function).
-For this case, we need to check firstly the ~\textit{identifier} and then the ~\textit{expression} non-terminal.
-
-If the ~\textit{identifier} terminal is not available in the symbol table, then we must throw the number 1 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+At last, Listing ~\ref{lst:member_error_message} defines the function ~\textit{member} sequences.
+For this case, we need to check first the ~\textit{identifier} and then the ~\textit{expression}.
+If the ~\textit{identifier} terminal is not in the symbol table, then we must throw the number 1 error message (see Table ~\ref{tbl:types_error_message}).
 Otherwise, if the variable is in the symbol table, we need to check the type of both (~\textit{identifier} and ~\textit{expression}).
-
-~\textit{Identifier} terminal type must be an ~\textit{integer}. If it isn't then it must throw the number 5 error message to the error table (see Table ~\ref{tbl:types_error_message}).
-
-If ~\textit{expression} non-terminal type isn't an ~\textit{integer}, then it must throw the number 7 error message to the error table (see Table ~\ref{tbl:types_error_message}).
+~\textit{Identifier} must be an ~\textit{sequence}, if it isn't then it must throw the number 5 error message (see Table ~\ref{tbl:types_error_message}).
+If ~\textit{expression} isn't an ~\textit{integer}, then it must throw the number 7 error message (see Table ~\ref{tbl:types_error_message}).
 
 
 %Faire un resume de l'histoire des erreurs
