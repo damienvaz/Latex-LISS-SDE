@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  3 DEC 2016 12:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  3 DEC 2016 12:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2437,7 +2437,13 @@ Chapter 6.
 [144
 
 
-] [145] [146] (./dissertation.bbl
+] [145]
+Overfull \hbox (1.20227pt too wide) in paragraph at lines 5427--5428
+[]\OT1/pplj/m/n/10.95 The project is avail-able to test on github throw this li
+nk  [][]$\OT1/cmtt/m/n/10.95 https : / / github . com / damienvaz /
+ []
+
+[146] (./dissertation.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 49--52
 []\OT1/pplj/m/n/10.95 Daniela da Cruz and Pe-dro Rangel Hen-riques.  Liss com-p
 iler home-page.
@@ -2485,11 +2491,11 @@ Overfull \hbox (21.35077pt too wide) in paragraph at lines 375--378
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5493.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5493.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5496.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5496.
  (./dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5493.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 5493.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5496.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 5496.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2497,7 +2503,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5493.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5496.
  ) 
 Here is how much of TeX's memory you used:
  39717 strings out of 493089
@@ -2545,10 +2551,10 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (171 pages, 3260795 bytes).
+Output written on dissertation.pdf (171 pages, 3261832 bytes).
 PDF statistics:
- 4075 PDF objects out of 4296 (max. 8388607)
- 3729 compressed objects within 38 object streams
+ 4077 PDF objects out of 4296 (max. 8388607)
+ 3731 compressed objects within 38 object streams
  1994 named destinations out of 2073 (max. 500000)
  21252 words of extra memory for PDF output out of 24883 (max. 10000000)
 
