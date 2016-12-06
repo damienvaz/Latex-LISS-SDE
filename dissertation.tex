@@ -3167,7 +3167,7 @@ If ~\textit{expression} isn't an ~\textit{integer}, then it must throw the numbe
 
 In the compiler process, after adding informations to the ~\textit{symbol table} and searching some inconsistencies to the LISS language (semantic). It is now time to convert the LISS language representation (higher level language) to MIPS assembly code (lower level language).
 
-In the process of converting the language, there is a lot of tasks who will be operated:
+In the process of converting the language, there is a lot of tasks that will be executed:
 
 \begin{itemize}
 \item Instruction selection : choosing which type of instruction to use.
@@ -3175,31 +3175,29 @@ In the process of converting the language, there is a lot of tasks who will be o
 \item Instruction scheduling : choosing the right time for the instruction to be added in the code.
 \end{itemize}
 
-Let's talk it in the next section every operations and strategy used for the code generation.
+Let's discuss along this section about strategy and operations used for the code generation.
 
 \subsection{Strategy used for the code generation}
 
 
-We talked previously about the MIPS architecture and for this section, we will talk about the strategy used for generating the MIPS assembly code regarding to the specific limitation of his architecture.
+In chapter 3, we talked about the MIPS architecture. In this section we will talk about the strategy used for generating the MIPS assembly code regarding the processor's specific architecture.
 
 \subsubsection{Data and text part}
 
-It is created two variables called ~\textit{data} and ~\textit{text} and those two variable have the type ~\textit{String}.
-Each time that it is needed to add some information to the assembly code, it will be added regarding to the context of the LISS language.
+The compiler creates two variables called ~\textit{data} and ~\textit{text} and those two variables have type ~\textit{String}.
+Each time that it is needed to generate a new assembly code fragment, it will be added to one of those variables depending on the context. Each variable created at scope level 0 (corresponding to a declaration) will be added to the ~\textit{data} variable. Similarly, each statement is transformed into MIPS code that is added to ~\textit{text} variable.
 
-For example, each variable created at level 0 scope in LISS language code (declarations statement) will be added to the ~\textit{data} variable. Beside than that, the information will be added to the ~\textit{text} variable.
-
-Notice that ~\textit{subprogram} statement (also known as functions) is the only thing that won't go to the ~\textit{data} variable string, even if it is available in the ~\textit{declarations} section.
+Notice that a ~\textit{subprogram} declaration (also known as function) is the only thing that is not added to the ~\textit{data} variable string.
 
 
 \subsubsection{Compiler register strategy}
 
-The MIPS architecture has a limit of registers and it is a necessity to use it wisely for generating the code.
+The MIPS architecture has a limited number of registers and it is a necessity to use it wisely for generating the code.
 
-So we created. in our project, an array structure with 8 positions which tells us which position are free (array type is boolean).
-From 0 to 8, it will represent the state of each register from the MIPS register structure.
+So we created, in our project, an array structure with 8 positions which tells us which registers are free (array type is boolean).
+From 0 to 7, it will represent the state of each MIPS register.
 
-In this case, the association of the register with the array are :
+In this case, the association of the registers with the array component is:
 
 \begin{itemize}
 \item Position 0 : register \$t0
@@ -3208,61 +3206,56 @@ In this case, the association of the register with the array are :
 \item Position 3 : register \$t3
 \item Position 4 : register \$t4
 \item Position 5 : register \$t5
-\item Position 6 : register \$t7
-\item Position 7 : register \$t8
+\item Position 6 : register \$t6
+\item Position 7 : register \$t7
 \end{itemize}
 
-Each time that the compiler needs or wants a register, it will always see the state of each register by ascending order. Like that, the compiler knows that the latest register needed or used will  always be the latest and not in a random order (for a better searching of the register).
+Each time that the compiler needs to occupy a register, it will always check the state of each register by ascending order. Like that, the compiler knows that the next register to be allocated will  always be the latest and not in a random order.
 
-Then we need to apply a strategy for not having an overflow of registers being used.
+Then we need to apply a strategy to avoid an overflow of registers being used.
 Let's explain this situation with an example in Listing ~\ref{lst:example_overflow_register}:
 
 \begin{lstlisting}[caption={Example of a sum operation with some numbers},label={lst:example_overflow_register}]
   4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 
 \end{lstlisting}
 
-In Listing ~\ref{lst:example_overflow_register}, we see a complex summing operation being done with 9 numbers available. 
-If we wanted to put those 9 numbers to the available register, it will be impossible due to the limitation of the MIPS architecture (only 8 temporary register).
-So we need to apply a strategy for solving this situation, and it passes by removing information when they are not needed.
-For this case, we can put the value 4 to the first register (\$t0) and put the value 5 to the second register (\$t1). Then we add those two values, available in the registers, and put the result in the register \$t0. Notice that by doing that, we set the register \$t1 free which will be available for adding the next value 6 there and re-apply the same strategy for continuing the sum. 
+In Listing ~\ref{lst:example_overflow_register}, we see a long addition with 9 numbers as operands. 
+If we wanted to store the 9 numbers in the available registers, it will be impossible due to the limitation of the MIPS architecture (only 8 temporary register).
+So we need to apply a strategy for solving this situation, and it passes by removing information when it is no more needed.
+For this case, we can move value 4 to the first register (\$t0) and move value 5 to the second register (\$t1). Then we add the values, stored in the two registers, and store the result in register \$t0. Notice that by doing that, we set position 1 of the control array to ~\textit{false} (because register \$t1 is free) and \$t1 will be available for storing the next value 6; after that we apply the same strategy to continue the sum. 
+By using this strategy, we won't have an overflow of registers.
 
-By using this strategy, we won't have an overflow of registers. Take care that some MIPS instructions used, apply that strategy but might be different due to the complexity of some instructions.
+Also, notice that the MIPS architecture has some other registers available (saved temporary registers (reserved across call)) and we could use them to increase the number of registers.
+But even if we increase the number of registers, the problem is still there and that is why we need to apply a strategy to handle properly the registers allocation task.
 
-Also, notice that the MIPS architecture has some others registers available (saved temporary registers (reserved across call)) and we could have used them to increase the numbers of registers.
+Additionally, those saved temporary registers are reserved for jump instructions and in our case we use them for sequence operations only. Regarding to calling functions, which uses also jump instruction, we use a different algorithm. We use the stack for storing the information about the function and that is why we don't need to use the saved temporary registers.
 
-But even if we increase the number of registers, the problem is still there and that is why we need to apply a strategy to solve those cases.
-
-Additionally, those saved temporary registers are reserved for jump instructions and for our case we use them for sequence functions only. Regarding to calling functions which uses also jump instruction, we use a different algorithm. We use the stack for storing the information about the function and that is why we don't need to use the saved temporary registers.
-
-Finally, as we use primarly the temporary registers from MIPS architecture in the project, we have a law that dictate that every line statement who is finished (a statement ends with a semicolon), means that the state of those temporary registers must be set to false. This means that each temporary register are free to use.
-
-%Now that we have the strategy for using the registers of the MIPS architecture, we can talk about the translation of LISS language to MIPS assembly code and add more informations regarding to the context that it will be talked.
+Finally, concerning the usage of temporary registers, we have a law that dictate that when a statement is finished (a statement ends with a semicolon), the state of those temporary registers must be set to false. This means that each temporary register is free to be used again.
 
 \subsubsection{Address size}
 
-In MIPS architecture, we have the ability to optimize the instruction that will be used regarding to the MIPS architecture.
-But for our case, we won't optimize anything and we will use a fixed size of address.
+In MIPS architecture, we have the ability to optimize the instruction that will be used.
+But in our case, we won't optimize anything and we will use a fixed address size.
 So, we created an ~\textit{integer} variable that tells us how many bytes does have an address in the MIPS architecture (4  bytes). 
 
-The size of the address will be used for creating variables in the heap or even for the ~\textit{stack}.
+The size of the address will be used to allocate variables in the heap or in the ~\textit{stack}.
 
-Notice that due to the MIPS architecture, it does a fetch with alignment address of the instructions being executed. And that is why we set up a fixed size address and we don't do optimizations for ease debugging and code generation.
+Notice that MIPS architecture does a fetch with address alignment of the instructions being executed. And that is why we set up a fixed size address and we don't do optimizations for ease debugging and code generation.
 
 \subsubsection{Conditional statement}
 
-In LISS language, there are different kinds of conditional statements (if-statement, while-statement and for-statement).
-And each of them uses in MIPS assembly code, some jump instruction.
+In LISS language, there are different kinds of conditional statements (if-statement, while-statement and for-statement) that will be implemented in MIPS assembly code, using some jump instructions.
 
-Remember that, talked previously in the chapter of MIPS assembly, it has a certain pattern to practice when a jump instruction is being used.
-And we need to use a strategy for those conditional statement.
+As said previously in Chapter 3 (MIPS assembly), there is a code pattern to adopt when a jump instruction is being used.
+So we need to define a strategy for those conditional statements.
 
-So we created two variables, one with the type ~\textit{LinkedList$<$Integer$>$} named as ~\textit{counterJumpStack} and another one with the type ~\textit{Integer} named as ~\textit{counterJump}.
+It is created two variables, one of type ~\textit{LinkedList$<$Integer$>$} named as ~\textit{counterJumpStack} and another one of type ~\textit{Integer} named as ~\textit{counterJump}.
 
-Each time that a conditional statement is new, the variable ~\textit{counterJump} will be concatenated to the name of the condition statement and incremented also. And this is done for one reason, because in MIPS architecture you can't have the same name (when you will use an inconditional jump instruction in MIPS) in the assembly code. If the name was equal then MIPS won't be able to know which name it should jump. And so, when we concatenate the number with the name of the conditional statement (and then it increments), the name in the assembly code will be different and unique.
+Each time that a conditional statement is new, the variable ~\textit{counterJump} will be concatenated to the name of the condition statement and then it is incremented. This is done because in MIPS architecture code label: name must be unique so that inconditional jump instructions are not ambiguous. If the name was the same then MIPS won't be able to know to which code label it should jump. So, when we concatenate the number with the name of the conditional statement (and then it increments), the assembly code labels will be unambiguous.
 
-Regarding to the ~\textit{LinkedList$<$integer$>$} variable, this is a stack for saving informations about the conditional statement explored when there is a high expressivity of conditional statement inside of them. The stack uses a FILO (First In Last Out) system.
+Regarding ~\textit{counterJumpStack} (the ~\textit{LinkedList$<$integer$>$} variable), this is a stack for saving informations about the conditional statements when there are nested control statements. The stack uses a LIFO (Last In First Out) system.
 
-Let's an example in Listing ~\ref{lst:expressivity_conditional_statement}.
+Let's see an example in Listing ~\ref{lst:expressivity_conditional_statement}.
 
 \begin{lstlisting}[caption={Example of conditional statements in LISS language},label={lst:expressivity_conditional_statement}]
   program test{
@@ -3279,17 +3272,17 @@ Let's an example in Listing ~\ref{lst:expressivity_conditional_statement}.
   }
 \end{lstlisting}
 
-In Listing ~\ref{lst:expressivity_conditional_statement}, we can see that we use a lot of conditional statement as a snowball effect.
-So we need to save the information of each conditional statement anywhere and that is why we use a stack (also known as ~\textit{LinkedList$<$Integer$>$}).
-Each time that a conditional statement appears, the compiler saves the ~\textit{counterJumpStack} variable value associated to the conditional statement to the stack. If inside of the conditional statement, there is another conditional statement. The ~\textit{counterJumpStack} variable, meanwhile incremented, will be associated to the new conditional statement and will be added to the stack. 
+In Listing ~\ref{lst:expressivity_conditional_statement}, we can see that we use a lot of nested conditional statement.
+So we need to save the information of each conditional statement anywhere and that is why we use a stack.
+Each time that a conditional statement appears, the compiler pushes the ~\textit{counterJump} value (associated to the conditional statement) to the stack ~\textit{counterJumpStack}. If inside of the conditional statement, there is another conditional statement, then its ~\textit{counterJump} value, meanwhile incremented, will be added to the top of the stack. 
 
-Like that we don't loose the information and we have a traceability regarding to the conditional statement that the compiler has passed throw. And in this way, making MIPS assembly code will be easier and correct.
+Like that we don't loose the information and we have traceability regarding to the conditional statement that the compiler has passed throw. Following this strategy, MIPS assembly code generation will be easier and correct.
 
-Notice that each time, the compiler exits a conditional statement, it removes the information in the stack but the ~\textit{counterJumpStack} variable won't be decremented.
+Notice that each time the compiler exits from a conditional statement, it removes the information from the stack but the ~\textit{counterJump} variable won't be decremented.
 
-\subsubsection{Subprogram name}
+\subsubsection{Subprogram}
 
-For this part, we created three structure:
+To handle appropriately subprograms in LISS, we created three structure:
 
 \begin{enumerate}
 \item LinkedList$<$String$>$ ~\textbf{functionName}
@@ -3297,45 +3290,44 @@ For this part, we created three structure:
 \item String ~\textbf{functionMipsCode}
 \end{enumerate}
 
-So the variable ~\textit{functionName} is a ~\textit{LinkedList$<$String$>$} structure which adds the name of each subprograms that the compiler finds. It uses a FILO system and act as a stack in this case.
+The variable ~\textit{functionName} is a ~\textit{LinkedList$<$String$>$} structure that stores the name of each subprogram that the compiler finds. It uses a FILO system and acts as a stack.
 
-Basically, we created the same system  as the use of conditional statements. This means that subprograms uses also a jump instruction regarding to the MIPS assembly code and the name of the function must be also unique in the MIPS assembly code.
+Basically, we created the same system  as the one used for conditional statements. To implement subprograms it is necessary to use also a jump instruction and so the name of the function must be also unique to avoid ambiguity in the MIPS assembly code.
 
-Each time, that the compiler finds a subprogram name in the LISS code, it adds to the ~\textit{LinkedList} structure the information. If there is, also, the snowball effect by having a multiplicity of subprograms inside of each one. Then it will add all those informations to the stack.
+Each time, that the compiler finds a subprogram name in the LISS code, it pushes it to the ~\textit{LinkedList} structure. If there is, also, the nesting effect by having a multiplicity of subprograms inside each one, then it will add all those informations to the stack.
 
 When we need to add some MIPS assembly code, we just need to take the entire string available in the stack by using the concatenate method and associate the MIPS assembly code to that name.
 
 The variable ~\textit{mipsCodeFunctionCache} is a ~\textit{HashMap$<$String,String$>$} structure and the key of the HashMap refers to the name of a subprogram (it is the name that is catched in the ~\textit{LinkedList} structure explained before) and the value is the MIPS assembly code associated to the name of the function.
 
-Basically, that structure save the information of each subprogram with their MIPS assembly code associated. The fact that we used a ~\textit{HashMap} structure is for the requirements that the name of a subprogram must be unique. And those standards are perfect with a ~\textit{HashMap} because the key is always unique.
+Basically, that structure saves the information of each subprogram with their MIPS assembly code associated. The fact that we use a ~\textit{HashMap} structure is to comply with the requirement that the name of a subprogram must be unique, and this constraint is perfect with a ~\textit{HashMap} because the keys are always unique.
 
 Finally, the variable ~\textit{functionMipsCode} is a String which hold the MIPS assembly code of a subprogram. When the compiler is creating the MIPS assembly code of a subprogram, it will add to that variable. At the end, it will be added to the HashMap structure whenever it is necessary.
 
-Notice that when the compiler will finish to pass the entire LISS code, it will remove all the informations available in the ~\textit{HashMap} structure and add it to the string variable ~\textit{text} (talked previously in the subsection ~\textbf{Data and text part}).
+Notice that when the compiler finishes to pass the entire LISS code, it will remove all the informations available in the ~\textit{HashMap} structure and add it to the string variable ~\textit{text} (referred previously in the subsection ~\textbf{Data and text part}).
 
 \subsubsection{State of functions}
 
-In LISS language, there are some MIPS assembly code that are not automatically generated but instead, they are already defined.
-This is the case for functions like:
+In LISS language, some statements or operators are not translated directly into MIPS assembly code. Instead, they are already predefined.
+It happens with:
 
 \begin{itemize}
-\item Sequence functions (tail, head, etc...)
-\item Printing function (write, writeln)
-\item Read function (input)
-\item Index out of bound function (related to the array type)
+\item Sequence operations (tail, head, etc...)
+\item Printing statement (write, writeln)
+\item Read statement (input)
+\item Index out of bound check on validation (related to the array type)
 \end{itemize}
 
-And instead of adding those defined function in the MIPS assembly code, when they are not used in the LISS code.
+Instead of translanting those functions to MIPS assembly code, the predefined code is invoked. So when they are not used in the LISS code, it is not necessary to add that code to the target file.
 We created a structure which tells us if those functions will be used or not.
 
 \begin{itemize}
 \item  HashMap$<$String, Integer$>$ ~\textbf{functionStateUsedOrNot}
 \end{itemize}
 
-Basically, the idea behind that structure is that if a function was used, it will put the function (available in the ~\textit{HashMap} structure) set to 1(1 means true).
-When the compiler finishs to see the entire LISS language code, it will check the variable ~\textit{functionStateUsedOrNot} and see if some functions are set to 1. If it is, then it will add at the end of the generated MIPS assembly code, the appropriated and defined MIPS assembly code of that function to the end.
-
-Notice that the variable will put the state of every function available to 0 before the compiler begins in generating the code (0 means false).
+Basically, the idea behind that structure is that if a function was used, it will set the function entry (available in the ~\textit{HashMap} structure) to 1(1 means true).
+When the compiler finishs the code generation, it will check the variable ~\textit{functionStateUsedOrNot} and see if some functions are set to 1. If it is the case, then it will add at the end of the generated MIPS assembly code, the appropriated and defined MIPS assembly code for that function.
+Notice that the variable ~\textit{functionStateUsedOrNot} is always initialized with 0 before the compiler begins the code generation.
 
 \subsubsection{Stack}
 

@@ -79,16 +79,16 @@
 \contentsline {subsubsection}{Data and text part}{75}{subsection.4.4.1}
 \contentsline {subsubsection}{Compiler register strategy}{76}{subsection.4.4.1}
 \contentsline {subsubsection}{Address size}{77}{lstnumber.4.46.1}
-\contentsline {subsubsection}{Conditional statement}{78}{lstnumber.4.46.1}
-\contentsline {subsubsection}{Subprogram name}{79}{lstnumber.4.47.12}
-\contentsline {subsubsection}{State of functions}{80}{Item.54}
+\contentsline {subsubsection}{Conditional statement}{77}{lstnumber.4.46.1}
+\contentsline {subsubsection}{Subprogram}{79}{lstnumber.4.47.12}
+\contentsline {subsubsection}{State of functions}{79}{Item.54}
 \contentsline {subsubsection}{Stack}{80}{Item.54}
 \contentsline {subsubsection}{The algorithm for finding variables in the stack}{82}{Item.56}
-\contentsline {subsubsection}{Calling a function}{83}{Item.62}
-\contentsline {subsection}{\numberline {4.4.2}LISS language code generation}{86}{subsection.4.4.2}
+\contentsline {subsubsection}{Calling a function}{82}{Item.62}
+\contentsline {subsection}{\numberline {4.4.2}LISS language code generation}{85}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{86}{subsection.4.4.3}
 \contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{103}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{104}{subsection.4.4.5}
+\contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{103}{subsection.4.4.5}
 \contentsline {subsubsection}{Assignment for integer}{104}{lstnumber.4.73.7}
 \contentsline {subsubsection}{Assignment for boolean}{106}{lstnumber.4.76.4}
 \contentsline {subsubsection}{Assignment for array}{108}{lstnumber.-19.3}

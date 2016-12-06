@@ -17,7 +17,7 @@
 \contentsline {figure}{\numberline {12}{\ignorespaces ErrorTable structure instantiated for example in Listing \nobreakspace {}\ref {lst:error_table_liss_java_example}\relax }}{59}{figure.caption.45}
 \contentsline {figure}{\numberline {13}{\ignorespaces Stack structure\relax }}{81}{figure.caption.47}
 \contentsline {figure}{\numberline {14}{\ignorespaces Structure for saving information of each value declared in a array\relax }}{89}{figure.caption.48}
-\contentsline {figure}{\numberline {15}{\ignorespaces Array structure with size 2,2,3.\relax }}{91}{figure.caption.50}
+\contentsline {figure}{\numberline {15}{\ignorespaces Array structure with size 2,2,3.\relax }}{90}{figure.caption.50}
 \contentsline {figure}{\numberline {16}{\ignorespaces Set structure in JAVA\relax }}{93}{figure.caption.51}
 \contentsline {figure}{\numberline {17}{\ignorespaces Set structure in JAVA\relax }}{94}{figure.caption.52}
 \contentsline {figure}{\numberline {18}{\ignorespaces Architecture of the stack relatively to a function in LISS\relax }}{98}{figure.caption.53}
