@@ -4236,18 +4236,17 @@ In Listing ~\ref{lst:assign_array_values_mips}, we first load the value that nee
 
 \subsubsection{Assignment for set}
 
-Assigning sets is a little different from the others assignment (see line 6 of Listing ~\ref{lst:cases_assignment_liss}).
+Assigning sets is a little different from the other assignments (see line 6 of Listing ~\ref{lst:cases_assignment_liss}).
 
-Basically, it doesn't compute any instructions but instead, it reorganize the JAVA structure available and linked to the set variable, in the symbol table, by changing it to the correct structure according to the assignment.
-
-Also, notice that it is possible to create a statement with more expressivity by using some operators relatively to the set type and they are listed above:
+Basically, in this case the compiler generate any instructions but, instead, it reorganize the JAVA tree structure associated with the set variable, available in the symbol table, changing it to the correct structure according to the expression.
+The operators available for the set type are listed below:
 
 \begin{itemize}
 \item ++ (union sign)
 \item ** (intersection sign)
 \end{itemize}
 
-Again, using those operators with sets doesn't compute any instructions but instead reorganize the structure of the set. And the meaning of each one is the same as the mathematical way (see equations above).
+Using those operators with sets doesn't imply to generate any instructions but instead reorganize the tree structure for the set, according to the mathematical meaning of each one (see equations below).
 
 \begin{equation}
   A \cup B = \{ x : x \in A\ or\ x \in B\}
@@ -4259,24 +4258,22 @@ Again, using those operators with sets doesn't compute any instructions but inst
 
 \subsubsection{Assignment for sequence}
 
-Assigning sequences is really simple and uses a certain mechanism took by another imperative language (see line 7 of Listing ~\ref{lst:cases_assignment_liss}).
+The idea of assigning two sequences is to change the pointer of one sequence to the other sequence and, in this case, the sequence on the left side will change the address (where it is pointing to in the heap memory) to the address of the sequence on the right side of the assignment.
 
-The idea of assigning two sequences is to change the pointer of one the sequence to the other sequence and in this case, the sequence that is available in the left part of the equal sign will change the address (where it is pointing in the heap memory) to the address of the sequence available in the right part of the equal sign.
-
-Let's see a code generated relatively to assigning a sequence in Listing ~\ref{lst:assign_sequence}.
+Let's see the code generated to assign a sequence to another one in Listing ~\ref{lst:assign_sequence}.
 
 \begin{lstlisting}[caption={Code generated for line 7 of Listing ~\ref{lst:cases_assignment_liss}},label={lst:assign_sequence}]
   lw $t0,sequence2		
   sw $t0, sequence1		
 \end{lstlisting}
 
-In Listing ~\ref{lst:assign_sequence}, we load the address that the variable ~\textit{sequence2} is pointing in the heap memory (line 1) and then, it stores that address to the variable ~\textit{sequence1} (line 2).
+In Listing ~\ref{lst:assign_sequence}, we load the address that the variable ~\textit{sequence2} is pointing to in the heap memory (line 1) and then, it stores that address to the variable ~\textit{sequence1} (line 2).
 
-Notice that assigning sequences, doesn't copy every elements of one sequence to another one. Instead, there is a function which does that and named by ~\textit{copy} function.
+Notice that assigning sequences, doesn't copy every elements of one sequence to the other one. To do that (sequence cloning), there is a function in LISS which does that (~\textit{copy} function).
 
 \subsection{Set operations}
 
-The type sets can be operated only by one way: using it as an assignment statement (see Listing ~\ref{lst:using_set_assignment_mips}).
+Variables of type sets can be assigned and used as operands in expression made out of union and intersections operators. Moreover there is a special operator that takes an integer and a set, and returns a boolean: the 'in' operator (allows to test if a value is contained in the set). See Listing ~\ref{lst:using_set_assignment_mips} for an example.
 
 \begin{lstlisting}[caption={Example of using a set in LISS},label={lst:using_set_assignment_mips}]
   program test{
@@ -4288,14 +4285,11 @@ The type sets can be operated only by one way: using it as an assignment stateme
   }
 \end{lstlisting}
 
-And for that, we need to use a special operator (named ~\textit{in}).
-The idea of that operator is to test a certain number relatively to the set used in the assignment.
+The example in line 6 of Listing ~\ref{lst:using_set_assignment_mips} will test if the number 4 is contained in the elements of the set named ~\textit{set1}.
 
-In this case, the example available in line 6 of Listing ~\ref{lst:using_set_assignment_mips} will test if the number 4 is in the range of the set named ~\textit{set1}.
+This is the only situation that requires the generation of MIPS code to implement the referred test (check the truth of that expression). The idea is to create a boolean expression replacing the free variable, in the set tree, by the value that we want to check.
 
-But it needs to be generated something in order to check the truth of that expression and at the end get the result. That is why we need to generate the code with the use of that number accordingly to the expression of the set.
-
-Let's look the code in Listing ~\ref{lst:contains_set_mips}.
+Let's look the code generated in Listing ~\ref{lst:contains_set_mips}.
 
 \begin{lstlisting}[caption={Code generated for line 6 of Listing ~\ref{lst:using_set_assignment_mips}},label={lst:contains_set_mips}]
   li $t0,4		
@@ -4304,28 +4298,26 @@ Let's look the code in Listing ~\ref{lst:contains_set_mips}.
   sw $t0, flag		
 \end{lstlisting}
 
-Basically, from line 1 to 3 of Listing ~\ref{lst:contains_set_mips}, it generates the code of that set with the number that it is associated to the left of the ~\textit{in} operator. After processing and checking the expression, it stores the result to the boolean variable ~\textit{flag} (line 4 of Listing ~\ref{lst:contains_set_mips}). And the result will say if the number 4 is in the range of the set.
-
-The mechanism of generating the code with sets is done by generating the code of the expression relatively to the set accordingly the number that we are trying to test and then, storing the result to a boolean variable.
+The compiler traverses the tree associated to the free variable ~\textit{set1} and replaces each occurences of the free variable 'x' by the value 4, then it generates code for that boolean expression. Lines 1 to 3 in Listing ~\ref{lst:contains_set_mips} correspond to that code produced (boolean expression), the result of the boolean operator (great) is then stored in the variable 'flag' (line 4 in Listing ~\ref{lst:contains_set_mips}).
 
 \subsection{Sequence operations}
 
-The type sequences can be operated by two ways: 
+To operate with variables of type sequence, LISS language offers a set of predefined:
 
 \begin{enumerate}
-\item statement
-\item expression
+\item statements
+\item functions
 \end{enumerate}
 
-And each sequence functions are defined by those mode of operations (see Table ~\ref{tbl:sequence_function_mips}).
+that are summarized in Table ~\ref{tbl:sequence_function_mips}:
 
 \begin{table}[h!]
 \centering
-\caption{Sequence function name and their mode of operations}
+\caption{Sequence predefined operations}
 \label{tbl:sequence_function_mips}
 \begin{tabular}{|c|c|c|}
 \hline
-\textbf{Mode operations}             & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ function in LISS\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ function in MIPS\end{tabular}} \\ \hline
+\textbf{Mode}             & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ operator in LISS\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Name of the sequence \\ operator in MIPS\end{tabular}} \\ \hline
 \multirow{7}{*}{\textbf{expression}} & tail                                                                                      & tail\_sequence                                                                            \\ \cline{2-3} 
                                      & head                                                                                      & head\_sequence                                                                            \\ \cline{2-3} 
                                      & cons                                                                                      & cons\_sequence                                                                            \\ \cline{2-3} 
@@ -4338,20 +4330,20 @@ And each sequence functions are defined by those mode of operations (see Table ~
 \end{tabular}
 \end{table}
 
-Each function available in Table ~\ref{tbl:sequence_function_mips}, are, basically, functions in MIPS assembly code. This means that it needs to use a jump instruction for processing any sequence function. And notice that it uses the name of the sequence function in MIPS (available in Table ~\ref{tbl:sequence_function_mips}) for generating the appropriated sequence jump instruction (see an example in Listing ~\ref{lst:example_sequence_function_mips}).
+Each operator listed in Table ~\ref{tbl:sequence_function_mips} is implemented as a predefined function in MIPS assembly code. This means that each time the compiler recognizes a sequence operator it needs to use a jump instruction for processing the sequence. Notice that it uses the name of the sequence function in MIPS (available in Table ~\ref{tbl:sequence_function_mips}) for generating the appropriated sequence jump instruction (see an example in Listing ~\ref{lst:example_sequence_function_mips}).
 
 \begin{lstlisting}[caption={Example of processing a head function in MIPS},label={lst:example_sequence_function_mips}]
   jal head_sequence
 \end{lstlisting}
 
-Now, take care that before invocating the jump instructions; it is needed to load the arguments relatively to the type of the sequence function. And they process with a certain logic for loading those arguments:
+Before invoking the jump instruction; it is necessary to load the respective argument of type sequence. This process for loading the arguments, follows the schema below:
 
 \begin{enumerate}
-\item load the register \$s0 with the name of the variable sequence.
-\item load, in a sequential way, the rest of the arguments (relatively to the type of the sequence function) into the next saved temporary registers (\$s1, \$s2,...).
+\item load the register \$s0 with the name of the sequence variable.
+\item load, in a sequential way, the rest of the arguments (depending on the sequence operator) into the next saved temporary registers (\$s1, \$s2,...).
 \end{enumerate}
 
-For example, ~\textit{cons} function have two arguments in order to make it workable. Let's see how is the code generated for that case in Listing ~\ref{lst:example_cons_function_mips}.
+For example, ~\textit{cons} function has two arguments. Let's see how is the code generated for the case ~\textit{cons(3,sequence2)} in Listing ~\ref{lst:example_cons_function_mips}.
 
 \begin{lstlisting}[caption={Example of a code generated for the function ~\textit{cons}},label={lst:example_cons_function_mips}]
   lw $t0,sequence2	
@@ -4365,21 +4357,16 @@ For example, ~\textit{cons} function have two arguments in order to make it work
   jal cons_sequence
 \end{lstlisting}
 
-In Listing ~\ref{lst:example_cons_function_mips}, we load the ~\textit{sequence2} variable (line 1) in a first step; then we process to storing that information into the stack (line 2 to 3); after, we process the information relatively to the code generated for the other argument (second one) and we move to the correct register (register \$s1) (line 4 and 5); finally, we go get back of the value that we stored earlier in the stack and we put it to the register \$s0 (line 6 and 8). Lastly, we call the function ~\textit{cons\_sequence} for processing to the execution of the function (line 9).
+In Listing ~\ref{lst:example_cons_function_mips}, we load the ~\textit{sequence2} variable (line 1) in a first step; then we push that information into the stack (line 2 to 3); after, we process the other argument (second one) and we move to the correct register (register \$s1) (line 4 and 5); then, we get back the value that we stored earlier in the stack and we put it to the register \$s0 (line 6 and 8). Last, we call the function ~\textit{cons\_sequence} to execute the function (line 9).
 
-Notice, that the way we are doing those mechanics aren't done in a random way but yes in a certain way and this is due for one reason.
-
-Only the functions who are available to use in the ~\textit{expression} rule and can use sequence type in some of their arguments, must use that way of invocating the code generated relatively to Listing ~\ref{lst:example_cons_function_mips}.
-
-Let's see an example for understanding it better (see Listing ~\ref{lst:function_call_argument_sequence_liss}).
+Let's see an example of a function that receives arguments that are other sequence functions for understanding it better (see Listing ~\ref{lst:function_call_argument_sequence_liss}).
 
 \begin{lstlisting}[caption={Example of using a function call as argument},label={lst:function_call_argument_sequence_liss}]
   head(cons(3,cons(4,cons(5,sequence2))));
 \end{lstlisting}
 
-We must process the information for the most inner function in Listing ~\ref{lst:function_call_argument_sequence_liss}, in this case ~\textit{cons(5,sequence2)}, and then getting back and process the other functions.
-
-Let's see how it is done above:
+We must process the information for the inner function in Listing ~\ref{lst:function_call_argument_sequence_liss}, in this case ~\textit{cons(5,sequence2)}, and then getting back and process the other functions.
+Let's see how it is done below:
 
 \begin{enumerate}
 \item cons(5,sequence2)
@@ -4387,12 +4374,11 @@ Let's see how it is done above:
 \item cons(3,cons(4,cons(5,sequence2)))
 \item head(cons(3,cons(4,cons(5,sequence2))))
 \end{enumerate}
- 
-And this is why we always generate the code relatively to the sequence type in the first position and then, the others arguments (due to that reason).
 
-Relatively to the ~\textit{copy} and ~\textit{cat} function, as they are not used on an expression but yes as a statement. They use only one simple mechanism and this is done by loading the sequence variable to the respective saved temporary register.
+Concerning ~\textit{copy} and ~\textit{cat} operations, as they are not used in an expression but as a statement. To generate code for them we use a simple mechanism that consists in loading the sequence variable to the respective saved temporary register before calling the respective predefined function.
 
-Let's see a code relatively to those two functions in Listing ~\ref{lst:copy_cat_function_mips}.
+Let's see the code generated for those two operators (~\textit{copy(sequence1,sequence2)} and \\
+ ~\textit{cat(sequence1,sequence2)}) in Listing ~\ref{lst:copy_cat_function_mips}.
 
 \begin{lstlisting}[caption={Example of code generated for copy and cat statement},label={lst:copy_cat_function_mips}]
   lw $s0, sequence1		
@@ -4407,10 +4393,9 @@ Let's see a code relatively to those two functions in Listing ~\ref{lst:copy_cat
   li $v0, 0
 \end{lstlisting}
 
-Basically, regarding to the use of a ~\textit{copy} statement (from line 1 to 4 of Listing ~\ref{lst:copy_cat_function_mips}), it load the first argument of the function (line 1) and then load an empty sequence (line 2) (remind that an empty sequence holds the value NULL which is minus one). Then it call the cat function (line 3) and finally store the new address to the variable ~\textit{sequence2} (line 4). Lastly, we reset the content of the register \$v0 and this is done for internal reason relatively to the execution of assembly code (line 5).
+Concerning the translation of ~\textit{copy} statement (from lines 1 to 4 of Listing ~\ref{lst:copy_cat_function_mips}): load the first argument (line 1); load an empty sequence (line 2) (remind that an empty sequence holds the value NULL which is minus one); call the ~\textit{copy\_sequence} function (line 3); store the new address into the variable ~\textit{sequence2} (line 4). Finally, we reset the content of the register \$v0 for internal reasons (line 5).
 
-Take care that the copy statement, copies every element of a sequence to another sequence.
-
+Remember that the copy statement copies every element of a sequence to another sequence.
 
 Relatively to the use of a ~\textit{cat} statement (from line 6 to 10 of Listing ~\ref{lst:copy_cat_function_mips}, it is the same way as the ~\textit{copy} mechanism. But instead of loading an empty sequence as second argument, it loads the appropriated sequence (line 7).
 
