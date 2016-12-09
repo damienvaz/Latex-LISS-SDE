@@ -1924,7 +1924,7 @@ Notice that every instructions shown in the tables, are instructions which were 
 
 MIPS has the possibility to control and coordinate the computer memory by two ways:
 \begin{enumerate}
-\item stack
+\item L'Isle-Adam
 \item heap
 \end{enumerate}
 
@@ -3331,7 +3331,7 @@ Notice that the variable ~\textit{functionStateUsedOrNot} is always initialized 
 
 \subsubsection{Stack}
 
-To complement the Symbol Table and deal easily with variables declared in scopes with level greater than 0 (inside function); we use a stack depicted in Figure ~\ref{fig:stack_symbol_table}, where we can see two components: ~\textit{levelStackSP} and ~\textit{stackSP}.
+To complement the Symbol Table and deal easily with variables declared in scopes with level greater than 0 (inside a function) we use a stack depicted in Figure ~\ref{fig:stack_symbol_table}, where we can see two components: ~\textit{levelStackSP} and ~\textit{stackSP}.
 
 \begin{enumerate}
 \item ArrayList$<$Integer$>$ ~\textbf{levelStackSP}
@@ -3345,13 +3345,13 @@ To complement the Symbol Table and deal easily with variables declared in scopes
     \label{fig:stack_symbol_table}
 \end{figure}
 
- ~\textit{levelStackSP} is a stack where the index is associated with the scope level of a LISS program.
-The value stored on each index store information about the index of the  ~\textit{stackSP} array.
-Meanwhile the value in each index of the ~\textit{stackSP} array store information about the space that the compiler required when a stack operation was used in a LISS program.
+ ~\textit{levelStackSP} is a stack where the index is associated with the scope level of a LISS subprogram.
+The value stored in each index corresponds to the information about the index of the  ~\textit{stackSP} array.
+Meanwhile the value in each index of the ~\textit{stackSP} array store information about the space that the compiler required when a stack operation was used in a LISS program to deal with function calls as explained in the next section.
 
-By creating that structure, the compiler will use an algorithm for finding a specific position relatively to a variable in the stack faster, instead of creating multiple lines of MIPS assembly code for finding the position. In this case, it is done an optimization in executing a LISS program faster.
+By creating that structure, the compiler will use an algorithm for finding a specific position relatively to a variable in the stack faster, instead of creating multiple lines of MIPS assembly code for finding that position. In this case, it is done an optimization aimed at executing a LISS program faster.
 
-For example, in Listing ~\ref{fig:stack_symbol_table}, if the compiler needs to figure out which address is a variable in scope level 2. It will, throw the ~\textit{levelStackSP}, access to the index 2 and get the value 4. Then with the value 4, he will access it throw the index of the  ~\textit{stackSP} array and gets the address number 64.
+For example, in Figure ~\ref{fig:stack_symbol_table}, if the compiler needs to figure out the address of a variable in scope level 2, it will use ~\textit{levelStackSP}, access to its index 2 and get the value 4. Then with the value 4, it will access index 4 of the  ~\textit{stackSP} array and get the address number 64.
 
 With that address, we can calculate the position of that variable with a specific algorithm which will generate only one MIPS assembly code.
 
@@ -3360,8 +3360,6 @@ With that address, we can calculate the position of that variable with a specifi
 Calling a function requires some jump instruction. Those jump instructions may or may not loose the information available in the registers before processing the function.
 
 That is why we need to create a mechanism to avoid loosing that information before processing a function in MIPS assembly code.
-
-The mechanism is simple, every functions whose arguments have the possibility of calling a function or are used in an expression must use the stack available in MIPS architecture.
 
 Let's first explain the use of the stack regarding to function call in expression. But before starting the explanation, notice that the arguments in function call doesn't allow the use of functions.
 
@@ -3524,8 +3522,8 @@ In Listing ~\ref{lst:array_mips_level_scope_0}, we declare the name of the varia
 Notice that ~\textit{array} type in LISS, only stores integer values and for calculating the space required by the ~\textit{array} variable, we need to do some calculation. 
 
 The calculation is done by multiplying all the limits of each dimension of the ~\textit{array} variable and with that result we multiply by the number 4 (space of an ~\textit{integer} variable).
-Regarding to the line 5 in Listing ~\ref{lst:declaration_variable_code_generation}, the calculation for the variables ~\textit{array1}, ~\textit{array2} and ~\textit{array3} is done by taking the limits 3 and multiply it by 4 (space of an integer), which is equal to 12.
-However regarding to line 6 in Listing ~\ref{lst:declaration_variable_code_generation}, the calculation for the variable ~\textit{array4} is done by multiplying all the limits associated to the variable (3x3 which is 9) and then, multiplying by 4 (space of an integer), which is equal to 36. And the strategy is the same if the dimension of the ~\textit{array} variable is greater regarding to the calculation of generating the space of the ~\textit{array}.
+Regarding to the line 5 in Listing ~\ref{lst:declaration_variable_code_generation}, the calculation for the variables ~\textit{array1}, ~\textit{array2} and ~\textit{array3} is done by taking the limit 3 (they are a one-dimension array) and multiply it by 4 (space of an integer), which is equal to 12.
+However regarding to line 6 in Listing ~\ref{lst:declaration_variable_code_generation}, the calculation for the variable ~\textit{array4} (that is a bi-dimensional array) is done by multiplying all the limits associated to the variable (3x3 which is 9) and then, multiplying by 4 (space of an integer), which is equal to 36. And the strategy is the same if the dimension of the ~\textit{array} variable is greater.
 
 Now that we declared the space of those variables in MIPS assembly code, we need to declare the values associated to those variables.
 
@@ -3537,7 +3535,7 @@ For example, if we have a multidimensional array with 3 dimensions like that :
   array1 = [[[12]],[[5,6],[7]]] -> array size 2,2,3;
 \end{lstlisting}
 
-We need to create a system which will take the informations regarding to the array declared and this pass by taking the informations of some values who are declared in the array (see Figure ~\ref{fig:access_array_structure}).
+We need to create a system which will take the information regarding the array declared to generate the appropriated code (see Figure ~\ref{fig:access_array_structure}). So we created the following structure (see in Listing ~\ref{lst:access_array_structure}).
 
 \begin{figure}[h!]
   \centering
@@ -3546,47 +3544,39 @@ We need to create a system which will take the informations regarding to the arr
     \label{fig:access_array_structure}
 \end{figure}
 
-So we created a system which has this structure (see in Listing ~\ref{lst:access_array_structure}).
-
 \begin{lstlisting}[caption={Structure of saving informations of each index in JAVA},label={lst:access_array_structure}]
   ArrayList<ArrayList<Integer>> accessArray
 \end{lstlisting}
 
-Basically, it is a structure where one ~\textit{ArrayList} holds the informations of one index of the array processed and add it to the other ~\textit{ArrayList} whenever it have completed to process the information (it behaves like a stack).
+Basically, it is a structure where one ~\textit{ArrayList} holds the information of one index of the array processed and add it to the other ~\textit{ArrayList} whenever it completes to process the information (it behaves like a stack).
 
-So, in Figure ~\ref{fig:access_array_structure}, we can see clearly that the left rectangle is the stack where each position of it, holds informations (a ~\textit{ArrayList} of integer informations) regarding to one index declared in the array.
-
-And this ~\textit{LinkedList} of informations has a certain architecture which must be explained.
+So, in Figure ~\ref{fig:access_array_structure}, we can see clearly that the left rectangle is the stack where each position of it holds information (a ~\textit{ArrayList} of integers) regarding each dimension declared in the array.
+This ~\textit{LinkedList} has a certain architecture which must be explained.
 The size of that ~\textit{ArrayList} is equal to the dimension of the ~\textit{array} plus one (refers to the value available in the index processed). Then, the first positions of the ~\textit{ArrayList} are reserved for each dimension of the array and the last position of the ~\textit{ArrayList} is the value which needs to be stored in that index of the array.
 Each dimension will inform us which position has the value.
-
-For example, regarding to the example in Figure ~\ref{fig:access_array_structure}.
-
-The first information available in the stack is in the position 0 and this information is telling us that there is a value to be stored at the position [0,0,0] with the value 12. The second information, available in the position 1 of the stack, is telling us that there is another value to be stored at the position [1,1,0] with the value 7.
-
+For example, in Figure ~\ref{fig:access_array_structure}, the first information available in the stack is in the position 0 and this information is telling us that there is a value (12) to be stored at the position [0,0,0]. The second information, available in the index 1 of the stack, is telling us that there is another value (7) to be stored at the position [1,1,0].
 After getting all those informations, we need to generate the instructions and for that we need to calculate the right position of each value with the information that it was processed.
-
-The calculation is done with the next formula (see Equation ~\ref{eq:formulae_array_position}).
+The calculation is done with the formula in Equation ~\ref{eq:formulae_array_position}.
 
 \begin{equation} \label{eq:formulae_array_position}
   p(l,a) = \sum_{i=0,\ i\neq n-1}^{n-2} (a[i]\times\prod_{j=i+1}^{n-1} l[j])+a[n-1]
 \end{equation}
 
-In Equation ~\ref{eq:formulae_array_position}, the equation needs two inputs:
+Equation ~\ref{eq:formulae_array_position} needs two inputs:
 
 \begin{itemize}
-\item ~\textbf{l} - array variable which has the informations about the limits of the array in question.
-\item ~\textbf{a} - array variable which has the information of the position of the array that need to be processed.
+\item ~\textbf{l} - array variable which has the informations about the bounds of the array in question.
+\item ~\textbf{a} - array variable with the indexes of the position of the array that need to be accessed.
 \end{itemize}
 
-Notice that the variable ~\textbf{m}, in the equation, is equal to the dimension of the array.
+Notice that the variable ~\textbf{n}, in the equation, is equal to the number of dimensions of the array.
 
-Then after getting those inputs variables, it calculates the position of the array in question for any n-dimensional size.
-Also, take a note that if the dimension of the array is equal to 1, the equation doesn't compute the first part (due to the restriction of the equation).
+Then after getting those inputs variables, it calculates the position of an element for any n-dimensional  array size.
+If the dimension of the array is 1, the equation doesn't compute the first part (due to the restriction of the equation).
 
-And to understand the formula, let's explain it with an example.
+And to understand the formula, let's explain it with an example supposing that we need to access a[1,1,0] of an array tridimensional with 2,2,3 boundaries.
 
-Imagine that we have those input variables for the formula (examples taken from Figure ~\ref{fig:access_array_structure} and Listing ~\ref{lst:array_with_3_dimension_example}):
+In that case, the input variables for the formula (examples taken from Figure ~\ref{fig:access_array_structure} and Listing ~\ref{lst:array_with_3_dimension_example}) are:
 
 \begin{figure}[h!]
   \centering
@@ -3594,7 +3584,7 @@ Imagine that we have those input variables for the formula (examples taken from 
     \label{fig:example_position_calculation_structure}
 \end{figure}
 
-By using the equation above with that example, let's unroll it.
+By using the equation above with that example, let's unfold it.
 
 \begin{equation}
  \begin{matrix}
@@ -3607,9 +3597,9 @@ By using the equation above with that example, let's unroll it.
  \end{matrix}
 \end{equation}
 
-So, with that calculation we can see that the position of the array is the number 9.
+So, with that calculation we can see that the memory sequential position for the array component selected (0,1,0) is the offset 9.
 
-Let's see throw the next Figure ~\ref{fig:array_example_calculation} if the calculation was done correctly.
+Using Figure ~\ref{fig:array_example_calculation} let's check if the calculation was done correctly.
 
 \begin{figure}[h!]
  \centering
@@ -3618,15 +3608,13 @@ Let's see throw the next Figure ~\ref{fig:array_example_calculation} if the calc
   \label{fig:array_example_calculation}
 \end{figure}
 
-Using the positions of the variable array ~\textbf{l} and using them to find the right position in the array structure in Figure ~\ref{fig:array_example_calculation}, we go firstly to the right position of the first dimension (number 1 ( l[0] = 1)). Then, we go to the second dimension of the part where belongs the number 1 in the first dimension,  in this case it is the number 1 ( l[1] = 1 ). Finally, we go to the last dimension and go to the number 0 ( l[2] = 0).  As we can see, it goes directly to the index number 9 of the array. 
+Using the positions of the variable array ~\textbf{l} and using them to find the right position in the array structure in Figure ~\ref{fig:array_example_calculation}, we go first to the right position of the first dimension (number 1 ( l[0] = 1)). Then, we go to the second dimension of the part that belongs the number 1 in the first dimension,  in this case it is the number 1 ( l[1] = 1 ). Finally, we go to the last dimension and go to the number 0 ( l[2] = 0).  As we can see, it goes directly to the index number 9 of the array. 
 
-This proves that the algorithm works very well and also, how it calculates the position for an array with the structure implemented in this project.
+This proves that the algorithm works properly and explains how it calculates the memory position for any array component given its index.
 
-Now that we know how the position is calculated in an array; let's continue to unroll the line 5 and line 6 in Listing ~\ref{lst:declaration_variable_code_generation}.
+Back to the analysis of line 5 and line 6 in Listing ~\ref{lst:declaration_variable_code_generation}, and after creating the space for the variables ~\textit{array2}, ~\textit{array3} and ~\textit{array4}, we need to initialize them.
 
-So, after creating the space of those variables ~\textit{array2}, ~\textit{array3} and ~\textit{array4}, we need to initialize them.
-
-Let's see an example of how it is done the initialization of arrays in Listing ~\ref{lst:array2_initialization_mips}.
+Let's see in Listing ~\ref{lst:array2_initialization_mips} an example of the code generation for the initialization of ~\textit{array2}
 
 \begin{lstlisting}[caption={MIPS assembly code generated for the variable array2},label={lst:array2_initialization_mips}]
   .text
@@ -3644,12 +3632,11 @@ Let's see an example of how it is done the initialization of arrays in Listing ~
        #######################################
 \end{lstlisting}
 
-In MIPS architecture, it is impossible to declare the array with the values associated in the declaration parts. So, we need to fix this situation and this is done by creating MIPS assembly code in the flow of the program execution.
+In MIPS architecture, it is impossible to declare the array with the values associated in the declaration part. So, we need to overcome this problem and this is done by creating MIPS assembly code in the ~\textit{text} part to be added to the flow of the program execution.
 
-Basically, the idea is that the MIPS assembly code is always in the first place regarding to the flow of the program execution. In this case, we can see in Listing ~\ref{lst:array2_initialization_mips} that the MIPS assembly code for the initialization of the ~\textit{array2} variable comes first in the flow of the program execution. Then after that every initialization was made regarding to arrays, comes and begins the flow of the program execution.
+In this case, we can see in Listing ~\ref{lst:array2_initialization_mips} that the MIPS assembly code for the initialization of ~\textit{array2} comes first in the flow of the program execution. Then after that code fragment for initialization of arrays, comes the mark fragment to control the flow of the program execution.
 
-In Listing ~\ref{lst:array2_initialization_mips}, let's explain how the code generation works for values regarding to the array:
-
+Let's explain how the code generated in Listing ~\ref{lst:array2_initialization_mips} works.
 \begin{itemize}
 \item line 4 - Loading the value 2, this is the value to be stored in the array.
 \item line 5 - Loading the position 0, this is the position which the value will be stored (use the algorithm for calculating the position).
@@ -3657,11 +3644,11 @@ In Listing ~\ref{lst:array2_initialization_mips}, let's explain how the code gen
 \item line 7.... - Continue to use the same strategy with the next values that needs to be added.
 \end{itemize}
 
-Storing one value in an array needs three MIPS instruction assembly code.
+Storing one value in an array needs three MIPS instructions.
 
 Notice that the position calculated is always multiplied, at the end, by the size of an ~\textit{integer} (number 4).
 
-As we can see in Listing ~\ref{lst:array2_initialization_mips}, the position are :
+As we can see in Listing ~\ref{lst:array2_initialization_mips}, the positions are :
 
 \begin{itemize}
 \item line 5 - the value is 0 =$>$ position 0 (0/4 = 0)
@@ -3669,11 +3656,11 @@ As we can see in Listing ~\ref{lst:array2_initialization_mips}, the position are
 \item line 11 - the value is 8 =$>$ position 2 (8/4 = 2)
 \end{itemize}
 
-Also, take care that every other positions in the array have the value 0 and that is why we don't need to create the MIPS instructions for them, because the default value is 0 in an array non-initialized (the story changes when those arrays are created in a level scope greater than 0, but it will be talked further).
+The other array elements (on components) have the initial value 0 and that is why we don't need to create MIPS instructions for them, because the default value is 0 in an array non-initialized (the story changes when those arrays are created in a level scope greater than 0, but it will be discussed further).
 
-\subsection{Sets}
+\subsection*{Sets}
 
-In line 7 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two differents named variables being declared with the type ~\textit{set}.
+In line 7 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two different named variables being declared with the type ~\textit{set}.
 
 That type basically doesn't create any informations in the MIPS assembly code for the declarations parts. Instead it saves the information in a specific structure created for that purpose. The structure is made with the concept of a Tree structure where there are some nodes with branches or not, associated to others nodes.
 
@@ -3684,26 +3671,25 @@ And this structure is made by two JAVA class:
 \item Set Class
 \end{itemize}
 
-The Node JAVA class is a class where represents the concept of a node structure in a tree. It is represented by three things:
+The Node JAVA class is a class that represents the concept of a node structure in a tree, with three components:
 \begin{enumerate}
 \item String data 
 \item Node left
 \item Node right
 \end{enumerate}
 
-The variable ~\textbf{data} refers to the value represented of that node, the variables ~\textbf{left} and ~\textbf{right} refers to a node who might be to the left or right side of the actual node.
+The variable ~\textbf{data} refers to the value associated with that node, the variables ~\textbf{left} and ~\textbf{right} refers to a node who might be to the left or right side of the present node.
 
-Now, the Set class is a class where it saves the information of the set in a tree structure and the free variable associated with the set. Take care, that the Set class uses and abuses the Node class.
-It is represented by two things:
+Now, the Set class is a class that saves the information of the set in a tree structure and the free variable associated with that set declaration. The Set class uses the Node class.
 
 \begin{enumerate}
 \item ArrayList$<$Node$>$ identifier
 \item Node head
 \end{enumerate}
 
-The variable ~\textbf{identifer} refers to a list of free variables that are stored in the tree structure. This is done for one particularly reason, instead of browsing the entire tree and looking to those free variables, we have a list where we can change the state of those free variables available in the list and directly, it changes also in the tree. The advantage of that structure is that we don't need to browse in the tree and change or look for those free variable. Otherwise it will be a time consume by doing that.
+The variable ~\textbf{identifer} refers to a list of occurencies of the set free variable in the tree nodes. This is done for one particularly reason, instead of browsing the entire tree and looking for those free variable occurences, we can change their state along the list and directly, it changes also in the tree. The advantage of that structure is that we don't need to execute a tree search to look for  and change those free variable occurences, who will be  a time consuming by doing that operation.
 
-Then we have the variable ~\textbf{head} which holds the information about the head node of the tree structure.
+Then we have the variable ~\textbf{head} which points to the root node of the tree structure.
 
 Let's see the Set structure in Figure ~\ref{fig:set_structure}.
 
@@ -3714,11 +3700,8 @@ Let's see the Set structure in Figure ~\ref{fig:set_structure}.
   \label{fig:set_structure}
 \end{figure}
 
-Basically, a set in LISS is made with a tree structure where each nodes are a symbol of the expression associated with the set.
-For our project, we managed to create a variable which points to the head of the tree structure (also named by the variable ~\textit{head}) and a list of free variables stored in the variable named ~\textit{identifier}.
-
-We implemented a list for free variables for one reason and this reason comes with the fact that we can join multiple sets.
-Notice that each set have their own free variable which means that each free variable regarding to each sets does have differents address. And we need to collect all those addresses of each free variable with a list.
+We implemented that list for free variables for one reason and this reason comes with the fact that we can join multiple sets.
+Notice that each set has its own free variable which means that each free variable is distinct from set to set when trees are merged in a set operation.
 
 Let's see an example of joining two sets in Figure ~\ref{fig:sets_associaton}.
 

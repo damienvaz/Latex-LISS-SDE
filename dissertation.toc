@@ -86,21 +86,20 @@
 \contentsline {subsubsection}{Calling a function}{81}{figure.caption.47}
 \contentsline {subsection}{\numberline {4.4.2}LISS language code generation}{84}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}Creating a variable in LISS}{84}{subsection.4.4.3}
-\contentsline {subsection}{\numberline {4.4.4}Sets}{90}{subsection.4.4.4}
-\contentsline {subsection}{\numberline {4.4.5}Loading a variable or a value}{101}{subsection.4.4.5}
-\contentsline {subsection}{\numberline {4.4.6}Assigning in LISS}{102}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.4}Loading a variable or a value}{101}{subsection.4.4.4}
+\contentsline {subsection}{\numberline {4.4.5}Assigning in LISS}{102}{subsection.4.4.5}
 \contentsline {subsubsection}{Assignment for integer}{102}{lstnumber.4.73.7}
 \contentsline {subsubsection}{Assignment for boolean}{104}{lstnumber.4.76.4}
-\contentsline {subsubsection}{Assignment for array}{107}{lstnumber.-19.3}
-\contentsline {subsubsection}{Assignment for set}{108}{lstnumber.4.84.6}
+\contentsline {subsubsection}{Assignment for array}{106}{lstnumber.-19.3}
+\contentsline {subsubsection}{Assignment for set}{107}{lstnumber.4.84.6}
 \contentsline {subsubsection}{Assignment for sequence}{108}{equation.4.4.8}
-\contentsline {subsection}{\numberline {4.4.7}Set operations}{109}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Sequence operations}{110}{subsection.4.4.8}
-\contentsline {subsection}{\numberline {4.4.9}Calling a function in LISS}{112}{subsection.4.4.9}
-\contentsline {subsection}{\numberline {4.4.10}Creating I/O in LISS}{113}{subsection.4.4.10}
-\contentsline {subsection}{\numberline {4.4.11}Creating conditional statement in LISS}{115}{subsection.4.4.11}
-\contentsline {subsection}{\numberline {4.4.12}Creating iterative statement}{117}{subsection.4.4.12}
-\contentsline {subsection}{\numberline {4.4.13}Creating increment or decrement variables}{123}{subsection.4.4.13}
+\contentsline {subsection}{\numberline {4.4.6}Set operations}{108}{subsection.4.4.6}
+\contentsline {subsection}{\numberline {4.4.7}Sequence operations}{109}{subsection.4.4.7}
+\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{112}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{113}{subsection.4.4.9}
+\contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{115}{subsection.4.4.10}
+\contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{117}{subsection.4.4.11}
+\contentsline {subsection}{\numberline {4.4.12}Creating increment or decrement variables}{122}{subsection.4.4.12}
 \contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{124}{chapter.5}
 \contentsline {section}{\numberline {5.1}What is a template?}{125}{section.5.1}
 \contentsline {section}{\numberline {5.2}Conception of the SDE}{126}{section.5.2}

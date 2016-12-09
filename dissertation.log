@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  8 DEC 2016 12:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.12.22)  9 DEC 2016 11:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1813,7 +1813,7 @@ Chapter 2.
 [3
 
 
-] <img/GIC2.png, id=426, 562.1pt x 347.2975pt>
+] <img/GIC2.png, id=424, 562.1pt x 347.2975pt>
 File: img/GIC2.png Graphic file (type png)
  <use img/GIC2.png>
 Package pdftex.def Info: img/GIC2.png used on input line 288.
@@ -1873,7 +1873,7 @@ org / wikipedia / commons / thumb / e / ea / MIPS _ Architecture _ (Pipelined )
 
  []
 
-<img/MIPSarchitecture.png, id=986, 803.0pt x 501.875pt>
+<img/MIPSarchitecture.png, id=984, 803.0pt x 501.875pt>
 File: img/MIPSarchitecture.png Graphic file (type png)
 
 <use img/MIPSarchitecture.png>
@@ -1887,7 +1887,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
 ] [27 <./img/MIPSarchitecture.png>] [28]
-<img/mips_register.png, id=1014, 333.245pt x 646.415pt>
+<img/mips_register.png, id=1012, 333.245pt x 646.415pt>
 File: img/mips_register.png Graphic file (type png)
 
 <use img/mips_register.png>
@@ -1941,14 +1941,14 @@ Overfull \hbox (7.57912pt too wide) in paragraph at lines 1877--1886
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[41] [42] [43] <img/MARS_GUI.png, id=1207, 3115.64pt x 1977.3875pt>
+[41] [42] [43] <img/MARS_GUI.png, id=1205, 3115.64pt x 1977.3875pt>
 File: img/MARS_GUI.png Graphic file (type png)
 
 <use img/MARS_GUI.png>
 Package pdftex.def Info: img/MARS_GUI.png used on input line 1987.
 (pdftex.def)             Requested size: 442.65375pt x 280.93582pt.
  [44 <./img/MARS_GUI.png>]
-<img/MARS_GUI_EXECUTE.png, id=1217, 3115.64pt x 1977.3875pt>
+<img/MARS_GUI_EXECUTE.png, id=1215, 3115.64pt x 1977.3875pt>
 File: img/MARS_GUI_EXECUTE.png Graphic file (type png)
 
 <use img/MARS_GUI_EXECUTE.png>
@@ -1957,7 +1957,7 @@ Package pdftex.def Info: img/MARS_GUI_EXECUTE.png used on input line 2008.
  [45 <./img/MARS_GUI_EXECUTE.png>] [46]
 Excluding 'comment' comment.
 Chapter 4.
-<img/compiler.png, id=1230, 923.45pt x 491.8375pt>
+<img/compiler.png, id=1228, 923.45pt x 491.8375pt>
 File: img/compiler.png Graphic file (type png)
  <use img/compiler.png>
 Package pdftex.def Info: img/compiler.png used on input line 2138.
@@ -1968,7 +1968,7 @@ Package pdftex.def Info: img/compiler.png used on input line 2138.
 
 ] Excluding 'comment' comment. [48 <./img/compiler.png>]
 Excluding 'comment' comment.
-<img/antlr4_parse_tree.png, id=1257, 1312.905pt x 759.83875pt>
+<img/antlr4_parse_tree.png, id=1255, 1312.905pt x 759.83875pt>
 File: img/antlr4_parse_tree.png Graphic file (type png)
 
 <use img/antlr4_parse_tree.png>
@@ -1979,7 +1979,7 @@ Package pdftex.def Info: img/antlr4_parse_tree.png used on input line 2243.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [49] [50 <./img/antlr4_parse_tree.png>]
-<img/symbol_table_hierarchical.jpg, id=1290, 587.19376pt x 362.35374pt>
+<img/symbol_table_hierarchical.jpg, id=1288, 587.19376pt x 362.35374pt>
 File: img/symbol_table_hierarchical.jpg Graphic file (type jpg)
 
 <use img/symbol_table_hierarchical.jpg>
@@ -1987,7 +1987,7 @@ Package pdftex.def Info: img/symbol_table_hierarchical.jpg used on input line 2
 285.
 (pdftex.def)             Requested size: 354.12434pt x 218.52527pt.
  [51 <./img/symbol_table_hierarchical.jpg>] <img/global_symbol_table.png, id=12
-96, 845.1575pt x 598.235pt>
+94, 845.1575pt x 598.235pt>
 File: img/global_symbol_table.png Graphic file (type png)
 
 <use img/global_symbol_table.png>
@@ -1999,14 +1999,14 @@ Overfull \hbox (21.00119pt too wide) in paragraph at lines 2460--2464
  [][] 
  []
 
-[55] <img/InfoIdentifiersTable.png, id=1329, 584.1825pt x 485.815pt>
+[55] <img/InfoIdentifiersTable.png, id=1327, 584.1825pt x 485.815pt>
 File: img/InfoIdentifiersTable.png Graphic file (type png)
 
 <use img/InfoIdentifiersTable.png>
 Package pdftex.def Info: img/InfoIdentifiersTable.png used on input line 2484.
 (pdftex.def)             Requested size: 354.12434pt x 294.5009pt.
  [56 <./img/InfoIdentifiersTable.png>]
-<img/error_table_liss.png, id=1339, 304.13625pt x 243.02559pt>
+<img/error_table_liss.png, id=1337, 304.13625pt x 243.02559pt>
 File: img/error_table_liss.png Graphic file (type png)
 
 <use img/error_table_liss.png>
@@ -2017,7 +2017,7 @@ Package pdftex.def Info: img/error_table_liss.png used on input line 2532.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [57] [58 <./img/error_table_liss.png>]
-<img/error_message_example_treemap.png, id=1362, 646.415pt x 524.96124pt>
+<img/error_message_example_treemap.png, id=1360, 646.415pt x 524.96124pt>
 File: img/error_message_example_treemap.png Graphic file (type png)
 
 <use img/error_message_example_treemap.png>
@@ -2034,7 +2034,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [59 <./img/error_message_example_treemap.png>] [60] [61] [62] [63] [64]
 [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78] [79]
-<img/stackSymbolTable.png, id=1738, 845.1575pt x 598.235pt>
+<img/stackSymbolTable.png, id=1736, 845.1575pt x 598.235pt>
 File: img/stackSymbolTable.png Graphic file (type png)
 
 <use img/stackSymbolTable.png>
@@ -2045,139 +2045,134 @@ Package pdftex.def Info: img/stackSymbolTable.png used on input line 3343.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [80] [81 <./img/stackSymbolTable.png>] [82] [83] [84] [85]
-<img/access_array.png, id=1861, 845.1575pt x 598.235pt>
+<img/access_array.png, id=1860, 845.1575pt x 598.235pt>
 File: img/access_array.png Graphic file (type png)
 
 <use img/access_array.png>
-Package pdftex.def Info: img/access_array.png used on input line 3544.
+Package pdftex.def Info: img/access_array.png used on input line 3542.
 (pdftex.def)             Requested size: 442.65375pt x 313.32956pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [86] [87 <./img/access_array.png>]
-<img/example_position_calculation.png, id=1889, 371.3875pt x 264.99pt>
+<img/example_position_calculation.png, id=1887, 371.3875pt x 264.99pt>
 File: img/example_position_calculation.png Graphic file (type png)
 
 <use img/example_position_calculation.png>
 Package pdftex.def Info: img/example_position_calculation.png used on input lin
-e 3593.
+e 3583.
 (pdftex.def)             Requested size: 88.52939pt x 63.16624pt.
 
-<img/array_example_calculation.png, id=1891, 845.1575pt x 442.65375pt>
+<img/array_example_calculation.png, id=1889, 845.1575pt x 442.65375pt>
 File: img/array_example_calculation.png Graphic file (type png)
 
 <use img/array_example_calculation.png>
 Package pdftex.def Info: img/array_example_calculation.png used on input line 3
-616.
+606.
 (pdftex.def)             Requested size: 354.12434pt x 185.47426pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [88 <./img/example_position_calculation.png>] [89 <./img/array_example_calculat
-ion.png>] [90] <img/set_structure.png, id=1932, 735.74875pt x 473.77pt>
+ion.png>] [90] <img/set_structure.png, id=1930, 735.74875pt x 473.77pt>
 File: img/set_structure.png Graphic file (type png)
 
 <use img/set_structure.png>
-Package pdftex.def Info: img/set_structure.png used on input line 3712.
+Package pdftex.def Info: img/set_structure.png used on input line 3698.
 (pdftex.def)             Requested size: 354.12434pt x 228.03595pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<img/sets_association.png, id=1934, 845.1575pt x 598.235pt>
+<img/sets_association.png, id=1932, 845.1575pt x 598.235pt>
 File: img/sets_association.png Graphic file (type png)
 
 <use img/sets_association.png>
-Package pdftex.def Info: img/sets_association.png used on input line 3727.
+Package pdftex.def Info: img/sets_association.png used on input line 3713.
 (pdftex.def)             Requested size: 354.12434pt x 250.66364pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [91] [92 <./img/set_structure.png> <./img/sets_association.png>] [93] [94]
-[95] <img/stack_architecture.png, id=2005, 845.1575pt x 598.235pt>
+[95] <img/stack_architecture.png, id=2006, 845.1575pt x 598.235pt>
 File: img/stack_architecture.png Graphic file (type png)
 
 <use img/stack_architecture.png>
-Package pdftex.def Info: img/stack_architecture.png used on input line 3859.
+Package pdftex.def Info: img/stack_architecture.png used on input line 3845.
 (pdftex.def)             Requested size: 442.65375pt x 313.32956pt.
  [96 <./img/stack_architecture.png>] [97]
-[98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108] [109] [110]
-[111] [112] [113] [114]
-<img/conditional_statement.png, id=2453, 584.1825pt x 598.235pt>
-File: img/conditional_statement.png Graphic file (type png)
-
-<use img/conditional_statement.png>
-Package pdftex.def Info: img/conditional_statement.png used on input line 4585.
-
-(pdftex.def)             Requested size: 309.85626pt x 317.31863pt.
-
+[98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[115] [116 <./img/conditional_statement.png>]
-<img/for-loop_in.png, id=2501, 608.2725pt x 639.38875pt>
+[109] [110] [111] [112] [113] [114]
+<img/conditional_statement.png, id=2458, 584.1825pt x 598.235pt>
+File: img/conditional_statement.png Graphic file (type png)
+
+<use img/conditional_statement.png>
+Package pdftex.def Info: img/conditional_statement.png used on input line 4571.
+
+(pdftex.def)             Requested size: 309.85626pt x 317.31863pt.
+ [115 <./img/conditional_statement.png>]
+[116] <img/for-loop_in.png, id=2503, 608.2725pt x 639.38875pt>
 File: img/for-loop_in.png Graphic file (type png)
 
 <use img/for-loop_in.png>
-Package pdftex.def Info: img/for-loop_in.png used on input line 4656.
+Package pdftex.def Info: img/for-loop_in.png used on input line 4642.
 (pdftex.def)             Requested size: 354.12434pt x 372.25063pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [117] [118 <./img/for-loop_in.png>]
-<img/for-loop_inArray.png, id=2549, 432.61626pt x 479.7925pt>
+<img/for-loop_inArray.png, id=2556, 432.61626pt x 479.7925pt>
 File: img/for-loop_inArray.png Graphic file (type png)
 
 <use img/for-loop_inArray.png>
-Package pdftex.def Info: img/for-loop_inArray.png used on input line 4718.
+Package pdftex.def Info: img/for-loop_inArray.png used on input line 4704.
 (pdftex.def)             Requested size: 221.32687pt x 245.45963pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [119] [120 <./img/for-loop_inArray.png>]
-<img/while-loop.png, id=2598, 516.93124pt x 301.125pt>
+<img/while-loop.png, id=2607, 516.93124pt x 301.125pt>
 File: img/while-loop.png Graphic file (type png)
 
 <use img/while-loop.png>
-Package pdftex.def Info: img/while-loop.png used on input line 4771.
+Package pdftex.def Info: img/while-loop.png used on input line 4757.
 (pdftex.def)             Requested size: 265.59494pt x 154.7204pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[121] [122 <./img/while-loop.png>] [123]
+ [121 <./img/while-loop.png>] [122] [123]
 Chapter 5.
-<img/XCode-interface.png, id=2692, 622.325pt x 380.42125pt>
+<img/XCode-interface.png, id=2690, 622.325pt x 380.42125pt>
 File: img/XCode-interface.png Graphic file (type png)
 
 <use img/XCode-interface.png>
-Package pdftex.def Info: img/XCode-interface.png used on input line 4890.
+Package pdftex.def Info: img/XCode-interface.png used on input line 4876.
 (pdftex.def)             Requested size: 442.65375pt x 270.59436pt.
  [124
 
 
  <./img/XCode-interface.png>] [125]
-<img/SDE.png, id=2721, 602.25pt x 281.05pt>
+<img/SDE.png, id=2719, 602.25pt x 281.05pt>
 File: img/SDE.png Graphic file (type png)
  <use img/SDE.png>
-Package pdftex.def Info: img/SDE.png used on input line 4943.
+Package pdftex.def Info: img/SDE.png used on input line 4929.
 (pdftex.def)             Requested size: 442.65375pt x 206.57997pt.
- [126 <./img/SDE.png>] <img/LISS-SDE.png, id=2730, 1445.4pt x 903.375pt>
+ [126 <./img/SDE.png>] <img/LISS-SDE.png, id=2728, 1445.4pt x 903.375pt>
 File: img/LISS-SDE.png Graphic file (type png)
  <use img/LISS-SDE.png>
-Package pdftex.def Info: img/LISS-SDE.png used on input line 4975.
+Package pdftex.def Info: img/LISS-SDE.png used on input line 4961.
 (pdftex.def)             Requested size: 442.65375pt x 276.6524pt.
 
-<img/LISS-SDE_organization.png, id=2732, 2890.8pt x 1806.75pt>
+<img/LISS-SDE_organization.png, id=2730, 2890.8pt x 1806.75pt>
 File: img/LISS-SDE_organization.png Graphic file (type png)
 
 <use img/LISS-SDE_organization.png>
-Package pdftex.def Info: img/LISS-SDE_organization.png used on input line 4984.
+Package pdftex.def Info: img/LISS-SDE_organization.png used on input line 4970.
 
 (pdftex.def)             Requested size: 442.65375pt x 276.6524pt.
 
@@ -2185,47 +2180,47 @@ Package pdftex.def Info: img/LISS-SDE_organization.png used on input line 4984.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [127 <./img/LISS-SDE.png>]
-<img/LISS-SDE_toolbar_menu/ToolBar_menu1.png, id=2741, 216.81pt x 35.13126pt>
+<img/LISS-SDE_toolbar_menu/ToolBar_menu1.png, id=2739, 216.81pt x 35.13126pt>
 File: img/LISS-SDE_toolbar_menu/ToolBar_menu1.png Graphic file (type png)
 
 <use img/LISS-SDE_toolbar_menu/ToolBar_menu1.png>
 Package pdftex.def Info: img/LISS-SDE_toolbar_menu/ToolBar_menu1.png used on in
-put line 5007.
+put line 4993.
 (pdftex.def)             Requested size: 221.32687pt x 35.865pt.
 
-<img/LISS-SDE_toolbar_menu/ToolBar_menu2.png, id=2743, 208.78pt x 159.59625pt>
+<img/LISS-SDE_toolbar_menu/ToolBar_menu2.png, id=2741, 208.78pt x 159.59625pt>
 File: img/LISS-SDE_toolbar_menu/ToolBar_menu2.png Graphic file (type png)
 
 <use img/LISS-SDE_toolbar_menu/ToolBar_menu2.png>
 Package pdftex.def Info: img/LISS-SDE_toolbar_menu/ToolBar_menu2.png used on in
-put line 5016.
+put line 5002.
 (pdftex.def)             Requested size: 221.32687pt x 169.19798pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_toolbar_menu/ToolBar_menu3.png, id=2745, 221.82875pt x 100.375pt>
+<img/LISS-SDE_toolbar_menu/ToolBar_menu3.png, id=2743, 221.82875pt x 100.375pt>
 File: img/LISS-SDE_toolbar_menu/ToolBar_menu3.png Graphic file (type png)
 <use img/LISS-SDE_toolbar_menu/ToolBar_menu3.png>
 Package pdftex.def Info: img/LISS-SDE_toolbar_menu/ToolBar_menu3.png used on in
-put line 5025.
+put line 5011.
 (pdftex.def)             Requested size: 221.32687pt x 100.14653pt.
  [128 <./img/LISS-SDE_organization.png> <./img/LISS-SDE_toolbar_menu/ToolBar_me
 nu1.png>]
-<img/LISS-SDE_toolbar_menu/ToolBar_menu4.png, id=2755, 214.8025pt x 79.29625pt>
+<img/LISS-SDE_toolbar_menu/ToolBar_menu4.png, id=2753, 214.8025pt x 79.29625pt>
 File: img/LISS-SDE_toolbar_menu/ToolBar_menu4.png Graphic file (type png)
 <use img/LISS-SDE_toolbar_menu/ToolBar_menu4.png>
 Package pdftex.def Info: img/LISS-SDE_toolbar_menu/ToolBar_menu4.png used on in
-put line 5034.
+put line 5020.
 (pdftex.def)             Requested size: 221.32687pt x 81.70627pt.
 
-<img/LISS-SDE_toolbar_menu/ToolBar_menu5.png, id=2757, 269.005pt x 74.2775pt>
+<img/LISS-SDE_toolbar_menu/ToolBar_menu5.png, id=2755, 269.005pt x 74.2775pt>
 File: img/LISS-SDE_toolbar_menu/ToolBar_menu5.png Graphic file (type png)
 
 <use img/LISS-SDE_toolbar_menu/ToolBar_menu5.png>
 Package pdftex.def Info: img/LISS-SDE_toolbar_menu/ToolBar_menu5.png used on in
-put line 5043.
+put line 5029.
 (pdftex.def)             Requested size: 221.32687pt x 61.11308pt.
 
 
@@ -2233,39 +2228,39 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [129 <./img/LISS-SDE_toolbar_menu/ToolBar_menu2.png> <./img/LISS-SDE_toolbar_me
 nu/ToolBar_menu3.png> <./img/LISS-SDE_toolbar_menu/ToolBar_menu4.png>]
-<img/LISS-SDE_creating_program/LISS-SDE1.png, id=2770, 1011.78pt x 119.44624pt>
+<img/LISS-SDE_creating_program/LISS-SDE1.png, id=2768, 1011.78pt x 119.44624pt>
 File: img/LISS-SDE_creating_program/LISS-SDE1.png Graphic file (type png)
 <use img/LISS-SDE_creating_program/LISS-SDE1.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE1.png used on in
-put line 5086.
+put line 5072.
 (pdftex.def)             Requested size: 442.65375pt x 52.25758pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [130 <./img/LISS-SDE_toolbar_menu/ToolBar_menu5.png>]
-<img/LISS-SDE_creating_program/LISS-SDE2.png, id=2784, 1041.8925pt x 155.58125p
+<img/LISS-SDE_creating_program/LISS-SDE2.png, id=2782, 1041.8925pt x 155.58125p
 t>
 File: img/LISS-SDE_creating_program/LISS-SDE2.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE2.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE2.png used on in
-put line 5104.
+put line 5090.
 (pdftex.def)             Requested size: 442.65375pt x 66.09859pt.
 
-<img/LISS-SDE_creating_program/LISS-SDE3.png, id=2786, 1016.79875pt x 156.585pt
+<img/LISS-SDE_creating_program/LISS-SDE3.png, id=2784, 1016.79875pt x 156.585pt
 >
 File: img/LISS-SDE_creating_program/LISS-SDE3.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE3.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE3.png used on in
-put line 5115.
+put line 5101.
 (pdftex.def)             Requested size: 442.65375pt x 68.16647pt.
 
-<img/LISS-SDE_creating_program/LISS-SDE4.png, id=2789, 1016.79875pt x 155.58125
+<img/LISS-SDE_creating_program/LISS-SDE4.png, id=2787, 1016.79875pt x 155.58125
 pt>
 File: img/LISS-SDE_creating_program/LISS-SDE4.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE4.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE4.png used on in
-put line 5124.
+put line 5110.
 (pdftex.def)             Requested size: 442.65375pt x 67.7295pt.
 
 
@@ -2273,119 +2268,119 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [131 <./img/LISS-SDE_creating_program/LISS-SDE1.png> <./img/LISS-SDE_creating_p
 rogram/LISS-SDE2.png> <./img/LISS-SDE_creating_program/LISS-SDE3.png>]
-<img/LISS-SDE_creating_program/LISS-SDE5.png, id=2800, 938.50626pt x 289.08pt>
+<img/LISS-SDE_creating_program/LISS-SDE5.png, id=2798, 938.50626pt x 289.08pt>
 File: img/LISS-SDE_creating_program/LISS-SDE5.png Graphic file (type png)
 
 <use img/LISS-SDE_creating_program/LISS-SDE5.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE5.png used on in
-put line 5135.
+put line 5121.
 (pdftex.def)             Requested size: 442.65375pt x 136.344pt.
 
-<img/LISS-SDE_creating_program/LISS-SDE6.png, id=2803, 968.61874pt x 343.2825pt
+<img/LISS-SDE_creating_program/LISS-SDE6.png, id=2801, 968.61874pt x 343.2825pt
 >
 File: img/LISS-SDE_creating_program/LISS-SDE6.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE6.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE6.png used on in
-put line 5144.
+put line 5130.
 (pdftex.def)             Requested size: 442.65375pt x 156.87996pt.
  [132 <./img/LISS-SDE_creating_program/LISS-SDE4.png> <./img/LISS-SDE_creating_
 program/LISS-SDE5.png> <./img/LISS-SDE_creating_program/LISS-SDE6.png>]
-<img/LISS-SDE_creating_program/LISS-SDE7.png, id=2814, 966.61125pt x 365.365pt>
+<img/LISS-SDE_creating_program/LISS-SDE7.png, id=2812, 966.61125pt x 365.365pt>
 File: img/LISS-SDE_creating_program/LISS-SDE7.png Graphic file (type png)
 <use img/LISS-SDE_creating_program/LISS-SDE7.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE7.png used on in
-put line 5155.
+put line 5141.
 (pdftex.def)             Requested size: 442.65375pt x 167.3173pt.
 
-<img/LISS-SDE_creating_program/LISS-SDE8.png, id=2816, 939.51pt x 394.47375pt>
+<img/LISS-SDE_creating_program/LISS-SDE8.png, id=2814, 939.51pt x 394.47375pt>
 File: img/LISS-SDE_creating_program/LISS-SDE8.png Graphic file (type png)
 
 <use img/LISS-SDE_creating_program/LISS-SDE8.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE8.png used on in
-put line 5168.
+put line 5154.
 (pdftex.def)             Requested size: 442.65375pt x 185.85411pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE9.png, id=2819, 948.54375pt x 378.41376p
+<img/LISS-SDE_creating_program/LISS-SDE9.png, id=2817, 948.54375pt x 378.41376p
 t>
 File: img/LISS-SDE_creating_program/LISS-SDE9.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE9.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE9.png used on in
-put line 5179.
+put line 5165.
 (pdftex.def)             Requested size: 442.65375pt x 176.58995pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE10.png, id=2821, 945.5325pt x 708.6475pt
+<img/LISS-SDE_creating_program/LISS-SDE10.png, id=2819, 945.5325pt x 708.6475pt
 >
 File: img/LISS-SDE_creating_program/LISS-SDE10.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE10.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE10.png used on i
-nput line 5188.
+nput line 5174.
 (pdftex.def)             Requested size: 442.65375pt x 331.756pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE11.png, id=2823, 929.4725pt x 429.605pt>
+<img/LISS-SDE_creating_program/LISS-SDE11.png, id=2821, 929.4725pt x 429.605pt>
 File: img/LISS-SDE_creating_program/LISS-SDE11.png Graphic file (type png)
 <use img/LISS-SDE_creating_program/LISS-SDE11.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE11.png used on i
-nput line 5197.
+nput line 5183.
 (pdftex.def)             Requested size: 442.65375pt x 204.59546pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE12.png, id=2825, 1014.79124pt x 526.9687
+<img/LISS-SDE_creating_program/LISS-SDE12.png, id=2823, 1014.79124pt x 526.9687
 5pt>
 File: img/LISS-SDE_creating_program/LISS-SDE12.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE12.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE12.png used on i
-nput line 5206.
+nput line 5192.
 (pdftex.def)             Requested size: 442.65375pt x 229.86478pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [133 <./img/LISS-SDE_creating_program/LISS-SDE7.png>]
-<img/LISS-SDE_creating_program/LISS-SDE13.png, id=2833, 1033.8625pt x 558.085pt
+<img/LISS-SDE_creating_program/LISS-SDE13.png, id=2831, 1033.8625pt x 558.085pt
 >
 File: img/LISS-SDE_creating_program/LISS-SDE13.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE13.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE13.png used on i
-nput line 5217.
+nput line 5203.
 (pdftex.def)             Requested size: 442.65375pt x 238.95pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE14.png, id=2835, 1030.85126pt x 574.145p
+<img/LISS-SDE_creating_program/LISS-SDE14.png, id=2833, 1030.85126pt x 574.145p
 t>
 File: img/LISS-SDE_creating_program/LISS-SDE14.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE14.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE14.png used on i
-nput line 5226.
+nput line 5212.
 (pdftex.def)             Requested size: 442.65375pt x 246.53587pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-<img/LISS-SDE_creating_program/LISS-SDE15.png, id=2837, 1005.7575pt x 621.32124
+<img/LISS-SDE_creating_program/LISS-SDE15.png, id=2835, 1005.7575pt x 621.32124
 pt>
 File: img/LISS-SDE_creating_program/LISS-SDE15.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE15.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE15.png used on i
-nput line 5235.
+nput line 5221.
 (pdftex.def)             Requested size: 442.65375pt x 273.44856pt.
 
 
@@ -2398,12 +2393,12 @@ LaTeX Warning: Text page 135 contains only floats.
 
 [135 <./img/LISS-SDE_creating_program/LISS-SDE10.png> <./img/LISS-SDE_creating_
 program/LISS-SDE11.png>]
-<img/LISS-SDE_creating_program/LISS-SDE16.png, id=2854, 1007.765pt x 603.25375p
+<img/LISS-SDE_creating_program/LISS-SDE16.png, id=2852, 1007.765pt x 603.25375p
 t>
 File: img/LISS-SDE_creating_program/LISS-SDE16.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE16.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE16.png used on i
-nput line 5250.
+nput line 5236.
 (pdftex.def)             Requested size: 442.65375pt x 264.97221pt.
 
 
@@ -2411,40 +2406,40 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [136 <./img/LISS-SDE_creating_program/LISS-SDE12.png> <./img/LISS-SDE_creating_
 program/LISS-SDE13.png>]
-<img/LISS-SDE_creating_program/LISS-SDE17.png, id=2863, 1048.91875pt x 590.205p
+<img/LISS-SDE_creating_program/LISS-SDE17.png, id=2861, 1048.91875pt x 590.205p
 t>
 File: img/LISS-SDE_creating_program/LISS-SDE17.png Graphic file (type png)
  <use img/LISS-SDE_creating_program/LISS-SDE17.png>
 Package pdftex.def Info: img/LISS-SDE_creating_program/LISS-SDE17.png used on i
-nput line 5261.
+nput line 5247.
 (pdftex.def)             Requested size: 442.65375pt x 249.07317pt.
  [137 <./img/LISS-SDE_creating_program/LISS-SDE14.png> <./img/LISS-SDE_creating
 _program/LISS-SDE15.png>]
 [138 <./img/LISS-SDE_creating_program/LISS-SDE16.png> <./img/LISS-SDE_creating_
 program/LISS-SDE17.png>] [139]
-<img/executing_a_program.png, id=2883, 845.1575pt x 251.94125pt>
+<img/executing_a_program.png, id=2881, 845.1575pt x 251.94125pt>
 File: img/executing_a_program.png Graphic file (type png)
 
 <use img/executing_a_program.png>
-Package pdftex.def Info: img/executing_a_program.png used on input line 5280.
+Package pdftex.def Info: img/executing_a_program.png used on input line 5266.
 (pdftex.def)             Requested size: 354.12434pt x 105.56471pt.
 
-<img/execution_of_the_program_liss_sde_hello_world.png, id=2885, 476.78125pt x 
+<img/execution_of_the_program_liss_sde_hello_world.png, id=2883, 476.78125pt x 
 151.56625pt>
 File: img/execution_of_the_program_liss_sde_hello_world.png Graphic file (type 
 png)
  <use img/execution_of_the_program_liss_sde_hello_world.png>
 Package pdftex.def Info: img/execution_of_the_program_liss_sde_hello_world.png 
-used on input line 5291.
+used on input line 5277.
 (pdftex.def)             Requested size: 354.12434pt x 112.58049pt.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5298.
+(hyperref)                removing `math shift' on input line 5284.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 5298.
+(hyperref)                removing `math shift' on input line 5284.
 
 [140 <./img/executing_a_program.png> <./img/execution_of_the_program_liss_sde_h
 ello_world.png>] [141]
@@ -2453,7 +2448,7 @@ Chapter 6.
 
 
 ] [143]
-Overfull \hbox (1.20227pt too wide) in paragraph at lines 5383--5384
+Overfull \hbox (1.20227pt too wide) in paragraph at lines 5369--5370
 []\OT1/pplj/m/n/10.95 The project is avail-able to test on github throw this li
 nk  [][]$\OT1/cmtt/m/n/10.95 https : / / github . com / damienvaz /
  []
@@ -2506,11 +2501,11 @@ Overfull \hbox (21.35077pt too wide) in paragraph at lines 375--378
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5452.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5452.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5438.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5438.
  (./dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5452.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 5452.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5438.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 5438.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -2518,13 +2513,13 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5452.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5438.
  ) 
 Here is how much of TeX's memory you used:
- 39711 strings out of 493089
- 699405 string characters out of 6134841
+ 39709 strings out of 493089
+ 699382 string characters out of 6134841
  1048523 words of memory out of 5000000
- 40451 multiletter control sequences out of 15000+600000
+ 40450 multiletter control sequences out of 15000+600000
  65456 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  73i,17n,106p,2152b,2646s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2566,10 +2561,10 @@ w/helvetic/uhvb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helve
 tic/uhvr8ac.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/up
 lb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplr8a.pf
 b></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on dissertation.pdf (169 pages, 3260211 bytes).
+Output written on dissertation.pdf (169 pages, 3256505 bytes).
 PDF statistics:
- 4066 PDF objects out of 4296 (max. 8388607)
- 3722 compressed objects within 38 object streams
- 1987 named destinations out of 2073 (max. 500000)
- 21260 words of extra memory for PDF output out of 24883 (max. 10000000)
+ 4060 PDF objects out of 4296 (max. 8388607)
+ 3716 compressed objects within 38 object streams
+ 1986 named destinations out of 2073 (max. 500000)
+ 21252 words of extra memory for PDF output out of 24883 (max. 10000000)
 
