@@ -159,7 +159,7 @@
 	
 	% Add acknowledgements ----------------------------
 	\chapter*{Acknowledgements}
-	Firstly, I would like to thank my supervisor Pedro Rangel Henriques and co-supervisor Daniela da Cruz. They are the most who supported me throw this ambitious project and took me to the final stage of my university career.\newline
+	First, I would like to thank my supervisor Pedro Rangel Henriques and co-supervisor Daniela da Cruz. They are the most who supported me throw this ambitious project and took me to the final stage of my university career.\newline
 Thank you also to my family (particularly, my brother Joël and my father Celestino) and friends (Ranim, Bruno, Chloé, Tiago, Tamara, Saozita, Nuno, David) for supporting me.\newline
 And last but not least, I would like to dedicate this thesis to my, particularly, most beautiful mother.
 Despite you couldn't be here to watch me conclude my studies. Wherever you are, I hope that you are proud of me.	
@@ -1916,8 +1916,6 @@ Let's see an example of one service in Listing ~\ref{lst:printing_integer_mips}.
 \end{lstlisting}
 
 
-
-
 Notice that every instructions shown in the tables, are instructions which were used for the project.
 
 \section{MIPS Memory Management}
@@ -2141,7 +2139,7 @@ The compiler task is divided into several steps (see Figure ~\ref{fig:compiler})
 \label{fig:compiler}
 \end{figure}
 %\newpage
-Firstly, the lexical analysis must recognize words; these words are a string of symbols each of which is a letter, a digit or a special character.
+First, the lexical analysis must recognize words; these words are a string of symbols each of which is a letter, a digit or a special character.
 The Lexical analysis divides program text into "words" or "tokens" and once words are identified, the next step is to understand sentence structure (role of the parser).
 We can think the parsing as an analogy of our world by constructing phrases which requires a subject, verb and object. So, basically, the parser do a diagramming of sentences. %(see Figure \ref{fig:parsing}).
 
@@ -4638,7 +4636,7 @@ Let's see in Listing ~\ref{lst:for-loop_in_condition_mips} the iterative code ge
   for_exit1:
 \end{lstlisting}
 
-In Listing ~\ref{lst:for-loop_in_condition_mips}, lines 1 to 2 create the variable ~\textit{a}; line 3 create the for-loop branch; lines 4 to 9 test if the value of the variable ~\textit{a} is in the range of the for-loop condition. If the variable is not in the range, the program exits the for-loop flow by going to the branch named ~\textit{for\_exit1}(line 32); otherwise it continues the flow of the for-loop execution by going to line 10. Lines 10 to 20 refer to the ~\textit{satisfying} condition. If the condition isn't satisfied then it goes to the branch named ~\textit{satisfying\_exit1}, otherwise it continues the flow of the execution in line 21. Lines 21 to 25 is the code contained in the block of the for-loop statement. Notice that lines 27 to 30 is the piece of code who will increment the variable ~\textit{a} relatively to ~\textit{stepUp}. At the end (line 31), it jumps to the branch of the for-loop statement ~\textit{for\_loop1}(line 3).
+In Listing ~\ref{lst:for-loop_in_condition_mips}, lines 1 to 2 creates the variable ~\textit{a}; line 3 creates the for-loop branch; lines 4 to 9 tests if the value of the variable ~\textit{a} is in the range of the for-loop condition. If the variable is not in the range, the program exits the for-loop flow by going to the branch named ~\textit{for\_exit1}(line 32); otherwise it continues the flow of the for-loop execution by going to line 10. Lines 10 to 20 refers to the ~\textit{satisfying} condition. If the condition isn't satisfied then it goes to the branch named ~\textit{satisfying\_exit1}, otherwise it continues the flow of the execution in line 21. Lines 21 to 25 is the code contained in the block of the for-loop statement. Notice that lines 27 to 30 is the piece of code who will increment the variable ~\textit{a} relatively to ~\textit{stepUp}. At the end (line 31), it jumps to the branch of the for-loop statement ~\textit{for\_loop1}(line 3).
 
 Notice also, that ~\textit{stepUp} and ~\textit{satisfying} information are optional statement. If the satisfying statement is not available then the lines from 10 to 20 and line 26 of Listing ~\ref{lst:for-loop_in_condition_mips} will be removed. Regarding to the ~\textit{step} statement, even if the information is not available, by definition a for-loop statement needs to have a step by step iteraction. So, by omission, it will increment the variable by one; otherwise if the information is available, it will increment or decrease relatively to the information shown.
 
@@ -4693,7 +4691,7 @@ Let's see in Listing ~\ref{lst:for-loop_inArray_condition_MIPS} the iterative co
   for_exit4:
 \end{lstlisting}
 
-In Listing ~\ref{lst:for-loop_inArray_condition_MIPS}, lines 1 to 2 creates a variable named ~\textit{for\_var4} which will be used for accesing each index of the array; line 3 creates the branch name relatively to the for-loop statement; lines 4 to 9 test the variable ~\textit{for\_var4} with his boundaries. If it does not agree then it must exit the for-loop statement by going to the branch named ~\textit{for\_exit4} (line 23), otherwise it continues the flow of the execution of the code to line 10. Lines 10 to 12, the program refreshes the value of the variable ~\textit{a} by getting the value throw the index (variable ~\textit{for\_var4}) of the array. Lines 13 to 17, contains the code relative to the content in the body of the for-loop statement. In this case, it is the code instruction for writing to the output, the variable ~\textit{a}. Lines 18 to 21, refreshes the variable ~\textit{for\_var4} to the next position of the array by summing up with 4 bytes relatively to the old value of the variable. Finally, line 22 jumps to the branch ~\textit{for\_loop4} and continue the flow of the execution of the for-loop statement.
+In Listing ~\ref{lst:for-loop_inArray_condition_MIPS}, lines 1 to 2 creates a variable named ~\textit{for\_var4} which will be used for accessing each index of the array; line 3 creates the branch name relatively to the for-loop statement; lines 4 to 9 test the variable ~\textit{for\_var4} with the bounds associated to the variable. If it does not agree then it must exit the for-loop statement by going to the branch named ~\textit{for\_exit4} (line 23), otherwise it continues the flow of the execution of the code to line 10. Lines 10 to 12, the program refreshes the value of the variable ~\textit{a} by getting the value throw the index (variable ~\textit{for\_var4}) of the array. Lines 13 to 17, contains the code relative to the content in the body of the for-loop statement. In this case, it is the code instruction for writing to the output, the variable ~\textit{a}. Lines 18 to 21, refreshes the variable ~\textit{for\_var4} to the next position of the array by summing up with 4 bytes relatively to the old value of the variable. Finally, line 22 jumps to the branch ~\textit{for\_loop4} and continue the flow of the execution of the for-loop statement.
 
 In Figure ~\ref{fig:for-loop_inArray}, we can see the diagrammatic schema that depicts the semantics of a while-loop.
 
@@ -5250,7 +5248,7 @@ Now, if we try to run the compiler in ~\textit{liss$|$SDE}, the compiler will th
   [16:10:40] line: 5:16  Expression 'int+3'  has type 'null',when It should be 'integer | boolean | sequence | array'.
 \end{lstlisting}
  
-The notation conventions used for those messages, in Listing ~\ref{lst:error_messages_liss_sde}, is as follows: firstly, is shown the time that the error was found (embraced by square brackets); secondly, the line number of the error regarding to the liss code in window number 2 (see Figure ~\ref{fig:LISS-SDE_structure}) and lastly, the error message text.
+The notation conventions used for those messages, in Listing ~\ref{lst:error_messages_liss_sde}, is as follows: first, is shown the time that the error was found (embraced by square brackets); second, the line number of the error regarding to the liss code in window number 2 (see Figure ~\ref{fig:LISS-SDE_structure}) and finally, the error message text.
 
 Notice that the line number is very important to locate and understand the error and correct it.
 
