@@ -511,7 +511,7 @@ Let's see an example of its syntax below:
   set1 = {x | x < 6 && x > -7} -> set;
 \end{lstlisting}
 
-This declaration defines a set including all the integers from -7 to 6 (open interval) and others numbers are not included in the set.
+This declaration defines a set including all the integers from -7 to 6 (open interval) and other numbers are not included in the set.
 
 The syntax for set declaration and initialization is :
 
@@ -994,7 +994,7 @@ The syntax that rule the while-statement is shown below:
 
 
 
-\subsection{Others statements}
+\subsection{Other statements}
 
 LISS language offers other statements to make it more expressive easing the codification of any imperative algorithm.
 
@@ -1635,7 +1635,7 @@ The ~\textit{storage\_type} refers to the type of the variable that can be:
 \item ~\textit{.space} store a certain number of bytes of space in memory.
 \end{itemize}
 
-Lastly, the ~\textit{value(s)} field refers to the value of the type associated.
+Last, the ~\textit{value(s)} field refers to the value of the type associated.
 
 Let's see some example for declaring some variables in MIPS in Listing ~\ref{lst:data_declarations_examples_mips}.
 
@@ -1867,7 +1867,7 @@ Some explanation must be provided for understanding the tables shown previously:
 \end{itemize} 
 Note that the ~\textit{Format}, ~\textit{ Opcode} and ~\textit{Funct} are the information of each field for each format instruction as explained in Section ~\ref{sec:instruction_formats_mips}.
 
-Beside those instructions, some others instructions are sequences of instructions and they are called as pseudo instructions (see in Table ~\ref{tbl:pseudo_instructions}).
+Beside those instructions, some other instructions are sequences of instructions and they are called as pseudo instructions (see in Table ~\ref{tbl:pseudo_instructions}).
 
 
 \begin{table}[h!]
@@ -1904,7 +1904,7 @@ read integer                                                          & 5       
 \end{table}
 
 To understand better Table ~\ref{tbl:syscall_mips}, we need to give some explanation of it.
-The ~\textit{service} column gives us the context of the service; the ~\textit{code} column explains which value must be set into register \$v0 (associated to the service wished); the ~\textit{arguments} column specify the argument values that must be loaded depending on the service and lastly; the ~\textit{result} column gives some informations about the return value of the service (if available or not).
+The ~\textit{service} column gives us the context of the service; the ~\textit{code} column explains which value must be set into register \$v0 (associated to the service wished); the ~\textit{arguments} column specify the argument values that must be loaded depending on the service and last; the ~\textit{result} column gives some informations about the return value of the service (if available or not).
 
 Let's see an example of one service in Listing ~\ref{lst:printing_integer_mips}.
 
@@ -1994,7 +1994,7 @@ But if we open the second tab view, then it will change to the execution mode of
 
 The orange box also has two possible views (Mars Messages or Run I/O tabs). It is used to display error messages regarding the syntax and semantic of MIPS assembly code, or error messages regarding the execution of the MIPS assembly code.
 
-Lastly, the blue box has three different views: Registers, Co-processor1 and Co-processor 2. In the Figure above, it shows the states of the registers available in MIPS architecture but if we change the view it can show the states of each co-processor (related to division, multiplication).
+Last, the blue box has three different views: Registers, Co-processor1 and Co-processor 2. In the Figure above, it shows the states of the registers available in MIPS architecture but if we change the view it can show the states of each co-processor (related to division, multiplication).
 
 
 If the MIPS assembly code typed in (or loaded from a file) is correct (no errors detected), we can assemble it and execute it.
@@ -2847,7 +2847,7 @@ In this context, we need to check two error situations.
 
 First, we need to check if the ~\textit{identifier} (function name) is in the symbol table. If it isn't then it must throw the number 14 error message (see Table ~\ref{tbl:types_error_message}).
 
-Lastly, the compiler checks if the ~\textit{identifier} has the correct category (it must belong to the category ~\textit{Function}). If it doesn't have then it must throw the number 9 error message (see Table ~\ref{tbl:types_error_message}).
+Last, the compiler checks if the ~\textit{identifier} has the correct category (it must belong to the category ~\textit{Function}). If it doesn't have then it must throw the number 9 error message (see Table ~\ref{tbl:types_error_message}).
 
 \subsubsection{Expression}
 
@@ -3442,7 +3442,7 @@ Let's see and explain the code generated from the example in Listing ~\ref{lst:s
 \end{lstlisting}
 
 In Listing ~\ref{lst:sequence_function_stack_mips}, we load the variable ~\textit{sequence2} corresponding to the second argument of function ~\textit{cons()} (line 1); then we store that information to the stack (line 2 to 3); then, we process the first argument of the ~\textit{cons()} function (loading the number 3 to a temporary register \$t0)(line 4); now, the compiler knows that it must add that number with the result of ~\textit{head()} function (which will use a jump instruction), it will save the number 3 to the stack before calling that function (line 5 to 6); then the compiler will generate the calling function (line 7 to 9); after return from the function, the compiler knows that it needs to load the previous state stored before calling the function, so it gets back the number 3 from the stack into \$t0 (line 10 to 11); then the result of the ~\textit{head()} function is stored in the next register available \$t1 and executes the addition (line 12 to 13);
-finally, the compiler will move the sum to the appropriated register to call the ~\textit{cons()} function (line 14) and reload the information that he stored previously to the stack (related with the second argument of the ~\textit{cons()} function) (line 15 to 17); lastly, it will process the call of the ~\textit{cons()} function and store the result into the variable ~\textit{sequence2} (line 18 to 20).
+finally, the compiler will move the sum to the appropriated register to call the ~\textit{cons()} function (line 14) and reload the information that he stored previously to the stack (related with the second argument of the ~\textit{cons()} function) (line 15 to 17); last, it will process the call of the ~\textit{cons()} function and store the result into the variable ~\textit{sequence2} (line 18 to 20).
 
 
 
@@ -3661,7 +3661,7 @@ The other array elements (on components) have the initial value 0 and that is wh
 
 In line 7 of Listing ~\ref{lst:declaration_variable_code_generation}, we see two different named variables being declared with the type ~\textit{set}.
 
-That type basically doesn't create any informations in the MIPS assembly code for the declarations parts. Instead it saves the information in a specific structure created for that purpose. The structure is made with the concept of a Tree structure where there are some nodes with branches or not, associated to others nodes.
+That type basically doesn't create any informations in the MIPS assembly code for the declarations parts. Instead it saves the information in a specific structure created for that purpose. The structure is made with the concept of a Tree structure where there are some nodes with branches or not, associated to other nodes.
 
 And this structure is made by two JAVA class:
 
@@ -3719,7 +3719,7 @@ The compiler creates a Set class for each set variable declared, and it will ass
 
 Notice that the compiler will generate some assembly code only when it will be needed to implement a set logical expression in the ~\textit{statements} part of the LISS program.
 
-Lastly, we need to talk about the different states that a set can have regarding to the declaration part.
+Last, we need to talk about the different states that a set can have regarding to the declaration part.
 
 Set variable can have three different states:
 
@@ -4919,7 +4919,7 @@ Also, notice that, we implemented a tree visualization structure for one simple 
 
 The number 2, in Figure ~\ref{fig:LISS-SDE_structure}, is where the code of the language is processed regarding to the rules generated to the view number 1. Each time, the user selects a rule, the view in the window number 2 will be represented to reflect the new program code synthesized.
 
-Lastly, the window number 3 is related to every syntax and semantic errors, as well as, the output of the execution.
+Last, the window number 3 is related to every syntax and semantic errors, as well as, the output of the execution.
 
 \subsection{Toolbar meaning}
 
@@ -5207,7 +5207,7 @@ By doing that, it will pass throw a lot of steps (see Figure ~\ref{fig:flow_exec
     \label{fig:flow_execution_program}
 \end{figure}
 The first step is to take the liss program and pass it to the compiler. In this moment, the compiler will check the consistency of the code (semantic system); then, if everything is fine, it will pass the MIPS assembly code generated (at the end of the process of the compiler) to the simulator (Mars Simulator) and execute the code.
-Lastly and finally, it will print the output of the execution of the liss code to the window number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
+Finally, it will print the output of the execution of the liss code to the window number 3 (see Figure ~\ref{fig:LISS-SDE_structure}).
 
 For a visual example, let's execute the program created above with the ~\textit{liss$|$SDE} tool.
 
