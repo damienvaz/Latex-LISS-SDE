@@ -4397,22 +4397,22 @@ Concerning the translation of ~\textit{copy} statement (from lines 1 to 4 of Lis
 
 Remember that the copy statement copies every element of a sequence to another sequence.
 
-Relatively to the use of a ~\textit{cat} statement (from line 6 to 10 of Listing ~\ref{lst:copy_cat_function_mips}, it is the same way as the ~\textit{copy} mechanism. But instead of loading an empty sequence as second argument, it loads the appropriated sequence (line 7).
+Concerning the translation of ~\textit{cat} statement (from lines 6 to 10 of Listing ~\ref{lst:copy_cat_function_mips}), it is applied the same schema as the one used for ~\textit{copy}. But instead of loading an empty sequence as second argument, it loads the appropriated sequence (line 7).
 
 
 %falar do modo que os argumentos sao chamados ? a recursividade ou multiplicidade das funçoes como efeito de bola de neve e do modo que é operado da direita para esquerda. e depois falar da stack e finalmente falar dos copy e cat
 
 
 
-\subsection{Calling a function in LISS}
+\subsection{Implementing Function calls}
 
-Calling functions which are already created in LISS,  requires some mechanism.
+Calling a function, which  code was already created by the compiler,  requires some appropriated mechanism.
 
-As we know, functions deals with the stack available in MIPS architecture and the stack will hold informations about the arguments, local variables and return adress relatively for the use of a function.
+As we know, functions deal with the stack available in MIPS architecture and the stack will hold information about the function arguments, local variables and return adress.
 
-This means that if a function have one or more arguments associated to the function, it is in the duty to use a certain mechanism for passing that information to the stack.
+This means that if a function has one or more arguments, it is necessary to use a certain strategy for passing that information to the stack.
 
-And by this way, it is needed to generate some code for that situation(see in Listing ~\ref{lst:calling_function_mips}).
+Listing ~\ref{lst:calling_function_mips} shows the code for passing parameters.
 
 \begin{lstlisting}[caption={Code generated for calling a function in MIPS},label={lst:calling_function_mips}]
   lw $t0,a		
@@ -4420,19 +4420,15 @@ And by this way, it is needed to generate some code for that situation(see in Li
   jal factorial		
 \end{lstlisting}
 
-So the idea of calling a function is done by this way: if there are some arguments, then it is needed to generate the code relatively to those arguments and store them in the right position of the stack and finally, call the function. Otherwise if there is no arguments, then it must only call the function.
+The idea of calling a function is: if there are arguments, then it is needed to generate code to store them in the right position of the stack and finally, call the function. Otherwise if there are no arguments, then the code must only call the function.
 
-In Listing ~\ref{lst:calling_function_mips}, line 1 and 2 loads the variable ~\textit{a} and then stores in the right position of the stack. Lastly, it calls the function by doing a jump instruction (line 3).
+In Listing ~\ref{lst:calling_function_mips}, lines 1 and 2 load the variable ~\textit{a} and then stores it in the right position of the stack. Finally, it calls the function with a jump instruction (line 3).
 
 
 
-\subsection{Creating I/O in LISS}
+\subsection{Implementing Input/Output}
 
-%\begin{itemize}
-%\item Level scope equals to zero
-%\end{itemize}
-
-Let's see an example of LISS code in Listing ~\ref{lst:io_statements_mips}.
+Let's see in Listing ~\ref{lst:io_statements_mips} an example of a fragment of a LISS program to write and read data from/to the console device.
 
 \begin{lstlisting}[caption={Example of I/O statements in LISS},label={lst:io_statements_mips}]
   write();
@@ -4444,33 +4440,33 @@ Let's see an example of LISS code in Listing ~\ref{lst:io_statements_mips}.
   input(a);
 \end{lstlisting}
 
-Firstly, let's talk about the output statements. They are known by ~\textit{write} and ~\textit{writeln}.
+First, let's talk about the output statements: ~\textit{write} and ~\textit{writeln}.
 
-~\textit{Write} statement is an output which only prints the content and doesn't add the return carriage. However ~\textit{writeln} statement is an output which prints the content and add the return carriage at the end.
+~\textit{Write} statement prints the content of its arguments but doesn't add the return carriage. However ~\textit{writeln} statement is similar, it prints the content of its arguments and add the carriage return at the end of the output string.
 
-Those output statements have three possibility of being declared:
+The arguments of the output statement can be:
 
 \begin{enumerate}
-\item empty (line 1 and 4 of Listing ~\ref{lst:io_statements_mips})
-\item expression (line 2 and 5 of Listing ~\ref{lst:io_statements_mips})
-\item string (line 3 and 6 of Listing ~\ref{lst:io_statements_mips})
+\item empty (lines 1 and 4 of Listing ~\ref{lst:io_statements_mips})
+\item an integer expression (lines 2 and 5 of Listing ~\ref{lst:io_statements_mips})
+\item a string (lines 3 and 6 of Listing ~\ref{lst:io_statements_mips})
 \end{enumerate}
 
-Basically, for generating each output statements, we need to generate firstly the code regarding to the content available in the parentheses and then the code related to the type of output statements is available.
+To translate the 'write()' statement, we need to generate first the code to process the arguments and then the code to call the appropriate output instruction.
 
-If the output of the statement is a ~\textit{write}, then the code will be :
+If the output statement is ~\textit{write}, then the code will be :
 
 \begin{lstlisting}
   jal write
 \end{lstlisting}
 
-Otherwise if the output of the statement is a ~\textit{writeln}, then the code will be :
+Otherwise if the output statement is ~\textit{writeln}, then the code will be :
 
 \begin{lstlisting}	
   jal writeln
 \end{lstlisting}
 
-Notice that the behavior of the output statement ~\textit{writeln} reuses the ~\textit{write} statement plus adds the instruction code for adding the carriage return (see Listing ~\ref{lst:example_writeln_mips}).
+Notice that the translation of the output statement, ~\textit{writeln}, reuses the code for ~\textit{write} statement and adds the instruction to print the new line (see Listing ~\ref{lst:example_writeln_mips}).
 
 \begin{lstlisting}[caption={Code generated for line 6 in Listing ~\ref{lst:io_statements_mips}},label={lst:example_writeln_mips}]
   la $a0, writestring0
@@ -4479,9 +4475,9 @@ Notice that the behavior of the output statement ~\textit{writeln} reuses the ~\
   jal writeln
 \end{lstlisting}
 
-And the code already predifined regarding to both of the statement is available in Listing ~\ref{lst:write_writeln_mips}.
+The predefined code corresponding to the print action is shown in Listing ~\ref{lst:write_writeln_mips}.
 
-\begin{lstlisting}[caption={MIPS assembly code of write and writeln},label={lst:write_writeln_mips}]
+\begin{lstlisting}[caption={MIPS assembly code for write and writeln},label={lst:write_writeln_mips}]
   write: 
 	syscall
 	jr $ra
@@ -4492,11 +4488,11 @@ And the code already predifined regarding to both of the statement is available 
 	jr $ra
 \end{lstlisting}
 
-Now, let's talk about the input statement which is known by ~\textit{input}.
+Now, let's talk about the input statement.
 
-The idea behind of that statment for generating the code, it is to call the function which process for the output in MIPS and then store the information to the variable that is associated to the ~\textit{input} statment inside of the parentheses.
+To translate it, the idea is to call the MIPS function to read a value and then store this value into the variable that is referenced in the ~\textit{input} statment, inside the parentheses.
 
-Let's see the code generated of line 7 in Listing ~\ref{lst:io_statements_mips} below:
+Let's see below the code generated for line 7 in Listing ~\ref{lst:io_statements_mips}:
 
 \begin{lstlisting}
   jal read		
@@ -4504,9 +4500,7 @@ Let's see the code generated of line 7 in Listing ~\ref{lst:io_statements_mips} 
   sw $t0, a		
 \end{lstlisting}
 
-As we can see, after processing the read statement. We need to move the value that the user have put to another register and finally, store the value to the variable that was associated.
-
-This is the code that is predefined for the read statement (see in Listing ~\ref{lst:read_mips}).
+As we can see, after processing the read statement, we need to move the return value to another register and finally, store it the value to the respective variable. Below is the predefined code for the read statement (see in Listing ~\ref{lst:read_mips}).
 
 \begin{lstlisting}[caption={Read statement code in MIPS},label={lst:read_mips}]
   read: 
@@ -4518,9 +4512,9 @@ This is the code that is predefined for the read statement (see in Listing ~\ref
     jr $ra
 \end{lstlisting}
 
-\subsection{Creating conditional statement in LISS}
+\subsection{Implementing Conditional statements}
 
-Creating a conditional statement in LISS is basically following that schema available in Figure ~\ref{fig:conditional_figure}.
+The syntax to write a conditional statement in LISS has been introduced in Chapter 2, however it is illustrated again in Listing ~\ref{lst:conditional_statement_liss} to refresh the memory. The schema of Figure ~\ref{fig:conditional_figure} depicts its semantics.
 
 \begin{figure}[h!]
   \centering
@@ -4529,7 +4523,7 @@ Creating a conditional statement in LISS is basically following that schema avai
     \label{fig:conditional_figure}
 \end{figure}
 
-And for a better view of how it is generated let's see an example of a conditional statement in Listing ~\ref{lst:conditional_statement_liss}.
+Basically we have, in Listing ~\ref{lst:conditional_statement_liss}, a conditional statement with an if and an else statement. 
 
 \begin{lstlisting}[caption={Example of conditional statement in LISS},label={lst:conditional_statement_liss}]
   if(flag)
@@ -4540,9 +4534,7 @@ And for a better view of how it is generated let's see an example of a condition
   }
 \end{lstlisting}
 
-Basically we have, in Listing ~\ref{lst:conditional_statement_liss}, a conditional statement with an if and an else statement. The condition of the if-statement  in this case is false, so by this way the else content will be processed when it will be executed.
-
-Now let's see how the code is generated in Listing ~\ref{lst:conditional_code_generation}.
+Now let's see how the conditional code is generated in Listing ~\ref{lst:conditional_code_generation}.
 
 \begin{lstlisting}[caption={Code generated for conditional statement in MIPS},label={lst:conditional_code_generation}]
     lw $t0,flag		
@@ -4560,30 +4552,27 @@ Now let's see how the code is generated in Listing ~\ref{lst:conditional_code_ge
   l1:		
 \end{lstlisting}
 
-In Listing ~\ref{lst:conditional_code_generation}, line 1 is the piece of code relatively to the condition of the conditional statement, then comes at line 2 the instruction which compares the value of the condition to the value true. If the value are different then it must jump to the else-condition. Otherwise if the value are the same, then it process the next instruction available in line 3 which is the code instruction available in the content of the then-statment. At the end of the then-statement, it exit the conditional statement (line 7).
+In Listing ~\ref{lst:conditional_code_generation}, line 1 is the piece of code that translates the boolean expression of the conditional statement: line 2 contains the instruction which compares the value of that with the value True. If the values are different then it must jump to the else-condition. Otherwise if the values are equal, then the program execution continues in the next instruction available in line 3 which is the code that translates the content of the then-statment. At the end of the then-statement, the program exits the conditional statement (line 7) jumping over the else part to line 13.
 
-Now, if the condition of the statement is true, then it will jump to the branch of the else-statement (line 8) and execute every code instruction available there. Notice that it won't jump at the end as if it will be with the then-statement content, it will process the next instruction sequentially without jumping.
+If the boolean expression evaluates to False, then it will jump to the branch of the else-statement (line 8) and execute every instruction available from that line on; the code execution will flow to the end of the if-statement (line 13) wihtout any extra jump.
 
-Let's consider now that in the LISS code, no else-statement is used. Then the only thing that disappears is the whole code below of the else branch in Listing ~\ref{lst:conditional_code_generation}.
+Let's consider now the case that in the LISS program, no else-statement is used. Then the only thing that disappears is the whole code corresponding to the else branch in Listing ~\ref{lst:conditional_code_generation}.
 
-Let's see an example of the same code relatively to Listing ~\ref{lst:conditional_code_generation} without the else-statement in Listing ~\ref{lst:conditional_statement_no_else_mips}.
+Let's see in Listing ~\ref{lst:conditional_statement_no_else_mips} an example of the code above (Listing ~\ref{lst:conditional_code_generation}) without the else-statement.
 
 \begin{lstlisting}[caption={Code generated for conditional statements without an else-statement in MIPS},label={lst:conditional_statement_no_else_mips}]
     lw $t0,flag		
-    bne $t0, 1, else1		
+    bne $t0, 1, l1		
     la $a0, writestring0
     li $v0, 4
     jal write		
-    jal writeln		
-    j l1		
-  else1:
+    jal writeln				
+  l1:
 \end{lstlisting}
 
-\subsection{Creating iterative statement}
+\subsection{Implementing Iterative statements}
 
-In LISS, we have three different ways of creating iterative statement. 
-
-They are known by:
+As already introduced in Chapter 2, in LISS, we have three different to wrote an iterative statement:
 
 \begin{enumerate}
 \item For-loop with 'in' condition.
@@ -4591,18 +4580,18 @@ They are known by:
 \item While-loop.
 \end{enumerate}
 
-In Figure ~\ref{fig:for-loop_in}, we can see the routine of a for-loop with an 'in' condition.
+In Figure ~\ref{fig:for-loop_in}, we can see the diagrammatic schema of a for-loop with an 'in' condition.
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.8\textwidth]{img/for-loop_in.png}
-    \caption{Schema of the for-loop statement relatively with the use of the condition 'in'}
+    \caption{Schema of the for-loop statement using the condition 'in'}
     \label{fig:for-loop_in}
 \end{figure}
 
-Notice that the black circle is where the flow of the for-loop statement begins and that the double circle is where it finish of executing the flow of the for-loop statement.
+Notice that the black circle is where the flow of the for-loop statement begins and that the double circle is where it finishs executing the for-loop statement.
 
-Let's see a piece of LISS code relatively to a for-loop statement with an 'in' condition in Listing ~\ref{lst:for-loop_in_condition_LISS}.
+Let's see  in Listing ~\ref{lst:for-loop_in_condition_LISS} a fragment of s LISS program containing a for-loop statement with an 'in' condition.
 
 \begin{lstlisting}[caption={Example of a for-loop statement with 'in' condition in LISS},label={lst:for-loop_in_condition_LISS}]
   for(a in 1..5) stepUp 1 satisfying flag==true{
@@ -4610,11 +4599,11 @@ Let's see a piece of LISS code relatively to a for-loop statement with an 'in' c
   }
 \end{lstlisting}
 
-We can see in Listing ~\ref{lst:for-loop_in_condition_LISS}, that it is created a for-loop statement with an 'in' condition and beside that there is also more informations relatively to that loop. Informations that refers about the method for incrementing (~\textit{stepUp}) and a condition which must be tested every time before executing the block content inside of the for-loop statement (~\textit{satisfying}).
+We can see in Listing ~\ref{lst:for-loop_in_condition_LISS}, a for-loop statement controlled by an 'in' condition to test the inclusion in a given range (1 to 5) and also by a logical expression that must be satisfied. Moreover the control flow statement listed also defines explicitly the method for incrementing (~\textit{stepUp}) the control variable (by one) after each iteration.
 
-Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loop_in_condition_mips}.
+Let's see in Listing ~\ref{lst:for-loop_in_condition_mips} the iterative code generated for that piece of LISS program.
 
-\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:for-loop_in_condition_LISS}},label={lst:for-loop_in_condition_mips}]
+\begin{lstlisting}[caption={Iterative code generated for the LISS program in Listing ~\ref{lst:for-loop_in_condition_LISS}},label={lst:for-loop_in_condition_mips}]
     li $t0,1		
     sw $t0, a		
   for_loop1:
@@ -4649,22 +4638,22 @@ Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loo
   for_exit1:
 \end{lstlisting}
 
-In Listing ~\ref{lst:for-loop_in_condition_mips}, line 1 to 2 we create the variable ~\textit{a}; line 3 we create the for-loop branch; line 4 to 9 we test if the value of the variable ~\textit{a} is in the range of the for-loop condition. If no, we exit the for-loop flow by going to the branch named ~\textit{for\_exit1}(line 32); otherwise we continue the flow of the for-loop execution by going to line 10. Line 10 to 20 refers to the ~\textit{satisfying} condition. If the condition isn't satisfied then it goes to the branch named ~\textit{satisfying\_exit1}, otherwise it continues the flow of the execution in line 21. Line 21 to 25 is the code contained in the block of the for-loop statement. Notice that line 27 to 30 is the piece of code who will increment the variable ~\textit{a} relatively to ~\textit{stepUp}. At the end (line 31), it jumps to the branch of the for-loop statement ~\textit{for\_loop1}(line 3).
+In Listing ~\ref{lst:for-loop_in_condition_mips}, lines 1 to 2 create the variable ~\textit{a}; line 3 create the for-loop branch; lines 4 to 9 test if the value of the variable ~\textit{a} is in the range of the for-loop condition. If the variable is not in the range, the program exits the for-loop flow by going to the branch named ~\textit{for\_exit1}(line 32); otherwise it continues the flow of the for-loop execution by going to line 10. Lines 10 to 20 refer to the ~\textit{satisfying} condition. If the condition isn't satisfied then it goes to the branch named ~\textit{satisfying\_exit1}, otherwise it continues the flow of the execution in line 21. Lines 21 to 25 is the code contained in the block of the for-loop statement. Notice that lines 27 to 30 is the piece of code who will increment the variable ~\textit{a} relatively to ~\textit{stepUp}. At the end (line 31), it jumps to the branch of the for-loop statement ~\textit{for\_loop1}(line 3).
 
-Notice also, that ~\textit{stepUp} and ~\textit{satisfying} informations are optional statement. If the satisfying statement is not available then the line from 10 to 20 and line 26 of Listing ~\ref{lst:for-loop_in_condition_mips} will be removed. Regarding to the ~\textit{step} statement, even if the information is not available, by definition a for-loop statement needs to  have some kind of iteraction by step by step. So, by omission, it will increment the variable by one; otherwise if the information is available, it will increment or decrease relatively the information shown.
+Notice also, that ~\textit{stepUp} and ~\textit{satisfying} information are optional statement. If the satisfying statement is not available then the lines from 10 to 20 and line 26 of Listing ~\ref{lst:for-loop_in_condition_mips} will be removed. Regarding to the ~\textit{step} statement, even if the information is not available, by definition a for-loop statement needs to have a step by step iteraction. So, by omission, it will increment the variable by one; otherwise if the information is available, it will increment or decrease relatively to the information shown.
 
 In Figure ~\ref{fig:for-loop_inArray}, we can see the routine of a for-loop with an 'inArray' condition.
 
 \begin{figure}[h!]
   \centering
     \includegraphics[width=0.5\textwidth]{img/for-loop_inArray.png}
-    \caption{Schema of the for-loop statement relatively with the use of the condition 'inArray'}
+    \caption{Schema of the for-loop statement using the condition 'inArray'}
     \label{fig:for-loop_inArray}
 \end{figure}
 
-The idea of that for-loop statement is to have some kind of a foreach statement in LISS. Basically, the for-loop statement will pass to every positions of the array. Notice that when it is used that for-loop statement, it is unavailable for the user of declaring any ~\textit{step} or ~\textit{satisfying} statement.
+The idea of that for-loop statement is to have some kind of a foreach statement in LISS. Basically, the for-loop statement will pass to every positions of the array. Notice that when it is used, the for-loop statement disables the user by declaring any ~\textit{step} or ~\textit{satisfying} statement.
 
-Let's see a piece of LISS code relatively to a for-loop statement with an 'inArray' condition in Listing ~\ref{lst:for-loop_inArray_condition_LISS}.
+Let's see in Listing ~\ref{lst:for-loop_inArray_condition_LISS} a piece of a LISS program containing a for-loop statement with an 'inArray' condition.
 
 \begin{lstlisting}[caption={Example of a for-loop statement with 'inArray' condition in LISS},label={lst:for-loop_inArray_condition_LISS}]
   for(a inArray array1){
@@ -4672,13 +4661,13 @@ Let's see a piece of LISS code relatively to a for-loop statement with an 'inArr
   }
 \end{lstlisting}
 
-We can see in Listing ~\ref{lst:for-loop_inArray_condition_LISS}, that it is created a for-loop statement where the ~\textit{array1} is the variable of type array and the variable ~\textit{a} will have the value of each position of the variable ~\textit{array1}.
+We can see in Listing ~\ref{lst:for-loop_inArray_condition_LISS}, a for-loop statement where the ~\textit{array1} is the variable of type array and the variable ~\textit{a} will have the value of each position of the variable ~\textit{array1}.
 
 By doing a ~\textit{writeln(a)} in line 2 of Listing ~\ref{lst:for-loop_inArray_condition_LISS}, it will output the value of each position of the array named ~\textit{array1}.
 
-Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loop_inArray_condition_MIPS}.
+Let's see in Listing ~\ref{lst:for-loop_inArray_condition_MIPS} the iterative code generated for the piece of LISS program in Listing ~\ref{lst:for-loop_inArray_condition_LISS}.
 
-\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:for-loop_inArray_condition_LISS}},label={lst:for-loop_inArray_condition_MIPS}]
+\begin{lstlisting}[caption={Iterative code generated for the LISS program in Listing ~\ref{lst:for-loop_inArray_condition_LISS}},label={lst:for-loop_inArray_condition_MIPS}]
     li $t0,0		
     sw $t0, for_var4		
   for_loop4:
@@ -4704,9 +4693,9 @@ Let's see the code generated for that piece of code in Listing ~\ref{lst:for-loo
   for_exit4:
 \end{lstlisting}
 
-In Listing ~\ref{lst:for-loop_inArray_condition_MIPS}, line 1 to 2 we create a variable named ~\textit{for\_var4} which will be used for accesing each index of the array; line 3 we create the branch name relatively to the for-loop statement; line 4 to line 9 we test if the variable ~\textit{for\_var4} is in the limits of the array. If it isn't then it must exit the for-loop statement by going to the branch named ~\textit{for\_exit4} (line 23), otherwise it continues the flow of the execution of the code to line 10. Line 10 to line 12, we refresh the value of the variable ~\textit{a} by getting the value throw the index (variable ~\textit{for\_var4}) of the array. Line 13 to 17, this is where the content of the block relatively to the for-loop statement that will be put. In this case, it is the code instruction for writing to the output the variable ~\textit{a}. Line 18 to 21, we refresh the variable ~\textit{for\_var4} to the next position of the array and this is done by summing up with 4 bytes relatively to the old value of the variable ~\textit{for\_var4}. Lastly, line 22, we jumps to the branch ~\textit{for\_loop4} and continue the flow of the execution of the for-loop statement.
+In Listing ~\ref{lst:for-loop_inArray_condition_MIPS}, lines 1 to 2 creates a variable named ~\textit{for\_var4} which will be used for accesing each index of the array; line 3 creates the branch name relatively to the for-loop statement; lines 4 to 9 test the variable ~\textit{for\_var4} with his boundaries. If it does not agree then it must exit the for-loop statement by going to the branch named ~\textit{for\_exit4} (line 23), otherwise it continues the flow of the execution of the code to line 10. Lines 10 to 12, the program refreshes the value of the variable ~\textit{a} by getting the value throw the index (variable ~\textit{for\_var4}) of the array. Lines 13 to 17, contains the code relative to the content in the body of the for-loop statement. In this case, it is the code instruction for writing to the output, the variable ~\textit{a}. Lines 18 to 21, refreshes the variable ~\textit{for\_var4} to the next position of the array by summing up with 4 bytes relatively to the old value of the variable. Finally, line 22 jumps to the branch ~\textit{for\_loop4} and continue the flow of the execution of the for-loop statement.
 
-In Figure ~\ref{fig:for-loop_inArray}, we can see the routine of a while-loop.
+In Figure ~\ref{fig:for-loop_inArray}, we can see the diagrammatic schema that depicts the semantics of a while-loop.
 
 \begin{figure}[h!]
   \centering
@@ -4715,9 +4704,9 @@ In Figure ~\ref{fig:for-loop_inArray}, we can see the routine of a while-loop.
     \label{fig:for-loop_inArray}
 \end{figure}
 
-Basically, behind the idea of being the most simple iterative statement, the behavior of the while-loop statement is to check the truth of the condition every iteraction. If it is true, then the content who is inside will be executed otherwise it will exit the while-loop statement.
+Basically, behind the idea of being the most simple iterative statement, the behavior of the while-loop statement is to check the truth of the condition on every iteraction. If it is True, then the content who is inside will be executed otherwise it will be exited.
 
-Let's see a piece of LISS code relatively to a while-loop statement in Listing ~\ref{lst:while-loop_LISS}.
+Let's see in Listing ~\ref{lst:while-loop_LISS} a fragment of a LISS program containing a while-loop statement.
 
 \begin{lstlisting}[caption={Example of a while-loop statement in LISS},label={lst:while-loop_LISS}]
   while(flag){
@@ -4725,11 +4714,11 @@ Let's see a piece of LISS code relatively to a while-loop statement in Listing ~
   }
 \end{lstlisting}
 
-In Listing ~\ref{lst:while-loop_LISS}, we have a variable ~\textit{flag} which hold the value true. In this case, the condition is true and then it should proceed to the content available inside of the parentheses. Otherwise if the condition is false, then it will quit the while-loop statement.
+In Listing ~\ref{lst:while-loop_LISS}, the program has a variable ~\textit{flag} with the value set to True. With that case, the condition will be True and should proceed to the content available inside of the parentheses. Otherwise if the condition is False, the program will exit.
 
-Let's see the code generated for that piece of code in Listing ~\ref{lst:while-loop_LISS}.
+Let's see in Listing ~\ref{lst:while-loop_MIPS} the iterative code generated for the fragment of LISS program of Listing ~\ref{lst:while-loop_LISS}.
 
-\begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:while-loop_LISS}},label={lst:while-loop_MIPS}]
+\begin{lstlisting}[caption={Iterative code generated for the LISS program in Listing ~\ref{lst:while-loop_LISS}},label={lst:while-loop_MIPS}]
   while5:		
     lw $t0,flag		
     bne $t0, 1, while_exit5	
@@ -4741,19 +4730,17 @@ Let's see the code generated for that piece of code in Listing ~\ref{lst:while-l
   while_exit5:		
 \end{lstlisting}
 
-In Listing ~\ref{lst:while-loop_MIPS}, line 1 is created for the branch name of the while-loop statement. Firstly, we incorporate the code of the condition associated to the while-loop statement (line 2), then we test the truth of the condition in line 3. If the condition is false, it will jump to the branch ~\textit{while\_exit5} (line 9) for exiting the while-loop statement; otherwise, it will continue the flow of the execution by going to line 4. At this part, it is included all the code relatively to the content available in the while-loop statement (line 4 to 7). Finally, at line 8, it will jump back to the branch ~\textit{while5} and redo the algorithm.
+In Listing ~\ref{lst:while-loop_MIPS}, line 1 is created for the branch name of the while-loop statement. First, we incorporate the code of the condition associated to the while-loop statement (line 2), then we test the truth of the condition in line 3. If the condition is False, it will jump to the branch ~\textit{while\_exit5} (line 9) for exiting the while-loop statement; otherwise, it will continue the flow of the execution proceeding to line 4. In this part, it is included all the code relative to the content in the body of the while-loop statement (lines 4 to 7). Finally, at line 8, it will jump back to the branch ~\textit{while5} and repeat all the process.
 
-\subsection{Creating increment or decrement variables}
+\subsection{Implementing increment or decrement operators}
 
-If we wanna increment an integer variable, we can use and do by this following way in Listing ~\ref{lst:succ_LISS}.
+Listing ~\ref{lst:succ_LISS} shows the LISS statements to increment a variable ('i').
 
 \begin{lstlisting}[caption={Increment variable in LISS},label={lst:succ_LISS}]
   succ i;
 \end{lstlisting}
 
-Basically, we use the word ~\textit{succ} to give notion of incrementing and then we write the variable which will be incremented (~\textit{i}).
-
-Let's see the piece of LISS code relatively to Listing ~\ref{lst:succ_LISS} in Listing ~\ref{lst:succ_MIPS}.
+In Listing ~\ref{lst:succ_MIPS}, it is shown the code generated for 'succ' statement.
 
 \begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:succ_LISS}},label={lst:succ_MIPS}]
   lw $t0,i		
@@ -4762,17 +4749,15 @@ Let's see the piece of LISS code relatively to Listing ~\ref{lst:succ_LISS} in L
   sw $t0, i		
 \end{lstlisting}
 
-In Listing ~\ref{lst:succ_MIPS}, line 1 load the variable ~\textit{i} to register; line 2 load the value 1 to register; line 3 add both last registers (value of the variable and the value 1); line 4 refresh and store the result to the variable ~\textit{i}.
+In Listing ~\ref{lst:succ_MIPS}, line 1 load the variable ~\textit{i} to register \$t0; line 2 load the constant value 1 to register \$t1; line 3 sums both registers (value of the variable and the value 1); line 4 refresh and store the result into variable ~\textit{i}.
 
-If we wanna decrement an integer variable, we can use and do by this following way in Listing ~\ref{lst:pred_LISS}.
+Similarly, in Listing ~\ref{lst:pred_LISS} shows the LISS statement to decrement a variable ('i').
 
 \begin{lstlisting}[caption={Decrement variable in LISS},label={lst:pred_LISS}]
   pred i;
 \end{lstlisting}
 
-We use the word ~\textit{pred} for decrementing the variable and then we write the variable which will be drecremented (~\textit{i}).
-
-Let's see the piece of LISS code relatively to Listing ~\ref{lst:pred_LISS} in Listing ~\ref{lst:pred_MIPS}.
+The MIPS assembly code to implement the statement 'pred' is shown in Listing ~\ref{lst:pred_MIPS}.
 
 \begin{lstlisting}[caption={Code generated for the LISS code in Listing ~\ref{lst:pred_MIPS}},label={lst:pred_MIPS}] 
   lw $t0,i		
@@ -4781,7 +4766,7 @@ Let's see the piece of LISS code relatively to Listing ~\ref{lst:pred_LISS} in L
   sw $t0, i		
 \end{lstlisting}
 
-In Listing ~\ref{lst:pred_MIPS}, line 1 load the variable ~\textit{i} to register; line 2 load the value 1 to register; line 3 subtract both last registers (value of the variable and the value 1); line 4 refresh and store the result to the variable ~\textit{i}.
+In Listing ~\ref{lst:pred_MIPS}, line 1 loads the variable ~\textit{i} to register \$t0; line 2 loads the value 1 to register \$t1; line 3 subtract both registers (value of the variable and the value 1); line 4 refresh and store the result into variable ~\textit{i}.
 
 
 

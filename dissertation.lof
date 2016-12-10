@@ -22,9 +22,9 @@
 \contentsline {figure}{\numberline {17}{\ignorespaces Set structure in JAVA\relax }}{92}{figure.caption.52}
 \contentsline {figure}{\numberline {18}{\ignorespaces Architecture of the stack relatively to a function in LISS\relax }}{96}{figure.caption.53}
 \contentsline {figure}{\numberline {19}{\ignorespaces Schema of the conditional statements in LISS\relax }}{114}{figure.caption.55}
-\contentsline {figure}{\numberline {20}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'in'\relax }}{117}{figure.caption.56}
-\contentsline {figure}{\numberline {21}{\ignorespaces Schema of the for-loop statement relatively with the use of the condition 'inArray'\relax }}{119}{figure.caption.57}
-\contentsline {figure}{\numberline {22}{\ignorespaces Schema of the while-loop statement\relax }}{121}{figure.caption.58}
+\contentsline {figure}{\numberline {20}{\ignorespaces Schema of the for-loop statement using the condition 'in'\relax }}{117}{figure.caption.56}
+\contentsline {figure}{\numberline {21}{\ignorespaces Schema of the for-loop statement using the condition 'inArray'\relax }}{119}{figure.caption.57}
+\contentsline {figure}{\numberline {22}{\ignorespaces Schema of the while-loop statement\relax }}{120}{figure.caption.58}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {23}{\ignorespaces Example of an IDE visual interface (XCode) \footnote {http://www.alauda.ro/wp-content/uploads/2011/04/XCode-interface-e1302035068112.png}\relax }}{123}{figure.caption.59}
 \contentsline {figure}{\numberline {24}{\ignorespaces SDE example\relax }}{125}{figure.caption.60}

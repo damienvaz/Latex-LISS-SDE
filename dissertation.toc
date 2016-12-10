@@ -95,11 +95,11 @@
 \contentsline {subsubsection}{Assignment for sequence}{107}{equation.4.4.8}
 \contentsline {subsection}{\numberline {4.4.6}Set operations}{108}{subsection.4.4.6}
 \contentsline {subsection}{\numberline {4.4.7}Sequence operations}{109}{subsection.4.4.7}
-\contentsline {subsection}{\numberline {4.4.8}Calling a function in LISS}{111}{subsection.4.4.8}
-\contentsline {subsection}{\numberline {4.4.9}Creating I/O in LISS}{112}{subsection.4.4.9}
-\contentsline {subsection}{\numberline {4.4.10}Creating conditional statement in LISS}{114}{subsection.4.4.10}
-\contentsline {subsection}{\numberline {4.4.11}Creating iterative statement}{116}{subsection.4.4.11}
-\contentsline {subsection}{\numberline {4.4.12}Creating increment or decrement variables}{121}{subsection.4.4.12}
+\contentsline {subsection}{\numberline {4.4.8}Implementing Function calls}{111}{subsection.4.4.8}
+\contentsline {subsection}{\numberline {4.4.9}Implementing Input/Output}{112}{subsection.4.4.9}
+\contentsline {subsection}{\numberline {4.4.10}Implementing Conditional statements}{114}{subsection.4.4.10}
+\contentsline {subsection}{\numberline {4.4.11}Implementing Iterative statements}{116}{subsection.4.4.11}
+\contentsline {subsection}{\numberline {4.4.12}Implementing increment or decrement operators}{121}{subsection.4.4.12}
 \contentsline {chapter}{\numberline {5}\spacedlowsmallcaps {SDE: DEVELOPMENT}}{123}{chapter.5}
 \contentsline {section}{\numberline {5.1}What is a template?}{124}{section.5.1}
 \contentsline {section}{\numberline {5.2}Conception of the SDE}{125}{section.5.2}
