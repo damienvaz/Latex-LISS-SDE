@@ -167,8 +167,27 @@ None of this could have been made without their unconditional help.
 
 	% Add abstracts (en,pt) ---------------------------
 	\chapter*{Abstract}
-	The aim of this master work is to implement LISS language in ANTLR compiler generator system using an attribute grammar which create an abstract syntax tree (AST) and generate MIPS assembly code for MARS (MIPS Assembler and Runtime Simulator) .
-Using that AST, it is possible to create a Syntax Directed Editor (SDE) in order to provide the typical help of a structured editor which controls the writing according to language syntax as defined by the underlying context free grammar.
+	This dissertation is about \textbf{programming languages}---their design and formal specification with a
+grammar---\textbf{compilation}---including parsing, contextual validation for semantic checking,
+and assembly code generation--- \textbf{source program edition}---to help language beginners to
+write easily correct programs.
+
+To be more specific, 
+the aim of this master work is to write an attribute grammar (AG) for LISS, the Language of Integers Sequences and Sets,
+by using  AnTLR compiler generator tool, in order to implement the static semantic analyzer and  generate
+MIPS assembly code. 
+To execute the generated code, MARS---the MIPS Assembler and Runtime Simulator---will be explored.
+LISS is a toy language, designed twenty years ago in the Department of Informatics at UM to teach compiler courses;
+LISS is a small imperative programming language that offers special features to work with arrays,
+dynamic sequences and sets---these constructors pose complex and nteresting compilation problems.
+
+However, the main objective of this masters' work is the implementation of an integrated development environment (IDE) supported by a specific LISS editor that drives the creation of any source program free of syntactic errors.
+
+Using  LISS context free grammar,
+it is possible to create a Syntax-Directed Editor (SDE) in order to provide the typical help
+of a structured editor which controls the writing of a source program according to the language syntax as defined
+by the underlying  grammar. After synthesizing the correct source text it is possible to compile and run it
+without exiting the editing environment.
 	
 	\cleardoublepage
 	\chapter*{Resumo}
@@ -190,33 +209,87 @@ Using that AST, it is possible to create a Syntax Directed Editor (SDE) in order
 	
 	% CHAPTER - Introduction -------------------------
 	\chapter{Introduction}
-In informatics, solving problems with computers is related to the necessity of helping the end-users, facilitating their life.
-And all these necessities pass through developers who creates programs for this purpose.
+Computing is the activity concerned with solving problems using a computer to help the end-users in many of their daily tasks, professional or private, facilitating their life.
+To solve problems using the computer, the developers have to instruct the computer writing programs.
+To create programs, the programmers must use a formal language, general purpose or domain specific,
+more or less complex, but anyway it must be recognized by the computer.
+On account of this, in this context of computing, \textbf{programming languages} play a crucial role.
 
-However, developing programs is a difficult task; analyzing problems, and debugging software takes effort and time.
+Developing programs is a difficult task; analyzing problems, designing the algorithm to solve them,
+programming and debugging software requires a big effort and a large amount of time.
+This huge complexity demands high-level programming languages (HLPL);
+machine-code or assembly are no more sufficient to write so complex programs.
+This explains why programming languages have evolved so much in the last decades and in so many
+directions, supporting diverse approaches to problem solving (or different programming paradigms), 
+and offering different data types, control structures and operators.
 
-And this is why we must find a solution for these problems.
+When compared with low-level languages, such as assembly, HLPLs offer precise semantics and abstraction mechanisms, 
+that allow to hide details concerned with the computer architecture or its working principle---they
+must be closer to programmers than the machine.
+HLPLs must be easy to learn and simple to read, expressive, concise (non-ambiguous), consistent, scalable.
 
-Developing a software package  requires tools to help the developers to maximize their programming productivity.
-These tools are: on one hand, compilers to generate lower-level code (machine code) from the high-level source code (the input program written in an high-level programming language); on the other hand, editors to create that source code.
-And to make easier and safer the programmers work, high-level programming languages were created for facilitating their work.
+More than well designed, powerful programming languages,
+software developers require powerful tools to help them increasing their productivity.
+The most important tools are: \textbf{compilers} to generate lower-level code (machine code) from the high-level source code (the input program written in an high-level programming language);
+\textbf{editors} to create the source code; 
+\textbf{debuggers}, \textbf{code-analyzers}, etc. to help on fixing programming errors .
+And to make easier and safer the programmers work, environments that integrate these tools,
+improving their usage and performance, are also most desirable.
 
-This is not enough to overcome all the difficulties for creating a program in a safety way and having  a high level productivity!
+Although there are many different programming paradigms and programming languages, 
+as well as nice tools for software development,
+there is always space for further research in this area,
+looking for new language/tool features.
+On one hand it is a challenging activity,
+on the other hand it comes out with fresh ideas, better algorithms, data structures and products 
+that contribute to make the programmers life easier.
 
-This is why we need to have fresh ideas and to implement more features to help on solving these problems.
+In this scenario, a group of researchers on compilers and programming languages implementation, at Universidade do Minho (UM),
+designed years ago an imperative programming language called \textbf{LISS} (Language for Integers, Sequences and Sets)
+that, although small, includes at a high level of abstraction some specific features (like arrays, dynamic sequences and sets defined in comprehension) that improve the language expressivity and poses interesting compilation problems.
+The formal specification of LISS, as well as its compilation to different virtual machines, as been the subject of 
+previous projects.
+However people in the  Language Processing group at UM thinks that this language can be the object of
+new experiences and further research --- this was the basis for the present masters' work.
 
 \section{Objectives}
-In this work, this project aims to develop an editor with the concept of a SDE (Syntax Directed Editor).
+The main aim of this project is the development of an editor for LISS 
+following the concept of a Syntax Directed Editor (SDE).
 
-It is intended that the editor works with language designed by the members of the Language Processing group at UM which is called LISS.
+LISS language will be specified by an attribute grammar, that is known as the most adequate formalism
+to specify the syntax and semantics of programming languages.
+Thereafter the compiler generator tool AnTLR will be used because it is one of the most important compiler
+generators nowadays, it supports attribute grammars with inherited and synthesized attributes
+(following and L-attribution schema), and it generates a powerful and efficient LL(k) parser written in Java. 
 
-LISS language will be specified by an attribute grammar that will be passed, as input, to ANTLR. The compiler generated by ANTLR will generate MIPS assembly code (lower-level source code).
+The compiler generated by AnTLR will compile LISS programs into MIPS assembly code (lower-level source code).
+MIPS is an interesting virtual machine based on a RISC architecture, used in many projects;
+moreover it is supported by two good simulators that will be used to run the code generated by the LISS compiler.
 
-The front-end and the back-end of that compiler will be explained and detailed along the next pages.
+To be more concrete, the objectives of this project are:
+\begin{enumerate}
+\item 
+Create an AnTLR version of the existing CFG grammar for LISS language.
+
+\item
+Extend the LISS CFG to an AG in order to specify the language static semantics (validation of the contextual conditions),
+and its dynamic semantics, i.e., the generation of MIPS assembly code.
+To verify the correctness of the assembly code generated, MARS (a simple but effective MIPS simulator)  will be selected to provide all the tools for checking it.
+
+\item
+Develop the desired Structural-Editor, SDE, using the grammar produced for AnTLR.
+It will be implemented in  JavaFX because AnTLR is implemented in Java and, also, uses Java as target language.
+Additionally, an IDE, shall be created as the main interface for the desired syntax-directed editor.
+
+\item
+Finally, exhaustive and relevant tests will be made to the tool created; the outcomes will be analyzed and discussed.
+\end{enumerate}
 
 \section{Research Hypothesis}
 
-It is possible to synthesize a complete source program, ready to be compiled and executed, selecting the appropriate alternative language constructors and writing literals in the right positions in a special editor guided by the source language structure, or syntax.
+It is possible to synthesize a complete source program, ready to be compiled and executed,
+selecting the appropriate alternative language constructors and writing literals in the right
+positions in a special editor guided by the source language structure, or syntax.
 
 
 \section{Document Structure}	
